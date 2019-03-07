@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../../modules/pool');
 const router = express.Router();
 
-//STRETCH router
-const teamInviteRouter = require('./team.invite.router');
-
 //get invites for stories
 router.get('/', (req, res) => {
     
@@ -20,11 +17,11 @@ router.put('/', (req, res) => {
     
 });
 
-//story author can remove contributors from story by deleting from contributor table
+//story author can remove contributors from story by deleting person id from contributor table
 router.delete('/', (req, res) => {
 
 })
 
-app.use('/team', teamInviteRouter);
+
 
 module.exports = router;

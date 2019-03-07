@@ -7,11 +7,11 @@ router.get('/', (req, res) => {
     
 });
 
- //adding or updating profile pic
-router.post('/', (req, res) => {
+router.post('/photo', (req, res) => {
     //send picture to amazon
 
-    //then update person.profile_pic url
+    //store url in photo db
+
 });
 
 

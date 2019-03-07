@@ -13,7 +13,12 @@ router.get('/recent', (req, res) => {
 });
 
 //retrieve individual story details for viewing or editing
-router.get('/details', (req, res) => {
+router.get('/detail', (req, res) => {
+
+});
+
+//retrieves template story from template table for autopopulating story
+router.get('/template', (req, res) => {
 
 });
 
