@@ -1,4 +1,4 @@
-const contributorReducer = (state = {}, action) => {
+const contributorReducer = (state = [], action) => {
     if(action.type === 'SET_CONTRIBUTOR') {
         return action.payload;
     }
