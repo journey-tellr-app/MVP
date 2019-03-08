@@ -63,6 +63,7 @@ CREATE TABLE "contributor" (
 	"person_id" integer NOT NULL,
 	"story_id" integer NOT NULL,
 	"status" varchar(10) NOT NULL,
+    "prompt" varchar(280),
 	CONSTRAINT contributor_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

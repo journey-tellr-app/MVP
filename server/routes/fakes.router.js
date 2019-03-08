@@ -3,7 +3,8 @@ const pool = require('../modules/pool');
 const faker = require('faker');
 const router = express.Router();
 
-
+//this will allow an admin to add 30 randomized 
+//stories to the story table from the about page
 router.post('/story', (req, res) => {
     (async () => {
         const client = await pool.connect();
@@ -51,7 +52,8 @@ router.post('/story', (req, res) => {
      })
 });
 
-
+//this will allow an admin to add 300 randomized 
+//people to the person table from the about page
 router.post('/', (req, res) => {
 
         (async () => {
