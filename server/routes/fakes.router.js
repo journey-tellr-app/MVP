@@ -3,14 +3,6 @@ const pool = require('../modules/pool');
 const faker = require('faker');
 const router = express.Router();
 
-const titles = [
-                `Bob's first day`, 
-                `Craig's going-away party`, 
-                `Becky's baby shower`, 
-                `Simon says`, 
-                `National popsicle day`
-               ]
-const randomTitle = Math.floor(Math.random() * Math.floor(4));
 
 router.post('/story', (req, res) => {
     (async () => {
@@ -25,7 +17,7 @@ router.post('/story', (req, res) => {
                  {
                      header_photo: faker.image.image(),
                      author: randomAuthor,
-                     title: titles[randomTitle],
+                     title: faker.name.findName() + `'s First Day!`,
                      caption: faker.lorem.sentence(),
                      intro: faker.lorem.text()
                  }
