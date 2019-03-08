@@ -112,7 +112,7 @@ CREATE TABLE "template_story" (
 	"name" varchar(280) NOT NULL UNIQUE,
 	"title" varchar(280) NOT NULL,
 	"caption" varchar(280) NOT NULL UNIQUE,
-	"placeholder_image" VARCHAR(280) NOT NULL UNIQUE,
+	"placeholder_image" VARCHAR(280) NOT NULL,
 	"intro" TEXT NOT NULL,
 	"date_created" timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT template_story_pk PRIMARY KEY ("id")
@@ -137,7 +137,7 @@ CREATE TABLE "team_person" (
 CREATE TABLE "template_chapter" (
 	"id" serial NOT NULL,
 	"template_id" integer NOT NULL,
-	"title" varchar(80) NOT NULL,
+	"title" varchar(240) NOT NULL,
 	"text" TEXT NOT NULL,
 	"date_created" DATE NOT NULL DEFAULT now(),
 	"order" integer NOT NULL,
@@ -172,4 +172,18 @@ ALTER TABLE "team_person" ADD CONSTRAINT "team_person_fk1" FOREIGN KEY ("person_
 
 ALTER TABLE "template_chapter" ADD CONSTRAINT "template_chapter_fk0" FOREIGN KEY ("template_id") REFERENCES "template_story"("id");
 
--- dummy data
+-- dummy data for templates
+
+INSERT INTO person ("id", "email", "password", "first_name", "last_name", "profile_pic" )
+	VALUES (999999, 'test@test.com', 'saltAndHash', 'Testee', 'McGee', '/images/placeholder.png');
+
+INSERT INTO template_story ("id", "creator", "name", "title", "caption", "placeholder_image", "intro")
+	VALUES (100, 999999, 'Your First Day', 'Your Name First Day', 'A sentence about you and a blurb', '/images/placeholder.png', 'Write about one thing you are looking forward to with this role and one challenge'),
+	(200, 999999, 'Holiday/Social Event', 'Event Name', 'A sentence about the reason for the event', '/images/placeholder.png', 'Who, what, where, when, and why'),
+	(300, 999999, 'Team Meeting', 'Your Team/Dept Name and Project', 'Biggest accomplishment', '/images/placeholder.png', 'Write about your main purpose and memorable moment');
+
+INSERT INTO template_chapter ("template_id", "title", "text", "order")
+    VALUES (100, 'Title related to your personal history', 'Share about your strengths, interests, and passions to help others get to know you.', 1),
+    (100, 'Add Your Team Name Introductions', 'Take a picture with the team or a member and share about a conversation you had with them', 2),
+    (100, 'Your First Accomplishment', 'Share about how you overcame a challenge using resources, skills, and/or a coworker.', 3),
+    (100, 'Reflection and Onward', 'Share about something that would have helped you to learn sooner and something you are looking forward to.', 4);
