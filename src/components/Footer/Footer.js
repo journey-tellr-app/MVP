@@ -1,5 +1,4 @@
 import React from 'react';
-import './Footer.css'
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -7,8 +6,8 @@ import './Footer.css'
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 const Footer = () => (
-  <footer>
-    &copy; JourneyTellr 2019
+    <footer>
+        &copy; JourneyTellr 2019
   </footer>
 );
 
