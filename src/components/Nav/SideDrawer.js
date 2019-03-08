@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Box, Button, DropButton, Heading, Text } from 'grommet';
+import { Close } from 'grommet-icons';
 
 class SideDrawer extends Component {
+    state = { open: false };
+
     render() {
+        const { open } = this.state;
         return (
-            <div>
-                <h1>Side Drawer</h1>
-            </div>
-        )
+            <DropButton
+                label='Choose'
+                open={open}
+                onClose={() => this.setState({ open: false })}
+                onOpen={() => this.setState({ open: true })}
+                dropContent={(
+                    <Box pad='small'>
+                        <Box direction='row' justify='between' align='center'>
+                            <Heading level={3} margin='small' >Heading</Heading>
+                            <Button
+                                icon={<Close />}
+                                onClick={() => this.setState({ open: false })}
+                            />
+                        </Box>
+                        <Text>Content</Text>
+                    </Box>
+                )}
+            />
+        );
     }
-};
+}
 
 export default connect()(SideDrawer);
+

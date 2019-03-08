@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../Common/LogOutButton';
+import SideDrawer from './SideDrawer';
 import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
+    <SideDrawer />
     <Link to="/home">
       <h2 className="nav-title">Prime Solo Project</h2>
     </Link>
