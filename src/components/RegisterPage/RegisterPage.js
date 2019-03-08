@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 class RegisterPage extends Component {
-  state = {
-    username: '',
+  state = {   
+    first_name: '',
+    last_name: '',
+    email: '',
     password: '',
   };
 
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.first_name && this.state.last_name && this.state.email && this.state.password) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
-          username: this.state.username,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          email: this.state.email,
           password: this.state.password,
         },
       });
@@ -43,13 +47,35 @@ class RegisterPage extends Component {
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
-            <label htmlFor="username">
-              Username:
+            <label htmlFor="first_name">
+              First Name:
               <input
                 type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
+                name="first_name"
+                value={this.state.first_name}
+                onChange={this.handleInputChangeFor('first_name')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="last_name">
+              Last Name:
+              <input
+                type="text"
+                name="last_name"
+                value={this.state.last_name}
+                onChange={this.handleInputChangeFor('last_name')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="email">
+              Email:
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleInputChangeFor('email')}
               />
             </label>
           </div>
