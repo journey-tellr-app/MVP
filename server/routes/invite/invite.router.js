@@ -2,6 +2,8 @@ const express = require('express');
 const pool = require('../../modules/pool');
 const router = express.Router();
 
+const app = express();
+
 const contributorRouter = require('./contributor.router');
 app.use('/contributor', contributorRouter);
 
