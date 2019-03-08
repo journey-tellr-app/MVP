@@ -3,8 +3,12 @@ const axios = require('axios');
 
 class AboutPage extends Component {
 
-  add300 = (event) => {
+  addFakePeople = (event) => {
     axios.post('/fakes');
+  }
+
+  addFakeStories = (event) => {
+    axios.post('/fakes/story');
   }
   
   render() {
@@ -12,8 +16,8 @@ class AboutPage extends Component {
     return(
       <div>
         <div>
-          <h1>Be careful with this button y'all!</h1>
-          <button onClick={this.add300}>Add 300 people to the database</button>
+          <button onClick={this.addFakePeople}>Add 300 people to the database</button><br/>
+          <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
         </div>
       </div>
     )

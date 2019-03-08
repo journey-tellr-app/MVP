@@ -3,9 +3,60 @@ const pool = require('../modules/pool');
 const faker = require('faker');
 const router = express.Router();
 
+const titles = [
+                `Bob's first day`, 
+                `Craig's going-away party`, 
+                `Becky's baby shower`, 
+                `Simon says`, 
+                `National popsicle day`
+               ]
+const randomTitle = Math.floor(Math.random() * Math.floor(4));
 
-router.get('/', (req, res) => {
+router.post('/story', (req, res) => {
+    (async () => {
+        const client = await pool.connect();
 
+         try {
+             await client.query('BEGIN');
+
+             for (let i = 0; i < 30; i++) {
+                 const randomAuthor = Math.floor(Math.random() * Math.floor(300));
+                 const fakeStory =
+                 {
+                     header_photo: faker.image.image(),
+                     author: randomAuthor,
+                     title: titles[randomTitle],
+                     caption: faker.lorem.sentence(),
+                     intro: faker.lorem.text()
+                 }
+                 console.log(fakeStory);
+                 const queryText = `INSERT INTO story (header_photo, author, title, caption, intro) 
+                                    VALUES ($1, $2, $3, $4, $5);`;
+                 const values = [
+                                 fakeStory.header_photo,
+                                 fakeStory.author,
+                                 fakeStory.title,
+                                 fakeStory.caption,
+                                 fakeStory.intro
+                                ];
+                 const fakeStoryResult = await client.query(queryText, values);
+             }
+
+             await client.query('COMMIT');
+             res.sendStatus(201);
+
+         } catch(error) {
+             console.log('ROLLBACK', error);
+             await client.query('ROLLBACK');
+             throw error;
+         } finally {
+             client.release();
+         }
+         
+     })().catch((error) => {
+         console.log('CATCH', error);
+         res.sendStatus(500);
+     })
 });
 
 
