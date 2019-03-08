@@ -3,10 +3,12 @@ const axios = require('axios');
 
 class AboutPage extends Component {
 
+  //posts to fakes.router.js
   addFakePeople = (event) => {
     axios.post('/fakes');
   }
-
+  
+  //posts to fakes.router.js
   addFakeStories = (event) => {
     axios.post('/fakes/story');
   }
