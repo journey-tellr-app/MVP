@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ContributorList extends Component {
+class ExistingStoryChapter extends Component {
     render() {
         return (
             <div>
-                <h1>Contributor List</h1>
+                <h1>ExistingStoryChapter</h1>
             </div>
         )
     }
 };
 
-export default connect()(ContributorList);
+export default connect()(ExistingStoryChapter);
