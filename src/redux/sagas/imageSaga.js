@@ -8,18 +8,15 @@ function* addImage(action) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(response => {
-            // handle your response;
+            console.log(response);
+
         }).catch(error => {
-            // handle your error
+            console.log(error);
         });
     } catch (error) {
         console.log('Error with addImage:', error);
     }
 }
-
-
-
-
 
 function* imageSaga() {
     yield takeLatest('ADD_IMAGE', addImage);

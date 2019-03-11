@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import {connect} from 'react-redux'
 
 class ImageUpload extends Component {
     constructor() {
@@ -12,22 +13,12 @@ class ImageUpload extends Component {
     submitFile = (event) => {
         event.preventDefault();
         const formData = new FormData();
-        
         formData.append('file', this.state.file);
-        console.log(formData);
-        axios.post(`/awsS3`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then(response => {
-            // handle your response;
-            console.log(response);
-
-        }).catch(error => {
-            console.log(error);
-
-            // handle your error
-        });
+        const action = {
+            type: 'ADD_IMAGE',
+            payload: formData,
+        }
+        this.props.dispatch(action);
     }
     appendPic = () => {
         let statePic = this.state.file
@@ -56,4 +47,4 @@ class ImageUpload extends Component {
     }
 }
 
-export default ImageUpload;
+export default connect() (ImageUpload);
