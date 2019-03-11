@@ -19,7 +19,7 @@ class ContributorItem extends Component {
             <List.Item onClick={this.handleClick}>
                 <List.Item.Meta
                     avatar={<Avatar src={`${item.profile_pic}`} />}
-                    description={`${item.first_name} ${item.last_name}`}
+                    title={`${item.first_name} ${item.last_name}`}
                 />
             </List.Item>
         )

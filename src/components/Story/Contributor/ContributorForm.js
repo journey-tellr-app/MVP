@@ -12,7 +12,7 @@ class ContributorForm extends Component {
   }
 
   handleSearch = (value) => {
-    if (value.length > 3) {
+    if (value.length > 1) {
       this.props.dispatch({
         type: 'GET_EMPLOYEES',
         payload: value,

@@ -18,9 +18,11 @@ router.get('/:str', (req, res) => {
         const queryText= `SELECT id as person_id, first_name, last_name,
                             profile_pic
                             FROM person 
-                            WHERE first_name ILIKE $1
+                            WHERE first_name ILIKE $1 
+                                OR last_name ILIKE $1
+                            ORDER BY first_name
                             limit 10;`
-        const values = [`%${req.params.str}%`]
+        const values = [`${req.params.str}%`]
         pool.query(queryText, values)
             .then((result) => {
                 res.send(result.rows);
