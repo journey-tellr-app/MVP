@@ -31,26 +31,37 @@ class ContributorPopup extends Component {
 
     render() {
         const { visible, loading } = this.state;
+        const footer = [];
+        //some logic here to only show footer on edit page
+        if(false){
+            footer.push( <Button key="back"
+                            onClick={this.handleCancel}>
+                            Return</Button>);
+            footer.push( <Button key="submit"
+                            type="primary"
+                            loading={loading}
+                            onClick={this.handleOk}
+                            icon='usergroup-add'>
+                            Send Invites</Button>);
+        }
+        let ContributorBtnName;
+        //some logic to change button name based on edit/view and  
+        // whether there are many contributors, none, or one
+        if('no contributors' === 'no contributors' && 'edit' === 'edit'){
+            ContributorBtnName = 'Add Contributor(s)'
+        } else if(1 === 1 && 'view' === 'view'){
+            ContributorBtnName = 'One Contributor'
+        }
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    Edit Contributors</Button>
+                    {ContributorBtnName}</Button>
                 <Modal
                     visible={visible}
                     title="Adding Contributors"
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
-                    footer={[
-                        <Button key="back"
-                            onClick={this.handleCancel}>
-                            Return</Button>,
-                        <Button key="submit"
-                            type="primary"
-                            loading={loading}
-                            onClick={this.handleOk}
-                            icon='usergroup-add'>
-                            Send Invites</Button>,
-                    ]}
+                    footer={footer}
                 >
                     <ContributorForm />
                     <ContributorList />

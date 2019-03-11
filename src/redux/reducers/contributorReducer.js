@@ -4,6 +4,8 @@ const employeeResults = (state = [], action) => {
     switch(action.type){
         case('SET_EMPLOYEE_RESULTS'):
             return action.payload;
+        case('CLEAR_EMPLOYEE_RESULTS'):
+            return [];
         default:
             return state;
     }

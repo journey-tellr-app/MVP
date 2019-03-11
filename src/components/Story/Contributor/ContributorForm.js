@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'antd';
 
-import { Button } from 'antd';
+import { Button, Alert } from 'antd';
 
 const Option = AutoComplete.Option;
 
 class ContributorForm extends Component {
   state = {
     person: {},
+    alert: false,
   }
 
   handleSearch = (value) => {
@@ -27,10 +28,16 @@ class ContributorForm extends Component {
   }
 
   handleClick = () => {
-    this.props.dispatch({
-      type: 'ADD_PENDING_CONTRIBUTORS',
-      payload: this.state.person
-    })
+    if (this.props.pendingContributors.includes(this.state.person)) {
+      this.setState({alert: true,});
+      setTimeout( () => {this.setState({alert: false,}) }, 2000);
+    } else {
+      this.props.dispatch({
+        type: 'ADD_PENDING_CONTRIBUTORS',
+        payload: this.state.person
+      })
+      this.props.dispatch({ type: 'CLEAR_EMPLOYEE_RESULTS' })
+    }
   }
 
   render() {
@@ -43,11 +50,24 @@ class ContributorForm extends Component {
       });
     return (
       <div>
+        {this.state.alert ? 
+          <div>
+            <Alert message={
+              `${this.state.person.first_name} ${this.state.person.last_name}
+              is already a contributor`} 
+              type="warning"
+              showIcon />
+          </div>
+        :
+        null
+        }
         <AutoComplete
           style={{ width: 200 }}
           onSearch={this.handleSearch}
           onChange={this.onChange}
-          placeholder="input here">
+          defaultValue=''
+          placeholder="begin typing name"
+          allowClear={true} >
           {this.props.employeeResults &&
             searchResults
           }
@@ -60,7 +80,10 @@ class ContributorForm extends Component {
 }
 
 const mapRStoProps = (rs) => {
-  return { employeeResults: rs.contributor.employeeResults }
+  return { 
+    employeeResults: rs.contributor.employeeResults,
+    pendingContributors: rs.contributor.pending
+  }
 }
 
 export default connect(mapRStoProps)(ContributorForm);
