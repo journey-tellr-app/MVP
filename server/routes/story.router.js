@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//gets users contribution stories view for home page
+//gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
     console.log(`req.body.id: ${req.user.id}`);
     const userId = req.user.id;
@@ -28,7 +28,21 @@ router.get('/search', (req, res) => {
 
 //retrieves 10 recent stories for home page feed
 router.get('/recent', (req, res) => {
-
+    console.log('in /search router');
+    const queryText = `select story.*, count(story_likes.story_id) as likes
+                       from story
+                       join story_likes
+                       on story.id = story_likes.story_id
+                       group by story.id
+                       order by likes desc
+                       limit 10;`;
+    pool.query(queryText)
+    .then( (sqlResult) => {
+        res.send(sqlResult.rows);
+        res.sendStatus(200);
+    }).catch( (error) => {
+        console.log(`Error in /recent route: ${error}`);
+    })
 });
 
 //retrieve individual story details for viewing or editing
