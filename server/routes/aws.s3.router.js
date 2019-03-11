@@ -34,6 +34,7 @@ const uploadFile = (buffer, name, type) => {
 
 // Define POST route this is the default post route
 router.post('/', (request, response) => {
+    
     const form = new multiparty.Form();
     form.parse(request, async (error, fields, files) => {
         if (error) throw new Error(error);
