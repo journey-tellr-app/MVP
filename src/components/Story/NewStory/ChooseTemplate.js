@@ -6,7 +6,8 @@ class ChooseTemplate extends Component {
 
     // will set the value for the dropdown. Not currently doing that, only console loggging
     handleChange = (value) => {
-        console.log(`selected ${value}`);
+        // send the value(id) to get selected template
+        this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value});
     }
 
     render() {
@@ -21,7 +22,7 @@ class ChooseTemplate extends Component {
 };
 
 const mapStoreToProps = reduxStore => ({
-    template: reduxStore.template,
+    template: reduxStore.template.templateReducer,
 });
 
 export default connect(mapStoreToProps)(ChooseTemplate);

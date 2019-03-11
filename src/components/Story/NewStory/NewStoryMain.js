@@ -35,11 +35,11 @@ class NewStoryMain extends Component {
                 <p>{this.state.caption}</p>
                 <ChooseTemplate />
                 <form>
-                    <input name="title" onChange={this.onInputChange}/>
+                    <input name="title" onChange={this.onInputChange} />
                     <h4>Image goes here</h4>
-                    <input name="caption" onChange={this.onInputChange}/>
+                    <input name="caption" onChange={this.onInputChange} />
                 </form>
-                <NewStoryChapter />
+                {this.props.chapter.length > 0 ? <NewStoryChapter chapter={this.props.chapter} /> : <p>Add chapter</p>}
                 <ContributorList />
             </div>
         )
@@ -48,7 +48,8 @@ class NewStoryMain extends Component {
 }
 
 const mapStoreToProps = reduxStore => ({
-    reduxStore,
+    story: reduxStore.template.newTemplateStoryReducer,
+    chapter: reduxStore.template.newTemplateChapterReducer,
 });
 
 export default connect(mapStoreToProps)(NewStoryMain);
