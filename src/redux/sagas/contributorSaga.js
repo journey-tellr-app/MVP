@@ -4,8 +4,10 @@ import axios from 'axios';
 function* getEmployees(action) {
     try {
         //autopopulates search results for adding contributors
+        const response = yield axios.get(`/invite/${action.payload}`);
+        yield put({type: 'SET_EMPLOYEE_RESULTS', payload: response.data})
     } catch (error) {
-        console.log('Error with storyTemplate:', error);
+        console.log('Error with getEmployees saga', error);
     }
 }
 

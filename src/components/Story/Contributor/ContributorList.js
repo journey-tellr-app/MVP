@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import ContributorItem from './ContributorItem';
+
+import { List } from 'antd';
+
 class ContributorList extends Component {
     render() {
+        const { pendingContributors } = this.props;
         return (
             <div>
-                <h1>Contributor List</h1>
+                {this.props.pendingContributors &&
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={pendingContributors}
+                        renderItem={item => (
+                            <ContributorItem item={item} />
+                        )}
+                    />
+                }
             </div>
         )
     }
 };
 
-export default connect()(ContributorList);
+const mapRStoProps = (rs) => {
+    return { pendingContributors: rs.contributor.pending }
+}
+
+export default connect(mapRStoProps)(ContributorList);
