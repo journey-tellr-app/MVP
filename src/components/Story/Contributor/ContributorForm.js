@@ -28,7 +28,9 @@ class ContributorForm extends Component {
   }
 
   handleClick = () => {
-    if (this.props.pendingContributors.includes(this.state.person)) {
+    const repeat = this.props.pendingContributors.filter((c) => 
+    { return c.person_id === this.state.person.person_id });
+    if (repeat.length > 0) {
       this.setState({alert: true,});
       setTimeout( () => {this.setState({alert: false,}) }, 2000);
     } else {
@@ -53,8 +55,7 @@ class ContributorForm extends Component {
         {this.state.alert ? 
           <div>
             <Alert message={
-              `${this.state.person.first_name} ${this.state.person.last_name}
-              is already a contributor`} 
+              `User is already a contributor`} 
               type="warning"
               showIcon />
           </div>
