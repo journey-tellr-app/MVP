@@ -2,6 +2,25 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//gets users contribution stories view for home page
+router.get('/story-contributions', (req, res) => {
+    console.log(`req.body.id: ${req.user.id}`);
+    const userId = req.user.id;
+    const queryText = `select *
+                       from story
+                       join person 
+                       on story.author = person.id
+                       where author = $1;`;
+    pool.query(queryText, [userId])
+    .then( (sqlResult) => {
+        res.send(sqlResult.rows);
+        res.sendStatus(200);
+    }).catch( (error) => {
+        console.log(`error in /story-contributions router: ${error}`);
+        res.sendStatus(500);
+    })
+});
+
 //when user searches data base for specific stories 
 router.get('/search', (req, res) => {
     
