@@ -26,6 +26,9 @@ const Nav = (props) => (
       <Link className="nav-link" to="/about">
         About
       </Link>
+      <Link to='/app-home'>
+        App home page
+      </Link>
     </div>
   </div>
 );
