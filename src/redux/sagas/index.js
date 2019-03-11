@@ -6,6 +6,7 @@ import templateSaga from './templateSaga';
 import profileSaga from './profileSaga';
 import contributorSaga from './contributorSaga';
 import imageSaga from './imageSaga';
+import storySaga from './storySaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     profileSaga(),
     contributorSaga(),
     imageSaga(),
+    storySaga(),
   ]);
 }
