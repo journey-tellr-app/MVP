@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios';  //uncomment out when actually sending
+// import axios from 'axios';
+import {connect} from 'react-redux'
 
 class ImageUpload extends Component {
     constructor() {
@@ -9,30 +10,24 @@ class ImageUpload extends Component {
         };
     }
 
-    submitFile = (event) => {  //this was the default function given with AWS
+    submitFile = (event) => {
         event.preventDefault();
-        console.log(this.state.file);
-        
-        // const formData = new FormData();
-        // formData.append('file', this.state.file[0]);
-        // return <img src={event}></img>
-        // axios.post(`/test-upload`, formData, {
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data'
-        //     }
-        // }).then(response => {
-        //     // handle your response;
-        // }).catch(error => {
-        //     // handle your error
-        // });
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        const action = {
+            type: 'ADD_IMAGE',
+            payload: formData,
+        }
+        this.props.dispatch(action);
     }
     appendPic = () => {
-
-        return <img height="50" width="50" src={this.state.file} alt="thumbnail chosen"/>
+        let statePic = this.state.file
+        let picURL = URL.createObjectURL(statePic)
+        return <img height="50" width="50" src={picURL} alt="thumbnail chosen"/>
     }
     handleFileUpload = (event) => {
         this.setState({
-            file: URL.createObjectURL(event.target.files[0])  //static method creates a DOMString containing a URL representing the object given in the parameter.
+            file: event.target.files[0]
         })
     }
 
@@ -52,4 +47,4 @@ class ImageUpload extends Component {
     }
 }
 
-export default ImageUpload;
+export default connect() (ImageUpload);
