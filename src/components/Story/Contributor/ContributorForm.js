@@ -1,14 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { AutoComplete } from 'antd';
+
+function onSelect(value) {
+  console.log('onSelect', value);
+}
 
 class ContributorForm extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Contributor Form</h1>
-            </div>
-        )
-    }
-};
+  state = {
+    dataSource: [],
+  }
+
+  handleSearch = (value) => {
+    this.setState({
+      dataSource: !value ? [] : [
+        value,
+        value + value,
+        value + value + value,
+      ],
+    });
+  }
+
+  render() {
+    const { dataSource } = this.state;
+    return (
+      <AutoComplete
+        dataSource={dataSource}
+        style={{ width: 200 }}
+        onSelect={onSelect}
+        onSearch={this.handleSearch}
+        placeholder="input here"
+      />
+    );
+  }
+}
 
 export default connect()(ContributorForm);
