@@ -16,10 +16,12 @@ const employeeResults = (state = [], action) => {
     }
 }
 
-const pendingContributors = (state = [], action) => {
+const pending = (state = [], action) => {
     switch (action.type) {
         case ('ADD_PENDING_CONTRIBUTORS'):
             return [...state,  action.payload];
+        case ('REMOVE_PENDING_CONTRIBUTOR'):
+            return state.filter( item => item !== action.payload );
         default:
             return state;
     }
@@ -28,5 +30,5 @@ const pendingContributors = (state = [], action) => {
 export default combineReducers({
     contributorReducer,
     employeeResults,
-    pendingContributors,
+    pending,
 });

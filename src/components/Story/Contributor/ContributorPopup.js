@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ContributorForm from './ContributorForm';
+import ContributorList from './ContributorList';
 
-import { Modal, Button } from 'antd';
+import { Modal, Button, } from 'antd';
 
 class ContributorPopup extends Component {
     state = {
@@ -36,17 +37,23 @@ class ContributorPopup extends Component {
                     Edit Contributors</Button>
                 <Modal
                     visible={visible}
-                    title="Add Contributors"
+                    title="Adding Contributors"
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={[
-                        <Button key="back" onClick={this.handleCancel}>Return</Button>,
-                        <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
-                            Submit
-            </Button>,
+                        <Button key="back"
+                            onClick={this.handleCancel}>
+                            Return</Button>,
+                        <Button key="submit"
+                            type="primary"
+                            loading={loading}
+                            onClick={this.handleOk}
+                            icon='usergroup-add'>
+                            Send Invites</Button>,
                     ]}
                 >
                     <ContributorForm />
+                    <ContributorList />
                 </Modal>
             </div>
         );
