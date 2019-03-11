@@ -18,10 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import HomePage from '../Home/HomePage';
 
 import './App.css';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faIgloo } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faIgloo)
 
 class App extends Component {
   componentDidMount() {
