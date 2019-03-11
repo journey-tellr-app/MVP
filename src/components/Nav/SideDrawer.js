@@ -1,38 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Box, Button, DropButton, Heading, Text } from 'grommet';
-// import { Close } from 'grommet-icons';
+import { Drawer, Button } from 'antd';
+import './Nav.css';
+import 'antd/dist/antd.css';
+
 
 class SideDrawer extends Component {
-    state = { open: false };
+    state = { visible: false };
+
+    showDrawer = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    onClose = () => {
+        this.setState({
+            visible: false,
+        });
+    };
 
     render() {
-        const { open } = this.state;
         return (
             <div>
-
-            </div>
-            // <DropButton
-            //     label='Choose'
-            //     open={open}
-            //     onClose={() => this.setState({ open: false })}
-            //     onOpen={() => this.setState({ open: true })}
-            //     dropContent={(
-            //         <Box pad='small'>
-            //             <Box direction='row' justify='between' align='center'>
-            //                 <Heading level={3} margin='small' >Heading</Heading>
-            //                 <Button
-            //                     icon={<Close />}
-            //                     onClick={() => this.setState({ open: false })}
-            //                 />
-            //             </Box>
-            //             <Text>Content</Text>
-            //         </Box>
-            //     )}
-            // />
+                <Button type="primary" onClick={this.showDrawer}>
+                    Drawer
+                </Button>
+                <Drawer
+                    title="Basic Drawer"
+                    placement="left"
+                    closable={true}
+                    onClose={this.onClose}
+                    visible={this.state.visible}
+                >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Drawer>
+            </div >
         );
     }
 }
+
 
 export default connect()(SideDrawer);
 
