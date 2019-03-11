@@ -3,6 +3,10 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 const axios = require('axios');
 
 class AboutPage extends Component {
+  constructor(props) {
+    super(props);
+
+  }
 
   //posts to fakes.router.js
   addFakePeople = (event) => {
@@ -14,6 +18,7 @@ class AboutPage extends Component {
     axios.post('/fakes/story');
   }
 
+
   render() {
 
     return (
@@ -21,7 +26,7 @@ class AboutPage extends Component {
         <div>
           <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
           <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
-          <ImageUpload />
+          <ImageUpload typeOfPhoto='PERSON'/>
         </div>
       </div>
     )
