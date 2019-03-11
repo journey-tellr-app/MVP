@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'antd';
 
-function onSelect(value) {
-  console.log('onSelect', value);
-}
+import { Button } from 'antd';
+
+const Option = AutoComplete.Option;
 
 class ContributorForm extends Component {
   state = {
-    dataSource: [],
+    person: {},
   }
 
   handleSearch = (value) => {
-    if(value.length > 3){
+    if (value.length > 3) {
       this.props.dispatch({
         type: 'GET_EMPLOYEES',
         payload: value,
@@ -20,18 +20,47 @@ class ContributorForm extends Component {
     }
   }
 
+  onChange = (value) => {
+    this.setState({
+      person: this.props.employeeResults[value]
+    })
+  }
+
+  handleClick = () => {
+    this.props.dispatch({
+      type: 'ADD_PENDING_CONTRIBUTORS',
+      payload: this.state.person
+    })
+  }
+
   render() {
-    const { dataSource } = this.state;
+    const searchResults = this.props.employeeResults.map(
+      (employeeObj, i) => {
+        return (
+          <Option key={i} >
+            {`${employeeObj.first_name} ${employeeObj.last_name}`}
+          </Option>);
+      });
     return (
-      <AutoComplete
-        dataSource={dataSource}
-        style={{ width: 200 }}
-        onSelect={onSelect}
-        onSearch={this.handleSearch}
-        placeholder="input here"
-      />
+      <div>
+        <AutoComplete
+          style={{ width: 200 }}
+          onSearch={this.handleSearch}
+          onChange={this.onChange}
+          placeholder="input here">
+          {this.props.employeeResults &&
+            searchResults
+          }
+        </AutoComplete>
+        <Button icon="user-add" onClick={this.handleClick} />
+      </div>
+
     );
   }
 }
 
-export default connect()(ContributorForm);
+const mapRStoProps = (rs) => {
+  return { employeeResults: rs.contributor.employeeResults }
+}
+
+export default connect(mapRStoProps)(ContributorForm);

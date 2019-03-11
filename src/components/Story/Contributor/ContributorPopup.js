@@ -36,7 +36,7 @@ class ContributorPopup extends Component {
                     Edit Contributors</Button>
                 <Modal
                     visible={visible}
-                    title="Title"
+                    title="Add Contributors"
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={[
