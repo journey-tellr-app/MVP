@@ -15,6 +15,7 @@ const storyRouter = require('./routes/story.router');
 const likeRouter = require('./routes/like.router');
 const chapterRouter = require('./routes/chapter.router');
 const awsS3Router = require('./routes/aws.s3.router');
+const fakesRouter = require('./routes/fakes.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/story', storyRouter);
 app.use('/like', likeRouter);
 app.use('/chapter', chapterRouter);
 app.use('/awsS3', awsS3Router);
+app.use('/fakes', fakesRouter);
 
 // Serve static files
 app.use(express.static('build'));

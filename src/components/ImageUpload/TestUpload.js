@@ -10,9 +10,9 @@ class FileUpload extends Component {
     }
 
     submitFile = (event) => {
-        event.preventDefault();
-        const formData = new FormData();
-        formData.append('file', this.state.file[0]);
+        event.preventDefault();  //if the event does not get explicitly handled, its default action should not be taken as it normally would be
+        const formData = new FormData();  //provides a way to easily construct a set of key/value pairs representing form fields and their values
+        formData.append('file', this.state.file[0]);  //appends filename to DOM
         axios.post(`/awsS3`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'

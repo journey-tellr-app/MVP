@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const AWS = require('aws-sdk');
 const fileType = require('file-type');
-const bluebird = require('bluebird');
+const bluebird = require('bluebird');  //This library binds a Bluebird promise to the AWS.Request object that is returned by most of the AWS SDK methods. 
 const multiparty = require('multiparty');
 const router = express.Router();
 

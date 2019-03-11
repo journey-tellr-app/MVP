@@ -1,41 +1,25 @@
 import React, { Component } from 'react';
-const faker = require('faker');
-
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
-
-//DION: I'm using this page to experiment with faker.js
+const axios = require('axios');
 
 class AboutPage extends Component {
-  
 
-  render() {
+  //posts to fakes.router.js
+  addFakePeople = (event) => {
+    axios.post('/fakes');
+  }
   
-    const User = {
-      name: faker.name.findName(),
-      email: faker.internet.email(),
-      website: faker.internet.url(),
-      address: faker.address.streetAddress() + faker.address.city() + faker.address.country(),
-      bio: faker.lorem.sentences(),
-      image: faker.image.avatar()
-    }
+  //posts to fakes.router.js
+  addFakeStories = (event) => {
+    axios.post('/fakes/story');
+  }
+  
+  render() {
 
     return(
       <div>
         <div>
-          <p>
-            name: {User.name}
-            <br/>
-            email: {User.email}
-            <br/>
-            website: {User.website}
-            <br/>
-            address: {User.address}
-            <br/>
-            image: <img src={User.image} />
-          </p>
+          <button onClick={this.addFakePeople}>Add 300 people to the database</button><br/>
+          <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
         </div>
       </div>
     )
