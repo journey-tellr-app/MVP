@@ -76,22 +76,28 @@ class SideDrawer extends Component {
                 >
                     <img src={logo} alt={'logo'} height="40" width="40" className="logo-icon-only" />
                     <Divider />
-                    <Text strong><Avatar shape="square" size="large" icon="user" /> &nbsp; Profile Will Go Here</Text>
+                    <Link to="/profile" onClick={this.onClose}>
+                        <Text strong><Avatar shape="square" size="large" icon="user" /> &nbsp; Profile Will Go Here</Text>
+                    </Link>
                     <Divider />
-                    <Text><FontAwesomeIcon icon="plus-square" /> &nbsp; Create New Story</Text>
+                    <Link to="/choose-template" onClick={this.onClose}>
+                        <Text><FontAwesomeIcon icon="plus-square" /> &nbsp; Create New Story</Text>
+                    </Link>
                     <Divider />
-                    <Text><FontAwesomeIcon icon="bell" /> &nbsp; Notifications</Text>
+                    <Link to="/notification" onClick={this.onClose}>
+                        <Text><FontAwesomeIcon icon="bell" /> &nbsp; Notifications</Text>
+                    </Link>
                     <Divider />
-                    <Text><FontAwesomeIcon icon="users" /> &nbsp; Create Team</Text>
-                    <Divider />
-                    <Text><FontAwesomeIcon icon="book" /> &nbsp; All Stories</Text>
+                    <Link to="/search" onClick={this.onClose}>
+                        <Text><FontAwesomeIcon icon="book" /> &nbsp; All Stories</Text>
+                    </Link>
                     <Divider />
                     <Link to="/home" onClick={this.onClose}>
-                        <FontAwesomeIcon icon="home" /> {this.props.reduxStore.user.id ? 'Home' : 'Login'}
+                        <Text><FontAwesomeIcon icon="home" /> &nbsp; Home</Text>
                     </Link>
                     <Divider />
                     <Link to="/about" onClick={this.onClose}>
-                        About
+                        <Text>About</Text>
                     </Link>
                     <Divider />
                     {this.props.reduxStore.user.id && (
