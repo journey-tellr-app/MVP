@@ -4,7 +4,12 @@ import axios from 'axios';
 function* storyTemplate(action) {
   try {
     //gets template story id and name for dropdown
-    //put 'SET_TEMPLATE_STORY_DROPDOWN' 
+    //put 'SET_TEMPLATE_STORY_DROPDOWN'
+    console.log('in storyTemplate');
+    const response = yield axios.get('/template');
+    console.log(response.data);
+    const action = {type: 'SET_TEMPLATE_STORY_DROPDOWN', payload: response.data};
+    yield put(action);
   } catch (error) {
     console.log('Error with storyTemplate:', error);
   }

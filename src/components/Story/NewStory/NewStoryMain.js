@@ -1,28 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
-import EditChapterPage from './EditChapterPage.js';
 import NewStoryChapter from './NewStoryChapter.js';
+import ContributorList from './../Contributor/ContributorList.js';
 
 class NewStoryMain extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: '',
+            header_photo: '',
+            caption: '',
+        }
+    }
+
+    // function for setting local state with user inputs
+    onInputChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value,
+        });
+    } // end onInputChange
+
+    componentDidMount() {
+        this.props.dispatch({ type: 'GET_TEMPLATE_STORY' });
+    }
 
     render() {
         return (
             <div>
                 <h2>Create a Story</h2>
-                <h4>{this.props.reduxStore.story.title}</h4>
-                <img src={this.props.reduxStore.story.header_photo} />
-                <p>{this.props.reduxStore.story.caption}</p>
-                <h4>Chapters</h4> { /* conditionally rendered - replace with  */ }
-                <h4>Contributors</h4> { /* conditionally rendered - replace with new and edit contributor js files */ }
+                <p>{this.state.title}</p>
+                <p>{this.state.caption}</p>
+                <ChooseTemplate />
+                <form>
+                    <input name="title" onChange={this.onInputChange}/>
+                    <h4>Image goes here</h4>
+                    <input name="caption" onChange={this.onInputChange}/>
+                </form>
+                <NewStoryChapter />
+                <ContributorList />
             </div>
         )
     }
 
 }
 
-mapStoreToProps = reduxStore ({
+const mapStoreToProps = reduxStore => ({
     reduxStore,
 });
 
-export default connect(maptoreToProps)(NewStoryMain);
+export default connect(mapStoreToProps)(NewStoryMain);

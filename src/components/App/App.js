@@ -15,6 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
+import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -40,7 +41,8 @@ class App extends Component {
             <Route
               exact
               path="/about"
-              component={AboutPage}
+              component={NewStoryMain}
+              // component={AboutPage}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
