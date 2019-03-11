@@ -12,13 +12,12 @@ class ContributorForm extends Component {
   }
 
   handleSearch = (value) => {
-    this.setState({
-      dataSource: !value ? [] : [
-        value,
-        value + value,
-        value + value + value,
-      ],
-    });
+    if(value.length > 3){
+      this.props.dispatch({
+        type: 'GET_EMPLOYEES',
+        payload: value,
+      })
+    }
   }
 
   render() {
