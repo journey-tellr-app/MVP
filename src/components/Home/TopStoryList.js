@@ -21,7 +21,9 @@ class TopStoryList extends Component {
                                     key={i}
                                     header_photo={story.header_photo}
                                     title={story.title}
-                                    intro={story.intro} />
+                                    intro={story.intro}
+                                    name={story.first_name + ' ' + story.last_name} 
+                                    profile_pic={this.profile_pic}/>
                     })}
                 </div>
             </div>
