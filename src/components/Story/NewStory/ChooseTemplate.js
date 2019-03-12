@@ -13,6 +13,7 @@ class ChooseTemplate extends Component {
             this.props.dispatch({ type: 'RESET_TEMPLATE_NEW_STORY' });
             this.props.dispatch({ type: 'RESET_TEMPLATE_NEW_CHAPTER' });
         } else {
+            this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
             this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value});
         }
     }

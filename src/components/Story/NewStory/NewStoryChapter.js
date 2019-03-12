@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NewStoryChapterItem from './NewStoryChapterItem.js';
 
 // ant design import
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Icon, Button, List } from 'antd';
 
 class NewStoryChapter extends Component {
 
@@ -11,90 +11,53 @@ class NewStoryChapter extends Component {
         super(props);
 
         this.state = {
-            chapterCount: 0,
-            currentChapter: [],
+            newChapter: '',
         }
     }
 
-    removeChapter = () => {
-
+    removeChapter = (chapterIn) => {
+        this.props.dispatch({ type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapterIn });
     }
+
+    // function for setting local state with user inputs
+    onInputChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value,
+        });
+    } // end onInputChange
 
     addChapter = () => {
+        this.props.dispatch({ type: 'ADD_NEW_STORY_CHAPTER', payload: this.state.newChapter });
         this.setState({
-            chapterCount: this.state.chapterCount ++,
-            currentChapter: {...'1'},
-        });
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        // add fields to the reducer
-    }
-
-    // adds a new chapter to the story
-    addNewChapter = () => {
-        this.props.dispatch({ type: 'ADD_NEW_STORY_CHAPTER' });
+            newChapter: '',
+        })
     }
 
     render() {
-        const formItemLayout = {
-            labelCol: {
-                xs: {span: 24},
-                sm: {span: 4},
-            },
-            wrapperCol: { 
-                xs: {span: 24},
-                sm: {span: 20},
-            },
-        };
-
-        const formItemLayoutWithoutLabel = {
-            wrapperCol: {
-                xs: { span: 24, offset: 0 },
-                sm: { span: 20, offset: 4 },                
-            }
-        };
-
-        // getFieldDecorator('keys', {initialValue: []});
-        // const keys = getFieldValue('keys');
-        // const formItems = this.props.chapter.map((item, i) => (
-        //     <Form.Item
-        //         {...Form(i === 0 ? formItemLayout : formItemLayoutWithoutLabel)}
-        //         label={i === 0 ? 'Chapter' : ''}
-        //         key={i}
-        //     >
-        //             <Input placeholder="chapter title" />
-        //         {this.state.chapterCount > 1 ? (
-        //             <Icon 
-        //                 type="minus-circle-o"
-        //                 disabled={items.length === 1}
-        //                 onClick={() => this.removeChapter(i)}
-        //             />
-        //         ) : null}
-        //     </Form.Item>
-        // ));
 
         return (
-            <Form layout="inline" onSubmit={this.handleSubmit}>
-                {this.props.chapter.length > 0 ? this.props.chapter.map((item, i) => (
-                    <NewStoryChapterItem key={i} chapterItem={item} i={i} />
-                )) : ''}
-                <Form.Item {...formItemLayoutWithoutLabel}>
-                    <Input placeholder="chapter title" name="caption" onChange={this.onInputChange} />
-                </Form.Item>
-                <Form.Item>
-                    <Button
-                        type="dashed"
-                        onClick={this.addChapter}
-                    >
-                        <Icon type="plus" /> Add Chapter
-                    </Button>
-                </Form.Item>
-                {/* <Form.Item {...formItemLayoutWithoutLabel}>
-                    <Button type="primary" htmlType="submit">Submit</Button>
-                </Form.Item> */}
-            </Form>
+            <div>
+                <List
+                    itemLayout="horizontal"
+                    dataSource={this.props.chapter}
+                    renderItem={(item, i) => (
+                        <List.Item actions={[<Icon type="minus-circle-o" onClick={() => this.removeChapter(item)} />]}>
+                            <List.Item.Meta
+                                title={<p>Chapter - {i + 1}</p>}
+                            />
+                            <div>{item}</div>
+                        </List.Item>
+                    )}
+                />
+                <Input placeholder="chapter title" name="newChapter" onChange={this.onInputChange} />
+                <Button
+                    type="dashed"
+                    onClick={this.addChapter}
+                >
+                    <Icon type="plus" /> Add Chapter
+                </Button>
+            </div>
         )
     }
 };

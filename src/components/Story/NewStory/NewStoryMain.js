@@ -6,6 +6,9 @@ import TemplateChapter from './TemplateChapter.js';
 import ContributorList from './../Contributor/ContributorList.js';
 import NewStoryChapterItem from './NewStoryChapterItem.js';
 
+// ant design import
+import { Form, Input, Icon, Button } from 'antd';
+
 class NewStoryMain extends Component {
     constructor(props) {
         super(props);
@@ -25,12 +28,24 @@ class NewStoryMain extends Component {
         });
     } // end onInputChange
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        // add fields to the reducer
+    }
+
     // load templates for the dropdown menu
     componentDidMount() {
         this.props.dispatch({ type: 'GET_TEMPLATE_STORY' });
     }
 
     render() {
+        const formItemLayoutWithoutLabel = {
+            wrapperCol: {
+                xs: { span: 24, offset: 0 },
+                sm: { span: 20, offset: 4 },                
+            }
+        };
+
         return (
             <div>
                 <h2>Create a Story</h2>
