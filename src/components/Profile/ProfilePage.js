@@ -9,6 +9,7 @@ import './ProfilePage.css';
 import 'antd/dist/antd.css';
 import moment from 'moment'
 
+import ContributedStoryList from './ContributedStoryList';
 // import ImageUpload from '../ImageUpload/ImageUpload';
 // const axios = require('axios');
 
@@ -50,7 +51,7 @@ class ProfilePage extends Component {
                 </Row>
                 <Row>
                     <Col span={8}><Icon type="book" style={{ fontSize: '16px' }} /></Col>
-                    <Col span={16}>[Number] Stories</Col>
+                    <Col span={16}>{this.props.reduxStore.story.storyReducer.length}&nbsp;Stories</Col>
                 </Row>
                 <Row>
                     <Col span={8}><Icon type="profile" style={{ fontSize: '16px' }} /></Col>
@@ -61,7 +62,7 @@ class ProfilePage extends Component {
                     <Col span={16}></Col>
                 </Row>
                 <Row>
-                    <Col span={24}></Col>
+                    <Col span={24}><ContributedStoryList /></Col>
                 </Row>
             </div>
         )
