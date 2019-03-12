@@ -23,6 +23,7 @@ import ChooseTemplate from '../Story/NewStory/ChooseTemplate';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
+import FakeData from '../Faker/FakeData';
 
 import './App.css';
 import ExistingStory from '../Story/ExistingStory/ExistingStory';
@@ -93,6 +94,9 @@ class App extends Component {
             exact path='/existing-story'
             component={ExistingStory}
             />
+            <Route
+            exact path='/fake-data'
+            component={FakeData} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
             {/*  */}

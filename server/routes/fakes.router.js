@@ -101,4 +101,48 @@ router.post('/', (req, res) => {
     
 });
 
+router.post('/chapter', (req, res) => {
+    (async () => {
+        const client = await pool.connect();
+
+         try {
+             await client.query('BEGIN');
+
+             for (let i = 0; i < 50; i++) {
+                 const randomStory = Math.floor(Math.random() * (30 - 20) + 20);
+                 const fakeChapter =
+                 {
+                     story_id: randomStory,
+                     title: 'My first day as a ' + faker.name.jobTitle(),
+                     text: faker.lorem.paragraph(),
+                     chapter_photo: faker.image.avatar()
+                 }
+                 const queryText = `insert into chapter("story_id", "title", "text", "chapter_photo")
+                                    values ($1, $2, $3, $4);`;
+                 const values = [
+                                 fakeChapter.story_id,
+                                 fakeChapter.title,
+                                 fakeChapter.text,
+                                 fakeChapter.chapter_photo
+                                ];
+                 const fakeChapterResult = await client.query(queryText, values);
+             }
+
+             await client.query('COMMIT');
+             res.sendStatus(201);
+
+         } catch(error) {
+             console.log('ROLLBACK', error);
+             await client.query('ROLLBACK');
+             throw error;
+         } finally {
+             client.release();
+         }
+         
+     })().catch((error) => {
+         console.log('CATCH', error);
+         res.sendStatus(500);
+     })
+});
+
 module.exports = router;
