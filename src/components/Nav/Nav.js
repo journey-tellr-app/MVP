@@ -15,6 +15,9 @@ const Nav = () => (
     <Link to="/home">
       <img src={logo} alt={'logo'} height="40" width="150" className="logo" />
     </Link>
+    <Link to='/existing-story'>
+      existing story
+    </Link>
   </div>
 );
 
