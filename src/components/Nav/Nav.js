@@ -18,6 +18,9 @@ const Nav = () => (
     <Link to='/existing-story'>
       existing story
     </Link>
+    <Link to='/fake-data'>
+      fake data
+    </Link>
   </div>
 );
 

@@ -20,10 +20,15 @@ class ProfilePage extends Component {
 
 
 
+
+
     render() {
 
         return (
             <div>
+
+               
+
                 <Row>
                     <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.profile_pic} height="75" /></Col>
                     <Col span={10}><Title className="profile-element" level={4}>{this.props.reduxStore.user.first_name}&nbsp;{this.props.reduxStore.user.last_name}</Title></Col>
@@ -35,6 +40,7 @@ class ProfilePage extends Component {
                     <Col span={6}></Col>
                 </Row>
                 <Divider />
+
             </div>
         )
     }
