@@ -23,6 +23,7 @@ class NewStoryMain extends Component {
         });
     } // end onInputChange
 
+    // load templates for the dropdown menu
     componentDidMount() {
         this.props.dispatch({ type: 'GET_TEMPLATE_STORY' });
     }

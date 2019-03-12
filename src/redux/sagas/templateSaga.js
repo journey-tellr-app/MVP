@@ -30,8 +30,6 @@ function* storyTemplateDetails(action) {
   }
 }
 
-
-
 function* templateSaga() {
   yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
   yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);

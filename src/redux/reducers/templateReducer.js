@@ -10,17 +10,24 @@ const templateReducer = ( state = [], action ) => {
     return state;
 }
 
+// initial value for newTemplateStoryReducer used to clear the reducer
 const initialTemplateStory = {name:'', title:'',caption:'', placeholder_image:'',};
 const newTemplateStoryReducer = (state = initialTemplateStory, action) => {
     if(action.type === 'SET_TEMPLATE_NEW_STORY') {
         return action.payload;
+    } else if(action.type === 'RESET_TEMPLATE_NEW_STORY') {
+        return initialTemplateStory;
     }
     return state;
 }
 
-const newTemplateChapterReducer = (state = [], action) => {
+// initial value for initialTemplateChapter used to clear the reducer
+const initialTemplateChapter = [];
+const newTemplateChapterReducer = (state = initialTemplateChapter, action) => {
     if(action.type === 'SET_TEMPLATE_NEW_CHAPTER') {
         return action.payload;
+    } else if(action.type === 'RESET_TEMPLATE_NEW_CHAPTER') {
+        return initialTemplateChapter;
     }
     return state;
 }
