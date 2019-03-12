@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
 import NewStoryChapter from './NewStoryChapter.js';
+import TemplateChapter from './TemplateChapter.js';
 import ContributorList from './../Contributor/ContributorList.js';
+import NewStoryChapterItem from './NewStoryChapterItem.js';
 
 class NewStoryMain extends Component {
     constructor(props) {
@@ -38,7 +40,7 @@ class NewStoryMain extends Component {
                 {this.props.story.title != '' ? <h4>{this.props.story.title}</h4> : <input name="title" onChange={this.onInputChange} />}
                 <h4>Image goes here</h4>
                 {this.props.story.title != '' ? <p>{this.props.story.caption}</p> :<input name="caption" onChange={this.onInputChange} />}
-                {this.props.chapter.length > 0 ? <NewStoryChapter chapter={this.props.chapter} /> : <p>Add chapter</p>}
+                {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />}
                 <ContributorList />
             </div>
         )
