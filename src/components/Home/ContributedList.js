@@ -30,6 +30,8 @@ class ContributedList extends Component {
                                 header_photo={story.header_photo}
                                 title={story.title}
                                 intro={story.intro}
+                                //just combining the DB columns into a props item 'author'
+                                //for simplicity on the client
                                 author={story.first_name + ' ' + story.last_name}
                                 profile_pic={story.profile_pic}
                             />

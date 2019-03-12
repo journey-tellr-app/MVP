@@ -39,17 +39,17 @@ class NewStoryChapterItem extends Component {
         };
 
         return (
-            <Form.Item
-                // {(i === 0 ? formItemLayout : formItemLayoutWithoutLabel)}
-                
-                label={this.props.chapterItem === 0 ? 'Chapter' : ''}
-            >
-                <p>{this.props.chapterItem}</p>
-                <Icon 
-                    type="minus-circle-o"
-                    onClick={this.removeChapter}
-                />
-            </Form.Item>
+            <div>
+                <Form.Item {...formItemLayoutWithoutLabel}>
+                    <Input value={this.props.chapterItem} disabled={true} />
+                </Form.Item>
+                <Form.Item>
+                    <Icon 
+                        type="minus-circle-o"
+                        onClick={this.removeChapter}
+                    />
+                </Form.Item>
+            </div>
         )
     }
 };

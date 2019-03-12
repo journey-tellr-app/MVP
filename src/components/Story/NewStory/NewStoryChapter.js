@@ -81,6 +81,9 @@ class NewStoryChapter extends Component {
                     <NewStoryChapterItem key={i} chapterItem={item} i={i} />
                 )) : ''}
                 <Form.Item {...formItemLayoutWithoutLabel}>
+                    <Input placeholder="chapter title" name="caption" onChange={this.onInputChange} />
+                </Form.Item>
+                <Form.Item>
                     <Button
                         type="dashed"
                         onClick={this.addChapter}
@@ -88,9 +91,9 @@ class NewStoryChapter extends Component {
                         <Icon type="plus" /> Add Chapter
                     </Button>
                 </Form.Item>
-                <Form.Item {...formItemLayoutWithoutLabel}>
+                {/* <Form.Item {...formItemLayoutWithoutLabel}>
                     <Button type="primary" htmlType="submit">Submit</Button>
-                </Form.Item>
+                </Form.Item> */}
             </Form>
         )
     }
