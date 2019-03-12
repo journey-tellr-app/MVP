@@ -38,6 +38,8 @@ library.add(faSignInAlt)
 
 
 const { Text } = Typography;
+const { Title } = Typography;
+
 
 
 
@@ -78,11 +80,14 @@ class SideDrawer extends Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
-                    {JSON.stringify(this.props.reduxStore.user)}
                     <img src={logo} alt={'logo'} height="40" width="40" className="logo-icon-only" />
                     <Divider />
                     <Link to="/profile" onClick={this.onClose}>
-                        <Text strong><img src={this.props.reduxStore.user.profile_pic} height="50" />  &nbsp; Profile Will Go Here</Text>
+                        <Title level={4}>
+                            <img src={this.props.reduxStore.user.profile_pic} height="60" />
+                            &nbsp;&nbsp;
+                            {this.props.reduxStore.user.first_name}&nbsp;{this.props.reduxStore.user.last_name}
+                        </Title>
                     </Link>
                     <Divider />
                     <Link to="/choose-template" onClick={this.onClose}>
