@@ -25,6 +25,7 @@ import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
 
 import './App.css';
+import ExistingStory from '../Story/ExistingStory/ExistingStory';
 import LoginPage from '../LoginPage/LoginPage';
 
 
@@ -87,6 +88,10 @@ class App extends Component {
               exact
               path="/contributor"
               component={ContributorPopup}
+            />
+            <Route
+            exact path='/existing-story'
+            component={ExistingStory}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
