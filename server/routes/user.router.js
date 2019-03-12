@@ -48,9 +48,12 @@ router.post('/logout', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {  //sets profile pic
+  // console.log(req.body);
+  
   let user = req.params.id;
   let content = req.body.data.Location;  
-
+  console.log(user, content);
+  
   const queryText = `UPDATE "person" SET "profile_pic"= $1
                        WHERE "id" = $2;`;
   pool.query(queryText, [content, user])

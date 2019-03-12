@@ -1,6 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import {connect} from 'react-redux';
 
 function* addImageAWS(action) {
     let awsResponse;
@@ -24,10 +23,11 @@ function* addImageAWS(action) {
         payload: awsResponse,
         id: action.id,
     }
-    this.props.dispatch(nextAction);
+    yield put(nextAction);
 }
 
 function* addImagePerson(action) {
+
     try {
         
         yield axios.put(`/api/user/${action.id}`, action.payload, {
@@ -50,5 +50,5 @@ function* imageSaga() {
 
 }
 
-export default {connect} (imageSaga);
+export default imageSaga;
 

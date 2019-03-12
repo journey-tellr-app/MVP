@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
+import { Avatar } from 'antd';
+import { Row, Col } from 'antd';
+import { Card } from 'antd';
+import { Typography } from 'antd';
+import './AboutPage.css';
 import ImageUpload from '../ImageUpload/ImageUpload';
-const axios = require('axios');
+
+const { Paragraph } = Typography;
 
 class AboutPage extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-  //posts to fakes.router.js
-  addFakePeople = (event) => {
-    axios.post('/fakes');
-  }
-
-  //posts to fakes.router.js
-  addFakeStories = (event) => {
-    axios.post('/fakes/story');
-  }
 
 
   render() {
@@ -28,6 +20,23 @@ class AboutPage extends Component {
           <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
           <ImageUpload typeOfPhoto='PERSON' />  {/*Need to send props so component knows where to send and store */}
         </div>
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}>
+            <Avatar shape="square" size={128} icon="user" className="app-photo" />
+          </Col>
+          <Col span={8}></Col>
+        </Row>
+        <Row>
+          <Col span={12} offset={6}>
+            <Card className="paragraph">
+              <Paragraph>
+                JourneyTellr is a social media app for enterprise-level
+                organizations to use internally with their employees.
+              </Paragraph>
+            </Card>
+          </Col>
+        </Row>
       </div>
     )
   }

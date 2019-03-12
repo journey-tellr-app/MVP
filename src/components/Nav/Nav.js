@@ -3,43 +3,25 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../Common/LogOutButton';
 import SideDrawer from './SideDrawer';
+import logo from './JourneyTellr-Nameonly-color-noR.png';
 import './Nav.css';
 
-const Nav = (props) => (
+
+const Nav = () => (
   <div className="nav">
-    <SideDrawer />
-    <Link to="/home">
-      <h2 className="nav-title">Prime Solo Project</h2>
-    </Link>
-    <div className="nav-right">
-      <Link className="nav-link" to="/home">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
-      </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <LogOutButton className="nav-link" />
-      )}
-      {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
-      <Link to='/app-home'>
-        App home page
-      </Link>
+    <div>
+      <SideDrawer />
     </div>
+    <Link to="/home">
+      <img src={logo} alt={'logo'} height="40" width="150" className="logo" />
+    </Link>
   </div>
 );
 
 // Instead of taking everything from state, we just want the user
 // object to determine if they are logged in
-// if they are logged in, we show them a few more links 
+// if they are logged in, we show them a few more links
 // if you wanted you could write this code like this:
-// const mapStateToProps = ({ user }) => ({ user });
-const mapStateToProps = state => ({
-  user: state.user,
-});
 
-export default connect(mapStateToProps)(Nav);
+
+export default connect()(Nav);

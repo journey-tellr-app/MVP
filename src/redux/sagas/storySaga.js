@@ -4,12 +4,24 @@ import axios from 'axios';
 function* getMyContributions(action) {
     try {
         console.log('in getMyContributions', action);
-        const serverResponse = yield axios.get('story/story-contributions', action.payload);
+        const serverResponse = yield axios.get('story/story-contributions');
     
         yield put({type: 'SET_STORY', payload: serverResponse.data});
         
     } catch(error) {
         console.log(`Error in getMyContributions: ${error}`);
+    }
+}
+
+function* getStories(action) {
+    try {
+        console.log('in getStories' );
+        const serverResponse = yield axios.get('story/recent');
+
+        yield put({type: 'SET_TOP_STORIES', payload: serverResponse.data});
+
+    } catch(error) {
+        console.log(`Error in getStories: ${error}`);
     }
 }
 
@@ -33,6 +45,7 @@ function* storyTemplateDetails(action) {
 
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
+    yield takeLatest('GET_STORIES', getStories);
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
 }
