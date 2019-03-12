@@ -20,6 +20,7 @@
     "file-type": "^10.9.0",
     "fs": "0.0.1-security",
     "i": "^0.3.6",
+    "moment": "^2.24.0",
     "multiparty": "^4.2.1",
     "npm": "^6.9.0",
     "passport": "^0.4.0",

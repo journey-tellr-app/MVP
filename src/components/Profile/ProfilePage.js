@@ -7,6 +7,7 @@ import { Divider } from 'antd';
 import { Button } from 'antd';
 import './ProfilePage.css';
 import 'antd/dist/antd.css';
+import moment from 'moment'
 
 // import ImageUpload from '../ImageUpload/ImageUpload';
 // const axios = require('axios');
@@ -35,6 +36,26 @@ class ProfilePage extends Component {
                     <Col span={6}></Col>
                 </Row>
                 <Divider />
+                <Row>
+                    <Col span={8}><Icon type="calendar" style={{ fontSize: '16px' }} /></Col>
+                    <Col span={16}><Text>Member since</Text>&nbsp;{moment(this.props.reduxStore.user.date_created).format("MMM Do, YYYY")};</Col>
+                </Row>
+                <Row>
+                    <Col span={8}><Icon type="book" style={{ fontSize: '16px' }} /></Col>
+                    <Col span={16}>[Number] Stories</Col>
+                </Row>
+                <Row>
+                    <Col span={8}><Icon type="profile" style={{ fontSize: '16px' }} /></Col>
+                    <Col span={16}>[Number] Contributions</Col>
+                </Row>
+                <Row>
+                    <Col span={8}><Title level={4}>Stories</Title></Col>
+                    <Col span={16}></Col>
+                </Row>
+                <Row>
+                    <Col span={24}></Col>
+                </Row>
+
             </div>
         )
     }
