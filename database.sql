@@ -39,7 +39,7 @@ CREATE TABLE "chapter" (
 	"title" varchar(80) NOT NULL,
 	"text" TEXT,
 	"date_created" timestamp,
-	"order" integer NOT NULL,
+	"order" integer NOT NULL DEFAULT nextval('order_seq'::regclass),
 	"chapter_photo" text,
 	CONSTRAINT chapter_pk PRIMARY KEY ("id")
 ) WITH (
