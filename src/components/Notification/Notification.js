@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { List, Avatar, Icon } from 'antd';
+
 class Notification extends Component {
+
+    componentDidMount(){
+        this.props.dispatch({ type: 'GET_INVITES' })
+    }
+
     render() {
         return (
             <div>
@@ -11,4 +18,8 @@ class Notification extends Component {
     }
 };
 
-export default connect()(Notification);
+const mapRStoProps = (rs) => {
+    return {notifications: rs.contributor.invite}
+}
+
+export default connect(mapRStoProps)(Notification);
