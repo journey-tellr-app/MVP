@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Route } from 'react-router-dom';
+
 class RegisterPage extends Component {
   registerUser = (event) => {
     event.preventDefault();
@@ -44,6 +46,8 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
+        <Route />
+        <Route />
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>

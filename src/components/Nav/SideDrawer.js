@@ -59,6 +59,8 @@ class SideDrawer extends Component {
     };
 
     render() {
+        const { userInfo } = this.props;
+
         return (
             <div>
 
@@ -82,9 +84,9 @@ class SideDrawer extends Component {
                         {/* Title contains current users profile picture and name */}
                         {/* When clicked on, the user will be taken to the Profile page */}
                         <Title level={4}>
-                            <img src={this.props.reduxStore.user.profile_pic} height="60" />
+                            <img src={userInfo.profile_pic} height="60" />
                             &nbsp;&nbsp;
-                            {this.props.reduxStore.user.first_name}&nbsp;{this.props.reduxStore.user.last_name}
+                            {userInfo.first_name}&nbsp;{userInfo.last_name}
                         </Title>
                     </Link>
                     <Divider />
@@ -102,14 +104,14 @@ class SideDrawer extends Component {
                     <Divider />
                     {/* this Link will show Home if user is logged in, and will show Login if not logged in */}
                     <Link to="/home" onClick={this.onClose}>
-                        <FontAwesomeIcon icon="home" /> {this.props.reduxStore.user.id ? 'Home' : 'Login'}
+                        <FontAwesomeIcon icon="home" /> {userInfo.id ? 'Home' : 'Login'}
                     </Link>
                     <Divider />
                     <Link to="/about" onClick={this.onClose}>
                         <Text>About</Text>
                     </Link>
                     <Divider />
-                    {this.props.reduxStore.user.id && (
+                    {userInfo.id && (
                         <LogOutButton />
                     )}
                 </Drawer>
@@ -119,8 +121,8 @@ class SideDrawer extends Component {
 };
 
 
-const mapStateToProps = reduxStore => ({
-    reduxStore
+const mapStateToProps = store => ({
+    userInfo: store.user.userInfo
 });
 
 export default connect(mapStateToProps)(SideDrawer);
