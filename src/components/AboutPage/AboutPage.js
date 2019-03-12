@@ -26,7 +26,7 @@ class AboutPage extends Component {
         <div>
           <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
           <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
-          <ImageUpload typeOfPhoto='PERSON'/>
+          <ImageUpload typeOfPhoto='PERSON' />  {/*Need to send props so component knows where to send and store */}
         </div>
       </div>
     )

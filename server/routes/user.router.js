@@ -47,10 +47,9 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {  //sets profile pic
   let user = req.params.id;
-  let content = req.body.data.Location;
-  // console.log(content);
+  let content = req.body.data.Location;  
 
   const queryText = `UPDATE "person" SET "profile_pic"= $1
                        WHERE "id" = $2;`;

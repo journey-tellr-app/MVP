@@ -10,7 +10,7 @@ function* addImagePerson(action) {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(response => {
-                awsResponse = response;
+                awsResponse = response; 
                 console.log(awsResponse);
 
             }).catch(error => {
@@ -25,7 +25,7 @@ function* addImagePerson(action) {
 
         }).catch(error => {
             console.log(error);
-        });
+        });  //end put
     } catch (error) {
         console.log('Error with addImage:', error);
     }

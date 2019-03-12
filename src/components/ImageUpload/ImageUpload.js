@@ -15,7 +15,7 @@ class ImageUpload extends Component {
         const formData = new FormData();
         formData.append('file', this.state.file);
         const action = {
-            type: `ADD_IMAGE_${this.props.typeOfPhoto}`,
+            type: `ADD_IMAGE_${this.props.typeOfPhoto}`,  //directs dispach on which saga to use based on props
             payload: formData,
             id: this.props.user.id
         }
