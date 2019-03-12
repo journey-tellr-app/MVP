@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_USER':
@@ -9,6 +11,27 @@ const userReducer = (state = {}, action) => {
   }
 };
 
+const registrationState = {
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  confirm_email: '',
+  confirm_password: ''
+}
+const registration = (state = registrationState, action) => {
+  switch(action.type) {
+    case 'UPDATE_REGISTRATION':
+      return {...state, ...action.payload};
+    default:
+      return state;
+  }
+
+}
+
 // user will be on the redux state at:
 // state.user
-export default userReducer;
+export default combineReducers({
+    userReducer, 
+    registration,
+});

@@ -1,41 +1,39 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class RegisterPage extends Component {
-  state = {   
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    confirm_email: '',
-    confirm_password: ''
-  };
-
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.first_name && this.state.last_name && (this.state.email === this.state.confirm_email) && (this.state.password === this.state.confirm_password)) {
+    const { registration } = this.props;
+
+    if (registration.first_name && registration.last_name && (registration.email === registration.confirm_email) && (registration.password === registration.confirm_password)) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          email: this.state.email,
-          password: this.state.password,
+          first_name: registration.first_name,
+          last_name: registration.last_name,
+          email: registration.email,
+          password: registration.password,
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
   } // end registerUser
 
   handleInputChangeFor = propertyName => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
+    this.props.dispatch({
+      type: 'UPDATE_REGISTRATION',
+      payload: {
+        [propertyName]: event.target.value,
+      }
     });
   }
 
   render() {
+    const { registration } = this.props;
+
     return (
       <div>
         {this.props.errors.registrationMessage && (
@@ -54,7 +52,7 @@ class RegisterPage extends Component {
               <input
                 type="text"
                 name="first_name"
-                value={this.state.first_name}
+                value={registration.first_name}
                 onChange={this.handleInputChangeFor('first_name')}
               />
             </label>
@@ -65,7 +63,7 @@ class RegisterPage extends Component {
               <input
                 type="text"
                 name="last_name"
-                value={this.state.last_name}
+                value={registration.last_name}
                 onChange={this.handleInputChangeFor('last_name')}
               />
             </label>
@@ -76,7 +74,7 @@ class RegisterPage extends Component {
               <input
                 type="text"
                 name="email"
-                value={this.state.email}
+                value={registration.email}
                 onChange={this.handleInputChangeFor('email')}
               />
             </label>
@@ -87,7 +85,7 @@ class RegisterPage extends Component {
               <input
                 type="text"
                 name="confirm_email"
-                value={this.state.confirm_email}
+                value={registration.confirm_email}
                 onChange={this.handleInputChangeFor('confirm_email')}
               />
             </label>
@@ -98,18 +96,18 @@ class RegisterPage extends Component {
               <input
                 type="password"
                 name="password"
-                value={this.state.password}
+                value={registration.password}
                 onChange={this.handleInputChangeFor('password')}
               />
             </label>
           </div>
           <div>
             <label htmlFor="confirm_password">
-               Confirm Password:
+              Confirm Password:
               <input
                 type="password"
                 name="confirm_password"
-                value={this.state.confirm_password}
+                value={registration.confirm_password}
                 onChange={this.handleInputChangeFor('confirm_password')}
               />
             </label>
@@ -127,7 +125,7 @@ class RegisterPage extends Component {
           <button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
           >
             Login
           </button>
@@ -142,6 +140,7 @@ class RegisterPage extends Component {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
+  registration: state.user.registration,
 });
 
 export default connect(mapStateToProps)(RegisterPage);

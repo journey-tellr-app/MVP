@@ -15,7 +15,6 @@ router.get('/story-contributions', (req, res) => {
         pool.query(queryText, [userId])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
-                res.sendStatus(200);
             }).catch((error) => {
                 console.log(`error in /story-contributions router: ${error}`);
                 res.sendStatus(500);
