@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
 import { Icon } from 'antd';
 import { Typography } from 'antd';
+import { Divider } from 'antd';
+import { Button } from 'antd';
 import './ProfilePage.css';
 import 'antd/dist/antd.css';
 
@@ -25,13 +27,14 @@ class ProfilePage extends Component {
                 <Row>
                     <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.profile_pic} height="75" /></Col>
                     <Col span={10}><Title className="profile-element" level={4}>{this.props.reduxStore.user.first_name}&nbsp;{this.props.reduxStore.user.last_name}</Title></Col>
-                    <Col span={6}><Icon className="profile-element" type="edit" style={{ fontSize: '24px' }} /></Col>
+                    <Col span={6}><Button className="profile-element" icon="edit" /></Col>
                 </Row>
                 <Row>
-                    <Col span={6}><Text className="edit-btn">Edit</Text></Col>
+                    <Col span={6}><Button className="edit-btn">Edit</Button></Col>
                     <Col span={10}></Col>
                     <Col span={6}></Col>
                 </Row>
+                <Divider />
             </div>
         )
     }

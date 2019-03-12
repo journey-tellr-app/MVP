@@ -5,7 +5,6 @@ import LogOutButton from '../Common/LogOutButton';
 import { Drawer } from 'antd';
 import { Typography } from 'antd';
 import { Divider } from 'antd';
-import { Avatar } from 'antd';
 import './Nav.css';
 import 'antd/dist/antd.css';
 
