@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import ImageUpload from '../ImageUpload/ImageUpload';
+const axios = require('axios');
 
 class ProfilePage extends Component {
+
+    //posts to fakes.router.js
+    addFakePeople = (event) => {
+        axios.post('/fakes');
+    }
+
+    //posts to fakes.router.js
+    addFakeStories = (event) => {
+        axios.post('/fakes/story');
+    }
+
     render() {
+
         return (
             <div>
-                <h1>Profile Page</h1>
+                <div>
+                    <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
+                    <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
+                    <ImageUpload />
+                </div>
             </div>
         )
     }
-};
 
-export default connect()(ProfilePage);
+}
+export default ProfilePage;

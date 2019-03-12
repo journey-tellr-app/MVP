@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class NewStoryChapter extends Component {
+class ChapterFromTemplate extends Component {
     render() {
         return (
             <div>
@@ -13,4 +13,4 @@ class NewStoryChapter extends Component {
     }
 };
 
-export default connect()(NewStoryChapter);
+export default connect()(ChapterFromTemplate);

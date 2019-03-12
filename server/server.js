@@ -31,7 +31,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/invites', inviteRouter);
+app.use('/invite', inviteRouter);
 app.use('/story', storyRouter);
 app.use('/like', likeRouter);
 app.use('/chapter', chapterRouter);

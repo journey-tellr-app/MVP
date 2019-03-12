@@ -10,8 +10,8 @@ const templateReducer = ( state = [], action ) => {
     return state;
 }
 
-
-const newTemplateStoryReducer = (state = {}, action) => {
+const initialTemplateStory = {name:'', title:'',caption:'', placeholder_image:'',};
+const newTemplateStoryReducer = (state = initialTemplateStory, action) => {
     if(action.type === 'SET_TEMPLATE_NEW_STORY') {
         return action.payload;
     }

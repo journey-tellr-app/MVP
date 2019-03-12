@@ -34,11 +34,9 @@ class NewStoryMain extends Component {
                 <p>{this.state.title}</p>
                 <p>{this.state.caption}</p>
                 <ChooseTemplate />
-                <form>
-                    <input name="title" onChange={this.onInputChange} />
-                    <h4>Image goes here</h4>
-                    <input name="caption" onChange={this.onInputChange} />
-                </form>
+                {this.props.story.title != '' ? <h4>{this.props.story.title}</h4> : <input name="title" onChange={this.onInputChange} />}
+                <h4>Image goes here</h4>
+                {this.props.story.title != '' ? <p>{this.props.story.caption}</p> :<input name="caption" onChange={this.onInputChange} />}
                 {this.props.chapter.length > 0 ? <NewStoryChapter chapter={this.props.chapter} /> : <p>Add chapter</p>}
                 <ContributorList />
             </div>
