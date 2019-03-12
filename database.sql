@@ -40,6 +40,7 @@ CREATE TABLE "chapter" (
 	"text" TEXT,
 	"date_created" timestamp,
 	"order" integer NOT NULL,
+	"chapter_photo" text,
 	CONSTRAINT chapter_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
