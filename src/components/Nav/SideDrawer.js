@@ -92,8 +92,11 @@ class SideDrawer extends Component {
                         <Text><FontAwesomeIcon icon="book" /> &nbsp; All Stories</Text>
                     </Link>
                     <Divider />
-                    <Link to="/home" onClick={this.onClose}>
+                    {/* <Link to="/home" onClick={this.onClose}>
                         <Text><FontAwesomeIcon icon="home" /> &nbsp; Home</Text>
+                    </Link> */}
+                    <Link to="/home" onClick={this.onClose}>
+                        <FontAwesomeIcon icon="home" /> {this.props.reduxStore.user.id ? 'Home' : 'Login'}
                     </Link>
                     <Divider />
                     <Link to="/about" onClick={this.onClose}>

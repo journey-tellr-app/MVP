@@ -25,6 +25,7 @@ import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
 
 import './App.css';
+import LoginPage from '../LoginPage/LoginPage';
 
 
 class App extends Component {
@@ -47,10 +48,10 @@ class App extends Component {
               path="/about"
               component={AboutPage}
             />
-            <Route
+            {/* <Route
               exact path='/home'
               component={HomePage}
-            />
+            /> */}
             <Route
               exact path='/notification'
               component={Notification}
@@ -67,14 +68,18 @@ class App extends Component {
               exact path='/search'
               component={Search}
             />
+            {/* <Route
+              exact path='/login'
+              component={LoginPage}
+            /> */}
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
               path="/home"
-              component={UserPage} */}
+              component={HomePage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
