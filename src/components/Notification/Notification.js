@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { List, Avatar, Icon } from 'antd';
+import InviteList from './InviteList';
 
 class Notification extends Component {
 
@@ -10,16 +10,22 @@ class Notification extends Component {
     }
 
     render() {
+    const { invite } = this.props
         return (
             <div>
                 <h1>Notifications</h1>
+                {invite.length > 0 ? 
+                <InviteList invite={invite}/>
+                :
+                <p>You have no invites at this time</p>
+                }
             </div>
         )
     }
 };
 
 const mapRStoProps = (rs) => {
-    return {notifications: rs.contributor.invite}
+    return {invite: rs.notification.invite}
 }
 
 export default connect(mapRStoProps)(Notification);
