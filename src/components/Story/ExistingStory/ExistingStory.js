@@ -6,6 +6,7 @@ import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 class ExistingStory extends Component {
     componentDidMount(){
         // this.props.dispatch  //get story and chapters here
+        
     }
 
     renderChapter = () => {
