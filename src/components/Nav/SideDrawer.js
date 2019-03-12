@@ -8,6 +8,8 @@ import { Divider } from 'antd';
 import { Avatar } from 'antd';
 import './Nav.css';
 import 'antd/dist/antd.css';
+
+// icons used on this component
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +24,7 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import logo from './JourneyTellr-Logo_icononly_Color-version.png';
 
 
-
+// adds fa icons to project icon library
 library.add(faBars)
 library.add(faPlusSquare)
 library.add(faBell)
@@ -31,18 +33,12 @@ library.add(faBook)
 library.add(faHome)
 library.add(faSignInAlt)
 
-
-
-
-
-
-
+// with Ant Design, the specific type of typography component used needs to be declares as a constant
 const { Text } = Typography;
 const { Title } = Typography;
 
-
-
-
+// this drawer contains the main nav
+// SideDrawer component is sourced in the Nav.js component
 class SideDrawer extends Component {
     state = { visible: false };
 
@@ -50,12 +46,13 @@ class SideDrawer extends Component {
         this.props.dispatch({ type: "FETCH_USER" });
     }
 
+    // this causes the nav drawer to appear when called
     showDrawer = () => {
         this.setState({
             visible: true,
         });
     };
-
+    // this causes the nav drawer to close when called
     onClose = () => {
         this.setState({
             visible: false,
@@ -83,6 +80,8 @@ class SideDrawer extends Component {
                     <img src={logo} alt={'logo'} height="40" width="40" className="logo-icon-only" />
                     <Divider />
                     <Link to="/profile" onClick={this.onClose}>
+                        {/* Title contains current users profile picture and name */}
+                        {/* When clicked on, the user will be taken to the Profile page */}
                         <Title level={4}>
                             <img src={this.props.reduxStore.user.profile_pic} height="60" />
                             &nbsp;&nbsp;
@@ -102,9 +101,7 @@ class SideDrawer extends Component {
                         <Text><FontAwesomeIcon icon="book" /> &nbsp; All Stories</Text>
                     </Link>
                     <Divider />
-                    {/* <Link to="/home" onClick={this.onClose}>
-                        <Text><FontAwesomeIcon icon="home" /> &nbsp; Home</Text>
-                    </Link> */}
+                    {/* this Link will show Home if user is logged in, and will show Login if not logged in */}
                     <Link to="/home" onClick={this.onClose}>
                         <FontAwesomeIcon icon="home" /> {this.props.reduxStore.user.id ? 'Home' : 'Login'}
                     </Link>
