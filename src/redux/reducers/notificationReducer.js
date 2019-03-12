@@ -1,8 +1,14 @@
-const notificationReducer = (state = {}, action) => {
-    if(action.type === 'SET_NOTIFICATION') {
-        return action.payload;
+import { combineReducers } from 'redux';
+
+const invite = (state = [], action) => {
+    switch (action.type) {
+        case ('SET_INVITES'):
+            return action.payload;
+        default:
+            return state;
     }
-    return state;
 }
 
-export default notificationReducer;
+export default combineReducers({
+    invite,
+});
