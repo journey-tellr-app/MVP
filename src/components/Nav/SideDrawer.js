@@ -44,6 +44,10 @@ const { Text } = Typography;
 class SideDrawer extends Component {
     state = { visible: false };
 
+    componentDidMount() {
+        this.props.dispatch({ type: "FETCH_USER" });
+    }
+
     showDrawer = () => {
         this.setState({
             visible: true,
@@ -74,10 +78,11 @@ class SideDrawer extends Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
+                    {JSON.stringify(this.props.reduxStore.user)}
                     <img src={logo} alt={'logo'} height="40" width="40" className="logo-icon-only" />
                     <Divider />
                     <Link to="/profile" onClick={this.onClose}>
-                        <Text strong><Avatar shape="square" size="large" icon="user" /> &nbsp; Profile Will Go Here</Text>
+                        <Text strong><img src={this.props.reduxStore.user.profile_pic} height="50" />  &nbsp; Profile Will Go Here</Text>
                     </Link>
                     <Divider />
                     <Link to="/choose-template" onClick={this.onClose}>
