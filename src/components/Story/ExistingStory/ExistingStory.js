@@ -4,8 +4,10 @@ import { Divider } from 'antd';
 import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 
 class ExistingStory extends Component {
+
     componentDidMount(){
-        // this.props.dispatch  //get story and chapters here
+        this.props.dispatch({type:''
+                     });
     }
 
     renderChapter = () => {
