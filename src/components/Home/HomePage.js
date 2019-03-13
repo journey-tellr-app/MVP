@@ -11,9 +11,11 @@ class HomePage extends Component {
             <div>
                 <h1>Home page</h1>
                 <ContributedList
-                history={this.props.history}
+                    history={this.props.history}
                 />
-                <TopStoryList/>
+                <TopStoryList
+                    history={this.props.history}
+                />
             </div>
         )
     }

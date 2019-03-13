@@ -13,7 +13,7 @@ function* getMyContributions(action) {
     }
 }
 
-function* getStories(action) {
+function* getTopStories(action) {
     try {
         console.log('in getStories' );
         const serverResponse = yield axios.get('story/recent');
@@ -57,7 +57,7 @@ function* storyTemplateDetails(action) {
 
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
-    yield takeLatest('GET_STORIES', getStories);
+    yield takeLatest('GET_TOP_STORIES', getTopStories);
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);

@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 class TopStoryItem extends Component {
 
     handleReadStory = (event) => {
-        console.log('in readStory');
+        this.props.history.push(`/existing-story/${this.props.id}`);
     }
     
     render() {
 
         return (
             <div>
-                {this.props.title}
                 <img 
                     width='150px' 
                     height='100px' 

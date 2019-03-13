@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
 //this reducer will return all the 
-//stories a user is/has contributed to
+//stories a user is/has contributed to.
+//To be used on the home page
 const contributedStoryReducer = (state = [], action) => {
     if(action.type === 'SET_STORY_CONTRIBUTIONS') {
         return action.payload;
@@ -18,7 +19,8 @@ const storyDetail = (state = [], action) => {
     return state;
 }
 
-//this reducer will return the top 10 stories at the company
+//This reducer will return the top 10 stories at the company.
+//To be used on the home page.
 const topStoriesReducer = (state = [], action) => {
     if(action.type === 'SET_TOP_STORIES') {
         return action.payload;
