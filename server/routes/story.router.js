@@ -87,8 +87,19 @@ router.get('/template', (req, res) => {
 
 //creates new story with author, title, etc
 router.post('/', (req, res) => {
+    let queryText = `INSERT INTO "story" ("title", "caption", "header_photo", "intro", "author", "is_template")
+                     VALUES ($1, $2, $3, $4, $5, $6)
+                     RETURNING "id";`;
+    pool.query(queryText, [req.body.title, req.body.caption, req.body.header_photo, req.body.intro, req.user.id, req.body.is_template]).then((result) => {
+        // send a response with the new story id back to the client
+        res.send(result.rows[0].id.toString());
+    }).catch((error) => {
+        // console log and error message for POST error
+        console.log(`Error in story router POST: ${error}`);
+        res.sendStatus(500);
+    });
+}); // end POST route
 
-});
 
 //edits made a story title, photo, caption after its begun
 router.put('/edit', (req, res) => {
