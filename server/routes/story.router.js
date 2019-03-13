@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const storyDetailRouter = require('./story.detail.router');
+
+router.use('/detail', storyDetailRouter);
 
 //gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
@@ -59,26 +62,6 @@ router.get('/recent', (req, res) => {
     }
 
 
-});
-
-//retrieve individual story details for viewing or editing
-router.get('/detail/:id', (req, res) => {
-    if (req.isAuthenticated()) {
-
-        const storyToGet = Number(req.params.id);
-        const queryText = `select * 
-                           from story 
-                           where id = $1;`;
-        pool.query(queryText, [storyToGet])
-        .then( (sqlResult) => {
-            res.send(sqlResult.rows);
-            res.sendStatus(200);
-        }).catch( (e) => {
-            console.log(`Error getting individual story detail: ${e}`);
-        })
-    } else {
-        res.sendStatus(403);
-    }
 });
 
 //retrieves template story from template table for autopopulating story
