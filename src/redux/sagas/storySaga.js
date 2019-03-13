@@ -71,6 +71,7 @@ function* addAStory(action) {
         const response = yield axios.post('/story', action.payload.story);
         console.log(`Server response: ${response.data}`);
         yield axios.post(`/chapter/${response.data}`, action.payload.chapter);
+        yield axios.post(`/invite/contributor/${response.data}`, action.payload.contributor);
     } catch (error) {
         // error message when trying to add a story
         console.log(`Add story failed: ${error}`);

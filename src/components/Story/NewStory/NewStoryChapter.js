@@ -56,7 +56,7 @@ class NewStoryChapter extends Component {
                         </List.Item>
                     )}
                 />
-                <Input placeholder="chapter title" name="title" onChange={this.onInputChange} />
+                <Input placeholder="chapter title" name="title" onChange={this.onInputChange} allowClear style={{ width: 340 }} />
                 <Button
                     type="dashed"
                     onClick={this.addChapter}

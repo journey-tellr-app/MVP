@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
 import NewStoryChapter from './NewStoryChapter.js';
 import TemplateChapter from './TemplateChapter.js';
-import ContributorList from './../Contributor/ContributorList.js';
+import ContributorPopup from './../Contributor/ContributorPopup.js';
 
 // ant design import
 import { Form, Input, Icon, Button } from 'antd';
@@ -32,6 +32,7 @@ class NewStoryMain extends Component {
         // add fields to the reducer
         let storyDataToSend = '';
         let chapterDataToSend = this.props.chapter;
+        let contributorDataToSend = this.props.contributor;
 
         if(this.props.story.title != '') {
             storyDataToSend = { title: this.props.story.title,
@@ -49,7 +50,8 @@ class NewStoryMain extends Component {
                               };
         }
 
-        let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend};
+        console.log(contributorDataToSend);
+        let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
 
         this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
 
@@ -61,12 +63,12 @@ class NewStoryMain extends Component {
             <div>
                 <h2>Create a Story</h2>
                 <ChooseTemplate />
-                {this.props.story.title != '' ? <h4>{this.props.story.title}</h4> : <input name="title" onChange={this.onInputChange} />}
+                {this.props.story.title != '' ? <Input placeholder={this.props.story.title} allowClear name="title" onChange={this.onInputChange} style={{ width: 340 }} /> : <Input placeholder="story title" name="title" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
                 <h4>Image goes here</h4>
-                {this.props.story.title != '' ? <p>{this.props.story.caption}</p> :<input name="caption" onChange={this.onInputChange} />}
+                {this.props.story.title != '' ? <Input placeholder={this.props.story.caption} allowClear name="caption" onChange={this.onInputChange} style={{ width: 340 }} /> :<Input placeholder="add a caption" name="caption" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
                 {/* {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />} */}
                 <NewStoryChapter />
-                <ContributorList />
+                <ContributorPopup />
                 <Button onClick={this.createStory}>Create Story</Button>
             </div>
         )
@@ -77,6 +79,7 @@ class NewStoryMain extends Component {
 const mapStoreToProps = reduxStore => ({
     story: reduxStore.story.newStoryReducer,
     chapter: reduxStore.chapter.newStoryChapterReducer,
+    contributor: reduxStore.contributor.pending,
 });
 
 export default connect(mapStoreToProps)(NewStoryMain);
