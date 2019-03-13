@@ -36,6 +36,7 @@ router.get('/recent', (req, res) => {
 
     if (req.isAuthenticated()) {
         console.log('in /search router');
+
         const queryText = `select (story.id) as story_id, first_name, last_name,
         profile_pic, header_photo, title, count(story_likes.story_id) as likes, 
         completed, date_started
@@ -48,6 +49,7 @@ router.get('/recent', (req, res) => {
         person.profile_pic, story.header_photo, story.title, story.completed
         order by likes desc, date_started desc
         limit 10;`;
+
         pool.query(queryText)
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
