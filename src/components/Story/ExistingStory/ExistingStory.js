@@ -12,6 +12,19 @@ class ExistingStory extends Component {
                 
     }
 
+    handlePostStory = () => {
+        console.log('post story clicked');
+    }
+
+    handleAddChapter = () => {
+        console.log('add story clicked');
+    }
+
+    handleGetContributors = () => {
+        this.props.dispatch({type: '', 
+                             payload: ''})
+    }
+
     // renderChapter = () => {
     //     return this.props.chapter.map((chap, i) => {
     //         return <ExistingStoryChapter key={i} chap={chap} />
@@ -27,8 +40,6 @@ class ExistingStory extends Component {
 
         return (
             <div>
-                {/* {JSON.stringify(this.props)} */}
-
                 {/* this will check that the storyDetail reducer is populated 
                 before rendering its contents */}
                 {summary.length !== 0 ? 
@@ -39,7 +50,13 @@ class ExistingStory extends Component {
                                 height='100px' 
                                 alt="Shows what caption describes"/></h3>
                     <h3>Caption: {summary[0].caption}</h3>
+
+                    <a onClick={this.handleGetContributors}><u>Contributors: </u></a><br/>
+                    <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
+                    <button onClick={this.handlePostStory}>Post Story</button>
                 </div> : null 
+                // when the component mounts
+
                 }
                 {/* chapters div here */}
 
