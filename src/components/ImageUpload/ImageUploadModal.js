@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 
 
 class ImageUpload extends React.Component {
-    state = {
-        visible: false,
-        file: null
+    state = {   visible: false,
+                file: null
     }
 
     showModal = () => {
@@ -81,4 +80,4 @@ class ImageUpload extends React.Component {
 const mapStoreToProps = reduxStore => ({
     user: reduxStore.user,
 })
-export default connect(mapStoreToProps)(ImageUpload)
+export default connect(mapStoreToProps) (ImageUpload)
