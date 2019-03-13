@@ -10,8 +10,12 @@ class HomePage extends Component {
         return (
             <div>
                 <h1>Home page</h1>
-                <ContributedList/>
-                <TopStoryList/>
+                <ContributedList
+                    history={this.props.history}
+                />
+                <TopStoryList
+                    history={this.props.history}
+                />
             </div>
         )
     }

@@ -24,6 +24,7 @@ import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
 import FakeData from '../Faker/FakeData';
+import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 
 import './App.css';
 import ExistingStory from '../Story/ExistingStory/ExistingStory';
@@ -48,6 +49,7 @@ class App extends Component {
             <Route
               exact
               path="/about"
+              // component={NewStoryMain}
               component={AboutPage}
             />
             <ProtectedRoute
@@ -56,7 +58,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact path='/choose-template'
-              component={ChooseTemplate}
+              component={NewStoryMain}
             />
             <ProtectedRoute
               exact path='/profile'
@@ -77,7 +79,7 @@ class App extends Component {
               component={ContributorPopup}
             />
             <ProtectedRoute
-            exact path='/existing-story'
+            exact path='/existing-story/:id'
             component={ExistingStory}
             />
             <Route
