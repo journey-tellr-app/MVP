@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
-import ImageUploadModal from '../ImageUpload/ImageUploadModal';
 const axios = require('axios');
 
 class ProfilePage extends Component {
@@ -31,7 +30,7 @@ class ProfilePage extends Component {
                     <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
                     <button onClick={this.addFakeStories}>Add 30 stories to the database</button><br />
                     <button onClick={this.addFakeChapters}>Add 50 chapters to the database</button>
-                    <ImageUploadModal />
+                    <ImageUpload />
                 </div>
             </div>
         )
