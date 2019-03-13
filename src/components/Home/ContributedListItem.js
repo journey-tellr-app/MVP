@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class ContributedListItem extends Component {
 
     handleReadStory = (event) => {
-        console.log('in handleRead');
+        this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
     
     render() {
