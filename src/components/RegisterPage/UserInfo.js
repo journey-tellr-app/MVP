@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Button, Icon, Form, Input } from 'antd';
 
@@ -53,30 +54,29 @@ class UserInfo extends Component {
     const passwordError = isFieldTouched('password') && getFieldError('password');
 
     return (
+
       <div>
         <h2>Enter User Info</h2>
         <Form layout='vertical' onSubmit={this.registerUser}>
           <Form.Item
             validateStatus={userNameError ? 'error' : ''}
             help={userNameError || ''}
+            label="Email"
           >
-            {getFieldDecorator('userName', {
-              rules: [{ required: true, message: 'Please input your username!' }],
+            {getFieldDecorator('email', {
+              rules: [{ type: 'email', message: 'The input is not valid email!', },
+                { required: true, message: 'Please enter a valid email address eg user@site.com' }],
+              initialValue: registration.email
             })(
-              <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Username"
+                onChange={handleInputChangeFor('email')}
+                name='email' />
             )}
           </Form.Item>
         </Form>
         <form onSubmit={this.registerUser}>
-          <label htmlFor="email">
-            Email:
-              <input
-              type="text"
-              name="email"
-              value={registration.email}
-              onChange={handleInputChangeFor('email')}
-            />
-          </label>
           <label htmlFor="confirm_email">
             Confirm Email:
               <input
@@ -113,4 +113,4 @@ class UserInfo extends Component {
   }
 }
 
-export default Form.create()(UserInfo);
+export default connect()(Form.create()(UserInfo));
