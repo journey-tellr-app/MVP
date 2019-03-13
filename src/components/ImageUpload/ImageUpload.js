@@ -62,14 +62,14 @@ class ImageUpload extends React.Component {
             <div>
                 <Button type="primary" onClick={this.showModal}>
                     Open Modal
-        </Button>
+                </Button>
                 <Modal
                     title="Basic Modal"
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>
+                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*No Ant Design for camera upload */}
                     <h2>OR</h2>
                     <div>Choose Photo From Library: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
                     {this.state.file !== null && this.appendPic()}
