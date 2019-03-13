@@ -49,6 +49,17 @@ const userStoryReducer = (state = [], action) => {
     return state;
 }
 
+// initial value for newStoryReducer used to clear the reducer
+const initialNewStory = {name:'', title:'',caption:'', placeholder_image:'',};
+const newStoryReducer = (state = initialNewStory, action) => {
+    if(action.type === 'SET_NEW_STORY') {
+        return action.payload;
+    } else if(action.type === 'RESET_NEW_STORY') {
+        return initialNewStory;
+    }
+    return state;
+}
+
 export default combineReducers({
     contributedStoryReducer, // used on the home page
     topStoriesReducer, //used the home page
@@ -56,4 +67,5 @@ export default combineReducers({
     completeStoryReducer, // used for the main story view page
     searchStoryReducer, // for use with the search page
     userStoryReducer, // for an user profile story page
+    newStoryReducer, // called when creating a new story
 });
