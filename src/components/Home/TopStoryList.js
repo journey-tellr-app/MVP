@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class TopStoryList extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_STORIES' });
+        this.props.dispatch({ type: 'GET_TOP_STORIES' });
     }
 
     render() {
@@ -18,6 +18,8 @@ class TopStoryList extends Component {
                 <div>
                     {this.props.state.story.topStoriesReducer.map( (story, i) => {
                         return <TopStoryItem 
+                                    id={story.story_id}
+                                    history={this.props.history}
                                     key={i}
                                     header_photo={story.header_photo}
                                     title={story.title}

@@ -13,19 +13,21 @@ class ContributedList extends Component {
 
         return (
                 <div className='contributions'>
-                    {/* {JSON.stringify(this.props.state.story.storyReducer)} */}
+                    {/* {JSON.stringify(this.props.state.story.contributedStoryReducer)} */}
                     <h3>My stories and contributions</h3>
                     {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
                     {
-                        this.props.state.story.storyReducer.length === 1 ?
+                        this.props.state.story.contributedStoryReducer.length === 1 ?
                             <h4>1 story live</h4> :
-                            <h4>{this.props.state.story.storyReducer.length} stories live</h4>
+                            <h4>{this.props.state.story.contributedStoryReducer.length} stories live</h4>
                     }
 
                     {/* this div contains the actual story blocks */}
                     <div>
-                        {this.props.state.story.storyReducer.map( (story, i) => {
+                        {this.props.state.story.contributedStoryReducer.map( (story, i) => {
                             return <ContributedListItem 
+                                history={this.props.history}
+                                story_id={story.story_id}
                                 key={i}
                                 header_photo={story.header_photo}
                                 title={story.title}
