@@ -10,15 +10,6 @@ const contributedStoryReducer = (state = [], action) => {
     return state;
 }
 
-//this will return a single story detail on the
-//existing-story/:id page
-const storyDetail = (state = [], action) => {
-    if(action.type === 'SET_STORY_DETAIL') {
-        return action.payload;
-    }
-    return state;
-}
-
 //This reducer will return the top 10 stories at the company.
 //To be used on the home page.
 const topStoriesReducer = (state = [], action) => {
@@ -63,7 +54,6 @@ const newStoryReducer = (state = initialNewStory, action) => {
 export default combineReducers({
     contributedStoryReducer, // used on the home page
     topStoriesReducer, //used the home page
-    storyDetail, //used on the existing-story/:id page
     completeStoryReducer, // used for the main story view page
     searchStoryReducer, // for use with the search page
     userStoryReducer, // for an user profile story page

@@ -8,6 +8,8 @@ class ExistingStory extends Component {
     componentDidMount(){
         this.props.dispatch({type:'GET_INDIVIDUAL_STORY',
                              payload: this.props.match.params.id});
+
+                
     }
 
     handlePostStory = () => {
@@ -30,20 +32,25 @@ class ExistingStory extends Component {
     // }
 
     render() {
+        const { contributedStoryReducer,
+            summary,
+            likes,
+            contributor,
+            chapter, } = this.props.storyDetail
+
         return (
             <div>
                 {/* this will check that the storyDetail reducer is populated 
                 before rendering its contents */}
-                {
-                this.props.story.storyDetail.length !== 0 ? 
+                {summary.length !== 0 ? 
                 <div>
-                    <p>id: {this.props.story.storyDetail[0].id}</p>
-                    <h1>Title: {this.props.story.storyDetail[0].title}</h1>
-                    <h3>Photo: <img src={this.props.story.storyDetail[0].header_photo}
+                    <h1>Title: {summary[0].title}</h1>
+                    <h3>Photo: <img src={summary[0].header_photo}
                                 width='150px' 
                                 height='100px' 
                                 alt="Shows what caption describes"/></h3>
-                    <h3>Caption: {this.props.story.storyDetail[0].caption}</h3>
+                    <h3>Caption: {summary[0].caption}</h3>
+
                     <a onClick={this.handleGetContributors}><u>Contributors: </u></a><br/>
                     <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
                     <button onClick={this.handlePostStory}>Post Story</button>
@@ -51,12 +58,18 @@ class ExistingStory extends Component {
                 // when the component mounts
 
                 }
+                {/* chapters div here */}
+
+                {/* contributor button here */}
+
+                {/* post story button here only if author of story */}
+                
             </div>
         )
     }
 };
 const mapStoreToProps = reduxStore => ({
-    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail,
     chapter: reduxStore.chapter,
 })
 
