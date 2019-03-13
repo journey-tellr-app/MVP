@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
+
 const axios = require('axios');
 
 class ProfilePage extends Component {
@@ -20,6 +21,8 @@ class ProfilePage extends Component {
         axios.post('fakes/chapter');
     }
 
+
+
     render() {
 
         return (
@@ -28,6 +31,7 @@ class ProfilePage extends Component {
                     <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
                     <button onClick={this.addFakeStories}>Add 30 stories to the database</button><br />
                     <button onClick={this.addFakeChapters}>Add 50 chapters to the database</button>
+                    <ImageUpload />
                 </div>
             </div>
         )
