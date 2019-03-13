@@ -1,9 +1,24 @@
 import React, { Component } from 'react'
 
-export default class UserInfo extends Component {
+import { Button, Icon, Form, Input } from 'antd';
+
+const hasErrors = (fieldsError) => {
+  return Object.keys(fieldsError).some(field => fieldsError[field]);
+}
+
+class UserInfo extends Component {
+  componentDidMount() {
+    // To disabled submit button at the beginning.
+    this.props.form.validateFields();
+  }
+
   registerUser = (event) => {
     event.preventDefault();
-
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
     const { registration } = this.props;
 
     if (registration.first_name && registration.last_name && (registration.email === registration.confirm_email) && (registration.password === registration.confirm_password)) {
@@ -22,11 +37,37 @@ export default class UserInfo extends Component {
   } // end registerUser
 
   render() {
-    const { registration, handleInputChangeFor } = this.props;
+    const { registration,
+      handleInputChangeFor,
+      handleRegisterNavButton, } = this.props;
+
+    const {
+      getFieldDecorator,
+      getFieldsError,
+      getFieldError,
+      isFieldTouched,
+    } = this.props.form;
+
+    // Only show error after a field is touched.
+    const userNameError = isFieldTouched('userName') && getFieldError('userName');
+    const passwordError = isFieldTouched('password') && getFieldError('password');
 
     return (
-      <form onSubmit={this.registerUser}>
-        <div>
+      <div>
+        <h2>Enter User Info</h2>
+        <Form layout='vertical' onSubmit={this.registerUser}>
+          <Form.Item
+            validateStatus={userNameError ? 'error' : ''}
+            help={userNameError || ''}
+          >
+            {getFieldDecorator('userName', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+              <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            )}
+          </Form.Item>
+        </Form>
+        <form onSubmit={this.registerUser}>
           <label htmlFor="email">
             Email:
               <input
@@ -36,8 +77,6 @@ export default class UserInfo extends Component {
               onChange={handleInputChangeFor('email')}
             />
           </label>
-        </div>
-        <div>
           <label htmlFor="confirm_email">
             Confirm Email:
               <input
@@ -47,8 +86,6 @@ export default class UserInfo extends Component {
               onChange={handleInputChangeFor('confirm_email')}
             />
           </label>
-        </div>
-        <div>
           <label htmlFor="password">
             Password:
               <input
@@ -58,8 +95,6 @@ export default class UserInfo extends Component {
               onChange={handleInputChangeFor('password')}
             />
           </label>
-        </div>
-        <div>
           <label htmlFor="confirm_password">
             Confirm Password:
               <input
@@ -69,16 +104,13 @@ export default class UserInfo extends Component {
               onChange={handleInputChangeFor('confirm_password')}
             />
           </label>
-        </div>
-        <div>
-          <input
-            className="register"
-            type="submit"
-            name="submit"
-            value="Register"
-          />
-        </div>
-      </form>
+          <Button onClick={handleRegisterNavButton.bind(this, 'profile')}> Profile Info </Button>
+          <Button type="submit"> Register </Button>
+        </form>
+      </div>
+
     )
   }
 }
+
+export default Form.create()(UserInfo);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 import { Button, Icon } from 'antd';
 
 import ProfileInfo from './ProfileInfo';
@@ -21,7 +20,7 @@ class RegisterPage extends Component {
     });
   }
 
-  handleRegisterButton = (page, e) => {
+  handleRegisterNavButton = (page, e) => {
     this.setState({ page: page })
   }
 
@@ -38,16 +37,20 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
+
         <h1>New User Registration</h1>
+
         {this.state.page === 'profile' &&
-          <ProfileInfo registration={registration} handleInputChangeFor={this.handleInputChangeFor} />
-        }
-        {this.state.page === 'user' &&
-          <UserInfo registration={registration} handleInputChangeFor={this.handleInputChangeFor} />
+          <ProfileInfo registration={registration}
+            handleInputChangeFor={this.handleInputChangeFor}
+          handleRegisterNavButton={this.handleRegisterNavButton} />
         }
 
-        <Button onClick={this.handleRegisterButton.bind(this, 'profile')}> Profile Info </Button>
-        <Button onClick={this.handleRegisterButton.bind(this, 'user')}> User Info </Button>
+        {this.state.page === 'user' &&
+          <UserInfo registration={registration}
+            handleInputChangeFor={this.handleInputChangeFor}
+          handleRegisterNavButton={this.handleRegisterNavButton} />
+        }
 
         <center>
           <button

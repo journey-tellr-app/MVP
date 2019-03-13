@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
-export default class ProfileInfo extends Component {
+import { Button, Icon, Form, Input } from 'antd';
+
+class ProfileInfo extends Component {
   render() {
-    const { registration, handleInputChangeFor } = this.props;
+    const { registration, handleInputChangeFor, handleRegisterNavButton } = this.props;
 
     return (
       <form onSubmit={this.registerUser}>
@@ -28,7 +30,10 @@ export default class ProfileInfo extends Component {
             />
           </label>
         </div>
+        <Button onClick={handleRegisterNavButton.bind(this, 'user')}> User Info </Button>
       </form>
     )
   }
 }
+
+export default Form.create()(ProfileInfo);
