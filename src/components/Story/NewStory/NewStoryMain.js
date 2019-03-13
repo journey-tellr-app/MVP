@@ -8,15 +8,17 @@ import ContributorPopup from './../Contributor/ContributorPopup.js';
 // ant design import
 import { Form, Input, Icon, Button } from 'antd';
 
+const initialState = { title: '',
+                       header_photo: '',
+                       caption: '',
+                     };
+
 class NewStoryMain extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            title: '',
-            header_photo: '',
-            caption: '',
-        }
+        this.state = initialState;
+
     }
 
     // function for setting local state with user inputs
@@ -54,7 +56,7 @@ class NewStoryMain extends Component {
         let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
 
         this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
-
+        this.setState(initialState);
     }
 
     render() {
