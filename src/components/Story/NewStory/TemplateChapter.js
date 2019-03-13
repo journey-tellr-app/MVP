@@ -20,9 +20,6 @@ class TemplateChapter extends Component {
                         </List.Item>
                     )}
                 />
-                {/* {this.props.chapter.map((item, i) => (
-                    <p key={i}>Chapter:{i + 1} - {item.title}</p>
-                ))} */}
             </div>
         )
     }

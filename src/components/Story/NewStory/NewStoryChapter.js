@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NewStoryChapterItem from './NewStoryChapterItem.js';
 
 // ant design import
 import { Form, Input, Icon, Button, List } from 'antd';

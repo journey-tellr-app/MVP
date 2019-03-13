@@ -4,7 +4,6 @@ import ChooseTemplate from './ChooseTemplate.js';
 import NewStoryChapter from './NewStoryChapter.js';
 import TemplateChapter from './TemplateChapter.js';
 import ContributorList from './../Contributor/ContributorList.js';
-import NewStoryChapterItem from './NewStoryChapterItem.js';
 
 // ant design import
 import { Form, Input, Icon, Button } from 'antd';
@@ -28,9 +27,27 @@ class NewStoryMain extends Component {
         });
     } // end onInputChange
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    createStory = (event) => {
+        // event.preventDefault();
         // add fields to the reducer
+        let dataToSend = '';
+
+        if(this.props.story.title != '') {
+            dataToSend = { title: this.props.story.title,
+                           header_photo: this.props.story.placeholder_image,
+                           caption: this.props.story.caption,
+                           intro: this.props.story.intro,
+                           is_template: true,
+                         };
+        } else {
+            dataToSend = { title: this.state.title,
+                           header_photo: this.state.header_photo,
+                           caption: this.state.caption,
+                           is_template: false,
+                         };
+        }
+
+        this.props.dispatch({ type: 'ADD_NEW_STORY', payload: dataToSend });
     }
 
     render() {
@@ -45,6 +62,7 @@ class NewStoryMain extends Component {
                 {/* {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />} */}
                 <NewStoryChapter />
                 <ContributorList />
+                <Button onClick={this.createStory}>Create Story</Button>
             </div>
         )
     }

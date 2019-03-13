@@ -37,7 +37,6 @@ function* storyTemplate(action) {
 // get the story and chapter details from a template then set the reducers
 function* storyTemplateDetails(action) {
     try {
-        console.log('in storyTemplateDetails');
       // get template story details 
       const response = yield axios.get(`/template/story/${action.payload}`);
       // set the template story
@@ -51,13 +50,25 @@ function* storyTemplateDetails(action) {
     } catch (error) {
       console.log('Error with storyTemplateDetails:', error);
     }
-  }
+}
+
+// send a new story to the server
+function* addAStory(action) {
+    try {
+        // call to the database for adding a story
+        yield axios.post('/story', action.payload);
+    } catch (error) {
+        // error message when trying to add a story
+        console.log(`Add story failed: ${error}`);
+    }
+}
 
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
     yield takeLatest('GET_STORIES', getStories);
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
+    yield takeLatest('ADD_NEW_STORY', addAStory);
 }
 
 export default storySaga;
