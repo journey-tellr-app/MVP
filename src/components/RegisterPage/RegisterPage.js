@@ -21,6 +21,10 @@ class RegisterPage extends Component {
     });
   }
 
+  handleRegisterButton = (page, e) => {
+    this.setState({ page: page })
+  }
+
   render() {
     const { registration } = this.props;
 
@@ -34,16 +38,17 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <h1>Register User</h1>
-        <Button> Profile Info </Button>
-        <Button> User Info </Button>
-
+        <h1>New User Registration</h1>
         {this.state.page === 'profile' &&
           <ProfileInfo registration={registration} handleInputChangeFor={this.handleInputChangeFor} />
         }
         {this.state.page === 'user' &&
           <UserInfo registration={registration} handleInputChangeFor={this.handleInputChangeFor} />
         }
+
+        <Button onClick={this.handleRegisterButton.bind(this, 'profile')}> Profile Info </Button>
+        <Button onClick={this.handleRegisterButton.bind(this, 'user')}> User Info </Button>
+
         <center>
           <button
             type="button"
@@ -58,9 +63,6 @@ class RegisterPage extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({errors});
 const mapStateToProps = state => ({
   errors: state.errors,
   registration: state.user.registration,
