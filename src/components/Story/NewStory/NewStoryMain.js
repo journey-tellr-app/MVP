@@ -33,29 +33,17 @@ class NewStoryMain extends Component {
         // add fields to the reducer
     }
 
-    // load templates for the dropdown menu
-    componentDidMount() {
-        this.props.dispatch({ type: 'GET_TEMPLATE_STORY' });
-    }
-
     render() {
-        const formItemLayoutWithoutLabel = {
-            wrapperCol: {
-                xs: { span: 24, offset: 0 },
-                sm: { span: 20, offset: 4 },                
-            }
-        };
 
         return (
             <div>
                 <h2>Create a Story</h2>
-                <p>{this.state.title}</p>
-                <p>{this.state.caption}</p>
                 <ChooseTemplate />
                 {this.props.story.title != '' ? <h4>{this.props.story.title}</h4> : <input name="title" onChange={this.onInputChange} />}
                 <h4>Image goes here</h4>
                 {this.props.story.title != '' ? <p>{this.props.story.caption}</p> :<input name="caption" onChange={this.onInputChange} />}
-                {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />}
+                {/* {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />} */}
+                <NewStoryChapter />
                 <ContributorList />
             </div>
         )
@@ -64,8 +52,8 @@ class NewStoryMain extends Component {
 }
 
 const mapStoreToProps = reduxStore => ({
-    story: reduxStore.template.newTemplateStoryReducer,
-    chapter: reduxStore.template.newTemplateChapterReducer,
+    story: reduxStore.story.newStoryReducer,
+    chapter: reduxStore.chapter.newStoryChapterReducer,
 });
 
 export default connect(mapStoreToProps)(NewStoryMain);

@@ -6,12 +6,17 @@ import { Select } from 'antd';
 
 class ChooseTemplate extends Component {
 
+    // load templates for the dropdown menu
+    componentDidMount() {
+        this.props.dispatch({ type: 'GET_TEMPLATE_STORY' });
+    }
+
     // gets template details from the database and sets the reducer
     handleChange = (value) => {
         // send the value(id) to get selected template
         if(value === 'initial'){
-            this.props.dispatch({ type: 'RESET_TEMPLATE_NEW_STORY' });
-            this.props.dispatch({ type: 'RESET_TEMPLATE_NEW_CHAPTER' });
+            this.props.dispatch({ type: 'RESET_NEW_STORY' });
+            this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
         } else {
             this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
             this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value});

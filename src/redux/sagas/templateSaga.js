@@ -13,26 +13,27 @@ function* storyTemplate(action) {
   }
 }
 
-function* storyTemplateDetails(action) {
-  try {
-    // get template story details 
-    const response = yield axios.get(`/template/story/${action.payload}`);
-    // set the template story
-    const nextAction = {type: 'SET_TEMPLATE_NEW_STORY', payload: response.data};
-    yield put(nextAction);
-    // get chapter details for a story
-    const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);
-    // set the chapter details
-    const chapterAction = {type: 'SET_TEMPLATE_NEW_CHAPTER', payload: chapterResponse.data};
-    yield put(chapterAction);
-  } catch (error) {
-    console.log('Error with storyTemplateDetails:', error);
-  }
-}
+// moved to storySaga
+// function* storyTemplateDetails(action) {
+//   try {
+//     // get template story details 
+//     const response = yield axios.get(`/template/story/${action.payload}`);
+//     // set the template story
+//     const nextAction = {type: 'SET_TEMPLATE_NEW_STORY', payload: response.data};
+//     yield put(nextAction);
+//     // get chapter details for a story
+//     const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);
+//     // set the chapter details
+//     const chapterAction = {type: 'SET_TEMPLATE_NEW_CHAPTER', payload: chapterResponse.data};
+//     yield put(chapterAction);
+//   } catch (error) {
+//     console.log('Error with storyTemplateDetails:', error);
+//   }
+// }
 
 function* templateSaga() {
   yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
-  yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
+  // yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
 }
 
 export default templateSaga;

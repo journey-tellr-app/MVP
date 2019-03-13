@@ -15,11 +15,12 @@ class NewStoryChapter extends Component {
         }
     }
 
+    // removes a user created chapter
     removeChapter = (chapterIn) => {
         this.props.dispatch({ type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapterIn });
-    }
+    } // end removeChapter
 
-    // function for setting local state with user inputs
+    // function for setting local state with user input
     onInputChange = (event) => {
         const { name, value } = event.target;
         this.setState({
@@ -27,11 +28,12 @@ class NewStoryChapter extends Component {
         });
     } // end onInputChange
 
+    // submits the currently entered field and allows the user to create another chapter
     addChapter = () => {
-        this.props.dispatch({ type: 'ADD_NEW_STORY_CHAPTER', payload: this.state.newChapter });
+        this.props.dispatch({ type: 'SET_NEW_STORY_CHAPTER', payload: { title: this.state.newChapter }});
         this.setState({
             newChapter: '',
-        })
+        });
     }
 
     render() {
@@ -46,7 +48,7 @@ class NewStoryChapter extends Component {
                             <List.Item.Meta
                                 title={<p>Chapter - {i + 1}</p>}
                             />
-                            <div>{item}</div>
+                            <div>{item.title}</div>
                         </List.Item>
                     )}
                 />
