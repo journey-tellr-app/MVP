@@ -44,6 +44,7 @@ class NewStoryChapter extends Component {
 
         return (
             <div>
+                {this.props.chapter.length != 0 ?
                 <List
                     itemLayout="horizontal"
                     dataSource={this.props.chapter}
@@ -55,8 +56,8 @@ class NewStoryChapter extends Component {
                             <div>{item.title}</div>
                         </List.Item>
                     )}
-                />
-                <Input placeholder="chapter title" name="title" onChange={this.onInputChange} allowClear style={{ width: 340 }} />
+                /> : '' }
+                <Input placeholder="next chapter" name="title" onChange={this.onInputChange} allowClear style={{ width: 340 }} />
                 <Button
                     type="dashed"
                     onClick={this.addChapter}
