@@ -8,6 +8,8 @@ class ExistingStory extends Component {
     componentDidMount(){
         this.props.dispatch({type:'GET_INDIVIDUAL_STORY',
                              payload: this.props.match.params.id});
+
+                
     }
 
     // renderChapter = () => {
@@ -17,7 +19,11 @@ class ExistingStory extends Component {
     // }
 
     render() {
-        const { summary } = this.props.storyDetail
+        const { contributedStoryReducer,
+            summary,
+            likes,
+            contributor,
+            chapter, } = this.props.storyDetail
 
         return (
             <div>
@@ -25,8 +31,7 @@ class ExistingStory extends Component {
 
                 {/* this will check that the storyDetail reducer is populated 
                 before rendering its contents */}
-                {
-                summary.length !== 0 ? 
+                {summary.length !== 0 ? 
                 <div>
                     <h1>Title: {summary[0].title}</h1>
                     <h3>Photo: <img src={summary[0].header_photo}
@@ -36,10 +41,12 @@ class ExistingStory extends Component {
                     <h3>Caption: {summary[0].caption}</h3>
                 </div> : null 
                 }
+                {/* chapters div here */}
+
+                {/* contributor button here */}
+
+                {/* post story button here only if author of story */}
                 
-                
-                
-               
             </div>
         )
     }

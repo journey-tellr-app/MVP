@@ -12,6 +12,13 @@ function* getIndividualStory(action) {
         console.log(`Error in getting individual story: ${error}`);
     }
 }
+//chapers
+
+//contributors
+
+//likes
+
+//post story?
 
 function* storyDetailSaga() {
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
