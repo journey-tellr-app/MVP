@@ -30,24 +30,29 @@ class NewStoryMain extends Component {
     createStory = (event) => {
         // event.preventDefault();
         // add fields to the reducer
-        let dataToSend = '';
+        let storyDataToSend = '';
+        let chapterDataToSend = this.props.chapter;
 
         if(this.props.story.title != '') {
-            dataToSend = { title: this.props.story.title,
-                           header_photo: this.props.story.placeholder_image,
-                           caption: this.props.story.caption,
-                           intro: this.props.story.intro,
-                           is_template: true,
-                         };
+            storyDataToSend = { title: this.props.story.title,
+                                header_photo: this.props.story.placeholder_image,
+                                caption: this.props.story.caption,
+                                intro: this.props.story.intro,
+                                is_template: true,
+                              };
         } else {
-            dataToSend = { title: this.state.title,
-                           header_photo: this.state.header_photo,
-                           caption: this.state.caption,
-                           is_template: false,
-                         };
+            storyDataToSend = { title: this.state.title,
+                                header_photo: this.state.header_photo,
+                                caption: this.state.caption,
+                                intro: '',
+                                is_template: false,
+                              };
         }
 
-        this.props.dispatch({ type: 'ADD_NEW_STORY', payload: dataToSend });
+        let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend};
+
+        this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
+
     }
 
     render() {

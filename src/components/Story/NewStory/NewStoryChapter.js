@@ -10,7 +10,8 @@ class NewStoryChapter extends Component {
         super(props);
 
         this.state = {
-            newChapter: '',
+            title: '',
+            order: 0,
         }
     }
 
@@ -29,9 +30,13 @@ class NewStoryChapter extends Component {
 
     // submits the currently entered field and allows the user to create another chapter
     addChapter = () => {
-        this.props.dispatch({ type: 'SET_NEW_STORY_CHAPTER', payload: { title: this.state.newChapter }});
+        this.props.dispatch({ type: 'SET_NEW_STORY_CHAPTER', payload: { title: this.state.title,
+                                                                        order: this.state.order, }
+                            });
+        let newOrder = this.state.order += 1;
         this.setState({
-            newChapter: '',
+            newChapter: ' ',
+            order: newOrder,
         });
     }
 
@@ -51,7 +56,7 @@ class NewStoryChapter extends Component {
                         </List.Item>
                     )}
                 />
-                <Input placeholder="chapter title" name="newChapter" onChange={this.onInputChange} />
+                <Input placeholder="chapter title" name="title" onChange={this.onInputChange} />
                 <Button
                     type="dashed"
                     onClick={this.addChapter}
