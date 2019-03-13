@@ -15,13 +15,23 @@ function* getIndividualStory(action) {
 //chapers
 
 //contributors
+function* getStoryContributors(action) {
+    try {
+        console.log('getStoryContributors action: ', action);
+        const serverResponse = yield axios.get(`/story/detail/contributor/${action.payload}`);
 
+        yield put({type: 'SET_STORY_DETAIL_CONTRIBUTOR', payload: serverResponse.data});
+    } catch(e) {
+        console.log(`Error getting story contributors: ${e}`);
+    }
+}
 //likes
 
 //post story?
 
 function* storyDetailSaga() {
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
+    yield takeLatest('GET_STORY_CONTRIBUTORS', getStoryContributors);
 }
 
 export default storyDetailSaga;

@@ -23,6 +23,7 @@ const likes = (state = [], action) => {
     return state;
 }
 
+//this will return all of the contributors to a particular story
 const contributor = (state = [], action) => {
     if (action.type === 'SET_STORY_DETAIL_CONTRIBUTOR') {
         return action.payload;
