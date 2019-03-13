@@ -91,7 +91,7 @@ class App extends Component {
               component={ContributorPopup}
             />
             <Route
-            exact path='/existing-story'
+            exact path='/existing-story/:id'
             component={ExistingStory}
             />
             <Route

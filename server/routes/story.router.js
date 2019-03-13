@@ -7,7 +7,7 @@ router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
         console.log(`req.body.id: ${req.user.id}`);
         const userId = req.user.id;
-        const queryText = `select *
+        const queryText = `select header_photo, author, title, caption, intro, date_started, completed, last_edit, is_template, (story.id) as story_id
                            from story
                            join person 
                            on story.author = person.id
@@ -61,8 +61,23 @@ router.get('/recent', (req, res) => {
 });
 
 //retrieve individual story details for viewing or editing
-router.get('/detail', (req, res) => {
+router.get('/detail/:id', (req, res) => {
+    if (req.isAuthenticated()) {
 
+        const storyToGet = Number(req.params.id);
+        const queryText = `select * 
+                           from story 
+                           where id = $1;`;
+        pool.query(queryText, [storyToGet])
+        .then( (sqlResult) => {
+            res.send(sqlResult.rows);
+            res.sendStatus(200);
+        }).catch( (e) => {
+            console.log(`Error getting individual story detail: ${e}`);
+        })
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 //retrieves template story from template table for autopopulating story

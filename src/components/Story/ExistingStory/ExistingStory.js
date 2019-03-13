@@ -6,28 +6,38 @@ import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 class ExistingStory extends Component {
 
     componentDidMount(){
-        this.props.dispatch({type:''
-                     });
+        this.props.dispatch({type:'GET_INDIVIDUAL_STORY',
+                             payload: this.props.match.params.id});
     }
 
-    renderChapter = () => {
-        return this.props.chapter.map((chap, i) => {
-            return <ExistingStoryChapter key={i} chap={chap} />
-        })
-    }
+    // renderChapter = () => {
+    //     return this.props.chapter.map((chap, i) => {
+    //         return <ExistingStoryChapter key={i} chap={chap} />
+    //     })
+    // }
+
     render() {
         return (
             <div>
-                {/* <h1>Existing Story</h1>
+                {/* {JSON.stringify(this.props)} */}
+
+                {/* this will check that the storyDetail reducer is populated 
+                before rendering its contents */}
+                {
+                this.props.story.storyDetail.length !== 0 ? 
                 <div>
-                    <h1>Title: {this.props.story.title}</h1>
-                </div>
-                <div>
-                    <h1>Photo: <img src={this.props.story.header_photo} width="100%" height="90" alt="Shows what caption describes"/></h1>
-                    <h3>Caption: {this.props.story.caption} </h3>
-                </div>
-                <Divider />
-                {this.renderChapter()}   */}
+                    <h1>Title: {this.props.story.storyDetail[0].title}</h1>
+                    <h3>Photo: <img src={this.props.story.storyDetail[0].header_photo}
+                                width='150px' 
+                                height='100px' 
+                                alt="Shows what caption describes"/></h3>
+                    <h3>Caption: {this.props.story.storyDetail[0].caption}</h3>
+                </div> : null 
+                }
+                
+                
+                
+               
             </div>
         )
     }
