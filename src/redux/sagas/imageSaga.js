@@ -2,15 +2,17 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addImageAWS(action) {
+    console.log('in addImage AWS', action);
     let awsResponse;
     try {
             yield axios.post(`/awsS3`, action.payload, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(response => {
+            })
+            .then(response => {
                 awsResponse = response; 
-                console.log(awsResponse);
+                // console.log(awsResponse);
 
             }).catch(error => {
                 console.log(error);

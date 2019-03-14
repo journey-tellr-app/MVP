@@ -7,7 +7,7 @@ import { Menu, Dropdown, Icon } from 'antd';
 
 class Search extends Component {
     state = {
-        dropdown: "Author"
+        dropdown: "AUTHOR"
     }
     setDropdown = (event) => {
         console.log(event);
@@ -20,8 +20,10 @@ class Search extends Component {
     }
     sendSearch = (event) => {
     const action = {
-                    type: "GET_SEARCH_STORIES"
-    }        
+                    type: `GET_SEARCH_STORIES_${this.state.dropdown}`,
+                    payload: event
+    };
+    this.props.dispatch(action);       
     }
     render() {
         const Search = Input.Search;
