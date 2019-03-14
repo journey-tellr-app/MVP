@@ -27,10 +27,13 @@ router.get('/story-contributions', (req, res) => {
     }
 });
 
-// //when user searches data base for specific stories 
-// router.get('/search', (req, res) => {
-
-// });
+//when user searches data base for specific stories 
+router.get('/:id', (req, res) => {
+    console.log('in search story', req.params);
+    const queryParams = req.params;
+    const queryText = 
+    
+});
 
 // //retrieves 10 recent stories for home page feed
 // router.get('/recent', (req, res) => {
