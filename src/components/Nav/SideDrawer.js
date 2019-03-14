@@ -58,6 +58,8 @@ class SideDrawer extends Component {
         });
     };
 
+
+
     render() {
         const { userInfo } = this.props;
 
@@ -69,6 +71,7 @@ class SideDrawer extends Component {
                     icon="bars"
                     size="3x"
                     onClick={this.showDrawer}
+                    visible={this.state.visible}
                 />
 
                 <Drawer

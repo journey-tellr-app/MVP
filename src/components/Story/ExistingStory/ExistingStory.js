@@ -6,6 +6,7 @@ import { Divider } from 'antd';
 import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
+import AddChapterPopup from './Chapters/AddChapterPopup';
 
 import EditChapterPage from './../NewStory/EditChapterPage';
 
@@ -70,8 +71,10 @@ class ExistingStory extends Component {
                 {/* contributor button here */}
                     {/* when the user clicks this link, JSON line below it renders all contributors */}
                     <a onClick={this.handleGetContributors}><u>Contributors: </u></a>
+                    {JSON.stringify(this.props.storyDetail.contributor)}<br/>
                     <ContributorPopup />
-                    {/* {JSON.stringify(this.props.storyDetail.summary[0])}<br/> */}
+                    <AddChapterPopup />
+                    
 
                     {
                         this.props.storyDetail.summary.length !== 0 ? 
