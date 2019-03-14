@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT header_photo, caption, title, intro, completed, date_started,
+        const queryText = `SELECT story.id, header_photo, caption, title, intro, completed, date_started,
 	        author as author_id, concat(first_name, ' ', last_name) as author_name 
 	        FROM story JOIN person ON author = person.id WHERE story.id = $1;`;
         pool.query(queryText, [storyToGet])

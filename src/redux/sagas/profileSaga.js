@@ -11,7 +11,8 @@ function* getStats(action) {
 
 function* editProfile(action) {
     try {
-        //put to person table with photo or other changes
+        yield axios.put(`/api/user/update-profile`, action.payload);
+        yield put({ type: "FETCH_USER", });
     } catch (error) {
         console.log('Error with editProfile:', error);
     }

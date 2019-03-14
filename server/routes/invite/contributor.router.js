@@ -27,8 +27,31 @@ router.get('/', (req, res) => {
 });
 
 //store invites to contribute on stories for use in notifications
-router.post('/', (req, res) => {
-
+router.post('/:storyId', (req, res) => {
+    if (req.isAuthenticated()) {
+        console.log(req.body);
+        const queryValueString = [ ];
+        const values = [Number(req.params.storyId), 'pending']
+        let scrubCounter = 3;
+        req.body.map( (contributor) => {
+            values.push(contributor.person_id);
+            queryValueString.push(`($1, $2, $${scrubCounter++})`)
+            console.log(scrubCounter);
+            console.log(values);
+            console.log(queryValueString);
+        });
+        let queryText = `INSERT INTO "contributor" ("story_id", "status", "person_id")
+                         VALUES ${queryValueString.join(',')};`;
+        pool.query(queryText, values).then((result) => {
+            res.sendStatus(201);
+        }).catch((error) => {
+            // console log and error message if post does not work
+            console.log(`Error in /invite/contributor POST route: ${error}`);
+            res.sendStatus(500);
+        });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 //user sends response to invite, changes contributor.status
