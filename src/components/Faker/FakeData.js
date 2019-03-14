@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
-<<<<<<< HEAD
-import ImageUploadModal from '../ImageUpload/ImageUpload';
-=======
->>>>>>> f71d538b0b8a14385be9cbb42af8bcd61d997d1a
 const axios = require('axios');
 
 class ProfilePage extends Component {
