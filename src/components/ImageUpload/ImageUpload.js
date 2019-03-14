@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 
 
-class ImageUpload extends React.Component {
+class ImageUpload extends Component {
     state = {
         visible: false,
         file: null

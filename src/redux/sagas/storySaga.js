@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* getMyContributions(action) {
     try {
-        console.log('in getMyContributions', action);
+        // console.log('in getMyContributions', action);
         const serverResponse = yield axios.get('story/story-contributions');
     
         yield put({type: 'SET_STORY_CONTRIBUTIONS', payload: serverResponse.data});
@@ -15,7 +15,7 @@ function* getMyContributions(action) {
 
 function* getTopStories(action) {
     try {
-        console.log('in getStories' );
+        // console.log('in getTopStories' );
         const serverResponse = yield axios.get('story/recent');
 
         yield put({type: 'SET_TOP_STORIES', payload: serverResponse.data});
@@ -27,8 +27,7 @@ function* getTopStories(action) {
 
 function* storyTemplate(action) {
     try {
-        //gets template story id and name for dropdown
-        //put 'SET_TEMPLATE_STORY_DROPDOWN' 
+        yield console.log('in storyTemplate saga:') 
     } catch (error) {
         console.log('Error with storyTemplate:', error);
     }

@@ -76,10 +76,10 @@ class ExistingStory extends Component {
                     <AddChapterPopup />
                     
 
-                    {
-                        this.props.storyDetail.summary.length !== 0 ? 
-                        <EditChapterPage storyId={this.props.storyDetail.summary[0].id} />: null
-                    }
+                {
+                    this.props.storyDetail.summary.length !== 0 ?
+                        <EditChapterPage storyId={this.props.storyDetail.summary[0].id} /> : null
+                }
                     
                     <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
                     <button onClick={this.handlePostStory}>Post Story</button>

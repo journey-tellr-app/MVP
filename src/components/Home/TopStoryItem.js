@@ -8,17 +8,19 @@ class TopStoryItem extends Component {
     }
     
     render() {
-
+        const {header_photo, profile_pic, name} = this.props;
         return (
             <div>
                 <img 
                     width='150px' 
                     height='100px' 
-                    src={this.props.header_photo} />
-                <h3>Started by {this.props.name}</h3>
+                    src={this.props.header_photo} 
+                    alt={`${header_photo}`}/>
+                <h3>Started by {name}</h3>
                 <img width='150px' 
                      height='100px'
-                     src={this.props.profile_pic} />
+                     src={profile_pic}
+                     alt={`Headshot of the author ${name}`} />
                 <button onClick={this.handleReadStory}>Read</button>
             </div>
         )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { List, Avatar, Icon, Button } from 'antd';
+import { List, Avatar, Button } from 'antd';
 
 class InviteList extends Component {
 
