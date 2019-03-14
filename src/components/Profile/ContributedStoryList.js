@@ -14,7 +14,7 @@ class ContributedStoryList extends Component {
         return (
             <div className='contributions'>
                 <div>
-                    {this.props.state.story.storyReducer.map((story, i) => {
+                    {this.props.state.story.contributedStoryReducer.map((story, i) => {
                         return <ContributedStoryListItem
                             key={i}
                             header_photo={story.header_photo}

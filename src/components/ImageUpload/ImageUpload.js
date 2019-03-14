@@ -1,17 +1,39 @@
+import { Modal, Button } from 'antd';
 import React, { Component } from 'react';
-// import axios from 'axios';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux';
 
-class ImageUpload extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            file: null
-        };
+
+
+class ImageUpload extends React.Component {
+    state = {
+        visible: false,
+        file: null
     }
 
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+
+    handleOk = (e) => {
+        console.log(e);
+        this.submitFile();
+        this.setState({
+            visible: false,
+        });
+    }
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
     submitFile = (event) => {
-        event.preventDefault();
+        console.log('in sF');
+
+        // event.preventDefault();
         const formData = new FormData();
         formData.append('file', this.state.file);
         const action = {
@@ -22,12 +44,12 @@ class ImageUpload extends Component {
         }
         this.props.dispatch(action);
         console.log(this.props.typeOfPhoto);
-        
+
     }
     appendPic = () => {
         let statePic = this.state.file
         let picURL = URL.createObjectURL(statePic)
-        return <img height="50" width="50" src={picURL} alt="thumbnail chosen"/>
+        return <img height="50" width="50" src={picURL} alt="thumbnail chosen" />
     }
     handleFileUpload = (event) => {
         this.setState({
@@ -38,21 +60,25 @@ class ImageUpload extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.submitFile}>
-                    <div>Take photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>
-                    <div>Choose Photo: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
+                <Button type="primary" onClick={this.showModal}>
+                    Open Modal
+                </Button>
+                <Modal
+                    title="Basic Modal"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*No Ant Design for camera upload */}
+                    <h2>OR</h2>
+                    <div>Choose Photo From Library: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
                     {this.state.file !== null && this.appendPic()}
-                    <button type='submit'>Send</button>
-                </form>
+                </Modal>
             </div>
-
-
         );
     }
 }
-
 const mapStoreToProps = reduxStore => ({
     user: reduxStore.user,
 })
-
-export default connect(mapStoreToProps) (ImageUpload);
+export default connect(mapStoreToProps)(ImageUpload)

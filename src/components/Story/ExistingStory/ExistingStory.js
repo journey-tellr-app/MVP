@@ -3,37 +3,76 @@ import { connect } from 'react-redux';
 import { Divider } from 'antd';
 import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 
+import ContributorPopup from '../Contributor/ContributorPopup';
+
 class ExistingStory extends Component {
 
     componentDidMount(){
-        this.props.dispatch({type:''
-                     });
+        this.props.dispatch({type:'GET_INDIVIDUAL_STORY',
+                             payload: this.props.match.params.id});
+
+                
     }
 
-    renderChapter = () => {
-        return this.props.chapter.map((chap, i) => {
-            return <ExistingStoryChapter key={i} chap={chap} />
-        })
+    handlePostStory = () => {
+        console.log('post story clicked');
     }
+
+    handleAddChapter = () => {
+        console.log('add story clicked');
+    }
+
+    handleGetContributors = () => {
+        this.props.dispatch({type: 'GET_STORY_CONTRIBUTORS', 
+                             payload: this.props.storyDetail.summary[0].id});
+    }
+
+    // renderChapter = () => {
+    //     return this.props.chapter.map((chap, i) => {
+    //         return <ExistingStoryChapter key={i} chap={chap} />
+    //     })
+    // }
+
     render() {
+        const { contributedStoryReducer,
+            summary,
+            likes,
+            contributor,
+            chapter, } = this.props.storyDetail
+
         return (
             <div>
-                {/* <h1>Existing Story</h1>
+                {/* this will check that the storyDetail reducer is populated 
+                before rendering its contents */}
+                {summary.length !== 0 ? 
                 <div>
-                    <h1>Title: {this.props.story.title}</h1>
-                </div>
-                <div>
-                    <h1>Photo: <img src={this.props.story.header_photo} width="100%" height="90" alt="Shows what caption describes"/></h1>
-                    <h3>Caption: {this.props.story.caption} </h3>
-                </div>
-                <Divider />
-                {this.renderChapter()}   */}
+                    <h1>Title: {summary[0].title}</h1>
+                    <h3>Photo: <img src={summary[0].header_photo}
+                                width='150px' 
+                                height='100px' 
+                                alt="Shows what caption describes"/></h3>
+                    <h3>Caption: {summary[0].caption}</h3>
+
+                    {/* when the user clicks this link, JSON line below it renders all contributors */}
+                    <a onClick={this.handleGetContributors}><u>Contributors: </u></a>
+                    <ContributorPopup />
+                    {JSON.stringify(this.props.storyDetail.contributor)}<br/>
+
+                    <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
+                    <button onClick={this.handlePostStory}>Post Story</button>
+                </div> : null 
+                }
+
+                {/* chapters div here */}
+
+                {/* post story button here only if author of story */}
+                
             </div>
         )
     }
 };
 const mapStoreToProps = reduxStore => ({
-    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail,
     chapter: reduxStore.chapter,
 })
 
