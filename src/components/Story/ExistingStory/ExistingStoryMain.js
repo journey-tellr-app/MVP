@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ChapterView from './ChapterView';
+import ChapterView from './ChapterView/ChapterView';
 import ExistingStorySummary from './ExistingStorySummary';
 
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import { PageHeader, Pagination } from 'antd';
+import { PageHeader, Pagination, Card } from 'antd';
 
 class ChapterView extends Component {
     componentDidMount() {
@@ -38,7 +38,6 @@ class ChapterView extends Component {
     }
 
     turnPage = (page, pageSize) => {
-        console.log(page);
         this.props.history.push(`${page}`)
     }
 
@@ -49,33 +48,33 @@ class ChapterView extends Component {
         // console.log('editMode:', this.state.editMode);
         const contributorSum = contributor.length;
         let contributorDescription;
-        console.log(this.props.match);
-        switch(contributorSum){
-            case( 1 ): 
-                contributorDescription = ' and one contributor';
-                break;
-            case ( 2 ):
-                contributorDescription = ` and ${contributorSum} contributors`;
-                break;
-            default:
-                contributorDescription = '';
-                break;
+        if (contributorSum === 0) {
+            contributorDescription = '';
+        } else if (contributorSum === 1) {
+            contributorDescription = ' and one contributor';
+        } else if (contributorSum < 2) {
+            contributorDescription = ` and ${contributorSum} contributors`;
         }
-        
+        const currChapter = chapter[chapterId - 1];
         return (
             <div>
                 <PageHeader
-                    title={`Chapter ${chapterId}: ${chapter[chapterId - 1].title}`}
+                    title={`Chapter ${chapterId}: ${currChapter.title}`}
                     subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
                 />
-                <Pagination 
+                <Card
+                    style={{ width: 300 }}
+                    cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
+                >
+                    <Card.Meta
+                        description={currChapter.text}
+                    />
+                </Card>
+                <Pagination
                     defaultCurrent={Number(chapterId)}
-                    pageSize={1} 
+                    pageSize={1}
                     total={Number(chapter.length)}
                     onChange={this.turnPage} />
-
-                <h1>Chapter View</h1>
-
             </div>
         )
     }
