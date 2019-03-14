@@ -7,6 +7,8 @@ import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
 
+import EditChapterPage from './../NewStory/EditChapterPage';
+
 class ExistingStory extends Component {
 
     componentDidMount() {
@@ -69,8 +71,13 @@ class ExistingStory extends Component {
                     {/* when the user clicks this link, JSON line below it renders all contributors */}
                     <a onClick={this.handleGetContributors}><u>Contributors: </u></a>
                     <ContributorPopup />
-                    {JSON.stringify(this.props.storyDetail.contributor)}<br/>
+                    {/* {JSON.stringify(this.props.storyDetail.summary[0])}<br/> */}
 
+                    {
+                        this.props.storyDetail.summary.length !== 0 ? 
+                        <EditChapterPage storyId={this.props.storyDetail.summary[0].id} />: null
+                    }
+                    
                     <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
                     <button onClick={this.handlePostStory}>Post Story</button>
                 

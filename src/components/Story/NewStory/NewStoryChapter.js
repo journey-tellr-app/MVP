@@ -56,23 +56,25 @@ class NewStoryChapter extends Component {
         return (
             <div>
                 {this.props.chapter.length != 0 ?
-                <List
-                    itemLayout="horizontal"
-                    dataSource={this.props.chapter}
-                    renderItem={(item, i) => (
-                        <List.Item actions={[<Icon type={item.disabled ? "edit" : "save"} theme="twoTone" onClick={() => this.editChapter(item)} />, <Icon type="delete" style={{color:"red"}}theme="filled" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.removeChapter(item)}} />]}>
-                            <List.Item.Meta
-                                title={<p>Chapter - {i + 1}</p>}
-                            />
-                            <Input placeholder={item.title}
-                                   name="itemTitle"
-                                   disabled={item.disabled && true}
-                                   defaultValue={item.title}
-                                   style={{ width: 200 }}
-                                   onChange={this.onInputChange} /> 
-                        </List.Item>
-                    )}
-                /> : '' }
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={this.props.chapter}
+                        renderItem={(item, i) => (
+                            <List.Item actions={[<Icon type={item.disabled ? "edit" : "save"} theme="twoTone" onClick={() => this.editChapter(item)} />,
+                                                 <Icon type="delete" style={{color:"red"}}theme="filled" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.removeChapter(item)}} />]}>
+                                <List.Item.Meta
+                                    title={<p>Chapter - {i + 1}</p>}
+                                />
+                                <Input placeholder={item.title}
+                                       name="itemTitle"
+                                       disabled={item.disabled && true}
+                                       defaultValue={item.title}
+                                       style={{ width: 200 }}
+                                       onChange={this.onInputChange} /> 
+                            </List.Item>
+                        )}
+                    />
+                : '' }
                 <Input placeholder="next chapter" name="title" onChange={this.onInputChange} allowClear style={{ width: 340 }} />
                 <Button
                     type="primary"

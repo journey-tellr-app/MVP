@@ -69,9 +69,11 @@ class NewStoryMain extends Component {
                 <h4>Image goes here</h4>
                 {this.props.story.title != '' ? <Input placeholder={this.props.story.caption} allowClear name="caption" onChange={this.onInputChange} style={{ width: 340 }} /> :<Input placeholder="add a caption" name="caption" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
                 {/* {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />} */}
-                <h3>Add chapter</h3>
+                <h3>Add Chapters</h3>
                 <NewStoryChapter />
+                <h3>Add Contributors</h3>
                 <ContributorPopup />
+                <br />
                 <Button type="primary" onClick={this.createStory}>Create Story</Button>
             </div>
         )
