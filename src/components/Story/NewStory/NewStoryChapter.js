@@ -11,6 +11,7 @@ class NewStoryChapter extends Component {
 
         this.state = {
             title: '',
+            itemTitle: '',
             order: 0,
         }
     }
@@ -19,6 +20,15 @@ class NewStoryChapter extends Component {
     removeChapter = (chapterIn) => {
         this.props.dispatch({ type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapterIn });
     } // end removeChapter
+
+    // allow for editing a chapter title
+    editChapter = (chapterIn) => {
+        let toggle = !chapterIn.disabled;
+        chapterIn.disabled = toggle;
+        console.log(chapterIn.itemTitle);
+        chapterIn.title = this.state.itemTitle != ' ' ? this.state.itemTitle : chapterIn.itemTitle;
+        this.props.dispatch({ type: 'UPDATE_NEW_STORY_CHAPTER', payload: chapterIn });
+    } // end editChapter
 
     // function for setting local state with user input
     onInputChange = (event) => {
@@ -31,11 +41,12 @@ class NewStoryChapter extends Component {
     // submits the currently entered field and allows the user to create another chapter
     addChapter = () => {
         this.props.dispatch({ type: 'SET_NEW_STORY_CHAPTER', payload: { title: this.state.title,
-                                                                        order: this.state.order, }
+                                                                        order: this.state.order,
+                                                                        disabled: true, }
                             });
         let newOrder = this.state.order += 1;
         this.setState({
-            newChapter: ' ',
+            title: ' ',
             order: newOrder,
         });
     }
@@ -44,21 +55,27 @@ class NewStoryChapter extends Component {
 
         return (
             <div>
+                {this.props.chapter.length != 0 ?
                 <List
                     itemLayout="horizontal"
                     dataSource={this.props.chapter}
                     renderItem={(item, i) => (
-                        <List.Item actions={[<Icon type="minus-circle-o" onClick={() => this.removeChapter(item)} />]}>
+                        <List.Item actions={[<Icon type={item.disabled ? "edit" : "save"} theme="twoTone" onClick={() => this.editChapter(item)} />, <Icon type="delete" style={{color:"red"}}theme="filled" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.removeChapter(item)}} />]}>
                             <List.Item.Meta
                                 title={<p>Chapter - {i + 1}</p>}
                             />
-                            <div>{item.title}</div>
+                            <Input placeholder={item.title}
+                                   name="itemTitle"
+                                   disabled={item.disabled && true}
+                                   defaultValue={item.title}
+                                   style={{ width: 200 }}
+                                   onChange={this.onInputChange} /> 
                         </List.Item>
                     )}
-                />
-                <Input placeholder="chapter title" name="title" onChange={this.onInputChange} />
+                /> : '' }
+                <Input placeholder="next chapter" name="title" onChange={this.onInputChange} allowClear style={{ width: 340 }} />
                 <Button
-                    type="dashed"
+                    type="primary"
                     onClick={this.addChapter}
                 >
                     <Icon type="plus" /> Add Chapter
