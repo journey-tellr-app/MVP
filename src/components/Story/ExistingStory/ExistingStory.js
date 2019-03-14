@@ -8,6 +8,8 @@ import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 import ContributorPopup from '../Contributor/ContributorPopup';
 import AddChapterPopup from './Chapters/AddChapterPopup';
 
+import EditChapterPage from './../NewStory/EditChapterPage';
+
 class ExistingStory extends Component {
 
     componentDidMount() {
@@ -74,6 +76,11 @@ class ExistingStory extends Component {
                     <AddChapterPopup />
                     
 
+                    {
+                        this.props.storyDetail.summary.length !== 0 ? 
+                        <EditChapterPage storyId={this.props.storyDetail.summary[0].id} />: null
+                    }
+                    
                     <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
                     <button onClick={this.handlePostStory}>Post Story</button>
                 
