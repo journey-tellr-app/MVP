@@ -11,6 +11,7 @@ class NewStoryChapter extends Component {
 
         this.state = {
             title: '',
+            itemTitle: '',
             order: 0,
         }
     }
@@ -24,8 +25,8 @@ class NewStoryChapter extends Component {
     editChapter = (chapterIn) => {
         let toggle = !chapterIn.disabled;
         chapterIn.disabled = toggle;
-        console.log(chapterIn.title);
-        chapterIn.title = this.state.title != ' ' ? this.state.title : chapterIn.title;
+        console.log(chapterIn.itemTitle);
+        chapterIn.title = this.state.itemTitle != ' ' ? this.state.itemTitle : chapterIn.itemTitle;
         this.props.dispatch({ type: 'UPDATE_NEW_STORY_CHAPTER', payload: chapterIn });
     } // end editChapter
 
@@ -59,11 +60,16 @@ class NewStoryChapter extends Component {
                     itemLayout="horizontal"
                     dataSource={this.props.chapter}
                     renderItem={(item, i) => (
-                        <List.Item actions={[ <Button onClick={() => this.editChapter(item)}>{item.disabled ? <p>Edit</p> : <p>Save</p>}</Button>, <Icon type="minus-circle-o" onClick={() => this.removeChapter(item)} />]}>
+                        <List.Item actions={[<Icon type={item.disabled ? "edit" : "save"} theme="twoTone" onClick={() => this.editChapter(item)} />, <Icon type="delete" theme="twoTone" onClick={() => this.removeChapter(item)} />]}>
                             <List.Item.Meta
                                 title={<p>Chapter - {i + 1}</p>}
                             />
-                            <Input placeholder={item.title} name="title" disabled={item.disabled} style={{ width: 200 }} onChange={this.onInputChange} /> 
+                            <Input placeholder={item.title}
+                                   name="itemTitle"
+                                   disabled={item.disabled}
+                                   defaultValue={item.title}
+                                   style={{ width: 200 }}
+                                   onChange={this.onInputChange} /> 
                         </List.Item>
                     )}
                 /> : '' }
