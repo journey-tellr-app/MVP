@@ -79,6 +79,7 @@ class App extends Component {
               component={ContributorPopup}
             />
 
+
             />
             <Route
               exact path='/existing-story'
@@ -90,10 +91,7 @@ class App extends Component {
             <ProtectedRoute
             exact path='/existing-story/:id'
             component={ExistingStory}
-            />
-            <Route
-            exact path='/fake-data'
-            component={FakeData} />
+
             
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

@@ -19,9 +19,27 @@ const newStoryChapterReducer = (state = initialNewStoryChapter, action) => {
         return initialNewStoryChapter;
     } else if(action.type === 'SET_TEMPLATE_NEW_STORY_CHAPTER') {
         return action.payload;
+    } else if(action.type === 'UPDATE_NEW_STORY_CHAPTER') {
+        let updatedChapter = updateObjectInArray(state, action.payload);
+        return updatedChapter;
     }
     return state;
 }
+
+function updateObjectInArray(array, action) {
+    return array.map((item, index) => {
+      if (index !== action.id) {
+        // This isn't the item we care about - keep it as-is
+        return item
+      }
+  
+      // Otherwise, this is the one we want - return an updated value
+      return {
+        ...item,
+        ...action.item
+      }
+    })
+  }
 
 export default combineReducers({
     chapterReducer, // set the story chapters for viewing

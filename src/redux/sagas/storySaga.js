@@ -59,9 +59,27 @@ function* addAStory(action) {
         const response = yield axios.post('/story', action.payload.story);
         console.log(`Server response: ${response.data}`);
         yield axios.post(`/chapter/${response.data}`, action.payload.chapter);
+        yield axios.post(`/invite/contributor/${response.data}`, action.payload.contributor);
+        const nextAction = {type: 'CLEAR_NEW_STORY'};
+        yield put(nextAction);
     } catch (error) {
         // error message when trying to add a story
         console.log(`Add story failed: ${error}`);
+    }
+}
+
+// reset story, chapter and contributor to initial values
+function* clearNewStory() {
+    try {
+        const storyAction = {type: 'RESET_NEW_STORY'};
+        yield put(storyAction);
+        const chapterAction = {type: 'RESET_NEW_STORY_CHAPTER'};
+        yield put(chapterAction);
+        const contributorAction = {type: 'RESET_PENDING_CONTRIBUTOR'};
+        yield put(contributorAction);
+    } catch (error) {
+        // error message when clearing new story inputs
+        console.log(`Error in clearNewStory saga: ${error}`);
     }
 }
 
@@ -71,6 +89,7 @@ function* storySaga() {
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
     yield takeLatest('ADD_NEW_STORY', addAStory);
+    yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
 }
 
 export default storySaga;

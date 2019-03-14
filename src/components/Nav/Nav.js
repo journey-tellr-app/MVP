@@ -19,9 +19,6 @@ const Nav = () => (
           width="380" 
           className="logo" />
     </Link>
-    <Link to='/existing-story'>
-      existing story
-    </Link>
     <Link to='/fake-data'>
       fake data
     </Link>
