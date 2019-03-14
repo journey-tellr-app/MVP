@@ -31,16 +31,16 @@ class ImageUpload extends React.Component {
         });
     }
     submitFile = (event) => {
-        console.log('in sF');
+        // console.log('in sF');
 
         // event.preventDefault();
         const formData = new FormData();
         formData.append('file', this.state.file);
         const action = {
-            type: 'ADD_IMAGE_AWS',  //directs dispach on which saga to use based on props
-            nextType: `ADD_IMAGE_${this.props.typeOfPhoto}`,
-            payload: formData,
-            id: this.props.user.id
+            type: 'ADD_IMAGE_AWS',  
+            nextType: `ADD_IMAGE_${this.props.typeOfPhoto}`, //directs dispach on which saga to use based on props
+            payload: formData,  //an AWS key
+            id: this.props.user.userInfo.id
         }
         this.props.dispatch(action);
         console.log(this.props.typeOfPhoto);
@@ -69,7 +69,7 @@ class ImageUpload extends React.Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*No Ant Design for camera upload */}
+                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*Will look identical to file upload on desktop */}
                     <h2>OR</h2>
                     <div>Choose Photo From Library: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
                     {this.state.file !== null && this.appendPic()}
