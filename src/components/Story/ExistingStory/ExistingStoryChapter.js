@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ExistingStoryChapter extends Component {
-    // componentDidMount(){ //bring in photo here
+import { List } from 'antd';
 
-    // }
-    render() { 
+class ExistingStoryChapter extends Component {
+
+    render() {
+
         return (
             <div>
-                <h1>ExistingStoryChapter</h1>
-                {/* <div>
-                    <h1>Title: {this.props.chap.title}</h1> 
-                </div>
-                <div>
-                    <h1>Photo: <img src={this.props.} width="100%" height="75" alt="depicts chapter activity" /></h1>
-                    <h3>Caption: {this.props.chap.text} </h3>
-                </div> */}
+                <h1>Chapters</h1>
+                <List
+                    itemLayout="vertical"
+                    size="large"
+                    pagination={{
+                        onChange: (page) => {
+                            console.log(page);
+                        },
+                        pageSize: 3,
+                    }}
+                    dataSource={this.props.chapter}
+                    renderItem={item => {
+                        const { order, chapter_photo, text, title } = item;
+                        return (
+                            <List.Item
+                                key={title}
+                                extra={<img width={100} alt={`User photo for chapter ${order}`} src={`${chapter_photo}`} />}
+                            >
+                                <List.Item.Meta
+                                    title={<a href={item.href}>{title}</a>}
+                                    description={text}
+                                />
+                                {item.content}
+                            </List.Item>
+                        )
+                    }}
+                />
             </div>
         )
     }

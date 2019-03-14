@@ -13,7 +13,11 @@ const Nav = () => (
       <SideDrawer />
     </div>
     <Link to="/home">
-      <img src={logo} alt={'logo'} height="40" width="150" className="logo" />
+      <img src={logo} 
+          alt={'logo'} 
+          height="50"
+          width="380" 
+          className="logo" />
     </Link>
     <Link to='/existing-story'>
       existing story

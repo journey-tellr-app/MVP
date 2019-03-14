@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const storyDetailRouter = require('./story.detail.router');
+
+router.use('/detail', storyDetailRouter);
 
 //gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
@@ -15,7 +18,6 @@ router.get('/story-contributions', (req, res) => {
         pool.query(queryText, [userId])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
-                res.sendStatus(200);
             }).catch((error) => {
                 console.log(`error in /story-contributions router: ${error}`);
                 res.sendStatus(500);
@@ -37,19 +39,21 @@ router.get('/recent', (req, res) => {
 
     if (req.isAuthenticated()) {
         console.log('in /search router');
-        const queryText = `select (story.id) as story_id, first_name, last_name, profile_pic, header_photo, title, count(story_likes.story_id) as likes, completed
+        const queryText = `select (story.id) as story_id, first_name, last_name,
+        profile_pic, header_photo, title, count(story_likes.story_id) as likes, 
+        completed, date_started
         from person
         join story
         on person.id = story.author
-        join story_likes
+        full outer join story_likes
         on story_likes.story_id = story.id
-        group by story.id, person.first_name, person.last_name, person.profile_pic, story.header_photo, story.title, story.completed
-        order by likes desc
+        group by story.id, person.first_name, person.last_name, 
+        person.profile_pic, story.header_photo, story.title, story.completed
+        order by likes desc, date_started desc
         limit 10;`;
         pool.query(queryText)
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
-                res.sendStatus(200);
             }).catch((error) => {
                 console.log(`Error in /recent route: ${error}`);
             })
@@ -58,26 +62,6 @@ router.get('/recent', (req, res) => {
     }
 
 
-});
-
-//retrieve individual story details for viewing or editing
-router.get('/detail/:id', (req, res) => {
-    if (req.isAuthenticated()) {
-
-        const storyToGet = Number(req.params.id);
-        const queryText = `select * 
-                           from story 
-                           where id = $1;`;
-        pool.query(queryText, [storyToGet])
-        .then( (sqlResult) => {
-            res.send(sqlResult.rows);
-            res.sendStatus(200);
-        }).catch( (e) => {
-            console.log(`Error getting individual story detail: ${e}`);
-        })
-    } else {
-        res.sendStatus(403);
-    }
 });
 
 //retrieves template story from template table for autopopulating story

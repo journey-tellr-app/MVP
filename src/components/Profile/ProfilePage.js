@@ -51,7 +51,7 @@ class ProfilePage extends Component {
                 </Row>
                 <Row>
                     <Col span={8}><Icon type="book" style={{ fontSize: '16px' }} /></Col>
-                    <Col span={16}>{this.props.reduxStore.story.storyReducer.length}&nbsp;Stories</Col>
+                    <Col span={16}>{this.props.reduxStore.story.contributedStoryReducer.length}&nbsp;Stories</Col>
                 </Row>
                 <Row>
                     <Col span={8}><Icon type="profile" style={{ fontSize: '16px' }} /></Col>
