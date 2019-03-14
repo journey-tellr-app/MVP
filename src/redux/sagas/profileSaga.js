@@ -12,7 +12,7 @@ function* getStats(action) {
 function* editProfile(action) {
     try {
         yield axios.put(`/api/user/update-profile`, action.payload);
-        yield put({ type: "SET_USER", });
+        yield put({ type: "FETCH_USER", });
     } catch (error) {
         console.log('Error with editProfile:', error);
     }

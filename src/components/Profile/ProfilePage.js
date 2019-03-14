@@ -10,6 +10,7 @@ import './ProfilePage.css';
 import 'antd/dist/antd.css';
 import moment from 'moment'
 
+import ImageUpload from './../ImageUpload/ImageUpload';
 import ContributedStoryList from './ContributedStoryList';
 // import ImageUpload from '../ImageUpload/ImageUpload';
 // const axios = require('axios');
@@ -23,8 +24,9 @@ class ProfilePage extends Component {
     state =
         {
             isHidden: true,
-            first_name: 'First name',
-            last_name: 'Last name'
+            id: this.props.reduxStore.user.userInfo.id,
+            first_name: this.props.reduxStore.user.userInfo.first_name,
+            last_name: this.props.reduxStore.user.userInfo.last_name
         };
 
 
@@ -39,7 +41,9 @@ class ProfilePage extends Component {
     }
 
     submitEditedName() {
-        this.props.dispatch({ type: 'EDIT_PROFILE', payload: this.state });
+        const editedName = { id: this.state.id, first_name: this.state.first_name, last_name: this.state.last_name }
+        console.log(editedName);
+        this.props.dispatch({ type: 'EDIT_PROFILE', payload: editedName });
         this.setState(state => ({
             isHidden: !state.isHidden
         }));
@@ -60,7 +64,8 @@ class ProfilePage extends Component {
 
 
                 <Row>
-                    <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.profile_pic} height="75" /></Col>
+                    {JSON.stringify(this.props.reduxStore.user.userInfo)}
+                    <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.userInfo.profile_pic} height="75" /></Col>
                     <Col span={10}>
                         {/*  */}
                         {this.state.isHidden ? this.renderStaticText() : this.renderEditField()}
@@ -68,14 +73,14 @@ class ProfilePage extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={6}><Button className="edit-btn">Edit</Button></Col>
+                    <Col span={6}><ImageUpload typeOfPhoto='PERSON' /></Col>
                     <Col span={10}></Col>
                     <Col span={6}></Col>
                 </Row>
                 <Divider />
                 <Row>
                     <Col span={8}><Icon type="calendar" style={{ fontSize: '16px' }} /></Col>
-                    <Col span={16}><Text>Member since</Text>&nbsp;{moment(this.props.reduxStore.user.date_created).format("MMM Do, YYYY")};</Col>
+                    <Col span={16}><Text>Member since</Text>&nbsp;{moment(this.props.reduxStore.user.userInfo.date_created).format("MMM Do, YYYY")};</Col>
                 </Row>
                 <Row>
                     <Col span={8}><Icon type="book" style={{ fontSize: '16px' }} /></Col>
@@ -98,16 +103,16 @@ class ProfilePage extends Component {
     renderEditField() {
         return (
             <Col span={16}>
-                <Input className="profile-element" onChange={this.handleChange('first_name')} placeholder={this.props.reduxStore.user.first_name} />
-                <Input className="profile-element" onChange={this.handleChange('last_name')} placeholder={this.props.reduxStore.user.last_name} />
-                <Button className="profile-element" onClick={this.submitEditedName.bind(this)}>Submit</Button>
+                <Input className="profile-element" onChange={this.handleChange('first_name')} placeholder={this.props.reduxStore.user.userInfo.first_name} />
+                <Input className="profile-element" onChange={this.handleChange('last_name')} placeholder={this.props.reduxStore.user.userInfo.last_name} />
+                <Button className="profile-element" onClick={this.submitEditedName.bind(this)}>Save</Button>
             </Col>
         )
     }
     renderStaticText() {
         return (
             <Col span={16}>
-                <Title className="profile-element" level={4}>{this.props.reduxStore.user.first_name}&nbsp;{this.props.reduxStore.user.last_name}</Title>
+                <Title className="profile-element" level={4}>{this.props.reduxStore.user.userInfo.first_name}&nbsp;{this.props.reduxStore.user.userInfo.last_name}</Title>
                 <Button className="profile-element" icon="edit" onClick={this.onEditBtnClick.bind(this)} />
             </Col>
 

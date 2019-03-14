@@ -40,7 +40,7 @@ class ImageUpload extends React.Component {
             type: 'ADD_IMAGE_AWS',  //directs dispach on which saga to use based on props
             nextType: `ADD_IMAGE_${this.props.typeOfPhoto}`,
             payload: formData,
-            id: this.props.user.id
+            id: this.props.user.userInfo.id
         }
         this.props.dispatch(action);
         console.log(this.props.typeOfPhoto);

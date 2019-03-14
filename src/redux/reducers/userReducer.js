@@ -20,9 +20,9 @@ const registrationState = {
   confirm_password: ''
 }
 const registration = (state = registrationState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'UPDATE_REGISTRATION':
-      return {...state, ...action.payload};
+      return { ...state, ...action.payload };
     default:
       return state;
   }
@@ -32,6 +32,6 @@ const registration = (state = registrationState, action) => {
 // user will be on the redux state at:
 // state.user
 export default combineReducers({
-    userInfo, 
-    registration,
+  userInfo,
+  registration,
 });

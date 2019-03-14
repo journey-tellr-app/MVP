@@ -54,21 +54,38 @@ router.put('/update-profile', (req, res) => {  //sets profile pic
   let content = req.body;
   console.log(content);
 
-  const queryText =
-    `UPDATE "person" 
+  const queryText = `
+  UPDATE "person" 
   SET 
-  "profile_pic"= $2,
-  "first_name"= $3,   
-  "last_name"= $4                
+  "first_name"= $2,   
+  "last_name"= $3
   WHERE 
   "id" = $1;`;
   const queryValues = [
-    content.profile_pic,
+    content.id,
     content.first_name,
     content.last_name,
-    content.id,
   ];
   pool.query(queryText, queryValues)
+    .then((response) => {
+      console.log(`server response: ${response}`);
+      res.sendStatus(200);
+    }).catch((error) => {
+      console.log(`Problem with updating user info: ${error}`);
+      res.sendStatus(500);
+    })
+});
+
+router.put('/:id', (req, res) => {  //sets profile pic
+  // console.log(req.body);
+
+  let user = req.params.id;
+  let content = req.body.data.Location;
+  console.log(user, content);
+
+  const queryText = `UPDATE "person" SET "profile_pic"= $1
+                       WHERE "id" = $2;`;
+  pool.query(queryText, [content, user])
     .then(() => { res.sendStatus(200); })
     .catch((err) => {
       console.log(err);
