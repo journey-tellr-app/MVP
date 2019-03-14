@@ -15,7 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/register', (req, res, next) => {  
+router.post('/register', (req, res, next) => {
   const email = req.body.email;
   const password = encryptLib.encryptPassword(req.body.password);
   const first_name = req.body.first_name;
@@ -24,7 +24,7 @@ router.post('/register', (req, res, next) => {
   //first name
   //last name
   //profile pic url optional 
-  
+
 
   const queryText = 'INSERT INTO person (email, password, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id';
   pool.query(queryText, [email, password, first_name, last_name])
@@ -47,16 +47,28 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/:id', (req, res) => {  //sets profile pic
+router.put('/update-profile', (req, res) => {  //sets profile pic
   // console.log(req.body);
-  
-  let user = req.params.id;
-  let content = req.body.data.Location;  
-  console.log(user, content);
-  
-  const queryText = `UPDATE "person" SET "profile_pic"= $1
-                       WHERE "id" = $2;`;
-  pool.query(queryText, [content, user])
+
+  // let user = req.params.id;
+  let content = req.body;
+  console.log(content);
+
+  const queryText =
+    `UPDATE "person" 
+  SET 
+  "profile_pic"= $2,
+  "first_name"= $3,   
+  "last_name"= $4                
+  WHERE 
+  "id" = $1;`;
+  const queryValues = [
+    content.profile_pic,
+    content.first_name,
+    content.last_name,
+    content.id,
+  ];
+  pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(200); })
     .catch((err) => {
       console.log(err);

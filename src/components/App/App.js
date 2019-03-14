@@ -24,6 +24,7 @@ import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
 import FakeData from '../Faker/FakeData';
+import ProfileEdit from '../Profile/ProfileEdit';
 
 import './App.css';
 import ExistingStory from '../Story/ExistingStory/ExistingStory';
@@ -91,12 +92,17 @@ class App extends Component {
               component={ContributorPopup}
             />
             <Route
-            exact path='/existing-story'
-            component={ExistingStory}
+              exact
+              path="/profile-edit"
+              component={ProfileEdit}
             />
             <Route
-            exact path='/fake-data'
-            component={FakeData} />
+              exact path='/existing-story'
+              component={ExistingStory}
+            />
+            <Route
+              exact path='/fake-data'
+              component={FakeData} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
             {/*  */}

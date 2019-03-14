@@ -58,6 +58,8 @@ class SideDrawer extends Component {
         });
     };
 
+
+
     render() {
         return (
             <div>
@@ -67,6 +69,7 @@ class SideDrawer extends Component {
                     icon="bars"
                     size="3x"
                     onClick={this.showDrawer}
+                    visible={this.state.visible}
                 />
 
                 <Drawer
