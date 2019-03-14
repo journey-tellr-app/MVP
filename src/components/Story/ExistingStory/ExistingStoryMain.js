@@ -24,7 +24,7 @@ class ExistingStoryMain extends Component {
 
   render() {
     //took out likes and contributor for now b/c compile warnings
-    const { summary, chapter } = this.props.storyDetail
+    const { summary, chapter, contributor } = this.props.storyDetail;
 
     const { params } = this.props.match
     return (
@@ -40,7 +40,11 @@ class ExistingStoryMain extends Component {
                   chapter={chapter} />
               //chapter id sent on params
               case (false):
-                return <ChapterView summary={summary} chapter={chapter}/>
+                return <ChapterView 
+                  summary={summary} 
+                  chapter={chapter}
+                  contributor={contributor}
+                  key={params.chapterId}/>
               default:
                 return <p>Error loading component.</p>
             }

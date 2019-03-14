@@ -45,7 +45,7 @@ router.get('/contributor/:id', (req, res) => {
     console.log(Number(req.params.id));
     if (req.isAuthenticated()) {
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM contributor WHERE story_id = $1;`;
+        const queryText = `SELECT * FROM contributor WHERE story_id = $1 AND status = 'accepted';`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
