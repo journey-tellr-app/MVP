@@ -7,10 +7,10 @@ import { Menu, Dropdown, Icon } from 'antd';
 
 class Search extends Component {
     state = {
-        dropdown: "Search By:"
+        dropdown: "Author"
     }
     setDropdown = (event) => {
-        console.log(this.state);
+        console.log(event);
         // console.log(event);
         
         // this.setState({
@@ -18,18 +18,23 @@ class Search extends Component {
         // })
         
     }
+    sendSearch = (event) => {
+    const action = {
+                    type: "GET_SEARCH_STORIES"
+    }        
+    }
     render() {
         const Search = Input.Search;
         const menu = (
             <Menu>
                 <Menu.Item>
-                    <a value="Author" onClick={this.setDropdown} rel="noopener noreferrer">1st menu item</a>
+                    <a value="Author" onClick={this.setDropdown} rel="noopener noreferrer">Author</a>
                 </Menu.Item>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">2nd menu item</a>
+                    <a target="_blank" rel="noopener noreferrer">Contributer</a>
                 </Menu.Item>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">3rd menu item</a>
+                    <a target="_blank" rel="noopener noreferrer">Title</a>
                 </Menu.Item>
             </Menu>
         );
@@ -39,12 +44,12 @@ class Search extends Component {
                 <div>
                     <Search
                         placeholder="input search text"
-                        onSearch={value => console.log(value)}
+                        onSearch={value => this.sendSearch(value)}
                         style={{ width: 200 }}
                     />
                     <div><Dropdown overlay={menu}>
                         <a className="ant-dropdown-link">
-                            {this.state.dropdown} <Icon type="down" />
+                            Search By: {this.state.dropdown} <Icon type="down" />
                         </a>
                     </Dropdown></div>
                     {/* <SearchResult /> */}
