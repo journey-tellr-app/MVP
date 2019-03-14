@@ -72,7 +72,7 @@ class NewStoryMain extends Component {
                 <h3>Add chapter</h3>
                 <NewStoryChapter />
                 <ContributorPopup />
-                <Button onClick={this.createStory}>Create Story</Button>
+                <Button type="primary" onClick={this.createStory}>Create Story</Button>
             </div>
         )
     }
