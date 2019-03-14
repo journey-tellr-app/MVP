@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+
 import { List } from 'antd';
 
 class ExistingStoryChapter extends Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
     render() {
-
+        console.log(this.props.match);
         return (
             <div>
                 <h1>Chapters</h1>
@@ -28,7 +36,7 @@ class ExistingStoryChapter extends Component {
                                 extra={<img width={100} alt={`User photo for chapter ${order}`} src={`${chapter_photo}`} />}
                             >
                                 <List.Item.Meta
-                                    title={<a href={item.href}>{title}</a>}
+                                    title={<a href={`/#${this.props.match.url}/chapter/${order}`}>{title}</a>}
                                     description={text}
                                 />
                                 {item.content}
@@ -41,4 +49,6 @@ class ExistingStoryChapter extends Component {
     }
 };
 
-export default connect()(ExistingStoryChapter);
+const ExistingStoryChapterWithRouter = withRouter(ExistingStoryChapter);
+
+export default connect()(ExistingStoryChapterWithRouter);
