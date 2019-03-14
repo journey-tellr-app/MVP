@@ -40,14 +40,13 @@ router.get('/likes/:id', (req, res) => {
 });
 
 router.get('/contributor/:id', (req, res) => {
+    console.log(Number(req.params.id));
     if (req.isAuthenticated()) {
-
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM story WHERE story.id = $1;`;
+        const queryText = `SELECT * FROM contributor WHERE story_id = $1;`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
-                res.sendStatus(200);
             }).catch((e) => {
                 console.log(`Error getting individual story detail: ${e}`);
             })

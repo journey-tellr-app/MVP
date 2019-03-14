@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { List, Avatar, Icon } from 'antd';
-
-const IconText = ({ type, text }) => (
-    <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
-        {text}
-    </span>
-);
+import { List } from 'antd';
 
 class ExistingStoryChapter extends Component {
-    // componentDidMount(){ //bring in photo here
 
-    // }
     render() {
 
         return (
@@ -29,7 +20,6 @@ class ExistingStoryChapter extends Component {
                         pageSize: 3,
                     }}
                     dataSource={this.props.chapter}
-                    footer={<div><b>ant design</b> footer part</div>}
                     renderItem={item => {
                         const { order, chapter_photo, text, title } = item;
                         return (

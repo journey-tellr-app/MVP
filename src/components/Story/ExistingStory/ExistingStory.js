@@ -5,6 +5,8 @@ import { Divider } from 'antd';
 
 import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
 
+import ContributorPopup from '../Contributor/ContributorPopup';
+
 class ExistingStory extends Component {
 
     componentDidMount() {
@@ -30,10 +32,8 @@ class ExistingStory extends Component {
     }
 
     handleGetContributors = () => {
-        this.props.dispatch({
-            type: '',
-            payload: ''
-        })
+        this.props.dispatch({type: 'GET_STORY_CONTRIBUTORS', 
+                             payload: this.props.storyDetail.summary[0].id});
     }
 
     // renderChapter = () => {
@@ -59,9 +59,6 @@ class ExistingStory extends Component {
                             alt="Shows what caption describes" /></h3>
                         <h3>Caption: {summary[0].caption}</h3>
 
-                        <a onClick={this.handleGetContributors}><u>Contributors: </u></a><br />
-                        <button onClick={this.handleAddChapter}>Add Chapter</button><br />
-                        <button onClick={this.handlePostStory}>Post Story</button>
                     </div> : null
                     // when the component mounts
 
@@ -69,6 +66,16 @@ class ExistingStory extends Component {
                 {/* chapters div here */}
                 <ExistingStoryChapter chapter={chapter} />
                 {/* contributor button here */}
+                    {/* when the user clicks this link, JSON line below it renders all contributors */}
+                    <a onClick={this.handleGetContributors}><u>Contributors: </u></a>
+                    <ContributorPopup />
+                    {JSON.stringify(this.props.storyDetail.contributor)}<br/>
+
+                    <button onClick={this.handleAddChapter}>Add Chapter</button><br/>
+                    <button onClick={this.handlePostStory}>Post Story</button>
+                
+
+                {/* chapters div here */}
 
                 {/* post story button here only if author of story */}
 
