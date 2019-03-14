@@ -10,7 +10,9 @@ router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM story WHERE story.id = $1;`;
+        const queryText = `SELECT header_photo, caption, title, intro, completed, date_started,
+	        author as author_id, concat(first_name, ' ', last_name) as author_name 
+	        FROM story JOIN person ON author = person.id WHERE story.id = $1;`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
@@ -58,15 +60,15 @@ router.get('/contributor/:id', (req, res) => {
 router.get('/chapter/:id', (req, res) => {
     console.log('in story/detail/chapter get');
     if (req.isAuthenticated()) {
-        const queryText = 'SELECT * FROM chapter WHERE story_id = $1;';
+        const queryText = 'SELECT * FROM chapter WHERE story_id = $1 ORDER BY chapter."order";';
         const values = [req.params.id];
         pool.query(queryText, values)
-        .then( response => {
-            res.send(response.rows);
-        }).catch(error => {
-            console.log('error in story/detail/chapter get', error);
-            res.sendStatus(500);
-        })
+            .then(response => {
+                res.send(response.rows);
+            }).catch(error => {
+                console.log('error in story/detail/chapter get', error);
+                res.sendStatus(500);
+            })
     } else {
         res.sendStatus(403);
     }
