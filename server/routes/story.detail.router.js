@@ -6,6 +6,7 @@ const router = express.Router();
 
 //retrieve individual story details for viewing or editing
 router.get('/:id', (req, res) => {
+    console.log('in story/detail with id', req.params.id)
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
@@ -55,8 +56,17 @@ router.get('/contributor/:id', (req, res) => {
 });
 
 router.get('/chapter/:id', (req, res) => {
+    console.log('in story/detail/chapter get');
     if (req.isAuthenticated()) {
-
+        const queryText = 'SELECT * FROM chapter WHERE story_id = $1;';
+        const values = [req.params.id];
+        pool.query(queryText, values)
+        .then( response => {
+            res.send(response.rows);
+        }).catch(error => {
+            console.log('error in story/detail/chapter get', error);
+            res.sendStatus(500);
+        })
     } else {
         res.sendStatus(403);
     }
