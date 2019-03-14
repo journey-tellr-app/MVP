@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 
 import { List } from 'antd';
 
@@ -15,6 +16,7 @@ class ExistingStoryChapter extends Component {
 
     render() {
         console.log(this.props.match);
+        console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
         return (
             <div>
                 <h1>Chapters</h1>
@@ -36,7 +38,7 @@ class ExistingStoryChapter extends Component {
                                 extra={<img width={100} alt={`User photo for chapter ${order}`} src={`${chapter_photo}`} />}
                             >
                                 <List.Item.Meta
-                                    title={<a href={`/#${this.props.match.url}/chapter/${order}`}>{title}</a>}
+                                    title={<Link to={`${this.props.match.url}chapter/${order}`}>{title}</Link>}
                                     description={text}
                                 />
                                 {item.content}

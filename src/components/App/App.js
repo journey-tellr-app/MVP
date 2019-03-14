@@ -75,7 +75,7 @@ class App extends Component {
               component={ContributorPopup}
             />
             <ProtectedRoute
-              path='/existing-story/:id'
+              exact path='/existing-story/:id'
               component={ExistingStoryMain}
             />
             <ProtectedRoute

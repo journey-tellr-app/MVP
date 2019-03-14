@@ -28,7 +28,7 @@ class ExistingStoryMain extends Component {
       chapter } = this.props.storyDetail
 
     const { params } = this.props.match
-    console.log(params.chapterId);
+    console.log(this.props);
     return (
       <div>
         {/* checks to make sure all relevant existing story data has loaded */}
