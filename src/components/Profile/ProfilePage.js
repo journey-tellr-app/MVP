@@ -20,20 +20,24 @@ const { Text } = Typography;
 
 class ProfilePage extends Component {
 
+    
+    
 
-
-
+    testThings = () => {
+        console.log(this.props.reduxStore.user);
+        
+    }
 
     render() {
 
         return (
             
-
+            
 
             <div>
                
 
-
+                {this.testThings()}
                 <Row>
                     <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.profile_pic} height="75" /></Col>
                     <Col span={10}><Title className="profile-element" level={4}>{this.props.reduxStore.user.first_name}&nbsp;{this.props.reduxStore.user.last_name}</Title></Col>
