@@ -42,7 +42,7 @@ class ExistingStoryMain extends Component {
                   chapter={chapter} />
               //chapter id sent on params
               case (false):
-                return <ChapterView />
+                return <ChapterView summary={summary} chapter={chapter}/>
               default:
                 return <p>Error loading component.</p>
             }

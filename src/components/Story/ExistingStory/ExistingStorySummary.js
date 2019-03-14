@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
-import ExistingStoryChapter from './ExistingStoryChapter';
+import SummaryChapterList from './SummaryChapterList';
 
 class ExistingStorySummary extends Component {
     handlePostStory = () => {
@@ -34,7 +34,7 @@ class ExistingStorySummary extends Component {
 
                 }
                 {/* chapters div here */}
-                <ExistingStoryChapter chapter={chapter} />
+                <SummaryChapterList chapter={chapter} />
                 {/* contributor button here */}
                 {/* when the user clicks this link, JSON line below it renders all contributors */}
                 <a onClick={this.handleGetContributors}><u>Contributors: </u></a>

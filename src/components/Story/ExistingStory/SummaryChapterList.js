@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
 import { List } from 'antd';
 
-class ExistingStoryChapter extends Component {
+class SummaryChapterList extends Component {
     static propTypes = {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
@@ -51,6 +50,6 @@ class ExistingStoryChapter extends Component {
     }
 };
 
-const ExistingStoryChapterWithRouter = withRouter(ExistingStoryChapter);
+const SummaryChapterListWithRouter = withRouter(SummaryChapterList);
 
-export default connect()(ExistingStoryChapterWithRouter);
+export default connect()(SummaryChapterListWithRouter);
