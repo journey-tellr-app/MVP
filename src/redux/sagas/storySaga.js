@@ -89,7 +89,6 @@ function* storySaga() {
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
     yield takeLatest('ADD_NEW_STORY', addAStory);
-    yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
 }
 
