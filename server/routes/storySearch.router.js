@@ -30,9 +30,23 @@ router.get('/story-contributions', (req, res) => {
 //when user searches data base for specific stories 
 router.get('/:id', (req, res) => {
     console.log('in search story', req.params);
-    const queryParams = req.params;
-    const queryText = 
-    
+    const queryParams = req.params.id;
+    const queryText = `
+    select *, concat(first_name, ' ', last_name) as full_name
+    from story
+    join person
+    on story.author = person.id
+    where concat(first_name, ' ', last_name) like $1
+    limit 10;`;
+    pool.query(queryText, [`%${queryParams}%`])
+        .then((sqlResult) => {
+            console.log('results', sqlResult.rows);
+            
+            res.send(sqlResult.rows);
+        }).catch((error) => {
+            console.log(`error in /story-search router: ${error}`);
+            res.sendStatus(500);
+        })
 });
 
 // //retrieves 10 recent stories for home page feed

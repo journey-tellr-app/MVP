@@ -5,9 +5,9 @@ import axios from 'axios';
 function* getStoriesAuthor(action) {
     try {
         // call to the database for getting stories
-        console.log(action.payload);
+        // console.log(action.payload);
         const serverResponse = yield axios.get(`/search-story/${action.payload}`);
-        // yield axios.post(`/chapter/${response.data}`, action.payload.chapter);
+        yield put({ type: 'SET_STORY_SEARCH_RESULTS', payload: serverResponse.data });
     } catch (error) {
         // error message when trying to add a story
         console.log(`getStoriesAuthor failed: ${error}`);

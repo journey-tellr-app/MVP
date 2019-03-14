@@ -14,7 +14,7 @@ class Search extends Component {
         // console.log(event);
         
         // this.setState({
-        //     dropdown: 
+        //     dropdown: event
         // })
         
     }
@@ -23,14 +23,16 @@ class Search extends Component {
                     type: `GET_SEARCH_STORIES_${this.state.dropdown}`,
                     payload: event
     };
-    this.props.dispatch(action);       
+    this.props.dispatch(action);
+    console.log('!!!!!!!', this.props.searchResults);
+           
     }
     render() {
         const Search = Input.Search;
         const menu = (
             <Menu>
                 <Menu.Item>
-                    <a value="Author" onClick={this.setDropdown} rel="noopener noreferrer">Author</a>
+                    <a value="Author" onClick={value => this.setDropdown(value)} rel="noopener noreferrer">Author</a>
                 </Menu.Item>
                 <Menu.Item>
                     <a target="_blank" rel="noopener noreferrer">Contributer</a>
@@ -54,11 +56,14 @@ class Search extends Component {
                             Search By: {this.state.dropdown} <Icon type="down" />
                         </a>
                     </Dropdown></div>
-                    {/* <SearchResult /> */}
+                    {this.props.searchResults.length !== 0 && <SearchResult />}
                 </div>
             </div>
         )
     }
 };
+const mapStateToProps = (state) => ({
+    searchResults: state.searchResults,
+});
 
-export default connect()(Search);
+export default connect(mapStateToProps)(Search);
