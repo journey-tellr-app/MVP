@@ -26,7 +26,8 @@ class EditChapterPage extends Component {
     addChapter = () => {
         // add 1 to the length of existing chapters to get the new chapter order
         let newOrder = this.props.chapter.length + 1;
-
+        console.log(`StoryDetail chapter reducer length: ${this.props.chapter.length} `);
+        console.log(`StoryDetail chapter reducer length + 1: ${newOrder} `);
         // create an array to use the existing chapter router POST route
         let chapterArray = [];
         chapterArray.push({ title: this.state.title, order: newOrder, disabled: true, });
