@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
 import NewStoryChapter from './NewStoryChapter.js';
-import TemplateChapter from './TemplateChapter.js';
 import ContributorPopup from './../Contributor/ContributorPopup.js';
 
 // ant design import
-import { Form, Input, Icon, Button } from 'antd';
+import { Input, Button } from 'antd';
 
 const initialState = { title: '',
                        header_photo: '',
@@ -36,7 +35,7 @@ class NewStoryMain extends Component {
         let chapterDataToSend = this.props.chapter;
         let contributorDataToSend = this.props.contributor;
 
-        if(this.props.story.title != '') {
+        if(this.props.story.title !== '') {
             storyDataToSend = { title: this.props.story.title,
                                 header_photo: this.props.story.placeholder_image,
                                 caption: this.props.story.caption,
@@ -65,9 +64,9 @@ class NewStoryMain extends Component {
             <div>
                 <h2>Create a Story</h2>
                 <ChooseTemplate />
-                {this.props.story.title != '' ? <Input placeholder={this.props.story.title} allowClear name="title" onChange={this.onInputChange} style={{ width: 340 }} /> : <Input placeholder="story title" name="title" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
+                {this.props.story.title !== '' ? <Input placeholder={this.props.story.title} allowClear name="title" onChange={this.onInputChange} style={{ width: 340 }} /> : <Input placeholder="story title" name="title" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
                 <h4>Image goes here</h4>
-                {this.props.story.title != '' ? <Input placeholder={this.props.story.caption} allowClear name="caption" onChange={this.onInputChange} style={{ width: 340 }} /> :<Input placeholder="add a caption" name="caption" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
+                {this.props.story.title !== '' ? <Input placeholder={this.props.story.caption} allowClear name="caption" onChange={this.onInputChange} style={{ width: 340 }} /> :<Input placeholder="add a caption" name="caption" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
                 {/* {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />} */}
                 <h3>Add Chapters</h3>
                 <NewStoryChapter />

@@ -14,7 +14,8 @@ class ContributedStoryListItem extends Component {
                 <h3>{this.props.title}</h3>
                 <img width='150px'
                     height='100px'
-                    src={this.props.header_photo} />
+                    src={this.props.header_photo}
+                    alt='placeholder' />
                 <h4>{this.props.author}</h4>
                 {this.props.profile_pic}
                 <button onClick={this.handleReadStory}>Read</button>

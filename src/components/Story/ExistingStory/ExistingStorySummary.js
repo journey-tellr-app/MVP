@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
 import EditChapterPage from '../NewStory/EditChapterPage';
-import AddChapterPopup from './Chapters/AddChapterPopup';
 
 class ExistingStorySummary extends Component {
     handlePostStory = () => {

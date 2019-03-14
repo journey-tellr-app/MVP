@@ -44,11 +44,11 @@ class AddChapterPopup extends Component {
         let ContributorBtnName;
         //some logic to change button name based on edit/view and  
         // whether there are many contributors, none, or one
-        if('no contributors' === 'no contributors' && 'edit' === 'edit'){
-            ContributorBtnName = 'Add Chapter(s)'
-        } else if(1 === 1 && 'view' === 'view'){
-            ContributorBtnName = 'One Contributor'
-        }
+        // if('no contributors' === 'no contributors' && 'edit' === 'edit'){
+        //     ContributorBtnName = 'Add Chapter(s)'
+        // } else if(1 === 1 && 'view' === 'view'){
+        //     ContributorBtnName = 'One Contributor'
+        // }
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>

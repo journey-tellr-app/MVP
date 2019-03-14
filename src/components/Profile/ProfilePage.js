@@ -65,7 +65,7 @@ class ProfilePage extends Component {
 
                 <Row>
                     {JSON.stringify(this.props.reduxStore.user.userInfo)}
-                    <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.userInfo.profile_pic} height="75" /></Col>
+                    <Col span={6}><img className="profile-element" src={this.props.reduxStore.user.userInfo.profile_pic} height="75" alt='placeholder'/></Col>
                     <Col span={10}>
                         {/*  */}
                         {this.state.isHidden ? this.renderStaticText() : this.renderEditField()}

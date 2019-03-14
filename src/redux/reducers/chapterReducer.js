@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { Z_FILTERED } from 'zlib';
 
 const chapterReducer = (state = {}, action) => {
     if(action.type === 'SET_CHAPTER') {
@@ -13,7 +12,7 @@ const newStoryChapterReducer = (state = initialNewStoryChapter, action) => {
     if(action.type === 'SET_NEW_STORY_CHAPTER') {
         return [...state, action.payload];
     } else if(action.type === 'REMOVE_NEW_STORY_CHAPTER') {
-        let nextState = state.filter(newState => newState != action.payload);
+        let nextState = state.filter(newState => newState !== action.payload);
         return nextState;
     } else if(action.type === 'RESET_NEW_STORY_CHAPTER') {
         return initialNewStoryChapter;

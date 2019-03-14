@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ProtectedRoute from '../../ProtectedRoute/ProtectedRoute';
 import ChapterView from './ChapterView';
 import ExistingStorySummary from './ExistingStorySummary';
 
@@ -24,11 +23,10 @@ class ExistingStoryMain extends Component {
   }
 
   render() {
-    const { summary, likes, contributor,
-      chapter } = this.props.storyDetail
+    //took out likes and contributor for now b/c compile warnings
+    const { summary, chapter } = this.props.storyDetail
 
     const { params } = this.props.match
-    console.log(this.props);
     return (
       <div>
         {/* checks to make sure all relevant existing story data has loaded */}

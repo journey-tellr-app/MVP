@@ -14,8 +14,8 @@ class ChapterView extends Component {
     };
 
     render() {
-        const { summary, likes, contributor,
-            chapter } = this.props
+        //took out likes and contributor for now
+        const { summary, chapter } = this.props
         const { params } = this.props.match;
         
         return (

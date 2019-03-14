@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ant design import
-import { Form, Input, Icon, Button, List } from 'antd';
+import { Input, Icon, Button, List } from 'antd';
 
 class NewStoryChapter extends Component {
 
@@ -25,7 +25,7 @@ class NewStoryChapter extends Component {
         let toggle = !chapterIn.disabled;
         chapterIn.disabled = toggle;
         console.log(chapterIn.itemTitle);
-        chapterIn.title = this.state.itemTitle != ' ' ? this.state.itemTitle : chapterIn.itemTitle;
+        chapterIn.title = this.state.itemTitle !== ' ' ? this.state.itemTitle : chapterIn.itemTitle;
         this.props.dispatch({ type: 'UPDATE_NEW_STORY_CHAPTER', payload: chapterIn });
     } // end editChapter
 
@@ -53,7 +53,7 @@ class NewStoryChapter extends Component {
 
         return (
             <div>
-                {this.props.chapter.length != 0 ?
+                {this.props.chapter.length !== 0 ?
                     <List
                         itemLayout="horizontal"
                         dataSource={this.props.chapter}

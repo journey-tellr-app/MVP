@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Icon } from 'antd';
+// import { Button, Icon } from 'antd';
 
 import ProfileInfo from './ProfileInfo';
 import UserInfo from './UserInfo';

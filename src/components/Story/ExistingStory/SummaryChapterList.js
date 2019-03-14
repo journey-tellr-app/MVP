@@ -14,8 +14,8 @@ class SummaryChapterList extends Component {
     };
 
     render() {
-        console.log(this.props.match);
-        console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
+        // console.log(this.props.match);
+        // console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
         return (
             <div>
                 <h1>Chapters</h1>
@@ -34,7 +34,7 @@ class SummaryChapterList extends Component {
                         return (
                             <List.Item
                                 key={title}
-                                extra={<img width={100} alt={`User photo for chapter ${order}`} src={`${chapter_photo}`} />}
+                                extra={<img width={100} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
                             >
                                 <List.Item.Meta
                                     title={<Link to={`${this.props.match.url}/chapter/${order}`}>{title}</Link>}
