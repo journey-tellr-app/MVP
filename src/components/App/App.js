@@ -90,7 +90,7 @@ class App extends Component {
               component={FakeData} />
             <ProtectedRoute
             exact path='/existing-story/:id'
-            component={ExistingStory}
+            component={ExistingStory} />
 
             
             {/* If none of the other routes matched, we will show a 404. */}
