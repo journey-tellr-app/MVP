@@ -110,20 +110,21 @@ class NewStory extends Component {
                     label="Story title"
                 >
                     <Input allowClear
-                           placeholder={this.props.story.title !== '' ? this.props.story.title : "story title"}
                            name="title"
-                           value={this.state.title}
+                           placeholder={this.props.story.title !== '' ? this.props.story.title : "story title"}
                            onChange={this.onInputChange}
-                           style={{ width: 340 }} />
+                           style={{ width: 340 }} 
+                           value={this.state.title} />
                 </Form.Item>
                 <Form.Item
                     label="Story intro"
                 >
                     <Input allowClear
-                           placeholder={this.props.story.intro !== '' ? this.props.story.intro : "story introduction"}
                            name="intro"
+                           placeholder={this.props.story.intro !== '' ? this.props.story.intro : "story introduction"}
                            onChange={this.onInputChange}
-                           style={{ width: 340 }} />
+                           style={{ width: 340 }}
+                           value={this.state.intro} />
                 </Form.Item>
                 <Form.Item
                     label="Select image"
@@ -134,9 +135,11 @@ class NewStory extends Component {
                     label="Photo caption"
                 >
                    <Input allowClear
-                          placeholder={this.props.story.caption !== '' ? this.props.story.caption : "add a caption" }
                           name="caption"
-                          onChange={this.onInputChange} style={{ width: 340 }} />
+                          placeholder={this.props.story.caption !== '' ? this.props.story.caption : "add a caption" }
+                          onChange={this.onInputChange}
+                          style={{ width: 340 }} 
+                          value={this.state.caption}/>
                 </Form.Item>
                 <h3>Chapters</h3>
                 <NewStoryChapterList />
