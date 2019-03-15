@@ -5,15 +5,21 @@ import propTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
+import { Carousel } from 'antd';
+
 class ContributedList extends Component {
 
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
     }
-    
+
     static propTypes = {
         contributedStories: propTypes.array.isRequired,
     };
+
+    onChange(a, b, c) {
+        console.log(a, b, c);
+    }
 
     render() {
         //these lines will render 'story' or 'stories' depending on the length
@@ -27,31 +33,31 @@ class ContributedList extends Component {
         }
 
         return (
-                <div className='contributions'>
-                    <h3>My stories and contributions</h3>
-                    {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
-                    
-                    {header}
+            <div className='contributions'>
+                <h3>My stories and contributions</h3>
+                {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
 
-                    {/* this div contains the actual story blocks */}
-                    <div>
-                        {this.props.contributedStories.map( (story, i) => {
-                            return <ContributedListItem 
-                                history={this.props.history}
-                                story_id={story.story_id}
-                                key={i}
-                                header_photo={story.header_photo}
-                                title={story.title}
-                                intro={story.intro}
-                                //combining the DB columns into a props item 'author'
-                                //for simplicity on the client
-                                author={story.first_name + ' ' + story.last_name}
-                                profile_pic={story.profile_pic}
-                            />
-                        })}
-                    </div>
+                {header}
+
+                {/* this div contains the actual story blocks */}
+                <div>
+                    {this.props.contributedStories.map((story, i) => {
+                        return <ContributedListItem
+                            history={this.props.history}
+                            story_id={story.story_id}
+                            key={i}
+                            header_photo={story.header_photo}
+                            title={story.title}
+                            intro={story.intro}
+                            //combining the DB columns into a props item 'author'
+                            //for simplicity on the client
+                            author={story.first_name + ' ' + story.last_name}
+                            profile_pic={story.profile_pic}
+                        />
+                    })}
                 </div>
-           
+            </div>
+
         )
     }
 };
