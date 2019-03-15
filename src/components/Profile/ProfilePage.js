@@ -49,12 +49,12 @@ class ProfilePage extends Component {
         }));
     }
 
-    
-    
+
+
 
     testThings = () => {
         console.log(this.props.reduxStore.user);
-        
+
     }
 
     render() {
@@ -68,7 +68,7 @@ class ProfilePage extends Component {
 
                 <Row>
                     {JSON.stringify(this.props.user.userInfo)}
-                    <Col span={6}><img className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" /></Col>
+                    <Col span={6}><img className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" alt="profile-pic" /></Col>
 
                     <Col span={10}>
 
