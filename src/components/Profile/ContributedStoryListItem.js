@@ -6,6 +6,10 @@ import { Typography } from 'antd';
 
 const { Title } = Typography;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b9540c19f121a075aeb61785397fd726fa35fa69
 class ContributedStoryListItem extends Component {
 
     handleReadStory = (event) => {
@@ -29,9 +33,17 @@ class ContributedStoryListItem extends Component {
             <div>
                 {this.props.storyDetail.likes.length !== 0 ?
                 <Card
+<<<<<<< HEAD
                     style={{ width: 300 }}
                     cover={<img width='150px' height='100px' src={this.props.header_photo} alt="story" />}
                 >
+=======
+
+                    style={{ width: 300 }}
+                    cover={<img width='150px' height='100px' src={this.props.header_photo} alt="story" />}
+                >
+
+>>>>>>> b9540c19f121a075aeb61785397fd726fa35fa69
 
                 <Title level={4}>{this.props.title}</Title>
                 <Icon type='like' /><p>{this.props.storyDetail.likes[0].likes}</p>
