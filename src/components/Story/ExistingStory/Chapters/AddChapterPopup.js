@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ContributorForm from './ContributorForm';
-import ContributorList from './ContributorList';
-
 import { Modal, Button, } from 'antd';
 
-class ContributorPopup extends Component {
+class AddChapterPopup extends Component {
     state = {
         loading: false,
         visible: false,
@@ -48,7 +45,7 @@ class ContributorPopup extends Component {
         //some logic to change button name based on edit/view and  
         // whether there are many contributors, none, or one
         // if('no contributors' === 'no contributors' && 'edit' === 'edit'){
-        //     ContributorBtnName = 'Add Contributor(s)'
+        //     ContributorBtnName = 'Add Chapter(s)'
         // } else if(1 === 1 && 'view' === 'view'){
         //     ContributorBtnName = 'One Contributor'
         // }
@@ -58,17 +55,21 @@ class ContributorPopup extends Component {
                     {ContributorBtnName}</Button>
                 <Modal
                     visible={visible}
-                    title="Adding Contributors"
+                    title="Chapters"
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={footer}
                 >
-                    <ContributorForm />
-                    <ContributorList />
                 </Modal>
             </div>
         );
     }
 }
 
-export default connect()(ContributorPopup);
+const mapStoreToProps = reduxStore => ({
+    storyDetail: reduxStore.storyDetail,
+    chapter: reduxStore.chapter,
+    //reduxStore
+})
+
+export default connect(mapStoreToProps)(AddChapterPopup);

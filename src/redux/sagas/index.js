@@ -10,6 +10,7 @@ import storySaga from './storySaga';
 import notificationsSaga from './notificationSaga';
 import storyDetailSaga from './storyDetailSaga';
 import searchStorySaga from './searchStoriesSaga';
+import chapterSaga from './chapterSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     notificationsSaga(),
     storyDetailSaga(),
     searchStorySaga(),
+    chapterSaga(),
   ]);
 }

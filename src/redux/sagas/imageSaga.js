@@ -31,14 +31,8 @@ function* addImageAWS(action) {
 function* addImagePerson(action) {
 
     try {
-        
-        yield axios.put(`/api/user/${action.id}`, action.payload, {
-        }).then(response => {
-            console.log(response);
-
-        }).catch(error => {
-            console.log(error);
-        });  //end put
+        yield axios.put(`/api/user/${action.id}`, action.payload);
+        yield put({ type: 'FETCH_USER' });
     } catch (error) {
         console.log('Error with addImage:', error);
     }

@@ -15,7 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/register', (req, res, next) => {  
+router.post('/register', (req, res, next) => {
   const email = req.body.email;
   const password = encryptLib.encryptPassword(req.body.password);
   const first_name = req.body.first_name;
@@ -24,7 +24,7 @@ router.post('/register', (req, res, next) => {
   //first name
   //last name
   //profile pic url optional 
-  
+
 
   const queryText = 'INSERT INTO person (email, password, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id';
   pool.query(queryText, [email, password, first_name, last_name])
@@ -47,13 +47,42 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/update-profile', (req, res) => {  //sets profile pic
+  // console.log(req.body);
+
+  // let user = req.params.id;
+  let content = req.body;
+  console.log(content);
+
+  const queryText = `
+  UPDATE "person" 
+  SET 
+  "first_name"= $2,   
+  "last_name"= $3
+  WHERE 
+  "id" = $1;`;
+  const queryValues = [
+    content.id,
+    content.first_name,
+    content.last_name,
+  ];
+  pool.query(queryText, queryValues)
+    .then((response) => {
+      console.log(`server response: ${response}`);
+      res.sendStatus(200);
+    }).catch((error) => {
+      console.log(`Problem with updating user info: ${error}`);
+      res.sendStatus(500);
+    })
+});
+
 router.put('/:id', (req, res) => {  //sets profile pic
   // console.log(req.body);
-  
+
   let user = req.params.id;
-  let content = req.body.data.Location;  
+  let content = req.body.data.Location;
   console.log(user, content);
-  
+
   const queryText = `UPDATE "person" SET "profile_pic"= $1
                        WHERE "id" = $2;`;
   pool.query(queryText, [content, user])

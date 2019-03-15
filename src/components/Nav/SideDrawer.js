@@ -58,6 +58,8 @@ class SideDrawer extends Component {
         });
     };
 
+
+
     render() {
         const { userInfo } = this.props;
 
@@ -69,6 +71,7 @@ class SideDrawer extends Component {
                     icon="bars"
                     size="3x"
                     onClick={this.showDrawer}
+                    visible={toString(this.state.visible)}
                 />
 
                 <Drawer
@@ -84,7 +87,7 @@ class SideDrawer extends Component {
                         {/* Title contains current users profile picture and name */}
                         {/* When clicked on, the user will be taken to the Profile page */}
                         <Title level={4}>
-                            <img src={userInfo.profile_pic} height="60" />
+                            <img src={userInfo.profile_pic} height="60" alt='placeholder' />
                             &nbsp;&nbsp;
                             {userInfo.first_name}&nbsp;{userInfo.last_name}
                         </Title>

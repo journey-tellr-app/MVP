@@ -5,7 +5,7 @@ import { List, Avatar, Icon } from 'antd';
 class SearchResult extends Component {
     appendToDom = () => {
         const listData = [this.props.results];
-        return listData.map((i) => {
+        return listData.map((i, key) => {
             return <h1>hi, {i.title}</h1>
         })
     }

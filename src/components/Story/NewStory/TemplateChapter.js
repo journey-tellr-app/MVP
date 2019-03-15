@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ant design import
-import { Form, Input, Icon, Button, List } from 'antd';
+import { List } from 'antd';
 
 class TemplateChapter extends Component {
     render() {
