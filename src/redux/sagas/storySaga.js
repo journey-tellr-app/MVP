@@ -56,12 +56,21 @@ function* addAStory(action) {
     try {
         // POST a new story and get back the story id from the server
         const response = yield axios.post('/story', action.payload.story);
-        // tell the chapter route that the story is new so order is assigned
-        const newStory = true;
-        // send a POST request for all chapter data associated with the new story
-        yield axios.post(`/chapter/${response.data}/${newStory}`, action.payload.chapter);
-        // add all contributors associated with a story to the server
-        yield axios.post(`/invite/contributor/${response.data}`, action.payload.contributor);
+
+        // only send chapter data if it exists
+        if(action.payload.chapter.length !== 0) {
+            // tell the chapter route that the story is new so order is assigned
+            const newStory = true;
+            // send a POST request for all chapter data associated with the new story
+            yield axios.post(`/chapter/${response.data}/${newStory}`, action.payload.chapter);
+        } // end if
+
+        // only send contributor data if it exists
+        if(action.payload.contributor.length !== 0) {
+            // add all contributors associated with a story to the server
+            yield axios.post(`/invite/contributor/${response.data}`, action.payload.contributor);
+        } // end if
+        
         // clear the new story reducers
         const nextAction = {type: 'CLEAR_NEW_STORY'};
         yield put(nextAction);

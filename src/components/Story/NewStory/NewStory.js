@@ -41,7 +41,9 @@ class NewStory extends Component {
         // seperate files for story, chapter and contributor data sent to the redux saga
         let storyDataToSend = '';
         let chapterDataToSend = this.props.chapter;
+        console.log(`Chapter data: ${chapterDataToSend}`);
         let contributorDataToSend = this.props.contributor;
+        console.log(`Contributor data: ${contributorDataToSend}`);
 
         // will create different data to send if the story statred as a template
         if(this.props.story.title !== '') {
@@ -161,6 +163,8 @@ class NewStory extends Component {
     }
 
 }
+
+// const FancyFormComponent = Form.create()(NewStory);
 
 const mapStoreToProps = reduxStore => ({
     story: reduxStore.story.newStoryReducer,
