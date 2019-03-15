@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ant design import
-import { Modal, Input, Icon, Button, List } from 'antd';
+import { Modal, Input, Button } from 'antd';
 
 class NewStoryChapterModal extends Component {
 
@@ -11,9 +11,10 @@ class NewStoryChapterModal extends Component {
 
         this.state = {
             title: '',
-            itemTitle: '',
             visible: false,
         }
+
+        this.baseState = this.state;
     }
 
     // open the chapter modal
@@ -37,11 +38,9 @@ class NewStoryChapterModal extends Component {
                                                                         disabled: true, }
                             });
 
-        // clear state - not working properly
-        this.setState({
-            title: ' ',
-            visible: false,
-        });
+        // set state to intial value
+        this.setState(this.baseState);
+        
     }
 
     // do not save the entered chapter data and close modal
@@ -67,7 +66,8 @@ class NewStoryChapterModal extends Component {
                        keyboard={true}
                 >
                     <Input placeholder="next chapter" 
-                           name="title" 
+                           name="title"
+                           value={this.state.title}
                            onChange={this.onInputChange} 
                            allowClear 
                         //    style={{ width: 340 }}

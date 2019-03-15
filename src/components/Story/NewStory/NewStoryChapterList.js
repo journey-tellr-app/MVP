@@ -22,9 +22,11 @@ class NewStoryChapter extends Component {
 
     // allow for editing a chapter title
     editChapter = (chapterIn) => {
+        // toggle the input field from edit to save
         let toggle = !chapterIn.disabled;
         chapterIn.disabled = toggle;
-        console.log(chapterIn.itemTitle);
+
+        // change the title if changed otherwise keep the same
         chapterIn.title = this.state.itemTitle !== ' ' ? this.state.itemTitle : chapterIn.itemTitle;
         this.props.dispatch({ type: 'UPDATE_NEW_STORY_CHAPTER', payload: chapterIn });
     } // end editChapter
