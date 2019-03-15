@@ -18,6 +18,7 @@ const awsS3Router = require('./routes/aws.s3.router');
 const fakesRouter = require('./routes/fakes.router');
 const templateRouter = require('./routes/template.router');
 const storyDetailRouter = require('./routes/story.detail.router');
+const storySearchRouter = require('./routes/storySearch.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -40,6 +41,8 @@ app.use('/awsS3', awsS3Router);
 app.use('/fakes', fakesRouter);
 app.use('/template', templateRouter);
 app.use('/story/detail', storyDetailRouter);
+
+app.use('/search-story', storySearchRouter);
 
 // Serve static files
 app.use(express.static('build'));
