@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+
+import { Card, Icon, Avatar, Button } from 'antd';
+
+const { Meta } = Card;
 
 class ContributedListItem extends Component {
 
     handleReadStory = (event) => {
         this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
-    
+
     render() {
 
         return (
             <div>
-                <h3>{this.props.title}</h3>
-                <img width='150px' 
-                     height='100px' 
-                     src={this.props.header_photo}
-                     alt='headshot of author' />
-                <h4>{this.props.author}</h4>
-                {this.props.profile_pic}
-                <button onClick={this.handleReadStory}>Read</button>
+                <Card
+                    style={{ width: 300 }}
+                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button>Read</Button>]}
+                >
+                    <Meta
+                        avatar={<Avatar src={this.props.profile_pic} />}
+                        title={this.props.title}
+                    />
+                    <h4>{this.props.author}</h4>
+                </Card>
             </div>
         )
     }
