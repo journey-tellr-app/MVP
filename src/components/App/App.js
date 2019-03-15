@@ -17,7 +17,7 @@ import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
-import NewStory from '../Story/NewStory/NewStory.js';
+import NewStoryForm from '../Story/NewStory/NewStoryForm.js';
 import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
 
 //for dev convenience
@@ -54,7 +54,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact path='/choose-template'
-              component={NewStory}
+              component={NewStoryForm}
             />
             <ProtectedRoute
               exact path='/profile'
