@@ -62,13 +62,14 @@ class ProfilePage extends Component {
             <div>
 
 
+
                 {JSON.stringify(this.props.story.userStoryReducer)}
                 <Row>
                     {JSON.stringify(this.props.user.userInfo)}
                     <Col span={6}><img className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" /></Col>
-        
+
                     <Col span={10}>
-                       
+
                         {this.state.isHidden ? this.renderStaticText() : this.renderEditField()}
 
                     </Col>
@@ -96,7 +97,8 @@ class ProfilePage extends Component {
                     <Col span={16}></Col>
                 </Row>
                 <Row>
-                    <Col span={24}><ContributedStoryList /></Col>
+                    <Col span={24}>{this.props.story ?
+                        (<ContributedStoryList />) : (<p>loading...</p>)}</Col>
                 </Row>
             </div>
         )

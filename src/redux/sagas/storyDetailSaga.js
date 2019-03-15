@@ -33,18 +33,15 @@ function* getStoryContributors(action) {
 }
 //likes
 function* getStoryLikes(action) {
+    // console.log('in getStoryLikes. action: ', action);
     try {
         console.log('getStoryLikes action: ', action);
-        const serverResponse = yield axios.get(`/story/detail/likes${action.payload}`);
+        const serverResponse = yield axios.get(`/story/detail/likes`);
 
         yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });
     } catch (e) {
-        console.log(`Error getting story contributors: ${e}`);
+        console.log(`Error getting story likes: ${e}`);
     }
-    let nextAction = {
-        type: action.nextType
-    }
-    yield put(nextAction);
 }
 
 //post story?

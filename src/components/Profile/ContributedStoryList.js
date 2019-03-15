@@ -6,11 +6,18 @@ import { connect } from 'react-redux';
 class ContributedStoryList extends Component {
 
     componentDidMount = () => {
-        const action = {
-            type: 'GET_MY_CONTRIBUTIONS',
-            nextType: 'GET_STORY_LIKES'
-        }
-        this.props.dispatch(action);
+        this.handleDispatch();
+    }
+
+    handleDispatch = () => {
+        //the first dispatch gets the stories user is contributing to and renders them on
+        //the profile page
+        this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
+        //this dispatches for each story's likes
+        this.props.dispatch({
+            type: 'GET_STORY_LIKES',
+            // payload: this.props.story.contributedStoryReducer.story_id
+        })
     }
 
     render() {
@@ -18,7 +25,9 @@ class ContributedStoryList extends Component {
         return (
             <div className='contributions'>
                 <div>
-                    {JSON.stringify(this.props.storyDetail)}
+
+                    {JSON.stringify(this.props.storyDetail.likes)}
+
                     {this.props.story.contributedStoryReducer.map((story, i) => {
                         return <ContributedStoryListItem
                             key={i}
@@ -40,6 +49,7 @@ class ContributedStoryList extends Component {
 };
 
 const mapStoreToProps = (reduxStore) => ({
+    user: reduxStore.user,
     story: reduxStore.story,
     storyDetail: reduxStore.storyDetail.likes,
 });

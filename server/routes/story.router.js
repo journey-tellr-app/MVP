@@ -26,7 +26,6 @@ router.get('/story-contributions', (req, res) => {
         res.sendStatus(403);
     }
 
-
 });
 
 //when user searches data base for specific stories 
