@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 
-import { Modal, Button, Input, Icon } from 'antd';
+import { Modal, Button, Input } from 'antd';
 
 class ChapterEditButton extends Component {
     state = {
@@ -45,7 +45,7 @@ class ChapterEditButton extends Component {
     render() {
         // console.log(this.props);
         const { editedValue } = this.state;
-        const { valueToEdit, name, type, action } = this.props;
+        const { valueToEdit, name, type } = this.props;
         return (
             <div>
                 <Button type="default" icon='edit' onClick={this.handleModalBtn.bind(this, true)}>{`${name}`} </Button>

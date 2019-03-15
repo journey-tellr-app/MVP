@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 
 import ChapterEditButton from './ChapterEditButton';
 
-import { PageHeader, Pagination, Card, Icon, Button } from 'antd';
+import { PageHeader, Pagination, Card } from 'antd';
 
 class ChapterView extends Component {
     static propTypes = {
