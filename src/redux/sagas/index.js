@@ -9,6 +9,7 @@ import imageSaga from './imageSaga';
 import storySaga from './storySaga';
 import notificationsSaga from './notificationSaga';
 import storyDetailSaga from './storyDetailSaga';
+import searchStorySaga from './searchStoriesSaga';
 import chapterSaga from './chapterSaga';
 
 // rootSaga is the primary saga.
@@ -30,6 +31,7 @@ export default function* rootSaga() {
     storySaga(),
     notificationsSaga(),
     storyDetailSaga(),
+    searchStorySaga(),
     chapterSaga(),
   ]);
 }

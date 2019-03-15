@@ -24,17 +24,23 @@ router.get('/:id', (req, res) => {
     }
 });
 
-router.get('/likes/:id', (req, res) => {
+router.get('/likes/', (req, res) => {
+    // console.log('req.params: ', req.params);
     if (req.isAuthenticated()) {
 
-        const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM story WHERE story.id = $1;`;
-        pool.query(queryText, [storyToGet])
+        // const storyToGet = Number(req.params.id);
+        const queryText = `select (story.id) as story_id, count(story_likes.story_id) as likes
+                           from story_likes
+                           join story
+                           on story.id = story_likes.story_id
+                           where story_id = $1
+                           group by story.id;`;
+        pool.query(queryText)
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
                 res.sendStatus(200);
             }).catch((e) => {
-                console.log(`Error getting individual story detail: ${e}`);
+                console.log(`Error getting individual story likes: ${e}`);
             })
     } else {
         res.sendStatus(403);

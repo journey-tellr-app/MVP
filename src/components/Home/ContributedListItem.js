@@ -24,8 +24,10 @@ class ContributedListItem extends Component {
     }
 };
 
-const mapStateToProps = (state) => ({
-    state
-});
+// const mapStateToProps = (state) => ({
+//     state
+// });
 
-export default connect(mapStateToProps)(ContributedListItem);
+// export default connect(mapStateToProps)(ContributedListItem);
+
+export default ContributedListItem;
