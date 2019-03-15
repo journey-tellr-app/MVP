@@ -35,47 +35,46 @@ class ChapterView extends Component {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
         const currChapter = chapter[chapterId - 1];
-
-        //determines if chapter card needs an edit button
-        const chapterActions = []
-        if(editMode){
-            chapterActions.push( 
-                <ChapterEditButton
-                    valueToEdit={currChapter.text}
-                    type='Chapter'
-                    name='Text'
-                    id={currChapter.id}
-                    action={true} /> )
-            // chapterActions.push( <Button> test</Button>)
-        }
-
+        // console.log(currChapter);
         return (
+
             <div>
-                <PageHeader
-                    title={`Chapter ${chapterId}: ${currChapter.title}`}
-                    subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
-                />
-                {editMode && 
-                <ChapterEditButton 
-                    valueToEdit={currChapter.title}
-                    type='Chapter'
-                    name='Title'
-                    id={currChapter.id}
-                    action={false}/>}
-                <Card
-                    style={{ width: 300 }}
-                    cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
-                    actions={chapterActions} 
-                >
-                    <Card.Meta
-                        description={currChapter.text}
-                    />
-                </Card>
-                <Pagination
-                    defaultCurrent={Number(chapterId)}
-                    pageSize={1}
-                    total={Number(chapter.length)}
-                    onChange={this.turnPage} />
+                {currChapter !== undefined ?
+                    <div>
+                        <PageHeader
+                            title={`Chapter ${chapterId}: ${currChapter.title}`}
+                            subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
+                        />
+                        {editMode &&
+                            <ChapterEditButton
+                                valueToEdit={currChapter.title}
+                                type='Chapter'
+                                name='Title'
+                                id={currChapter.id} />}
+                        <Card
+                            style={{ width: 300 }}
+                            cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
+                        >
+                            <Card.Meta
+                                description={currChapter.text}
+                            />
+                        </Card>
+                        {editMode &&
+                        <ChapterEditButton
+                            valueToEdit={currChapter.text}
+                            type='Chapter'
+                            name='Text'
+                            id={currChapter.id} />
+                        }
+                        <Pagination
+                            defaultCurrent={Number(chapterId)}
+                            pageSize={1}
+                            total={Number(chapter.length)}
+                            onChange={this.turnPage} />
+                    </div>
+                    :
+                    <p> Page is loading.</p>
+                }
             </div>
         )
     }
