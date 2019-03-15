@@ -6,7 +6,7 @@ const router = express.Router();
 
 //retrieve individual story details for viewing or editing
 router.get('/:id', (req, res) => {
-    console.log('in story/detail with id', req.params.id)
+    // console.log('in story/detail with id', req.params.id)
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
@@ -48,10 +48,10 @@ router.get('/likes/', (req, res) => {
 });
 
 router.get('/contributor/:id', (req, res) => {
-    console.log(Number(req.params.id));
+    // console.log(Number(req.params.id));
     if (req.isAuthenticated()) {
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM contributor WHERE story_id = $1;`;
+        const queryText = `SELECT * FROM contributor WHERE story_id = $1 AND status = 'accepted';`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
@@ -64,7 +64,7 @@ router.get('/contributor/:id', (req, res) => {
 });
 
 router.get('/chapter/:id', (req, res) => {
-    console.log('in story/detail/chapter get');
+    // console.log('in story/detail/chapter get');
     if (req.isAuthenticated()) {
         const queryText = 'SELECT * FROM chapter WHERE story_id = $1 ORDER BY chapter."order";';
         const values = [req.params.id];
