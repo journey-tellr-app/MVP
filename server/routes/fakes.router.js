@@ -101,6 +101,8 @@ router.post('/', (req, res) => {
     
 });
 
+//this will fill in the required columns for the chapter table, 
+//adding dummy chapter data to random stories
 router.post('/chapter', (req, res) => {
     (async () => {
         const client = await pool.connect();
@@ -126,6 +128,44 @@ router.post('/chapter', (req, res) => {
                                  fakeChapter.chapter_photo
                                 ];
                  const fakeChapterResult = await client.query(queryText, values);
+             }
+
+             await client.query('COMMIT');
+             res.sendStatus(201);
+
+         } catch(error) {
+             console.log('ROLLBACK', error);
+             await client.query('ROLLBACK');
+             throw error;
+         } finally {
+             client.release();
+         }
+         
+     })().catch((error) => {
+         console.log('CATCH', error);
+         res.sendStatus(500);
+     })
+});
+
+//this will add 25 likes to random stories from random employees
+router.post('/likes', (req, res) => {
+    (async () => {
+        const client = await pool.connect();
+
+         try {
+             await client.query('BEGIN');
+
+             for (let i = 0; i < 25; i++) {
+                 
+                //chooses a random person from id's 1-100
+                const fakePerson = Math.floor(Math.random() * (100 - 1) ) + 1;
+                //chooses a random story from id's 20-30
+                const fakeStory = Math.floor(Math.random() * (30 - 20) ) + 20;
+                
+                 const queryText = `insert into story_likes ("person_id", "story_id")
+                                    values ($1, $2);`;
+                 const values = [fakePerson, fakeStory];
+                 const fakeLikeResult = await client.query(queryText, values);
              }
 
              await client.query('COMMIT');

@@ -20,7 +20,9 @@ class ProfilePage extends Component {
         axios.post('fakes/chapter');
     }
 
-
+    addFakeLikes = (event) => {
+        axios.post('fakes/likes');
+    }
 
     render() {
 
@@ -29,7 +31,8 @@ class ProfilePage extends Component {
                 <div>
                     <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
                     <button onClick={this.addFakeStories}>Add 30 stories to the database</button><br />
-                    <button onClick={this.addFakeChapters}>Add 50 chapters to the database</button>
+                    <button onClick={this.addFakeChapters}>Add 50 chapters to the database</button><br />
+                    <button onClick={this.addFakeLikes}>Add 25 likes to random stories</button>
                     <ImageUpload />
                 </div>
             </div>
