@@ -11,8 +11,6 @@ class Search extends Component {
         results: [],
     }
     handleChange = (value) => {
-        // console.log(value);
-       // console.log(this.state);
         this.setState({
             dropdown: `${value}`
         })
@@ -20,11 +18,11 @@ class Search extends Component {
     sendSearch = (event) => {
     const action = {
                     type: `GET_SEARCH_STORIES_${this.state.dropdown}`,
-                    payload: event
+                    payload: event.toLowerCase()  //to make searching less specific
     };
     this.props.dispatch(action);
     if (this.state.results.length === 0) {
-        console.log('hey', this.state.results);
+        // console.log(this.state.results);
         
         setInterval(() => {
         this.setState({
@@ -37,20 +35,6 @@ class Search extends Component {
     render() {
         const Search = Input.Search;
         const Option = Select.Option;
-        // const menu = (
-        //     //Note: Change dropdown to design that doesn't use anchor tags.
-        //     <Menu>
-        //         <Menu.Item>
-        //             <a value="Author"  onClick={value => this.setDropdown(value)} rel="noopener noreferrer">Author</a>
-        //         </Menu.Item>
-        //         <Menu.Item>
-        //             <a target="_blank" rel="noopener noreferrer">Contributer</a>
-        //         </Menu.Item>
-        //         <Menu.Item>
-        //             <a target="_blank" rel="noopener noreferrer">Title</a>
-        //         </Menu.Item>
-        //     </Menu>
-        // );
         return (
             <div>
                 <h1>Search All Stories</h1>

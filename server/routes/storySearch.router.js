@@ -13,7 +13,7 @@ router.get('/author/:id', (req, res) => {
     from story
     join person
     on story.author = person.id
-    where concat(first_name, ' ', last_name) like $1
+    where LOWER (concat(first_name, ' ', last_name)) like $1
     limit 10;`;
     pool.query(queryText, [`%${queryParams}%`])
         .then((sqlResult) => {
@@ -34,11 +34,11 @@ router.get('/title/:id', (req, res) => {
     from story
     join person
     on story.author = person.id
-    where title like $1
+    where lower(title) like $1
     limit 10;`;
     pool.query(queryText, [`%${queryParams}%`])
         .then((sqlResult) => {
-            // console.log('results', sqlResult.rows);
+            console.log('results', sqlResult.rows);
 
             res.send(sqlResult.rows);
         }).catch((error) => {
@@ -55,7 +55,7 @@ router.get('/description/:id', (req, res) => {
     from story
     join person
     on story.author = person.id
-    where concat(intro, ' ', caption) like $1
+    where lower(concat(intro, ' ', caption)) like $1
     limit 10;`;
     pool.query(queryText, [`%${queryParams}%`])
         .then((sqlResult) => {
