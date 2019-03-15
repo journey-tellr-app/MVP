@@ -4,7 +4,7 @@ import axios from 'axios';
 function* getIndividualStory(action) {
     try {
         // console.log('in getIndividualStory saga, action.payload: ', action.payload);
-        const serverResponse = yield axios.get(`story/detail/${action.payload}`);
+        const serverResponse = yield axios.get(`story/detail/summary/${action.payload}`);
         yield put({ type: 'SET_STORY_DETAIL', payload: serverResponse.data });
     } catch (error) {
         console.log(`Error in getting individual story: ${error}`);
@@ -40,12 +40,12 @@ function* getStoryContributors(action) {
         console.log(`Error getting story contributors: ${e}`);
     }
 }
-//likes
+
+//likes for individual stories
 function* getStoryLikes(action) {
-    // console.log('in getStoryLikes. action: ', action);
     try {
         console.log('getStoryLikes action: ', action);
-        const serverResponse = yield axios.get(`/story/detail/likes`);
+        const serverResponse = yield axios.get(`/story/detail/likes/${action.payload}`, action.payload);
 
         yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });
     } catch (e) {
