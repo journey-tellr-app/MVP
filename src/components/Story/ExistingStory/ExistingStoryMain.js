@@ -54,34 +54,25 @@ class ExistingStoryMain extends Component {
     //took out likes and contributor for now b/c compile warnings
     const { summary, chapter, contributor } = this.props.storyDetail;
     const { editMode } = this.state;
-    const { params } = this.props.match
+    const { chapterId } = this.props.match.params;
     // console.log('existing story main state:', this.state)
     return (
       <div>
         {/* checks to make sure all relevant existing story data has loaded */}
-        {summary.length > 0 ?
-          (() => {
-            switch (isNaN(params.chapterId)) {
-              //no chapter id sent on params
-              case (true):
-                return <ExistingStorySummary
+        {summary.length > 0 && isNaN(chapterId) &&
+           <ExistingStorySummary
                   summary={summary}
                   chapter={chapter}
                   editMode={editMode} />
               //chapter id sent on params
-              case (false):
-                return <ChapterView
+        }
+        {chapter.length > 0 && isNaN(chapterId) !== true &&
+        <ChapterView
                   summary={summary}
                   chapter={chapter}
                   contributor={contributor}
-                  key={params.chapterId}
+                  key={chapterId}
                   editMode={editMode} />
-              default:
-                return <p>Error loading component.</p>
-            }
-          })()
-          :
-          <p>Page is loading :D </p>
         }
       </div>
     )
