@@ -3,16 +3,8 @@ import { connect } from 'react-redux';
 import { List, Avatar, Icon } from 'antd';
 
 class SearchResult extends Component {
-    appendToDom = () => {
-        const listData = [this.props.results];
-        return listData.map((i, key) => {
-            return <h1>hi, {i.title}</h1>
-        })
-    }
     render() {
-        const listData = [this.props.SearchResults];
-        console.log(this.props.results);
-        
+        const listData = this.props.results;   
 //     for(let i = 0; i < 5; i++) {
 //     listData.push({
 //         href: 'http://ant.design',
@@ -31,7 +23,7 @@ class SearchResult extends Component {
     );
         return (
             <div>
-            {/* <List
+            <List
                 itemLayout="vertical"
                 size="large"
                 pagination={{
@@ -43,29 +35,26 @@ class SearchResult extends Component {
                 dataSource={listData}
                 footer={<div><b>ant design</b> footer part</div>}
                 renderItem={item => (
-                    <List.Item
+                    <List.Item  //THIS IS STILL DUMMY DATA
                         key={item.title}
-                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-                        extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
+                        actions={[<IconText type="star-o" text={item.likes} />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                        extra={<img width={272} alt="logo" src={item.header_photo} />}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.avatar} />}
+                            avatar={<Avatar src={item.profile_pic} />}
                             title={<a href={item.href}>{item.title}</a>}
                             description={item.description}
                         />
                         {item.content}
                     </List.Item>
                 )}
-            /> */}
-            {}
-            <h1>hi</h1>
-            {this.appendToDom()}
+            />
             </div>
         )
     }
 };
-const mapStateToProps = (rs) => ({
-    searchResults: rs.searchResults,
-});
+// const mapStateToProps = (rs) => ({ //not needed atm
+//     searchResults: rs.searchResults,
+// });
 
-export default connect(mapStateToProps)(SearchResult);
+export default connect()(SearchResult);

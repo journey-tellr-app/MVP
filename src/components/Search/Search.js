@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input } from 'antd';
 import SearchResult from './SearchResult';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Select } from 'antd';
 
 
 class Search extends Component {
@@ -10,13 +10,12 @@ class Search extends Component {
         dropdown: "AUTHOR",
         results: [],
     }
-    setDropdown = (event) => {
-        console.log(event);
-        // console.log(event);
-        
-        // this.setState({
-        //     dropdown: event
-        // })
+    handleChange = (value) => {
+        // console.log(value);
+       // console.log(this.state);
+        this.setState({
+            dropdown: `${value}`
+        })
     }
     sendSearch = (event) => {
     const action = {
@@ -37,19 +36,21 @@ class Search extends Component {
     }
     render() {
         const Search = Input.Search;
-        const menu = (
-            <Menu>
-                <Menu.Item>
-                    <a value="Author" onClick={value => this.setDropdown(value)} rel="noopener noreferrer">Author</a>
-                </Menu.Item>
-                <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">Contributer</a>
-                </Menu.Item>
-                <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">Title</a>
-                </Menu.Item>
-            </Menu>
-        );
+        const Option = Select.Option;
+        // const menu = (
+        //     //Note: Change dropdown to design that doesn't use anchor tags.
+        //     <Menu>
+        //         <Menu.Item>
+        //             <a value="Author"  onClick={value => this.setDropdown(value)} rel="noopener noreferrer">Author</a>
+        //         </Menu.Item>
+        //         <Menu.Item>
+        //             <a target="_blank" rel="noopener noreferrer">Contributer</a>
+        //         </Menu.Item>
+        //         <Menu.Item>
+        //             <a target="_blank" rel="noopener noreferrer">Title</a>
+        //         </Menu.Item>
+        //     </Menu>
+        // );
         return (
             <div>
                 <h1>Search All Stories</h1>
@@ -59,13 +60,14 @@ class Search extends Component {
                         onSearch={value => this.sendSearch(value)}
                         style={{ width: 200 }}
                     />
-                    <div><Dropdown overlay={menu}>
-                        <a className="ant-dropdown-link">
-                            Search By: {this.state.dropdown} <Icon type="down" />
-                        </a>
-                    </Dropdown></div>
-                    {/* {JSON.stringify(this.state.results)} */}
-                    {this.state.results.length !== 0 && <SearchResult results={this.state.results} />}           
+                    <div>
+                        <Select defaultValue="Search By: Author" style={{ width: 160 }} onChange={this.handleChange}>
+                            <Option value="AUTHOR" >Author</Option>
+                            <Option value="TITLE">Title</Option>
+                            <Option value="DESCRIPTION">Description</Option>
+                        </Select>
+                    </div>
+                    {this.state.results.length !== 0 && <SearchResult results={this.state.results.searchResults} />}           
                     </div>
             </div>
         )
