@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
+import ChapterEditButton from './ChapterEditButton';
+
 import { PageHeader, Pagination, Card } from 'antd';
 
 class ChapterView extends Component {
@@ -45,6 +47,7 @@ class ChapterView extends Component {
         //took out likes for now
         const { summary, chapter, contributor } = this.props
         const { chapterId } = this.props.match.params;
+        const { editMode } = this.state;
         // console.log('editMode:', this.state.editMode);
         const contributorSum = contributor.length;
         let contributorDescription;
@@ -62,6 +65,12 @@ class ChapterView extends Component {
                     title={`Chapter ${chapterId}: ${currChapter.title}`}
                     subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
                 />
+                {editMode && 
+                <ChapterEditButton 
+                    valueToEdit={currChapter.title}
+                    type='Chapter'
+                    name='Title'
+                    id={currChapter.id}/>}
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
