@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Divider } from 'antd';
 
 import ExistingStoryChapter from '../ExistingStory/ExistingStoryChapter';
+import LikeButton from './../../Common/LikeButton';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
 import AddChapterPopup from './Chapters/AddChapterPopup';
@@ -35,8 +36,10 @@ class ExistingStory extends Component {
     }
 
     handleGetContributors = () => {
-        this.props.dispatch({type: 'GET_STORY_CONTRIBUTORS', 
-                             payload: this.props.storyDetail.summary[0].id});
+        this.props.dispatch({
+            type: 'GET_STORY_CONTRIBUTORS',
+            payload: this.props.storyDetail.summary[0].id
+        });
     }
 
     // renderChapter = () => {
@@ -88,7 +91,6 @@ class ExistingStory extends Component {
                 {/* chapters div here */}
 
                 {/* post story button here only if author of story */}
-
             </div>
         )
     }
