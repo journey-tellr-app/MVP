@@ -5,8 +5,8 @@ import { List, Avatar, Icon } from 'antd';
 class SearchResult extends Component {
 
     render() {
-            const listData = [];
-    for(let i = 0; i < 23; i++) {
+        const listData = [];
+    for(let i = 0; i < 5; i++) {
     listData.push({
         href: 'http://ant.design',
         title: `ant design part ${i}`,

@@ -7,7 +7,8 @@ import { Menu, Dropdown, Icon } from 'antd';
 
 class Search extends Component {
     state = {
-        dropdown: "AUTHOR"
+        dropdown: "AUTHOR",
+        results: [],
     }
     setDropdown = (event) => {
         console.log(event);
@@ -16,7 +17,6 @@ class Search extends Component {
         // this.setState({
         //     dropdown: event
         // })
-        
     }
     sendSearch = (event) => {
     const action = {
@@ -25,9 +25,22 @@ class Search extends Component {
     };
     this.props.dispatch(action);
     console.log('!!!!!!!', this.props.searchResults);
-           
+        console.log(this.props.searchResults.length);
+        setInterval(() => {
+            this.setState({
+                results: this.props.searchResults
+            });
+        }, 3000);
+    }
+    test = ()=> {
+        if (this.props.searchResults.length !== undefined) {
+            console.log(this.props.searchResults.length);
+            
+           return <h1>Hi</h1> 
+        } 
     }
     render() {
+        console.log(this.props.searchResults.length);
         const Search = Input.Search;
         const menu = (
             <Menu>
@@ -56,14 +69,15 @@ class Search extends Component {
                             Search By: {this.state.dropdown} <Icon type="down" />
                         </a>
                     </Dropdown></div>
-                    {this.props.searchResults.length !== 0 && <SearchResult />}
-                </div>
+                    {/* {JSON.stringify(this.state.results)} */}
+                    {this.state.results.length !== 0 && <SearchResult />}           
+                    </div>
             </div>
         )
     }
 };
-const mapStateToProps = (state) => ({
-    searchResults: state.searchResults,
+const mapStateToProps = (rs) => ({
+    searchResults: rs.searchResults,
 });
 
 export default connect(mapStateToProps)(Search);
