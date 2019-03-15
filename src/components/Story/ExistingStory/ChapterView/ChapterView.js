@@ -39,7 +39,13 @@ class ChapterView extends Component {
         //determines if chapter card needs an edit button
         const chapterActions = []
         if(editMode){
-            chapterActions.push( <Icon type="edit" /> )
+            chapterActions.push( 
+                <ChapterEditButton
+                    valueToEdit={currChapter.text}
+                    type='Chapter'
+                    name='Text'
+                    id={currChapter.id}
+                    action={true} /> )
             // chapterActions.push( <Button> test</Button>)
         }
 
@@ -54,7 +60,8 @@ class ChapterView extends Component {
                     valueToEdit={currChapter.title}
                     type='Chapter'
                     name='Title'
-                    id={currChapter.id}/>}
+                    id={currChapter.id}
+                    action={false}/>}
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
