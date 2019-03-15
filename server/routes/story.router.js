@@ -8,7 +8,7 @@ router.use('/detail', storyDetailRouter);
 //gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
-        console.log(`req.body.id: ${req.user.id}`);
+        // console.log(`req.body.id: ${req.user.id}`);
         const userId = req.user.id;
         const queryText = `select header_photo, author, title, caption, intro, date_started, completed, last_edit, is_template, (story.id) as story_id
                            from story
@@ -39,17 +39,16 @@ router.get('/recent', (req, res) => {
     if (req.isAuthenticated()) {
         console.log('in /search router');
         const queryText = `select (story.id) as story_id, first_name, last_name,
-        profile_pic, header_photo, title, count(story_likes.story_id) as likes, 
-        completed, date_started
-        from person
-        join story
-        on person.id = story.author
-        full outer join story_likes
-        on story_likes.story_id = story.id
-        group by story.id, person.first_name, person.last_name, 
-        person.profile_pic, story.header_photo, story.title, story.completed
-        order by likes desc, date_started desc
-        limit 10;`;
+                           profile_pic, header_photo, title, count(story_likes.story_id) as likes, completed, date_started
+                           from person
+                           join story
+                           on person.id = story.author
+                           full outer join story_likes
+                           on story_likes.story_id = story.id
+                           group by story.id, person.first_name, person.last_name, 
+                           person.profile_pic, story.header_photo, story.title, story.completed
+                           order by likes desc, date_started desc
+                           limit 10;`;
         pool.query(queryText)
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
