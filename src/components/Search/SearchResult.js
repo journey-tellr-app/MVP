@@ -3,18 +3,25 @@ import { connect } from 'react-redux';
 import { List, Avatar, Icon } from 'antd';
 
 class SearchResult extends Component {
-
+    appendToDom = () => {
+        const listData = [this.props.results];
+        return listData.map((i) => {
+            return <h1>hi, {i.title}</h1>
+        })
+    }
     render() {
-        const listData = [];
-    for(let i = 0; i < 5; i++) {
-    listData.push({
-        href: 'http://ant.design',
-        title: `ant design part ${i}`,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-        content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    });
-}
+        const listData = [this.props.SearchResults];
+        console.log(this.props.results);
+        
+//     for(let i = 0; i < 5; i++) {
+//     listData.push({
+//         href: 'http://ant.design',
+//         title: `ant design part ${i}`,
+//         avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+//         description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+//         content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+//     });
+// }
 
     const IconText = ({ type, text }) => (
         <span>
@@ -24,7 +31,7 @@ class SearchResult extends Component {
     );
         return (
             <div>
-            <List
+            {/* <List
                 itemLayout="vertical"
                 size="large"
                 pagination={{
@@ -49,10 +56,16 @@ class SearchResult extends Component {
                         {item.content}
                     </List.Item>
                 )}
-            />
+            /> */}
+            {}
+            <h1>hi</h1>
+            {this.appendToDom()}
             </div>
         )
     }
 };
+const mapStateToProps = (rs) => ({
+    searchResults: rs.searchResults,
+});
 
-export default connect()(SearchResult);
+export default connect(mapStateToProps)(SearchResult);

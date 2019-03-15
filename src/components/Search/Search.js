@@ -24,23 +24,18 @@ class Search extends Component {
                     payload: event
     };
     this.props.dispatch(action);
-    console.log('!!!!!!!', this.props.searchResults);
-        console.log(this.props.searchResults.length);
+    if (this.state.results.length === 0) {
+        console.log('hey', this.state.results);
+        
         setInterval(() => {
-            this.setState({
-                results: this.props.searchResults
-            });
-        }, 3000);
+        this.setState({
+            results: this.props.searchResults
+        });
+        }, 1000);
     }
-    test = ()=> {
-        if (this.props.searchResults.length !== undefined) {
-            console.log(this.props.searchResults.length);
-            
-           return <h1>Hi</h1> 
-        } 
+    
     }
     render() {
-        console.log(this.props.searchResults.length);
         const Search = Input.Search;
         const menu = (
             <Menu>
@@ -70,7 +65,7 @@ class Search extends Component {
                         </a>
                     </Dropdown></div>
                     {/* {JSON.stringify(this.state.results)} */}
-                    {this.state.results.length !== 0 && <SearchResult />}           
+                    {this.state.results.length !== 0 && <SearchResult results={this.state.results} />}           
                     </div>
             </div>
         )
