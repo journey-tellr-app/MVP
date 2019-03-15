@@ -5,8 +5,10 @@ const router = express.Router();
 //incoming routes have /story/detail in route URL
 
 //retrieve individual story details for viewing or editing
+
 router.get('summary/:id', (req, res) => {
     console.log('req.params: ', req.params);
+
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
@@ -56,7 +58,7 @@ router.get('/contributor/:id', (req, res) => {
     // console.log(Number(req.params.id));
     if (req.isAuthenticated()) {
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM contributor WHERE story_id = $1;`;
+        const queryText = `SELECT * FROM contributor WHERE story_id = $1 AND status = 'accepted';`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
