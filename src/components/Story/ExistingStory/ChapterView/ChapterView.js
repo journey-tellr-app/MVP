@@ -5,39 +5,15 @@ import { withRouter } from "react-router";
 
 import ChapterEditButton from './ChapterEditButton';
 
-import { PageHeader, Pagination, Card } from 'antd';
+import { PageHeader, Pagination, Card, Icon, Button } from 'antd';
 
 class ChapterView extends Component {
-    componentDidMount() {
-        this.determineEditMode();
-    }
     static propTypes = {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         contributor: PropTypes.array.isRequired,
-        user: PropTypes.object.isRequired,
     };
-
-    state = {
-        editMode: false,
-    }
-
-    //checks story contributors and author for user id and returns status accordingly
-    determineEditMode = () => {
-        const { contributor, user, summary } = this.props;
-        let editModeValue = false;
-        const contributorCheck = contributor.filter(
-            contributorObj => contributorObj.person_id === user.id).length > 0;
-        // console.log(contributorCheckArr.length > 0);
-        const authorCheck = summary.author_id === user.id;
-        if (contributorCheck || authorCheck) {
-            editModeValue = true;
-        }
-        return this.setState({
-            editMode: editModeValue,
-        })
-    }
 
     turnPage = (page, pageSize) => {
         this.props.history.push(`${page}`)
@@ -45,9 +21,9 @@ class ChapterView extends Component {
 
     render() {
         //took out likes for now
-        const { summary, chapter, contributor } = this.props
+        const { summary, chapter, contributor, editMode } = this.props;
         const { chapterId } = this.props.match.params;
-        const { editMode } = this.state;
+
         // console.log('editMode:', this.state.editMode);
         const contributorSum = contributor.length;
         let contributorDescription;
@@ -59,6 +35,14 @@ class ChapterView extends Component {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
         const currChapter = chapter[chapterId - 1];
+
+        //determines if chapter card needs an edit button
+        const chapterActions = []
+        if(editMode){
+            chapterActions.push( <Icon type="edit" /> )
+            // chapterActions.push( <Button> test</Button>)
+        }
+
         return (
             <div>
                 <PageHeader
@@ -74,6 +58,7 @@ class ChapterView extends Component {
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
+                    actions={chapterActions} 
                 >
                     <Card.Meta
                         description={currChapter.text}
@@ -91,10 +76,4 @@ class ChapterView extends Component {
 
 const ChapterViewWithRouter = withRouter(ChapterView);
 
-const mapRStoProps = (rs) => {
-    return {
-        user: rs.user.userInfo
-    }
-}
-
-export default connect(mapRStoProps)(ChapterViewWithRouter);
+export default connect()(ChapterViewWithRouter);
