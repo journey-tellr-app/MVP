@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import { Button, Icon, Form, Input } from 'antd';
 
-const hasErrors = (fieldsError) => {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
+// const hasErrors = (fieldsError) => {
+//   return Object.keys(fieldsError).some(field => fieldsError[field]);
+// }
 
 class UserInfo extends Component {
   componentDidMount() {
@@ -41,17 +41,17 @@ class UserInfo extends Component {
     const { registration,
       handleInputChangeFor,
       handleRegisterNavButton, } = this.props;
-
+    
+    //took out getFieldsError for now
     const {
       getFieldDecorator,
-      getFieldsError,
       getFieldError,
       isFieldTouched,
     } = this.props.form;
 
     // Only show error after a field is touched.
     const userNameError = isFieldTouched('userName') && getFieldError('userName');
-    const passwordError = isFieldTouched('password') && getFieldError('password');
+    // const passwordError = isFieldTouched('password') && getFieldError('password');
 
     return (
 

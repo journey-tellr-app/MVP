@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../Common/LogOutButton';
-import SideDrawer from './SideDrawer';
-import logo from './JourneyTellr-Nameonly-color-noR.png';
-import './Nav.css';
 
+import logo from './JourneyTellr-Nameonly-color-noR.png';
+import SideDrawer from './SideDrawer';
+
+import './Nav.css';
 
 const Nav = () => (
   <div className="nav">
@@ -18,9 +18,6 @@ const Nav = () => (
           height="50"
           width="380" 
           className="logo" />
-    </Link>
-    <Link to='/existing-story'>
-      existing story
     </Link>
     <Link to='/fake-data'>
       fake data

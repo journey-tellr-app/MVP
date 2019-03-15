@@ -4,6 +4,7 @@ import axios from 'axios';
 function* getStats(action) {
     try {
         //gets story and contribution stats by counting tables
+        yield console.log('in getStats with action:', action)
     } catch (error) {
         console.log('Error with getStats:', error);
     }

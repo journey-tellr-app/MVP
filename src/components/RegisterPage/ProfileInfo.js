@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button, Icon, Form, Input } from 'antd';
+import { Button, Form} from 'antd';
 
 class ProfileInfo extends Component {
   render() {

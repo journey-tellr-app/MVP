@@ -66,8 +66,9 @@ class ProfilePage extends Component {
                 <Row>
                     {JSON.stringify(this.props.user.userInfo)}
                     <Col span={6}><img className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" /></Col>
+        
                     <Col span={10}>
-                        {/*  */}
+                       
                         {this.state.isHidden ? this.renderStaticText() : this.renderEditField()}
 
                     </Col>

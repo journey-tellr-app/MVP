@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   HashRouter as Router,
   Route,
@@ -6,29 +7,25 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+//app routes
 import AboutPage from '../AboutPage/AboutPage';
-// import UserPage from '../UserPage/UserPage';
 import HomePage from '../Home/HomePage';
-//for use in other components
-import ContributorPopup from '../Story/Contributor/ContributorPopup';
-
-import ChooseTemplate from '../Story/NewStory/ChooseTemplate';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import Search from '../Search/Search';
-import FakeData from '../Faker/FakeData';
 import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
+import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
 
+//for dev convenience
+import FakeData from '../Faker/FakeData';
+import ContributorPopup from '../Story/Contributor/ContributorPopup';
+
+//styling imports
 import './App.css';
-import ExistingStory from '../Story/ExistingStory/ExistingStory';
-import LoginPage from '../LoginPage/LoginPage';
 
 
 class App extends Component {
@@ -49,7 +46,6 @@ class App extends Component {
             <Route
               exact
               path="/about"
-              // component={NewStoryMain}
               component={AboutPage}
             />
             <ProtectedRoute
@@ -78,22 +74,18 @@ class App extends Component {
               path="/contributor"
               component={ContributorPopup}
             />
-
+            <ProtectedRoute
+              exact path='/existing-story/:id'
+              component={ExistingStoryMain}
             />
-            <Route
-              exact path='/existing-story'
-              component={ExistingStory}
+            <ProtectedRoute
+              exact path='/existing-story/:id/chapter/:chapterId'
+              component={ExistingStoryMain}
             />
             <Route
               exact path='/fake-data'
-              component={FakeData} />
-            <ProtectedRoute
-            exact path='/existing-story/:id'
-            component={ExistingStory}
+              component={FakeData}
             />
-            <Route
-            exact path='/fake-data'
-            component={FakeData} />
             
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
