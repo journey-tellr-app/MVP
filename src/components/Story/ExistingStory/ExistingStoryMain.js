@@ -55,11 +55,11 @@ class ExistingStoryMain extends Component {
     const { summary, chapter, contributor } = this.props.storyDetail;
     const { editMode } = this.state;
     const { params } = this.props.match
-    console.log('existing story main state:', this.state)
+    // console.log('existing story main state:', this.state)
     return (
       <div>
         {/* checks to make sure all relevant existing story data has loaded */}
-        {summary.length > 0 && chapter.length > 0 ?
+        {summary.length > 0 ?
           (() => {
             switch (isNaN(params.chapterId)) {
               //no chapter id sent on params
