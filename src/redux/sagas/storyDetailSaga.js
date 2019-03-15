@@ -20,6 +20,15 @@ function* getChapterDetail(action) {
         console.log(`Error in getChapterDetail saga:`, error);
     }
 }
+
+function* editChapter(action) {
+    try{ 
+        const response = yield axios.put(`/chapter`, action.payload);
+        yield put({ type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data[0].story_id });
+    }catch(e){
+        console.log('Error in editChapter saga:', e)
+    }
+}
 //contributors
 function* getStoryContributors(action) {
     try {
@@ -50,6 +59,7 @@ function* storyDetailSaga() {
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
     yield takeLatest('GET_STORY_CHAPTER_DETAIL', getChapterDetail);
     yield takeLatest('GET_STORY_CONTRIBUTORS', getStoryContributors);
+    yield takeLatest('EDIT_CHAPTER', editChapter);
     yield takeLatest('GET_STORY_LIKES', getStoryLikes);
 
 }
