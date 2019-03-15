@@ -1,11 +1,13 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
+import { useLayoutEffect } from 'react';
 
 // get stories searching by author
 function* getStoriesAuthor(action) {
     try {
+        console.log('in gSA');
         // call to the database for getting stories
-        const serverResponse = yield axios.get(`/search-story/${action.payload}`);
+        const serverResponse = yield axios.get(`/search-story/author/${action.payload}`);
         yield put({ type: 'SET_STORY_SEARCH_RESULTS', payload: serverResponse.data });
     } catch (error) {
         // error message when trying to add a story
@@ -14,8 +16,10 @@ function* getStoriesAuthor(action) {
 }
 function* getStoriesTitle(action) {
     try {
+        console.log('in gST');
+        
         // call to the database for getting stories
-        const serverResponse = yield axios.get(`/search-story/${action.payload}`);
+        const serverResponse = yield axios.get(`/search-story/title/${action.payload}`);
         yield put({ type: 'SET_STORY_SEARCH_RESULTS', payload: serverResponse.data });
     } catch (error) {
         // error message when trying to add a story
@@ -24,8 +28,9 @@ function* getStoriesTitle(action) {
 }
 function* getStoriesDescription(action) {
     try {
+        console.log('in gSD');
         // call to the database for getting stories
-        const serverResponse = yield axios.get(`/search-story/${action.payload}`);
+        const serverResponse = yield axios.get(`/search-story/description/${action.payload}`);
         yield put({ type: 'SET_STORY_SEARCH_RESULTS', payload: serverResponse.data });
     } catch (error) {
         // error message when trying to add a story

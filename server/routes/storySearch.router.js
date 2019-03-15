@@ -5,7 +5,7 @@ const router = express.Router();
 //This Router is for when user searches data base for specific stories 
 
 //AUTHOR
-router.get('/:id', (req, res) => {
+router.get('/author/:id', (req, res) => {
     console.log('in search story', req.params);
     const queryParams = req.params.id;
     const queryText = `
@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
     limit 10;`;
     pool.query(queryText, [`%${queryParams}%`])
         .then((sqlResult) => {
-            console.log('results', sqlResult.rows);
+            // console.log('results', sqlResult.rows);
             
             res.send(sqlResult.rows);
         }).catch((error) => {
@@ -26,8 +26,8 @@ router.get('/:id', (req, res) => {
         })
 });
 //TITLE
-router.get('/:id', (req, res) => {
-    console.log('in search story', req.params);
+router.get('/title/:id', (req, res) => {
+    console.log('!!!!!!', req.params);
     const queryParams = req.params.id;
     const queryText = `
     select *
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
     limit 10;`;
     pool.query(queryText, [`%${queryParams}%`])
         .then((sqlResult) => {
-            console.log('results', sqlResult.rows);
+            // console.log('results', sqlResult.rows);
 
             res.send(sqlResult.rows);
         }).catch((error) => {
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
         })
 });
 //DESCRIPTION
-router.get('/:id', (req, res) => {
+router.get('/description/:id', (req, res) => {
     console.log('in search story', req.params);
     const queryParams = req.params.id;
     const queryText = `
@@ -59,7 +59,7 @@ router.get('/:id', (req, res) => {
     limit 10;`;
     pool.query(queryText, [`%${queryParams}%`])
         .then((sqlResult) => {
-            console.log('results', sqlResult.rows);
+            // console.log('results', sqlResult.rows);
 
             res.send(sqlResult.rows);
         }).catch((error) => {
