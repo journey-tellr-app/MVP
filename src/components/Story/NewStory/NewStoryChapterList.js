@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ant design import
-import { Input, Icon, Button, List } from 'antd';
+import { Input, Icon, List } from 'antd';
 
 class NewStoryChapter extends Component {
 

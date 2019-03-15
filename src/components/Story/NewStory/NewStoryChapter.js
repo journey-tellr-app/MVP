@@ -45,7 +45,7 @@ class NewStoryChapter extends Component {
 
         // clear state - not working properly
         this.setState({
-            title: ' ',
+            title: '',
         });
     }
 

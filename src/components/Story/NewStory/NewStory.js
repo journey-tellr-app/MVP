@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
-import NewStoryChapter from './NewStoryChapter.js';
 import ContributorPopup from './../Contributor/ContributorPopup.js';
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
 import NewStoryChapterModal from './NewStoryChapterModal.js';
@@ -56,7 +55,7 @@ class NewStory extends Component {
             storyDataToSend = { title: this.state.title,
                                 header_photo: this.state.header_photo,
                                 caption: this.state.caption,
-                                intro: '',
+                                intro: this.state.intro,
                                 is_template: false,
                               };
         }
@@ -69,6 +68,7 @@ class NewStory extends Component {
 
         // clear the local state - not working properly
         this.setState(initialState);
+
     } // end createStory
 
     render() {
@@ -110,6 +110,7 @@ class NewStory extends Component {
                     <Input allowClear
                            placeholder={this.props.story.title !== '' ? this.props.story.title : "story title"}
                            name="title"
+                           value={this.state.title}
                            onChange={this.onInputChange}
                            style={{ width: 340 }} />
                 </Form.Item>
@@ -135,14 +136,14 @@ class NewStory extends Component {
                           name="caption"
                           onChange={this.onInputChange} style={{ width: 340 }} />
                 </Form.Item>
-                <h3>Add Chapters</h3>
+                <h3>Chapters</h3>
                 <NewStoryChapterList />
                 <Form.Item
                     label="Add a chapter"
                 >
                     <NewStoryChapterModal />
                 </Form.Item>
-                <h3>Add Contributors</h3>
+                <h3>Contributors</h3>
                 <Form.Item
                     label="Add contributors"
                 >
