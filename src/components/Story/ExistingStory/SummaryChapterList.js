@@ -37,7 +37,7 @@ class SummaryChapterList extends Component {
                                 extra={<img width={100} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
                             >
                                 <List.Item.Meta
-                                    title={<Link to={`${this.props.match.url}chapter/${order}`}>{title}</Link>}
+                                    title={<Link to={`${this.props.match.url}/chapter/${order}`}>{title}</Link>}
                                     description={text}
                                 />
                                 {item.content}
