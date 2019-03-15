@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import { Card, Icon, Avatar } from 'antd';
+import { Card, Icon, Avatar, Button } from 'antd';
 
 const { Meta } = Card;
 
@@ -18,7 +18,7 @@ class ContributedListItem extends Component {
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
+                    actions={[<Button>Read</Button>]}
                 >
                     <Meta
                         avatar={<Avatar src={this.props.profile_pic} />}
