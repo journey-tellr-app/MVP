@@ -7,7 +7,9 @@ import { List, Avatar, Icon } from 'antd';
 
 class SearchResult extends Component {
     render() {
-        const listData = this.props.results;   
+        const listData = this.props.results;  
+        console.log(this.props.results);
+         
 //     for(let i = 0; i < 5; i++) {
 //     listData.push({
 //         href: 'http://ant.design',
@@ -41,14 +43,14 @@ class SearchResult extends Component {
                     <List.Item  //THIS IS STILL DUMMY DATA
                         key={item.title}
                         actions={[<IconText type="star-o" text={item.likes} />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-                        extra={<Link to={`/existing-story/${item.id}`}>{<img width={272} alt="logo" src={item.header_photo} />}</Link>}
+                        extra={<Link to={`/existing-story/${item.story}`}>{<img width={272} alt="logo" src={item.header_photo} />}</Link>}
                     >
                         <List.Item.Meta
                             avatar={<Avatar src={item.profile_pic} />}
-                            title={<a href={item.href}>{item.title}</a>}
+                            title={<Link to={`/existing-story/${item.story}`}>{item.title}</Link>}
                             description={item.description}
                         />
-                        {item.content} <Link to={`/existing-story/${item.id}`}>Read</Link>
+                        {item.intro} <Link to={`/existing-story/${item.story}`}>Read</Link>
                     </List.Item>
                 )}
             />

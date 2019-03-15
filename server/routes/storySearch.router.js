@@ -9,7 +9,7 @@ router.get('/author/:id', (req, res) => {
     console.log('in search story', req.params);
     const queryParams = req.params.id;
     const queryText = `
-    select *, concat(first_name, ' ', last_name) as full_name
+    select *, concat(first_name, ' ', last_name) as full_name, story.id as story
     from story
     join person
     on story.author = person.id
@@ -30,7 +30,7 @@ router.get('/title/:id', (req, res) => {
     console.log('!!!!!!', req.params);
     const queryParams = req.params.id;
     const queryText = `
-    select *
+    select *, story.id as story
     from story
     join person
     on story.author = person.id
@@ -51,7 +51,7 @@ router.get('/description/:id', (req, res) => {
     console.log('in search story', req.params);
     const queryParams = req.params.id;
     const queryText = `
-    select *
+    select *, story.id as story
     from story
     join person
     on story.author = person.id
