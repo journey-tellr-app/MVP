@@ -13,6 +13,7 @@ import { Form, Input, Button } from 'antd';
 
 // initial state values supposed to be used when clearing state
 const initialState = { title: '',
+                       intro: '',
                        header_photo: '',
                        caption: '',
                      };
@@ -113,12 +114,21 @@ class NewStory extends Component {
                            style={{ width: 340 }} />
                 </Form.Item>
                 <Form.Item
+                    label="Story intro"
+                >
+                    <Input allowClear
+                           placeholder={this.props.story.intro !== '' ? this.props.story.intro : "story introduction"}
+                           name="intro"
+                           onChange={this.onInputChange}
+                           style={{ width: 340 }} />
+                </Form.Item>
+                <Form.Item
                     label="Select image"
                 >
                     <ImageUpload />
                 </Form.Item>
                 <Form.Item
-                    label="Add a caption"
+                    label="Photo caption"
                 >
                    <Input allowClear
                           placeholder={this.props.story.caption !== '' ? this.props.story.caption : "add a caption" }
