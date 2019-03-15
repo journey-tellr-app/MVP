@@ -31,7 +31,7 @@ class ImageUpload extends Component {
         });
     }
     submitFile = (event) => {
-        console.log('in sF');
+        // console.log('in sF');
 
         // event.preventDefault();
         const formData = new FormData();
@@ -69,7 +69,7 @@ class ImageUpload extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*No Ant Design for camera upload */}
+                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*Will look identical to file upload on desktop */}
                     <h2>OR</h2>
                     <div>Choose Photo From Library: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
                     {this.state.file !== null && this.appendPic()}

@@ -8,6 +8,7 @@ import notification from './notificationReducer.js';
 import chapter from './chapterReducer.js';
 import contributor from './contributorReducer.js';
 import storyDetail from './storyDetailReducer';
+import searchResults from './searchResultsReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   chapter, // loads chapters for a story
   contributor, // list of app users to be contributors
   storyDetail,
+  searchResults, //results back from server after search all stories
 });
 
 export default rootReducer;
