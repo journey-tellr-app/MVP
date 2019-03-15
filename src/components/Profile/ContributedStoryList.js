@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 class ContributedStoryList extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
+        const action = {
+            type: 'GET_MY_CONTRIBUTIONS',
+            nextType: 'GET_STORY_LIKES'
+        }
+        this.props.dispatch(action);
     }
 
     render() {
@@ -14,7 +18,8 @@ class ContributedStoryList extends Component {
         return (
             <div className='contributions'>
                 <div>
-                    {this.props.state.story.contributedStoryReducer.map((story, i) => {
+                    {JSON.stringify(this.props.storyDetail)}
+                    {this.props.story.contributedStoryReducer.map((story, i) => {
                         return <ContributedStoryListItem
                             key={i}
                             header_photo={story.header_photo}
@@ -24,6 +29,7 @@ class ContributedStoryList extends Component {
                             //for simplicity on the client
                             author={story.first_name + ' ' + story.last_name}
                             profile_pic={story.profile_pic}
+                            likes={this.props.storyDetail.likes}
                         />
                     })}
                 </div>
@@ -33,8 +39,9 @@ class ContributedStoryList extends Component {
     }
 };
 
-const mapStateToProps = (state) => ({
-    state
+const mapStoreToProps = (reduxStore) => ({
+    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail.likes,
 });
 
-export default connect(mapStateToProps)(ContributedStoryList);
+export default connect(mapStoreToProps)(ContributedStoryList);

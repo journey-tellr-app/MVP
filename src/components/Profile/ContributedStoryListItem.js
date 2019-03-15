@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card, Icon, Avatar } from 'antd';
+import { Button } from 'antd';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
+
+
+
+const { Meta } = Card;
 
 class ContributedStoryListItem extends Component {
 
@@ -11,13 +20,15 @@ class ContributedStoryListItem extends Component {
 
         return (
             <div>
-                <h3>{this.props.title}</h3>
-                <img width='150px'
-                    height='100px'
-                    src={this.props.header_photo} />
-                <h4>{this.props.author}</h4>
-                {this.props.profile_pic}
-                <button onClick={this.handleReadStory}>Read</button>
+                <Card
+                    style={{ width: 300 }}
+                    cover={<img width='150px' height='100px' src={this.props.header_photo} />}
+                >
+
+                    <Title level={4}>{this.props.title}</Title>
+                    <Icon type='like' />
+
+                </Card>
             </div>
         )
     }
