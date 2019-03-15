@@ -37,18 +37,6 @@ class NewStoryChapter extends Component {
         });
     } // end onInputChange
 
-    // submits the currently entered field and allows the user to create another chapter
-    addChapter = () => {
-        this.props.dispatch({ type: 'SET_NEW_STORY_CHAPTER', payload: { title: this.state.title,
-                                                                        disabled: true, }
-                            });
-
-        // clear state - not working properly
-        this.setState({
-            title: ' ',
-        });
-    }
-
     render() {
 
         return (
@@ -73,17 +61,6 @@ class NewStoryChapter extends Component {
                         )}
                     />
                 : '' }
-                <Input placeholder="next chapter" 
-                        name="title" 
-                        onChange={this.onInputChange} 
-                        allowClear 
-                        style={{ width: 340 }}
-                />
-                <Button type="primary"
-                        onClick={this.addChapter}
->
-                    <Icon type="plus" /> Add Chapter
-                </Button>
             </div>
         )
     }

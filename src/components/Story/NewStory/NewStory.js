@@ -4,9 +4,12 @@ import ChooseTemplate from './ChooseTemplate.js';
 import NewStoryChapter from './NewStoryChapter.js';
 import ContributorPopup from './../Contributor/ContributorPopup.js';
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
+import NewStoryChapterModal from './NewStoryChapterModal.js';
+import NewStoryChapterList from './NewStoryChapterList.js';
 
 // ant design import
-import { Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
+
 
 // initial state values supposed to be used when clearing state
 const initialState = { title: '',
@@ -14,7 +17,7 @@ const initialState = { title: '',
                        caption: '',
                      };
 
-class NewStoryMain extends Component {
+class NewStory extends Component {
     constructor(props) {
         super(props);
 
@@ -33,7 +36,7 @@ class NewStoryMain extends Component {
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
     createStory = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
 
         // seperate files for story, chapter and contributor data sent to the redux saga
         let storyDataToSend = '';
@@ -68,31 +71,81 @@ class NewStoryMain extends Component {
     } // end createStory
 
     render() {
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 16 },
+            },
+        };
+
+        const tailFormItemLayout = {
+            wrapperCol: {
+                xs: {
+                    span: 24,
+                    offset: 0,
+                },
+                sm: {
+                    span: 16,
+                    offset: 8,
+                },
+            },
+        };
 
         return (
-            <div>
+            <Form {...formItemLayout} onSubmit={this.createStory}>
                 <h2>Create a Story</h2>
-                <ChooseTemplate />
-                <Input addonBefore="Story title"
-                       placeholder={this.props.story.title !== '' ? this.props.story.title : "story title"}
-                       allowClear
-                       name="title"
-                       onChange={this.onInputChange}
-                       style={{ width: 340 }} />
-                <h4>Image goes here</h4>
-                <ImageUpload />
-                <Input addonBefore="Add a caption"
-                       placeholder={this.props.story.caption !== '' ? this.props.story.caption : "add a caption" }
-                       allowClear
-                       name="caption"
-                       onChange={this.onInputChange} style={{ width: 340 }} />
+                <Form.Item
+                    label="Create a story or choose a template"
+                >
+                    <ChooseTemplate />
+                </Form.Item>
+                <Form.Item
+                    label="Story title"
+                >
+                    <Input allowClear
+                           placeholder={this.props.story.title !== '' ? this.props.story.title : "story title"}
+                           name="title"
+                           onChange={this.onInputChange}
+                           style={{ width: 340 }} />
+                </Form.Item>
+                <Form.Item
+                    label="Select image"
+                >
+                    <ImageUpload />
+                </Form.Item>
+                <Form.Item
+                    label="Add a caption"
+                >
+                   <Input allowClear
+                          placeholder={this.props.story.caption !== '' ? this.props.story.caption : "add a caption" }
+                          name="caption"
+                          onChange={this.onInputChange} style={{ width: 340 }} />
+                </Form.Item>
                 <h3>Add Chapters</h3>
-                <NewStoryChapter />
+                <NewStoryChapterList />
+                <Form.Item
+                    label="Add a chapter"
+                >
+                    <NewStoryChapterModal />
+                </Form.Item>
                 <h3>Add Contributors</h3>
-                <ContributorPopup />
-                <br />
-                <Button type="primary" onClick={this.createStory}>Create Story</Button>
-            </div>
+                <Form.Item
+                    label="Add contributors"
+                >
+                    <ContributorPopup />
+                </Form.Item>
+                <Form.Item {...tailFormItemLayout}>
+                    <Button type="primary"
+                            htmlType="submit"
+                    >
+                        Create Story
+                    </Button>
+                </Form.Item>
+            </Form>
         )
     }
 
@@ -104,4 +157,4 @@ const mapStoreToProps = reduxStore => ({
     contributor: reduxStore.contributor.pending,
 });
 
-export default connect(mapStoreToProps)(NewStoryMain);
+export default connect(mapStoreToProps)(NewStory);
