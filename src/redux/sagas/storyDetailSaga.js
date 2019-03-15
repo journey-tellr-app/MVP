@@ -26,12 +26,23 @@ function* getStoryContributors(action) {
         // console.log('getStoryContributors action: ', action);
         const serverResponse = yield axios.get(`/story/detail/contributor/${action.payload}`);
 
-        yield put({type: 'SET_STORY_DETAIL_CONTRIBUTOR', payload: serverResponse.data});
-    } catch(e) {
+        yield put({ type: 'SET_STORY_DETAIL_CONTRIBUTOR', payload: serverResponse.data });
+    } catch (e) {
         console.log(`Error getting story contributors: ${e}`);
     }
 }
 //likes
+function* getStoryLikes(action) {
+    // console.log('in getStoryLikes. action: ', action);
+    try {
+        console.log('getStoryLikes action: ', action);
+        const serverResponse = yield axios.get(`/story/detail/likes`);
+
+        yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });
+    } catch (e) {
+        console.log(`Error getting story likes: ${e}`);
+    }
+}
 
 //post story?
 
@@ -39,6 +50,8 @@ function* storyDetailSaga() {
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
     yield takeLatest('GET_STORY_CHAPTER_DETAIL', getChapterDetail);
     yield takeLatest('GET_STORY_CONTRIBUTORS', getStoryContributors);
+    yield takeLatest('GET_STORY_LIKES', getStoryLikes);
+
 }
 
 export default storyDetailSaga;
