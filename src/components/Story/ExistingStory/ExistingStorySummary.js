@@ -35,8 +35,11 @@ class ExistingStorySummary extends Component {
 
                 }
                 {/* chapters div here */}
+                {chapter.length > 0 &&
                 <SummaryChapterList chapter={chapter} />
+                }
                 <span>Add chapter</span><AddChapter chapter={chapter} storyId={summary[0].id} />
+
                 {/* contributor button here */}
                 {/* when the user clicks this link, JSON line below it renders all contributors */}
                 <ContributorPopup />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopStoryItem from './TopStoryItem';
 
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class TopStoryList extends Component {
@@ -9,14 +10,17 @@ class TopStoryList extends Component {
         this.props.dispatch({ type: 'GET_TOP_STORIES' });
     }
 
+    static propTypes = {
+        topStoriesReducer: propTypes.array.isRequired,
+    }
+
     render() {
         return (
             <div className='top-stories'>
-                {/* {JSON.stringify(this.props.state.story.topStoriesReducer)} */}
                 <h3>Top Stories</h3>
                 {/* this div contains the individual top stories */}
                 <div>
-                    {this.props.state.story.topStoriesReducer.map( (story, i) => {
+                    {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
                                     id={story.story_id}
                                     history={this.props.history}
@@ -34,7 +38,7 @@ class TopStoryList extends Component {
 };
 
 const mapStateToProps = (state) => ({
-    state
+    topStories: state.story.topStoriesReducer
 });
 
 export default connect(mapStateToProps)(TopStoryList);

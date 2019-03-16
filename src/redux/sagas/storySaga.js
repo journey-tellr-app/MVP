@@ -3,31 +3,31 @@ import axios from 'axios';
 
 function* getMyContributions(action) {
     try {
-        // console.log('in getMyContributions', action);
         const serverResponse = yield axios.get('story/story-contributions');
-    
-        yield put({type: 'SET_STORY_CONTRIBUTIONS', payload: serverResponse.data});
-        
-    } catch(error) {
+
+        yield put({ type: 'SET_STORY_CONTRIBUTIONS', payload: serverResponse.data });
+
+    } catch (error) {
         console.log(`Error in getMyContributions: ${error}`);
     }
 }
+
 
 function* getTopStories(action) {
     try {
         // console.log('in getTopStories' );
         const serverResponse = yield axios.get('story/recent');
 
-        yield put({type: 'SET_TOP_STORIES', payload: serverResponse.data});
+        yield put({ type: 'SET_TOP_STORIES', payload: serverResponse.data });
 
-    } catch(error) {
+    } catch (error) {
         console.log(`Error in getStories: ${error}`);
     }
 }
 
 function* storyTemplate(action) {
     try {
-        yield console.log('in storyTemplate saga:') 
+        yield console.log('in storyTemplate saga:')
     } catch (error) {
         console.log('Error with storyTemplate:', error);
     }
@@ -36,18 +36,18 @@ function* storyTemplate(action) {
 // get the story and chapter details from a template then set the reducers
 function* storyTemplateDetails(action) {
     try {
-      // get template story details 
-      const response = yield axios.get(`/template/story/${action.payload}`);
-      // set the template story
-      const nextAction = {type: 'SET_NEW_STORY', payload: response.data};
-      yield put(nextAction);
-      // get chapter details for a story
-      const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);
-      // set the chapter details
-      const chapterAction = {type: 'SET_TEMPLATE_NEW_STORY_CHAPTER', payload: chapterResponse.data};
-      yield put(chapterAction);
+        // get template story details 
+        const response = yield axios.get(`/template/story/${action.payload}`);
+        // set the template story
+        const nextAction = { type: 'SET_NEW_STORY', payload: response.data };
+        yield put(nextAction);
+        // get chapter details for a story
+        const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);
+        // set the chapter details
+        const chapterAction = { type: 'SET_TEMPLATE_NEW_STORY_CHAPTER', payload: chapterResponse.data };
+        yield put(chapterAction);
     } catch (error) {
-      console.log('Error with storyTemplateDetails:', error);
+        console.log('Error with storyTemplateDetails:', error);
     }
 }
 
@@ -72,7 +72,7 @@ function* addAStory(action) {
         } // end if
         
         // clear the new story reducers
-        const nextAction = {type: 'CLEAR_NEW_STORY'};
+        const nextAction = { type: 'CLEAR_NEW_STORY' };
         yield put(nextAction);
     } catch (error) {
         // error message when trying to add a story
@@ -83,11 +83,11 @@ function* addAStory(action) {
 // reset story, chapter and contributor to initial values
 function* clearNewStory() {
     try {
-        const storyAction = {type: 'RESET_NEW_STORY'};
+        const storyAction = { type: 'RESET_NEW_STORY' };
         yield put(storyAction);
-        const chapterAction = {type: 'RESET_NEW_STORY_CHAPTER'};
+        const chapterAction = { type: 'RESET_NEW_STORY_CHAPTER' };
         yield put(chapterAction);
-        const contributorAction = {type: 'RESET_PENDING_CONTRIBUTOR'};
+        const contributorAction = { type: 'RESET_PENDING_CONTRIBUTOR' };
         yield put(contributorAction);
     } catch (error) {
         // error message when clearing new story inputs

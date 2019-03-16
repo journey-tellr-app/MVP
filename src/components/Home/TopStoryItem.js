@@ -27,8 +27,9 @@ class TopStoryItem extends Component {
     }
 };
 
-const mapStateToProps = (state) => ({
-    state
-});
+// const mapStateToProps = (state) => ({
+//     state
+// });
 
-export default connect(mapStateToProps)(TopStoryItem);
+// export default connect(mapStateToProps)(TopStoryItem);
+export default TopStoryItem;
