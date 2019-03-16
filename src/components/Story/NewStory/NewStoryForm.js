@@ -47,11 +47,16 @@ class NewStoryForm extends Component {
                 // send data to the saga
                 this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
 
+                // clear the fields
+                this.props.form.resetFields();
+
             }
         });
     } // end createStory
 
     render() {
+
+        const { story, chapter } = this.props;
         const { getFieldDecorator } = this.props.form;
 
         const formItemLayout = {
@@ -90,12 +95,12 @@ class NewStoryForm extends Component {
                     label="Story title"
                 >
                     {getFieldDecorator('title', {
-                        initialValue: this.props.story.title,
+                        initialValue: story.title,
                         rules: [{ required: true, message: 'Please enter a story title!' }],
                         },
                     )(
                         <Input allowClear
-                               placeholder={this.props.story.title !== '' ? this.props.story.title : "story title"}
+                               placeholder={story.title !== '' ? story.title : "story title"}
                                style={{ width: 340 }} 
                         />
                     )}
@@ -104,12 +109,12 @@ class NewStoryForm extends Component {
                     label="Story intro"
                 >
                     {getFieldDecorator('intro', {
-                        initialValue: this.props.story.intro,
+                        initialValue: story.intro,
                         rules: [{ required: true, message: 'Please enter an intro!' }],
                         }, 
                     )(
                     <Input allowClear
-                           placeholder={this.props.story.intro !== '' ? this.props.story.intro : "story introduction"}
+                           placeholder={story.intro !== '' ? story.intro : "story introduction"}
                            style={{ width: 340 }}
                     />
                     )}
@@ -123,23 +128,23 @@ class NewStoryForm extends Component {
                     label="Photo caption"
                 >
                     {getFieldDecorator('caption', {
-                        initialValue: this.props.story.caption,
+                        initialValue: story.caption,
                         rules: [{ required: true, message: 'Please enter a caption!' }],
                         },
                     )(
                    <Input allowClear
-                          placeholder={this.props.story.caption !== '' ? this.props.story.caption : "add a caption" }
+                          placeholder={story.caption !== '' ? story.caption : "add a caption" }
                           style={{ width: 340 }} 
                     />
                     )}
                 </Form.Item>
                 <h3>Chapters</h3>
                 {/* <NewStoryChapterList /> */}
-                {this.props.chapter.length !== 0 ? <ChapterList chapter={this.props.chapter} /> : ''}
+                {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
                 <Form.Item
                     label="Add a chapter"
                 >
-                    <AddChapter chapter={this.props.chapter} storyId="new" />
+                    <AddChapter chapter={chapter} storyId="new" />
                 </Form.Item>
                 <h3>Contributors</h3>
                 <Form.Item
