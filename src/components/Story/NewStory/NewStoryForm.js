@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
 import ContributorPopup from './../Contributor/ContributorPopup.js';
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
-import NewStoryChapterModal from './NewStoryChapterModal.js';
-import NewStoryChapterList from './NewStoryChapterList.js';
+import ChapterList from '../Chapter/ChapterList.js';
+import AddChapter from '../Chapter/AddChapter.js';
 
 // ant design import
 import { Form, Input, Button } from 'antd';
-
 
 class NewStoryForm extends Component {
 
@@ -135,11 +134,12 @@ class NewStoryForm extends Component {
                     )}
                 </Form.Item>
                 <h3>Chapters</h3>
-                <NewStoryChapterList />
+                {/* <NewStoryChapterList /> */}
+                {this.props.chapter.length !== 0 ? <ChapterList chapter={this.props.chapter} /> : ''}
                 <Form.Item
                     label="Add a chapter"
                 >
-                    <NewStoryChapterModal />
+                    <AddChapter chapter={this.props.chapter} storyId="new" />
                 </Form.Item>
                 <h3>Contributors</h3>
                 <Form.Item

@@ -8,6 +8,7 @@ import NewStoryChapterList from './NewStoryChapterList.js';
 
 // ant design import
 import { Form, Input, Button } from 'antd';
+import ChapterList from '../ExistingStory/Chapters/ChapterList.js';
 
 
 // initial state values supposed to be used when clearing state
@@ -151,7 +152,8 @@ class NewStory extends Component {
                           value={this.state.caption}/>
                 </Form.Item>
                 <h3>Chapters</h3>
-                <NewStoryChapterList />
+                {/* <NewStoryChapterList /> */}
+                {this.props.chapter.length !== 0 ? <ChapterList chapter={this.props.chapter} /> : ''}
                 <Form.Item
                     label="Add a chapter"
                 >
