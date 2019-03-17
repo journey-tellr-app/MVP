@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { List } from 'antd';
 import ResultListItem from './ResultListItem';
 
+
 class SearchResult extends Component {
     render() {
         const { searchResults } = this.props;
