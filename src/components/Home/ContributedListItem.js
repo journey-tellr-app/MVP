@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-import { Card, Icon, Avatar, Button } from 'antd';
+import { Card, Avatar, Button } from 'antd';
 
 const { Meta } = Card;
 
