@@ -11,24 +11,19 @@ class ResultListItem extends Component {
         history: PropTypes.object.isRequired
     };
 
-    handleClick = () => {
-        const { history, item } = this.props;
-        history.push(`/existing-story/${item.id}`)
-    }
-
   render() {
       const { item } = this.props;
-    //   console.log(item);
+      console.log(item);
     return (
       <div>
-            <List.Item  onClick={this.handleClick}
+            <List.Item
                 key={item.title}
                 actions={[<Icon type="star-o" text={item.likes} />, <Icon type="like-o" text="156" />, <Icon type="message" text="2" />]}
                 extra={<img width={272} alt="logo" src={item.header_photo} />}
             >
                 <List.Item.Meta
                     avatar={<Avatar src={item.profile_pic} />}
-                    title={<a href={item.href}>{item.title}</a>}
+            title={<a href={`http://localhost:3000/#/existing-story/${item.story_id}`}>{item.title}</a>}
                     description={item.description}
                 />
                 {item.content}
