@@ -6,9 +6,8 @@ const router = express.Router();
 
 //retrieve individual story details for viewing or editing
 
-router.get('summary/:id', (req, res) => {
-    console.log('req.params: ', req.params);
-
+router.get('/summary/:id', (req, res) => {
+    // console.log('req.params: ', req.params);
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
