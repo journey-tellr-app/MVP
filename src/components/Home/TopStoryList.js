@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopStoryItem from './TopStoryItem';
+import './TopStoryList.css';
 
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,20 +17,24 @@ class TopStoryList extends Component {
 
     render() {
         return (
-            <div className='top-stories'>
+            <div>
                 <h3>Top Stories</h3>
                 {/* this div contains the individual top stories */}
-                <div>
-                    {this.props.topStories.map( (story, i) => {
-                        return <TopStoryItem 
+                <div className='top-stories'>
+                    {this.props.topStories.map((story, i) => {
+                        return (
+                            <div className='row'>
+                                <TopStoryItem
                                     id={story.story_id}
                                     history={this.props.history}
                                     key={i}
                                     header_photo={story.header_photo}
                                     title={story.title}
                                     intro={story.intro}
-                                    name={story.first_name + ' ' + story.last_name} 
-                                    profile_pic={this.profile_pic}/>
+                                    name={story.first_name + ' ' + story.last_name}
+                                    profile_pic={this.profile_pic} />
+                            </div>
+                        )
                     })}
                 </div>
             </div>

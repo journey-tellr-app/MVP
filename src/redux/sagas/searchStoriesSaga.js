@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { useLayoutEffect } from 'react';
+// import { useLayoutEffect } from 'react';
 
 // get stories searching by author
 function* getStoriesAuthor(action) {
