@@ -7,6 +7,7 @@ import ResultListItem from './ResultListItem';
 class SearchResult extends Component {
     render() {
         const { searchResults } = this.props;
+                
         return (
             <div>
                 {searchResults &&
