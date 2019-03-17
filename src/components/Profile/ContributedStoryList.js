@@ -14,10 +14,6 @@ class ContributedStoryList extends Component {
         //the profile page
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
         //this dispatches for each story's likes
-        this.props.dispatch({
-            type: 'GET_STORY_LIKES',
-            // payload: this.props.story.contributedStoryReducer.story_id
-        })
     }
 
     render() {
