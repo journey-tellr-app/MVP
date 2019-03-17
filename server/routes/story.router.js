@@ -37,7 +37,7 @@ router.get('/search', (req, res) => {
 router.get('/recent', (req, res) => {
 
     if (req.isAuthenticated()) {
-        console.log('in /search router');
+        // console.log('in /story/search router');
         const queryText = `select (story.id) as story_id, first_name, last_name,
                            profile_pic, header_photo, title, count(story_likes.story_id) as likes, completed, date_started
                            from person
