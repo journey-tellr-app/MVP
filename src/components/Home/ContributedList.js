@@ -5,22 +5,15 @@ import propTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { Carousel } from 'antd';
-
-
-
 class ContributedList extends Component {
 
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
     }
-
+    
     static propTypes = {
         contributedStories: propTypes.array.isRequired,
     };
-
-
-
 
     render() {
         //these lines will render 'story' or 'stories' depending on the length
@@ -34,18 +27,16 @@ class ContributedList extends Component {
         }
 
         return (
-            <div className='contributions'>
-                <h3>My stories and contributions</h3>
-                {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
+                <div className='contributions'>
+                    <h3>My stories and contributions</h3>
+                    {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
+                    
+                    {header}
 
-                {header}
-
-                {/* this div contains the actual story blocks */}
-
-                <div>
-                    <Carousel swipeToSlide>
-                        {this.props.contributedStories.map((story, i) => {
-                            return <ContributedListItem
+                    {/* this div contains the actual story blocks */}
+                    <div>
+                        {this.props.contributedStories.map( (story, i) => {
+                            return <ContributedListItem 
                                 history={this.props.history}
                                 story_id={story.story_id}
                                 key={i}
@@ -57,13 +48,10 @@ class ContributedList extends Component {
                                 author={story.first_name + ' ' + story.last_name}
                                 profile_pic={story.profile_pic}
                             />
-                            
-
                         })}
-                    </Carousel>
+                    </div>
                 </div>
-            </div>
-
+           
         )
     }
 };
