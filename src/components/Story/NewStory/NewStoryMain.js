@@ -123,7 +123,7 @@ class NewStoryForm extends Component {
                     label="Select image"
                 >
                     {/* Image Upload not currently working */}
-                    <ImageUpload />
+                    <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
                 </Form.Item>
                 <Form.Item
                     label="Photo caption"
@@ -140,7 +140,6 @@ class NewStoryForm extends Component {
                     )}
                 </Form.Item>
                 <h3>Chapters</h3>
-                {/* <NewStoryChapterList /> */}
                 {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
                 <Form.Item
                     label="Add a chapter"

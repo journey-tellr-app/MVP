@@ -51,6 +51,7 @@ class ChapterList extends Component {
                                              <Icon type="delete" style={{color:"red"}}theme="filled" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.removeChapter(item)}} />]}>
                             <List.Item.Meta
                                 title={<p>Chapter - {i + 1}</p>}
+                                description={item.title}
                             />
                             <Input placeholder={item.title}
                                    name="itemTitle"
