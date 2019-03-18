@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
+//Ant design imports
+import { Card, Avatar, Button } from 'antd';
+const { Meta } = Card;
+
 class TopStoryItem extends Component {
 
     handleReadStory = (event) => {
@@ -8,22 +12,22 @@ class TopStoryItem extends Component {
         
         this.props.history.push(`/existing-story/${this.props.id}`);
     }
-    
+
     render() {
-        const {header_photo, profile_pic, name} = this.props;
+
         return (
             <div>
-                <img 
-                    width='150px' 
-                    height='100px' 
-                    src={this.props.header_photo} 
-                    alt={`${header_photo}`}/>
-                <h3>Started by {name}</h3>
-                <img width='150px' 
-                     height='100px'
-                     src={profile_pic}
-                     alt={`Headshot of the author ${name}`} />
-                <button onClick={this.handleReadStory}>Read</button>
+                <Card
+                    style={{ width: 300 }}
+                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                >
+                    <Meta
+                        avatar={<Avatar src={this.props.profile_pic} />}
+                        title={this.props.title}
+                    />
+                    <h4>{this.props.name}</h4>
+                </Card>
             </div>
         )
     }
