@@ -18,7 +18,7 @@ class ContributedListItem extends Component {
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button>Read</Button>]}
+                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
                 >
                     <Meta
                         avatar={<Avatar src={this.props.profile_pic} />}

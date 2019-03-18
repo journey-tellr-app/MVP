@@ -43,7 +43,7 @@ class ImageUpload extends Component {
             id: this.props.user.userInfo.id
         }
         this.props.dispatch(action);
-        console.log(this.props.typeOfPhoto);
+        // console.log(this.props.photoDetails.typeOfPhoto);
 
     }
     appendPic = () => {
