@@ -50,6 +50,12 @@ const newStoryReducer = (state = initialNewStory, action) => {
     }
     return state;
 }
+const imageReducer = (state = {}, action) => {
+    if (action.type === 'ADD_IMAGE_STORY') {
+        return action.payload.data.Location;
+    }
+    return state;
+}
 
 export default combineReducers({
     contributedStoryReducer, // used on the home page
@@ -58,4 +64,5 @@ export default combineReducers({
     searchStoryReducer, // for use with the search page
     userStoryReducer, // for an user profile story page
     newStoryReducer, // called when creating a new story
+    imageReducer, //holds AWS image location
 });

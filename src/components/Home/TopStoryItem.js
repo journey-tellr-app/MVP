@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 class TopStoryItem extends Component {
 
     handleReadStory = (event) => {
+        console.log('in hRS');
+        
         this.props.history.push(`/existing-story/${this.props.id}`);
     }
     

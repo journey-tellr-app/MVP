@@ -27,14 +27,14 @@ class NewStoryForm extends Component {
                 // will create different data to send if the story statred as a template
                 if(this.props.story.title !== '') {
                     storyDataToSend = { title: values.title,
-                                        header_photo: this.props.story.placeholder_image,
+                                        header_photo: this.props.image,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: true,
                                       };
                 } else {
                     storyDataToSend = { title: values.title,
-                                        header_photo: '',
+                                        header_photo: this.props.image,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: false,
@@ -171,6 +171,7 @@ const mapStoreToProps = reduxStore => ({
     story: reduxStore.story.newStoryReducer,
     chapter: reduxStore.chapter.newStoryChapterReducer,
     contributor: reduxStore.contributor.pending,
+    image: reduxStore.story.imageReducer
 });
 
 export default connect(mapStoreToProps)(WrappedNewStoryForm);
