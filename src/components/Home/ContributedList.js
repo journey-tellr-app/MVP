@@ -25,6 +25,12 @@ class ContributedList extends Component {
     render() {
         //these lines will render 'story' or 'stories' depending on the length
         //of the contributedStoryReducer
+        const settings = {
+            dots: true,
+            slidesToShow: 2,
+        }
+
+
         let header;
 
         if (this.props.contributedStories.length === 1) {
@@ -32,6 +38,7 @@ class ContributedList extends Component {
         } else {
             header = <h4>{this.props.contributedStories.length} stories live</h4>
         }
+
 
         return (
             <div className='contributions'>
@@ -43,8 +50,7 @@ class ContributedList extends Component {
                 {/* this div contains the actual story blocks */}
 
                 <div>
-                    <h3>Carousel</h3>
-                    <Carousel swipeToSlide>
+                    <Carousel {...settings}>
                         {this.props.contributedStories.map((story, i) => {
                             return <ContributedListItem
                                 history={this.props.history}
@@ -58,7 +64,6 @@ class ContributedList extends Component {
                                 author={story.first_name + ' ' + story.last_name}
                                 profile_pic={story.profile_pic}
                             />
-                            
 
                         })}
                     </Carousel>
