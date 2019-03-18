@@ -27,14 +27,14 @@ class NewStoryForm extends Component {
                 // will create different data to send if the story statred as a template
                 if(this.props.story.title !== '') {
                     storyDataToSend = { title: values.title,
-                                        header_photo: this.props.image,
+                                        header_photo: values.header_photo,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: true,
                                       };
                 } else {
                     storyDataToSend = { title: values.title,
-                                        header_photo: this.props.image,
+                                        header_photo: values.header_photo,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: false,
@@ -56,19 +56,19 @@ class NewStoryForm extends Component {
 
     render() {
 
-        const { story, chapter } = this.props;
+        const { story, chapter, image } = this.props;
         const { getFieldDecorator } = this.props.form;
 
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
-            },
-        };
+        // const formItemLayout = {
+        //     labelCol: {
+        //         xs: { span: 24 },
+        //         sm: { span: 8 },
+        //     },
+        //     wrapperCol: {
+        //         xs: { span: 24 },
+        //         sm: { span: 16 },
+        //     },
+        // };
 
         const tailFormItemLayout = {
             wrapperCol: {
@@ -84,7 +84,7 @@ class NewStoryForm extends Component {
         };
 
         return (
-            <Form {...formItemLayout} onSubmit={this.createStory}>
+            <Form layout="vertical" onSubmit={this.createStory}>
                 <h2>Create a Story</h2>
                 <Form.Item
                     label="Create a story or choose a template"
@@ -123,8 +123,20 @@ class NewStoryForm extends Component {
                     label="Select image"
                 >
                     {/* Image Upload not currently working */}
-                    <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                    {getFieldDecorator('header_photo', {
+                        initialValue: image.storyImage,
+                        }, 
+                    )(
+                    <div>
+                        <img style={{ height: 150, width: 340 }}
+                             alt="header_photo"
+                             src={image.storyImage}
+                        />
+                        <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                    </div>
+                    )}
                 </Form.Item>
+
                 <Form.Item
                     label="Photo caption"
                 >
