@@ -57,6 +57,7 @@ class ContributedList extends Component {
                                 author={story.first_name + ' ' + story.last_name}
                                 profile_pic={story.profile_pic}
                             />
+                            
 
                         })}
                     </Carousel>
