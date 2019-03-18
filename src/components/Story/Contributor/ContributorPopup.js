@@ -33,7 +33,7 @@ class ContributorPopup extends Component {
         const { visible, loading } = this.state;
         const footer = [];
         //some logic here to only show footer on edit page
-        if(false){
+        if(true){
             footer.push( <Button key="back"
                             onClick={this.handleCancel}>
                             Return</Button>);

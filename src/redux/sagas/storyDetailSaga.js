@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* getIndividualStory(action) {
     try {
-        // console.log('in getIndividualStory saga, action.payload: ', action.payload);
+        console.log('in getIndividualStory saga, action.payload: ', action.payload);
         const serverResponse = yield axios.get(`story/detail/summary/${action.payload}`);
         yield put({ type: 'SET_STORY_DETAIL', payload: serverResponse.data });
     } catch (error) {

@@ -77,7 +77,7 @@ class ProfilePage extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={6}><ImageUpload typeOfPhoto='PERSON' /></Col>
+                    <Col span={6}><ImageUpload photoDetails={{typeOfPhoto:'PERSON', title: "Edit Profile Picture"}} /></Col>
                     <Col span={10}></Col>
                     <Col span={6}></Col>
                 </Row>

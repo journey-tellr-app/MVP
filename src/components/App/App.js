@@ -16,7 +16,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
-import Search from '../Search/Search';
+import SearchMain from '../Search/SearchMain';
 import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
 
@@ -62,7 +62,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact path='/search'
-              component={Search}
+              component={SearchMain}
             />
             <ProtectedRoute
               exact

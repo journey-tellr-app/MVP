@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 const searchResults = (state = [], action) => {
     switch (action.type) {
         case ('SET_STORY_SEARCH_RESULTS'):
@@ -9,6 +7,4 @@ const searchResults = (state = [], action) => {
     }
 }
 
-export default combineReducers({
-    searchResults,
-});
+export default searchResults;

@@ -6,7 +6,7 @@ import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
 
 
-import { Carousel } from 'antd';
+// import { Carousel } from 'antd';
 
 
 class HomePage extends Component {

@@ -52,7 +52,7 @@ router.put('/update-profile', (req, res) => {  //sets profile pic
 
   // let user = req.params.id;
   let content = req.body;
-  console.log(content);
+  // console.log(content);
 
   const queryText = `
   UPDATE "person" 
@@ -81,7 +81,7 @@ router.put('/:id', (req, res) => {  //sets profile pic
 
   let user = req.params.id;
   let content = req.body.data.Location;
-  console.log(user, content);
+  // console.log(user, content);
 
   const queryText = `UPDATE "person" SET "profile_pic"= $1
                        WHERE "id" = $2;`;
