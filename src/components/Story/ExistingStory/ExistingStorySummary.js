@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
-import EditChapterPage from '../NewStory/EditChapterPage';
+import AddChapter from './../Chapter/AddChapter.js';
 
 class ExistingStorySummary extends Component {
     handlePostStory = () => {
@@ -38,17 +38,13 @@ class ExistingStorySummary extends Component {
                 {chapter.length > 0 &&
                 <SummaryChapterList chapter={chapter} />
                 }
-                
+                <span>Add chapter</span><AddChapter chapter={chapter} storyId={summary[0].id} />
 
                 {/* contributor button here */}
                 {/* when the user clicks this link, JSON line below it renders all contributors */}
                 <ContributorPopup />
                 {/* chapters div here */}
-                {this.props.storyDetail.summary.length !== 0 ?
-                    <EditChapterPage storyId={this.props.storyDetail.summary[0].id} />
-                    :
-                    null
-                }
+
                 {/* post story button here only if author of story */}
                 <button onClick={this.handlePostStory}>Post Story</button>
             </div>

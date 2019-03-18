@@ -1,84 +1,171 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseTemplate from './ChooseTemplate.js';
-import NewStoryChapter from './NewStoryChapter.js';
 import ContributorPopup from './../Contributor/ContributorPopup.js';
+import ImageUpload from './../../ImageUpload/ImageUpload.js';
+import ChapterList from '../Chapter/ChapterList.js';
+import AddChapter from '../Chapter/AddChapter.js';
 
 // ant design import
-import { Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 
-const initialState = { title: '',
-                       header_photo: '',
-                       caption: '',
-                     };
+class NewStoryForm extends Component {
 
-class NewStoryMain extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = initialState;
-
-    }
-
-    // function for setting local state with user inputs
-    onInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value,
-        });
-    } // end onInputChange
-
+    // called when create story button is pressed
+    // packages local state and redux reducer data and calls the saga to create database entries
     createStory = (event) => {
-        // event.preventDefault();
-        // add fields to the reducer
-        let storyDataToSend = '';
-        let chapterDataToSend = this.props.chapter;
-        let contributorDataToSend = this.props.contributor;
+        event.preventDefault();
+        this.props.form.validateFieldsAndScroll((error, values) => {
+            if (!error) {
+                console.log(values);
 
-        if(this.props.story.title !== '') {
-            storyDataToSend = { title: this.props.story.title,
-                                header_photo: this.props.story.placeholder_image,
-                                caption: this.props.story.caption,
-                                intro: this.props.story.intro,
-                                is_template: true,
-                              };
-        } else {
-            storyDataToSend = { title: this.state.title,
-                                header_photo: this.state.header_photo,
-                                caption: this.state.caption,
-                                intro: '',
-                                is_template: false,
-                              };
-        }
+                // seperate files for story, chapter and contributor data sent to the redux saga
+                let storyDataToSend = '';
+                let chapterDataToSend = this.props.chapter;
+                let contributorDataToSend = this.props.contributor;
 
-        console.log(contributorDataToSend);
-        let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
+                // will create different data to send if the story statred as a template
+                if(this.props.story.title !== '') {
+                    storyDataToSend = { title: values.title,
+                                        header_photo: this.props.story.placeholder_image,
+                                        caption: values.caption,
+                                        intro: values.intro,
+                                        is_template: true,
+                                      };
+                } else {
+                    storyDataToSend = { title: values.title,
+                                        header_photo: '',
+                                        caption: values.caption,
+                                        intro: values.intro,
+                                        is_template: false,
+                                      };
+                }
 
-        this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
-        this.setState(initialState);
-    }
+                // bundle the story, chapter and contributon files together and create a payload
+                let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
+
+                // send data to the saga
+                this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
+
+                // clear the fields
+                this.props.form.resetFields();
+
+            }
+        });
+    } // end createStory
 
     render() {
 
+        const { story, chapter } = this.props;
+        const { getFieldDecorator } = this.props.form;
+
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 16 },
+            },
+        };
+
+        const tailFormItemLayout = {
+            wrapperCol: {
+                xs: {
+                    span: 24,
+                    offset: 0,
+                },
+                sm: {
+                    span: 16,
+                    offset: 8,
+                },
+            },
+        };
+
         return (
-            <div>
+            <Form {...formItemLayout} onSubmit={this.createStory}>
                 <h2>Create a Story</h2>
-                <ChooseTemplate />
-                {this.props.story.title !== '' ? <Input placeholder={this.props.story.title} allowClear name="title" onChange={this.onInputChange} style={{ width: 340 }} /> : <Input placeholder="story title" name="title" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
-                <h4>Image goes here</h4>
-                {this.props.story.title !== '' ? <Input placeholder={this.props.story.caption} allowClear name="caption" onChange={this.onInputChange} style={{ width: 340 }} /> :<Input placeholder="add a caption" name="caption" allowClear onChange={this.onInputChange} style={{ width: 340 }} />}
-                {/* {this.props.chapter.length > 0 ? <TemplateChapter chapter={this.props.chapter} /> : <NewStoryChapter />} */}
-                <h3>Add Chapters</h3>
-                <NewStoryChapter />
-                <h3>Add Contributors</h3>
-                <ContributorPopup />
-                <br />
-                <Button type="primary" onClick={this.createStory}>Create Story</Button>
-            </div>
+                <Form.Item
+                    label="Create a story or choose a template"
+                >
+                    <ChooseTemplate />
+                </Form.Item>
+                <Form.Item
+                    label="Story title"
+                >
+                    {getFieldDecorator('title', {
+                        initialValue: story.title,
+                        rules: [{ required: true, message: 'Please enter a story title!' }],
+                        },
+                    )(
+                        <Input allowClear
+                               placeholder={story.title !== '' ? story.title : "story title"}
+                               style={{ width: 340 }} 
+                        />
+                    )}
+                </Form.Item>
+                <Form.Item
+                    label="Story intro"
+                >
+                    {getFieldDecorator('intro', {
+                        initialValue: story.intro,
+                        rules: [{ required: true, message: 'Please enter an intro!' }],
+                        }, 
+                    )(
+                    <Input allowClear
+                           placeholder={story.intro !== '' ? story.intro : "story introduction"}
+                           style={{ width: 340 }}
+                    />
+                    )}
+                </Form.Item>
+                <Form.Item
+                    label="Select image"
+                >
+                    {/* Image Upload not currently working */}
+                    <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                </Form.Item>
+                <Form.Item
+                    label="Photo caption"
+                >
+                    {getFieldDecorator('caption', {
+                        initialValue: story.caption,
+                        rules: [{ required: true, message: 'Please enter a caption!' }],
+                        },
+                    )(
+                   <Input allowClear
+                          placeholder={story.caption !== '' ? story.caption : "add a caption" }
+                          style={{ width: 340 }} 
+                    />
+                    )}
+                </Form.Item>
+                <h3>Chapters</h3>
+                {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
+                <Form.Item
+                    label="Add a chapter"
+                >
+                    <AddChapter chapter={chapter} storyId="new" />
+                </Form.Item>
+                <h3>Contributors</h3>
+                <Form.Item
+                    label="Add contributors"
+                >
+                    <ContributorPopup />
+                </Form.Item>
+                <Form.Item {...tailFormItemLayout}>
+                    <Button type="primary"
+                            htmlType="submit"
+                    >
+                        Create Story
+                    </Button>
+                </Form.Item>
+            </Form>
         )
     }
 
 }
+
+const WrappedNewStoryForm = Form.create()(NewStoryForm);
 
 const mapStoreToProps = reduxStore => ({
     story: reduxStore.story.newStoryReducer,
@@ -86,4 +173,4 @@ const mapStoreToProps = reduxStore => ({
     contributor: reduxStore.contributor.pending,
 });
 
-export default connect(mapStoreToProps)(NewStoryMain);
+export default connect(mapStoreToProps)(WrappedNewStoryForm);
