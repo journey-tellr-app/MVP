@@ -43,6 +43,7 @@ class ContributedList extends Component {
                 {/* this div contains the actual story blocks */}
 
                 <div>
+                    <h3>Carousel</h3>
                     <Carousel swipeToSlide>
                         {this.props.contributedStories.map((story, i) => {
                             return <ContributedListItem
