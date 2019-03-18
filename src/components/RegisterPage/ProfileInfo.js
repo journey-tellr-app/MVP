@@ -1,13 +1,27 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
-import { Button, Form} from 'antd';
+
+import { Button, Icon } from 'antd';
 
 class ProfileInfo extends Component {
-  render() {
-    const { registration, handleInputChangeFor, handleRegisterNavButton } = this.props;
+  static propTypes = {
+    registration: PropTypes.object.isRequired,
+    handleInputChangeFor: PropTypes.func.isRequired,
+    handleRegisterNavButton: PropTypes.func.isRequired,
+  }
 
+  advanceRegistration = (e) => {
+    e.preventDefault(); 
+    this.props.handleRegisterNavButton('user');
+  }
+
+  render() {
+    const { registration, handleInputChangeFor } = this.props;
+    
     return (
-      <form onSubmit={this.registerUser}>
+      <form onSubmit={this.advanceRegistration}>
+        <h2>Enter Profile Info</h2>
         <div>
           <label htmlFor="first_name">
             First Name:
@@ -16,6 +30,7 @@ class ProfileInfo extends Component {
               name="first_name"
               value={registration.first_name}
               onChange={handleInputChangeFor('first_name')}
+              required
             />
           </label>
         </div>
@@ -27,13 +42,14 @@ class ProfileInfo extends Component {
               name="last_name"
               value={registration.last_name}
               onChange={handleInputChangeFor('last_name')}
+              required
             />
           </label>
         </div>
-        <Button onClick={handleRegisterNavButton.bind(this, 'user')}> User Info </Button>
+        <Button type='primary' htmlType='submit' > User Info <Icon type="right" /></Button>
       </form>
     )
   }
 }
 
-export default Form.create()(ProfileInfo);
+export default ProfileInfo;
