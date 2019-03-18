@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input } from 'antd';
-import { Select } from 'antd';
-
+import { Input, Select} from 'antd';
 
 class SearchBar extends Component {
     state = {
@@ -23,21 +21,29 @@ class SearchBar extends Component {
     render() {
         const Search = Input.Search;
         const Option = Select.Option;
+        const selectBefore = (
+            <Select defaultValue="Author" onChange={this.handleChange} style={{ width: 115 }}>
+                <Option value="AUTHOR" >Author</Option>
+                <Option value="TITLE">Title</Option>
+                <Option value="DESCRIPTION">Description</Option>
+            </Select>
+        );
         return (
             <div>
                 <h1>Search All Stories</h1>
                 <Search
+                    addonBefore={selectBefore}
                     placeholder="input search text"
                     onSearch={value => this.sendSearch(value)}
-                    style={{ width: 200 }}
+                    style={{ width: 300 }}
                 />
-                <div>
+                {/* <div>
                     <Select defaultValue="Search By: Author" style={{ width: 160 }} onChange={this.handleChange}>
                         <Option value="AUTHOR" >Author</Option>
                         <Option value="TITLE">Title</Option>
                         <Option value="DESCRIPTION">Description</Option>
                     </Select>
-                </div>
+                </div> */}
             </div>
         )
     }
