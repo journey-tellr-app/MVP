@@ -7,7 +7,7 @@ import ChapterList from '../Chapter/ChapterList.js';
 import AddChapter from '../Chapter/AddChapter.js';
 
 // ant design import
-import { Form, Input, Button, Card } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 class NewStoryForm extends Component {
 
@@ -59,16 +59,16 @@ class NewStoryForm extends Component {
         const { story, chapter, image } = this.props;
         const { getFieldDecorator } = this.props.form;
 
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
-            },
-        };
+        // const formItemLayout = {
+        //     labelCol: {
+        //         xs: { span: 24 },
+        //         sm: { span: 8 },
+        //     },
+        //     wrapperCol: {
+        //         xs: { span: 24 },
+        //         sm: { span: 16 },
+        //     },
+        // };
 
         const tailFormItemLayout = {
             wrapperCol: {
@@ -126,13 +126,13 @@ class NewStoryForm extends Component {
                     {getFieldDecorator('header_photo', {
                         initialValue: image.storyImage,
                         }, 
-                    )( <div>
-                            <img style={{ height: 150, width: 340 }}
-                                 alt="headshot of author"
-                                 src={image.storyImage}
-                                //  src={image.storyImage !== "/images/placeholder.png" ? image.storyImage : "/images/placeholder.png"}
-                            />
-                    <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                    )(
+                    <div>
+                        <img style={{ height: 150, width: 340 }}
+                             alt="header_photo"
+                             src={image.storyImage}
+                        />
+                        <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
                     </div>
                     )}
                 </Form.Item>
