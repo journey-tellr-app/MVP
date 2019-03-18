@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const storyDetailRouter = require('./story.detail.router');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 router.use('/detail', storyDetailRouter);
 
@@ -68,7 +69,7 @@ router.get('/template', (req, res) => {
 });
 
 //creates new story with author, title, etc
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     let queryText = `INSERT INTO "story" ("title", "caption", "header_photo", "intro", "author", "is_template")
                      VALUES ($1, $2, $3, $4, $5, $6)
                      RETURNING "id";`;
