@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { Button, Icon, Form, Input } from 'antd';
-
-// const hasErrors = (fieldsError) => {
-//   return Object.keys(fieldsError).some(field => fieldsError[field]);
-// }
+import { Button, Icon, Input } from 'antd';
 
 class UserInfo extends Component {
-  componentDidMount() {
-    // To disabled submit button at the beginning.
-    this.props.form.validateFields();
+  static propTypes = {
+    registration: PropTypes.object.isRequired,
+    handleInputChangeFor: PropTypes.func.isRequired,
+    handleRegisterNavButton: PropTypes.func.isRequired,
   }
 
   registerUser = (event) => {
     event.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
     const { registration } = this.props;
 
     if (registration.first_name && registration.last_name && (registration.email === registration.confirm_email) && (registration.password === registration.confirm_password)) {
@@ -41,42 +34,17 @@ class UserInfo extends Component {
     const { registration,
       handleInputChangeFor,
       handleRegisterNavButton, } = this.props;
-    
-    //took out getFieldsError for now
-    const {
-      getFieldDecorator,
-      getFieldError,
-      isFieldTouched,
-    } = this.props.form;
-
-    // Only show error after a field is touched.
-    const userNameError = isFieldTouched('userName') && getFieldError('userName');
-    // const passwordError = isFieldTouched('password') && getFieldError('password');
 
     return (
-
       <div>
         <h2>Enter User Info</h2>
-        <Form layout='vertical' onSubmit={this.registerUser}>
-          <Form.Item
-            validateStatus={userNameError ? 'error' : ''}
-            help={userNameError || ''}
-            label="Email"
-          >
-            {getFieldDecorator('email', {
-              rules: [{ type: 'email', message: 'The input is not valid email!', },
-                { required: true, message: 'Please enter a valid email address eg user@site.com' }],
-              initialValue: registration.email
-            })(
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Username"
-                onChange={handleInputChangeFor('email')}
-                name='email' />
-            )}
-          </Form.Item>
-        </Form>
         <form onSubmit={this.registerUser}>
+          <Input
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="Username"
+            onChange={handleInputChangeFor('email')}
+            name='email' 
+            required/>
           <label htmlFor="confirm_email">
             Confirm Email:
               <input
@@ -84,6 +52,7 @@ class UserInfo extends Component {
               name="confirm_email"
               value={registration.confirm_email}
               onChange={handleInputChangeFor('confirm_email')}
+              required
             />
           </label>
           <label htmlFor="password">
@@ -93,6 +62,7 @@ class UserInfo extends Component {
               name="password"
               value={registration.password}
               onChange={handleInputChangeFor('password')}
+              required
             />
           </label>
           <label htmlFor="confirm_password">
@@ -102,10 +72,11 @@ class UserInfo extends Component {
               name="confirm_password"
               value={registration.confirm_password}
               onChange={handleInputChangeFor('confirm_password')}
+              required
             />
           </label>
-          <Button onClick={handleRegisterNavButton.bind(this, 'profile')}> Profile Info </Button>
-          <Button type="submit"> Register </Button>
+          <Button onClick={handleRegisterNavButton.bind(this, 'profile')}><Icon type="left" /> Profile Info </Button>
+          <Button htmLtype="submit" type='primary'> Register </Button>
         </form>
       </div>
 
@@ -113,4 +84,4 @@ class UserInfo extends Component {
   }
 }
 
-export default connect()(Form.create()(UserInfo));
+export default connect()(UserInfo);
