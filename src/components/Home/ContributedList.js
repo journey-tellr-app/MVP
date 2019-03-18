@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ContributedListItem from './ContributedListItem';
 
 import propTypes from 'prop-types';
-
+import { Carousel } from 'antd';
 import { connect } from 'react-redux';
 
 class ContributedList extends Component {
@@ -27,16 +27,19 @@ class ContributedList extends Component {
         }
 
         return (
-                <div className='contributions'>
-                    <h3>My stories and contributions</h3>
-                    {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
-                    
-                    {header}
+            <div className='contributions'>
+                <h3>My stories and contributions</h3>
+                {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
 
-                    {/* this div contains the actual story blocks */}
-                    <div>
-                        {this.props.contributedStories.map( (story, i) => {
-                            return <ContributedListItem 
+                {header}
+
+                {/* this div contains the actual story blocks */}
+
+                <div>
+                    <h3>Carousel</h3>
+                    <Carousel swipeToSlide>
+                        {this.props.contributedStories.map((story, i) => {
+                            return <ContributedListItem
                                 history={this.props.history}
                                 story_id={story.story_id}
                                 key={i}
@@ -49,6 +52,7 @@ class ContributedList extends Component {
                                 profile_pic={story.profile_pic}
                             />
                         })}
+                    </Carousel>
                     </div>
                 </div>
            
