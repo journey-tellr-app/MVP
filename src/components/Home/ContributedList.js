@@ -10,7 +10,7 @@ class ContributedList extends Component {
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
     }
-    
+
     static propTypes = {
         contributedStories: propTypes.array.isRequired,
     };
@@ -18,10 +18,10 @@ class ContributedList extends Component {
     render() {
         //these lines will render 'story' or 'stories' depending on the length
         //of the contributedStoryReducer
-        const settings = {
-            dots: true,
-            slidesToShow: 2,
-        }
+        // const settings = {
+        //     dots: true,
+        //     slidesToShow: 2,
+        // }
 
 
         let header;
@@ -38,34 +38,27 @@ class ContributedList extends Component {
                 <h3>My stories and contributions</h3>
                 {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
 
-                {header}
 
                 {/* this div contains the actual story blocks */}
 
-                <div>
-                    <Carousel {...settings}>
-                        {this.props.contributedStories.map((story, i) => {
-                            return <ContributedListItem
-                                history={this.props.history}
-                                story_id={story.story_id}
-                                key={i}
-                                header_photo={story.header_photo}
-                                title={story.title}
-                                intro={story.intro}
-                                //combining the DB columns into a props item 'author'
-                                //for simplicity on the client
-                                author={story.first_name + ' ' + story.last_name}
-                                profile_pic={story.profile_pic}
-                            />
-<<<<<<< HEAD
+                <Carousel swipeToSlide>
+                    {this.props.contributedStories.map((story, i) => {
+                        return <ContributedListItem
+                            history={this.props.history}
+                            story_id={story.story_id}
+                            key={i}
+                            header_photo={story.header_photo}
+                            title={story.title}
+                            intro={story.intro}
+                            //combining the DB columns into a props item 'author'
+                            //for simplicity on the client
+                            author={story.first_name + ' ' + story.last_name}
+                            profile_pic={story.profile_pic}
+                        />
+                    })}
+                </Carousel>
+            </div>
 
-=======
->>>>>>> 75cb99ba8cd58fe7cb160e8ff5ba5e63d21b4473
-                        })}
-                    </Carousel>
-                    </div>
-                </div>
-           
         )
     }
 };

@@ -1,35 +1,81 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col } from 'antd';
-import { Icon } from 'antd';
-import { Typography } from 'antd';
-import { Divider } from 'antd';
-import { Button } from 'antd';
-import { Input } from 'antd';
+
+import { Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd';
+
 import './ProfilePage.css';
 import 'antd/dist/antd.css';
 import moment from 'moment'
 
-import ImageUpload from './../ImageUpload/ImageUpload';
 import ContributedStoryList from './ContributedStoryList';
-// import ImageUpload from '../ImageUpload/ImageUpload';
-// const axios = require('axios');
+
 
 const { Title } = Typography;
 const { Text } = Typography;
 
 
-
+// this component displays the user's profile information and stories
 class ProfilePage extends Component {
     state =
         {
             isHidden: true,
             id: this.props.user.userInfo.id,
             first_name: this.props.user.userInfo.first_name,
-            last_name: this.props.user.userInfo.last_name
+            last_name: this.props.user.userInfo.last_name,
+            visible: false,
+            file: null
         };
 
+    // functions for image upload   
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
 
+    handleOk = (e) => {
+        console.log(e);
+        this.submitFile();
+        this.setState({
+            visible: false,
+        });
+    }
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
+
+    submitFile = (event) => {
+        // console.log('in sF');
+
+        // event.preventDefault();
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        const action = {
+            type: 'ADD_IMAGE_AWS',  //directs dispach on which saga to use based on props
+            nextType: `ADD_IMAGE_${'PERSON'}`,
+            payload: formData,
+            id: this.props.user.userInfo.id
+        }
+        this.props.dispatch(action);
+        // console.log(this.props.photoDetails.typeOfPhoto);
+
+    }
+    appendPic = () => {
+        let statePic = this.state.file
+        let picURL = URL.createObjectURL(statePic)
+        return <img height="100" width="100" src={picURL} alt="thumbnail chosen" />
+    }
+    handleFileUpload = (event) => {
+        this.setState({
+            file: event.target.files[0]
+        })
+    }
+
+    // functions for editing input fields
     onEditBtnClick() {
         this.setState(state => ({
             isHidden: !state.isHidden
@@ -68,16 +114,14 @@ class ProfilePage extends Component {
 
                 <Row>
                     {JSON.stringify(this.props.user.userInfo)}
-                    <Col span={6}><img className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" alt="profile-pic" /></Col>
+                    <Col span={6}><img onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} height="85" alt="profile-pic" /></Col>
 
-                    <Col span={10}>
 
-                        {this.state.isHidden ? this.renderStaticText() : this.renderEditField()}
+                    {this.state.isHidden ? this.renderStaticText() : this.renderEditField()}
 
-                    </Col>
                 </Row>
                 <Row>
-                    <Col span={6}><ImageUpload photoDetails={{typeOfPhoto:'PERSON', title: "Edit Profile Picture"}} /></Col>
+                    <Col span={6}></Col>
                     <Col span={10}></Col>
                     <Col span={6}></Col>
                 </Row>
@@ -102,29 +146,54 @@ class ProfilePage extends Component {
                     <Col span={24}>{this.props.story ?
                         (<ContributedStoryList />) : (<p>loading...</p>)}</Col>
                 </Row>
+                {/* this code is for the conditionally rendered modal, which only
+                appears when the profile picture is clicked on */}
+                <div>
+                    <Modal
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                    >
+                        <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*Will look identical to file upload on desktop */}
+                        <h2>OR</h2>
+                        <div>Choose Photo From Library: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
+                        {this.state.file !== null && this.appendPic()}
+                    </Modal>
+                </div>
             </div>
+
         )
     }
+    // conditionally rendered fields, rendered according to whether or not the edit button has been clicked
+    // edit field to change user's first and last name; static text transforms into two text fields
     renderEditField() {
         return (
             <Col span={16}>
-                <Input className="profile-element" onChange={this.handleChange('first_name')} placeholder={this.props.user.userInfo.first_name} />
-                <Input className="profile-element" onChange={this.handleChange('last_name')} placeholder={this.props.user.userInfo.last_name} />
+                <Input className="profile-element" onChange={this.handleChange('first_name')} placeholder='first name' />
+                <Input className="profile-element" onChange={this.handleChange('last_name')} placeholder='last name' />
                 <Button className="profile-element" onClick={this.submitEditedName.bind(this)}>Save</Button>
             </Col>
         )
     }
+    // field that displays first and last name
     renderStaticText() {
         return (
-            <Col span={16}>
-                <Title className="profile-element" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Title>
-                <Button className="profile-element" icon="edit" onClick={this.onEditBtnClick.bind(this)} />
-            </Col>
+            <div>
+                <Col span={10}>
+                    <Title className="profile-element" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Title>
+                </Col>
+                <Col span={6}>
+                    <Button className="profile-element" icon="edit" onClick={this.onEditBtnClick.bind(this)} />
+                </Col>
+            </div>
+
 
         )
     }
 
 }
+
+
 const mapStoreToProps = reduxStore => ({
     user: reduxStore.user,
     story: reduxStore.story,
