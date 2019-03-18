@@ -11,10 +11,6 @@ class TopStoryList extends Component {
         this.props.dispatch({ type: 'GET_TOP_STORIES' });
     }
 
-    static propTypes = {
-        topStoriesReducer: propTypes.array.isRequired,
-    }
-
     render() {
         return (
             <div>

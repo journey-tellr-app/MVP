@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
+
 //Ant design imports
-import { Card } from 'antd';
-import { Typography } from 'antd';
-import { Button } from 'antd';
+import { Card, Typography, Button } from 'antd';
 const { Title } = Typography;
 
 

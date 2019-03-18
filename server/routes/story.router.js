@@ -10,7 +10,7 @@ router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
         // console.log(`req.body.id: ${req.user.id}`);
         const userId = req.user.id;
-        const queryText = `select header_photo, author, title, caption, intro, date_started, completed, last_edit, is_template, (story.id) as story_id
+        const queryText = `select header_photo, profile_pic, first_name, last_name, author, title, caption, intro, date_started, completed, last_edit, is_template, (story.id) as story_id
                            from story
                            join person 
                            on story.author = person.id
@@ -37,7 +37,7 @@ router.get('/search', (req, res) => {
 router.get('/recent', (req, res) => {
 
     if (req.isAuthenticated()) {
-        console.log('in /search router');
+        // console.log('in /story/search router');
         const queryText = `select (story.id) as story_id, first_name, last_name,
                            profile_pic, header_photo, title, count(story_likes.story_id) as likes, completed, date_started
                            from person

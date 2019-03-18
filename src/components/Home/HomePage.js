@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
 
-import { connect } from 'react-redux';
+
+// import { Carousel } from 'antd';
+
 
 class HomePage extends Component {
+    
     render() {
         return (
             <div>

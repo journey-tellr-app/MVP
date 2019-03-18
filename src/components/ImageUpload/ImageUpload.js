@@ -38,7 +38,7 @@ class ImageUpload extends Component {
         formData.append('file', this.state.file);
         const action = {
             type: 'ADD_IMAGE_AWS',  //directs dispach on which saga to use based on props
-            nextType: `ADD_IMAGE_${this.props.typeOfPhoto}`,
+            nextType: `ADD_IMAGE_${this.props.photoDetails.typeOfPhoto}`,
             payload: formData,
             id: this.props.user.userInfo.id
         }
@@ -49,7 +49,7 @@ class ImageUpload extends Component {
     appendPic = () => {
         let statePic = this.state.file
         let picURL = URL.createObjectURL(statePic)
-        return <img height="50" width="50" src={picURL} alt="thumbnail chosen" />
+        return <img height="100" width="100" src={picURL} alt="thumbnail chosen" />
     }
     handleFileUpload = (event) => {
         this.setState({
@@ -61,10 +61,10 @@ class ImageUpload extends Component {
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    Open Modal
+                    {this.props.photoDetails.title}
                 </Button>
                 <Modal
-                    title="Basic Modal"
+                    title={this.props.photoDetails.title}
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}

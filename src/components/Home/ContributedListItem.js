@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
+
 //Ant design imports
 import { Card } from 'antd';
 import { Typography } from 'antd';
 import { Button } from 'antd';
+import { Avatar } from 'antd';
 const { Title } = Typography;
+
+
+const { Meta } = Card;
+
 
 class ContributedListItem extends Component {
 
@@ -38,6 +44,15 @@ class ContributedListItem extends Component {
                         alt='headshot of author' 
                     /><br/>
                     <Button onClick={this.handleReadStory}>Read</Button>
+                    style={{ width: 300 }}
+                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button>Read</Button>]}
+                >
+                    <Meta
+                        avatar={<Avatar src={this.props.profile_pic} />}
+                        title={this.props.title}
+                    />
+                    <h4>{this.props.author}</h4>
                 </Card>
             </div>
         )
