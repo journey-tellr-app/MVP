@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TopStoryItem from './TopStoryItem';
 
+// import Slider from 'react-slick';
+import { Carousel } from 'antd';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,11 +13,12 @@ class TopStoryList extends Component {
     }
 
     render() {
+        
         return (
             <div className='top-stories'>
                 <h3>Top Stories</h3>
                 {/* this div contains the individual top stories */}
-                <div>
+                <Carousel>
                     {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
                                     id={story.story_id}
@@ -27,7 +30,7 @@ class TopStoryList extends Component {
                                     name={story.first_name + ' ' + story.last_name} 
                                     profile_pic={this.profile_pic}/>
                     })}
-                </div>
+                </Carousel>
             </div>
         )
     }

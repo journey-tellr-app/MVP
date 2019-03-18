@@ -43,13 +43,13 @@ class RegisterPage extends Component {
         {this.state.page === 'profile' &&
           <ProfileInfo registration={registration}
             handleInputChangeFor={this.handleInputChangeFor}
-          handleRegisterNavButton={this.handleRegisterNavButton} />
+            handleRegisterNavButton={this.handleRegisterNavButton} />
         }
 
         {this.state.page === 'user' &&
           <UserInfo registration={registration}
             handleInputChangeFor={this.handleInputChangeFor}
-          handleRegisterNavButton={this.handleRegisterNavButton} />
+            handleRegisterNavButton={this.handleRegisterNavButton} />
         }
 
         <center>

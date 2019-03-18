@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import ContributedListItem from './ContributedListItem';
 
 import propTypes from 'prop-types';
-
-import { connect } from 'react-redux';
-
 import { Carousel } from 'antd';
-
-
+import { connect } from 'react-redux';
 
 class ContributedList extends Component {
 
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
     }
-
+    
     static propTypes = {
         contributedStories: propTypes.array.isRequired,
     };
-
-
-
 
     render() {
         //these lines will render 'story' or 'stories' depending on the length
@@ -58,13 +51,11 @@ class ContributedList extends Component {
                                 author={story.first_name + ' ' + story.last_name}
                                 profile_pic={story.profile_pic}
                             />
-                            
-
                         })}
                     </Carousel>
+                    </div>
                 </div>
-            </div>
-
+           
         )
     }
 };
