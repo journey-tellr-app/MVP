@@ -1,5 +1,5 @@
 .profile-element {
-    margin: .5em;
+    margin: .1em;
 }
 
 #edit-btn {
@@ -15,9 +15,9 @@
 }
 
 .container {
-    margin-left: 1em;
+    margin-left: 2.5em;
     margin-right: auto;
-    margin-top: 1em;
+    margin-top: 1.5em;
 }
 
 /* #user-name {

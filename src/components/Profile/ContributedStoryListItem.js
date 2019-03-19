@@ -29,19 +29,19 @@ class ContributedStoryListItem extends Component {
         return (
             <div>
                 {this.props.storyDetail.likes.length !== 0 ?
-                <Card
+                    <Card
 
-                    style={{ width: 300 }}
-                    cover={<img width='150px' height='100px' src={this.props.header_photo} alt="story" />}
-                >
+                        style={{ width: 300 }}
+                        cover={<img width='150px' height='150px' src={this.props.header_photo} alt="story" />}
+                    >
 
 
-                <Title level={4}>{this.props.title}</Title>
-                <Icon type='like' /><p>{this.props.storyDetail.likes[0].likes}</p>
+                        <Title level={4}>{this.props.title}</Title>
+                        <Icon type='like' /><p>{this.props.storyDetail.likes[0].likes}</p>
 
-                </Card> : (<p>loading...</p>)}
-                
-    
+                    </Card> : (<p>loading...</p>)}
+
+
             </div>
         )
     }

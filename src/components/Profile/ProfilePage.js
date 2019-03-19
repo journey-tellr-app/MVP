@@ -121,26 +121,26 @@ class ProfilePage extends Component {
                 {/* <Divider /> */}
                 <Row gutter={16}>
                     <Col xs={6}><Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button></Col>
-                    <Col xs={16}>
-                        <Icon type="calendar" style={{ fontSize: '16px' }} /><Text>Member since</Text>&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")};
+                    <Col xs={18}>
+                        <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} /><Text>Member since</Text>&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")};
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col xs={6}></Col>
+                    <Col xs={18}>
+                        <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} />{this.props.story.userStoryReducer.length}&nbsp;Stories
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={16}>
-                        <Icon type="book" style={{ fontSize: '16px' }} />{this.props.story.userStoryReducer.length}&nbsp;Stories
-                    </Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col xs={6}></Col>
-                    <Col xs={16}>
-                        <Icon type="profile" style={{ fontSize: '16px' }} />{this.props.story.contributedStoryReducer.length}&nbsp;Contributions
+                        <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} />{this.props.story.contributedStoryReducer.length}&nbsp;Contributions
                     </Col>
                 </Row>
                 <Divider />
                 <Row gutter={16}>
                     <Col xs={8}><Title level={4}>Stories</Title></Col>
-                    <Col xs={16}></Col>
+                    <Col xs={18}></Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={24}>{this.props.story ?
@@ -181,9 +181,9 @@ class ProfilePage extends Component {
     renderStaticName() {
         return (
             <div>
-                <Col xs={18}>
+                <Col xs={16}>
                     <Title id="user-name" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Title>
-                    <Text>{this.props.user.userInfo.bio}</Text>
+                    <Text className="text">{this.props.user.userInfo.bio}</Text>
                 </Col>
                 {/* <Col xs={4}>
                 </Col> */}
