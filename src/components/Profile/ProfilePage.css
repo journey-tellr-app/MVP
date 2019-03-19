@@ -1,13 +1,11 @@
 .profile-element {
-    margin-top: 30px;
-    margin-left: 35px;
-    margin-right: 35px;
+    margin: .5em;
 }
 
-.edit-btn {
-    margin-top: 5px;
-    margin-left: 45px;
-    margin-right: 35px;
+#edit-btn {
+    max-width: 70px;
+    max-height: 20px;
+    font-size: 8px;
 }
 
 #avatar {
@@ -15,3 +13,13 @@
     border: 2px solid;
     border-color: #D98A4F;
 }
+
+.container {
+    margin-left: 1em;
+    margin-right: auto;
+    margin-top: 1em;
+}
+
+/* #user-name {
+    font-size: 18px;
+} */
