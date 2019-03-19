@@ -118,23 +118,27 @@ class ProfilePage extends Component {
                     {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
                 </Row>
-                {/* <Divider /> */}
                 <Row gutter={16}>
-                    <Col xs={6}><Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button></Col>
+                    <Col xs={6}><Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button>
+                    </Col>
+                    <Col xs={18}></Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col xs={6}></Col>
                     <Col xs={18}>
-                        <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} /><Text>Member since</Text>&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")};
+                        <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>;
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={18}>
-                        <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} />{this.props.story.userStoryReducer.length}&nbsp;Stories
+                        <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={16}>
-                        <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} />{this.props.story.contributedStoryReducer.length}&nbsp;Contributions
+                        <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
                     </Col>
                 </Row>
                 <Divider />
@@ -160,7 +164,7 @@ class ProfilePage extends Component {
                         {this.state.file !== null && this.appendPic()}
                     </Modal>
                 </div>
-            </div>
+            </div >
 
         )
     }

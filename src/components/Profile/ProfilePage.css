@@ -1,6 +1,6 @@
-.profile-element {
-    margin: .1em;
-}
+/* .profile-element {
+    margin-bottom: .5 em;
+} */
 
 #edit-btn {
     max-width: 70px;
@@ -18,6 +18,11 @@
     margin-left: 2.5em;
     margin-right: auto;
     margin-top: 1.5em;
+}
+
+.stats-text {
+    font-size: 10px;
+    margin-left: .5em;
 }
 
 /* #user-name {
