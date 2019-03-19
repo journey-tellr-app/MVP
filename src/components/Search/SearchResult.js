@@ -7,7 +7,7 @@ import ResultListItem from './ResultListItem';
 class SearchResult extends Component {
     render() {
         const { searchResults } = this.props;
-                
+
         return (
             <div>
                 {searchResults &&
@@ -21,7 +21,6 @@ class SearchResult extends Component {
                             pageSize: 3,
                         }}
                         dataSource={searchResults}
-                        footer={<div><b>ant design</b> footer part</div>}
                         renderItem={item => (
                             <ResultListItem item={item} />
                         )}
