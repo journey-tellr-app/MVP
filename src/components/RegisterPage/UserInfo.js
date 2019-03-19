@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Button, Icon, Input } from 'antd';
+import { Button, Icon, Input, Form } from 'antd';
 
 class UserInfo extends Component {
   static propTypes = {
@@ -73,8 +73,8 @@ class UserInfo extends Component {
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="Username"
             onChange={handleInputChangeFor('email')}
-            name='email' 
-            required/>
+            name='email'
+            required />
           <label htmlFor="confirm_email">
             Confirm Email:
               <input
