@@ -28,7 +28,9 @@ class TopStoryList extends Component {
                                     title={story.title}
                                     intro={story.intro}
                                     name={story.first_name + ' ' + story.last_name} 
-                                    profile_pic={this.profile_pic}/>
+                                    profile_pic={this.profile_pic}
+                                    likes={story.likes} />
+                                    
                     })}
                 </Carousel>
             </div>
