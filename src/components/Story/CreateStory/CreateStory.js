@@ -21,7 +21,7 @@ class CreateStory extends Component {
 
     render() {
 
-        const { story } = this.props;
+        const { template } = this.props;
 
         const tailFormItemLayout = {
             wrapperCol: {
@@ -48,7 +48,7 @@ class CreateStory extends Component {
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
-                            disabled={story.name === ''}
+                            disabled={template.name === ''}
                     >
                         Next
                     </Button>
@@ -62,7 +62,7 @@ class CreateStory extends Component {
 const WrappedCreateStoryForm = Form.create()(CreateStory);
 
 const mapStoreToProps = reduxStore => ({
-    story: reduxStore.story.newStoryReducer,
+    template: reduxStore.template.templateNewStoryReducer,
 });
 
 export default connect(mapStoreToProps)(WrappedCreateStoryForm);

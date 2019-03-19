@@ -16,8 +16,6 @@ const newStoryChapterReducer = (state = initialNewStoryChapter, action) => {
         return nextState;
     } else if(action.type === 'RESET_NEW_STORY_CHAPTER') {
         return initialNewStoryChapter;
-    } else if(action.type === 'SET_TEMPLATE_NEW_STORY_CHAPTER') {
-        return action.payload;
     } else if(action.type === 'UPDATE_NEW_STORY_CHAPTER') {
         let updatedChapter = updateChapterInStory(state, action.payload);
         return updatedChapter;
