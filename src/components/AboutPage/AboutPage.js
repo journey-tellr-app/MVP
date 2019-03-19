@@ -4,7 +4,6 @@ import { Row, Col } from 'antd';
 import { Card } from 'antd';
 import { Typography } from 'antd';
 import './AboutPage.css';
-import ImageUpload from '../ImageUpload/ImageUpload';
 
 const { Paragraph } = Typography;
 
@@ -17,8 +16,7 @@ class AboutPage extends Component {
       <div>
         <div>
           <button onClick={this.addFakePeople}>Add 300 people to the database</button><br />
-          <button onClick={this.addFakeStories}>Add 30 stories to the database</button>
-          <ImageUpload photoDetails={{typeOfPhoto:'PERSON', title: "Edit Profile Picture"}} />  {/*Need to send props so component knows where to send and store */}
+          <button onClick={this.addFakeStories}>Add 30 stories to the database</button>  {/*Need to send props so component knows where to send and store */}
         </div>
         <Row>
           <Col span={8}></Col>
