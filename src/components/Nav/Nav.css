@@ -6,38 +6,45 @@
 }
 
 .logo-icon-only {
-  float: left;
-  margin-bottom: 10px;
+    float: left;
+    margin-bottom: 10px;
 }
 
 .nav {
-  overflow: hidden;
-  background-color: rgba(220, 220, 220, 0.671);
+    overflow: hidden;
+    background-color: rgba(220, 220, 220, 0.671);
+    min-height: 75px;
+    padding: 10px 0px;
 }
 
 .nav-link {
-  float: left;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
-
-  /* these last two make the logout button in
+    float: left;
+    color: #f2f2f2;
+    background-color: #00acb0;
+    text-align: center;
+    padding: 24px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    /* these last two make the logout button in
   the nav bar look like another link */
-  border:none;
-  cursor: pointer;
-  outline:0;
+    border: none;
+    cursor: pointer;
+    outline: 0;
 }
 
 .nav-link:hover {
-  background-color: #008183;
+    background-color: #008183;
 }
 
 .nav-right {
-  float: right;
+    float: right;
 }
+
+.header-button-div {
+    margin: auto;
+    width: 50%;
+}
+
 
 /* .toggle-button {
   display: flex;
@@ -52,6 +59,7 @@
   box-sizing: border-box;
 } */
 
+
 /* .toggle-button__line {
   width: 30px;
   height: 2px;
@@ -59,7 +67,6 @@
 } */
 
 .drawer-btn {
-  margin: 10px;
-  float: left;
+    margin: 10px;
+    float: left;
 }
-

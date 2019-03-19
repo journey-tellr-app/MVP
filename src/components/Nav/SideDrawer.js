@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import LogOutButton from '../Common/LogOutButton';
-import AboutLink from './AboutLink';
 
 // icons used on this component
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -55,10 +54,7 @@ class SideDrawer extends Component {
             profilePic = userInfo.profile_pic;
         }
         return (
-            <div style={{
-                margin: 'auto',
-                width: '50%',}}>
-
+            <div className='header-button-div'>
                 <FontAwesomeIcon
                     className="drawer-btn"
                     icon="bars"
@@ -103,7 +99,9 @@ class SideDrawer extends Component {
                         <FontAwesomeIcon icon="home" /> {userInfo.id ? 'Home' : 'Login'}
                     </Link>
                     <Divider />
-                    <AboutLink onClose={this.onClose} />
+                    <Link to="/about" >
+                        <Typography.Text> <Icon type='info-circle' /> About </Typography.Text>
+                    </Link>
                     <Divider />
                     {userInfo.id && (
                         <LogOutButton />
