@@ -41,7 +41,7 @@ class UserInfo extends Component {
     const { registration,
       handleInputChangeFor,
       handleRegisterNavButton, } = this.props;
-    
+
     //took out getFieldsError for now
     const {
       getFieldDecorator,
@@ -65,7 +65,7 @@ class UserInfo extends Component {
           >
             {getFieldDecorator('email', {
               rules: [{ type: 'email', message: 'The input is not valid email!', },
-                { required: true, message: 'Please enter a valid email address eg user@site.com' }],
+              { required: true, message: 'Please enter a valid email address eg user@site.com' }],
               initialValue: registration.email
             })(
               <Input
@@ -105,7 +105,7 @@ class UserInfo extends Component {
             />
           </label>
           <Button onClick={handleRegisterNavButton.bind(this, 'profile')}> Profile Info </Button>
-          <Button type="submit"> Register </Button>
+          <Button onClick={this.registerUser} type="submit"> Register </Button>
         </form>
       </div>
 
