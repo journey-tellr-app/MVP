@@ -35,9 +35,39 @@ class UserInfo extends Component {
       handleInputChangeFor,
       handleRegisterNavButton, } = this.props;
 
+    //took out getFieldsError for now
+    const {
+      getFieldDecorator,
+      getFieldError,
+      isFieldTouched,
+    } = this.props.form;
+
+    // Only show error after a field is touched.
+    const userNameError = isFieldTouched('userName') && getFieldError('userName');
+    // const passwordError = isFieldTouched('password') && getFieldError('password');
+
     return (
       <div>
         <h2>Enter User Info</h2>
+        <Form layout='vertical' onSubmit={this.registerUser}>
+          <Form.Item
+            validateStatus={userNameError ? 'error' : ''}
+            help={userNameError || ''}
+            label="Email"
+          >
+            {getFieldDecorator('email', {
+              rules: [{ type: 'email', message: 'The input is not valid email!', },
+              { required: true, message: 'Please enter a valid email address eg user@site.com' }],
+              initialValue: registration.email
+            })(
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Username"
+                onChange={handleInputChangeFor('email')}
+                name='email' />
+            )}
+          </Form.Item>
+        </Form>
         <form onSubmit={this.registerUser}>
           <Input
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -75,8 +105,9 @@ class UserInfo extends Component {
               required
             />
           </label>
-          <Button onClick={handleRegisterNavButton.bind(this, 'profile')}><Icon type="left" /> Profile Info </Button>
-          <Button htmLtype="submit" type='primary'> Register </Button>
+          <Button onClick={handleRegisterNavButton.bind(this, 'profile')}> Profile Info </Button>
+          <Button onClick={this.registerUser} type="submit"> Register </Button>
+
         </form>
       </div>
 

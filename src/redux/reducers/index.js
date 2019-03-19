@@ -9,7 +9,6 @@ import chapter from './chapterReducer.js';
 import contributor from './contributorReducer.js';
 import storyDetail from './storyDetailReducer';
 import searchResults from './searchResultsReducer';
-import image from './imageReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -28,7 +27,6 @@ const rootReducer = combineReducers({
   contributor, // list of app users to be contributors
   storyDetail,
   searchResults, //results back from server after search all stories
-  image,
 });
 
 export default rootReducer;
