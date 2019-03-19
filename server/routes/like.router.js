@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
+
 //adds to story_likes table user_id and story_id.
 //allows user to like both contributed stories and top stories
 router.post('/', rejectUnauthenticated, (req, res) => {
