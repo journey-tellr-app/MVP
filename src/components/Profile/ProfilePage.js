@@ -110,39 +110,39 @@ class ProfilePage extends Component {
 
         return (
 
-
-
-            <div>
-
-
-                <Row gutter={8}>
+            <div className="container">
+                <Row gutter={16}>
                     {/* {JSON.stringify(this.props.user.userInfo)} */}
-                    <Col xs={6}><img onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} height="85" alt="profile-pic" /></Col>
+                    <Col xs={6}><img onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" alt="profile-pic" /></Col>
 
                     {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
                 </Row>
-
-
-
+                {/* <Divider /> */}
+                <Row gutter={16}>
+                    <Col xs={6}><Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button></Col>
+                    <Col xs={16}>
+                        <Icon type="calendar" style={{ fontSize: '16px' }} /><Text>Member since</Text>&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")};
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col xs={6}></Col>
+                    <Col xs={16}>
+                        <Icon type="book" style={{ fontSize: '16px' }} />{this.props.story.userStoryReducer.length}&nbsp;Stories
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col xs={6}></Col>
+                    <Col xs={16}>
+                        <Icon type="profile" style={{ fontSize: '16px' }} />{this.props.story.contributedStoryReducer.length}&nbsp;Contributions
+                    </Col>
+                </Row>
                 <Divider />
-                <Row gutter={8}>
-                    <Col xs={8}><Icon type="calendar" style={{ fontSize: '16px' }} /></Col>
-                    <Col xs={16}><Text>Member since</Text>&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")};</Col>
-                </Row>
-                <Row gutter={8}>
-                    <Col xs={8}><Icon type="book" style={{ fontSize: '16px' }} /></Col>
-                    <Col xs={16}>{this.props.story.userStoryReducer.length}&nbsp;Stories</Col>
-                </Row>
-                <Row gutter={8}>
-                    <Col xs={8}><Icon type="profile" style={{ fontSize: '16px' }} /></Col>
-                    <Col xs={16}>{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Col>
-                </Row>
-                <Row gutter={8}>
+                <Row gutter={16}>
                     <Col xs={8}><Title level={4}>Stories</Title></Col>
                     <Col xs={16}></Col>
                 </Row>
-                <Row gutter={8}>
+                <Row gutter={16}>
                     <Col xs={24}>{this.props.story ?
                         (<ContributedStoryList />) : (<p>loading...</p>)}</Col>
                 </Row>
@@ -172,22 +172,21 @@ class ProfilePage extends Component {
                 <Input className="profile-element" size="small" onChange={this.handleChange('first_name')} placeholder='first name' />
                 <Input className="profile-element" size="small" onChange={this.handleChange('last_name')} placeholder='last name' />
                 <TextArea className="profile-element" onChange={this.handleChange('bio')} placeholder="enter a short bio" />
-
-                <Button className="profile-element" onClick={this.submitEditedName.bind(this)}>Save</Button>
+                <Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Cancel</Button>
+                <Button className="profile-element" id="edit-btn" onClick={this.submitEditedName.bind(this)}>Save</Button>
             </Col>
         )
     }
-    // field that displays first and last name
+    // field that displays first, last name, and bio
     renderStaticName() {
         return (
             <div>
-                <Col xs={10}>
-                    <Title className="profile-element" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Title>
+                <Col xs={18}>
+                    <Title id="user-name" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Title>
                     <Text>{this.props.user.userInfo.bio}</Text>
                 </Col>
-                <Col xs={8}>
-                    <Button className="profile-element" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button>
-                </Col>
+                {/* <Col xs={4}>
+                </Col> */}
             </div>
 
 
