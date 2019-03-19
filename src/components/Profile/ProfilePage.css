@@ -1,11 +1,11 @@
-.profile-element {
-    margin: .5em;
-}
+/* .profile-element {
+    margin: 5px;
+} */
 
 #edit-btn {
-    max-width: 70px;
-    max-height: 20px;
-    font-size: 8px;
+    max-width: 60px;
+    max-height: 12px;
+    font-size: 7px;
 }
 
 #avatar {
@@ -15,11 +15,24 @@
 }
 
 .container {
-    margin-left: 1em;
+    margin-left: 2.5em;
     margin-right: auto;
-    margin-top: 1em;
+    margin-top: 1.5em;
 }
 
-/* #user-name {
+.stats-text {
+    font-size: 10px;
+    margin-left: .5em;
+}
+
+.edit-input {
+    margin: .3em;
+}
+
+.edit-element {
+    margin: .3em;
+}
+
+#user-name {
     font-size: 18px;
-} */
+}

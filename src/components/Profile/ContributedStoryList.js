@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ContributedStoryListItem from './ContributedStoryListItem';
 
+import { Carousel } from 'antd';
+
+
 import { connect } from 'react-redux';
 
 class ContributedStoryList extends Component {
@@ -22,21 +25,26 @@ class ContributedStoryList extends Component {
             <div className='contributions'>
                 <div>
 
-                    {JSON.stringify(this.props.storyDetail.likes)}
+                    {/* {JSON.stringify(this.props.storyDetail.likes)} */}
+                    <Carousel swipeToSlide>
 
-                    {this.props.story.contributedStoryReducer.map((story, i) => {
-                        return <ContributedStoryListItem
-                            key={i}
-                            header_photo={story.header_photo}
-                            title={story.title}
-                            intro={story.intro}
-                            //just combining the DB columns into a props item 'author'
-                            //for simplicity on the client
-                            author={story.first_name + ' ' + story.last_name}
-                            profile_pic={story.profile_pic}
-                            likes={this.props.storyDetail.likes}
-                        />
-                    })}
+                        {this.props.story.contributedStoryReducer.map((story, i) => {
+                            return <ContributedStoryListItem
+                                user_id={this.props.userInfo.id}
+                                key={i}
+                                history={this.props.history}
+                                story_id={story.story_id}
+                                header_photo={story.header_photo}
+                                title={story.title}
+                                intro={story.intro}
+                                //just combining the DB columns into a props item 'author'
+                                //for simplicity on the client
+                                author={story.first_name + ' ' + story.last_name}
+                                profile_pic={story.profile_pic}
+                                likes={story.likes}
+                            />
+                        })}
+                    </Carousel>
                 </div>
             </div>
 
@@ -46,8 +54,11 @@ class ContributedStoryList extends Component {
 
 const mapStoreToProps = (reduxStore) => ({
     user: reduxStore.user,
+    userInfo: reduxStore.user.userInfo,
     story: reduxStore.story,
     storyDetail: reduxStore.storyDetail.likes,
+    contributedStories: reduxStore.story.contributedStoryReducer,
+
 });
 
 export default connect(mapStoreToProps)(ContributedStoryList);

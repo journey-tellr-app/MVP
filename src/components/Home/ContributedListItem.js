@@ -26,7 +26,7 @@ class ContributedListItem extends Component {
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                    actions={[<Button>Read</Button>]}
                 >
                     <Meta
                         avatar={<Avatar src={this.props.profile_pic} />}
@@ -34,7 +34,7 @@ class ContributedListItem extends Component {
                     />
                     <h4>{this.props.author}</h4>
                     <Icon type='like' onClick={this.handleLike} />
-                    <p>{this.props.story.contributedStoryReducer[0].likes}</p>
+                    <p>{this.props.likes}</p>
                 </Card>
             </div>
         )
