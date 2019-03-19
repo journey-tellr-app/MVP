@@ -25,6 +25,14 @@
     margin-left: .5em;
 }
 
+.edit-input {
+    margin: .3em;
+}
+
+.edit-element {
+    margin: .3em;
+}
+
 /* #user-name {
     font-size: 18px;
 } */

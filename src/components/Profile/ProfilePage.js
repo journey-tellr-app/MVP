@@ -173,11 +173,11 @@ class ProfilePage extends Component {
     renderEditName() {
         return (
             <Col xs={12}>
-                <Input className="profile-element" size="small" onChange={this.handleChange('first_name')} placeholder='first name' />
-                <Input className="profile-element" size="small" onChange={this.handleChange('last_name')} placeholder='last name' />
-                <TextArea className="profile-element" onChange={this.handleChange('bio')} placeholder="enter a short bio" />
-                <Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Cancel</Button>
-                <Button className="profile-element" id="edit-btn" onClick={this.submitEditedName.bind(this)}>Save</Button>
+                <Input className="edit-input" size="small" onChange={this.handleChange('first_name')} placeholder='first name' />
+                <Input className="edit-input" size="small" onChange={this.handleChange('last_name')} placeholder='last name' />
+                <TextArea className="edit-input" onChange={this.handleChange('bio')} placeholder="enter a short bio" />
+                <Button className="edit-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Cancel</Button>
+                <Button className="edit-element" id="edit-btn" onClick={this.submitEditedName.bind(this)}>Save</Button>
             </Col>
         )
     }
