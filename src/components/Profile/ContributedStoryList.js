@@ -3,20 +3,14 @@ import ContributedStoryListItem from './ContributedStoryListItem';
 
 import { Carousel } from 'antd';
 
-
 import { connect } from 'react-redux';
 
 class ContributedStoryList extends Component {
 
     componentDidMount = () => {
-        this.handleDispatch();
-    }
-
-    handleDispatch = () => {
         //the first dispatch gets the stories user is contributing to and renders them on
         //the profile page
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
-        //this dispatches for each story's likes
     }
 
     render() {
@@ -24,11 +18,8 @@ class ContributedStoryList extends Component {
         return (
             <div className='contributions'>
                 <div>
-
-                    {/* {JSON.stringify(this.props.storyDetail.likes)} */}
                     <Carousel swipeToSlide>
-
-                        {this.props.story.contributedStoryReducer.map((story, i) => {
+                        {this.props.contributedStories.map((story, i) => {
                             return <ContributedStoryListItem
                                 user_id={this.props.userInfo.id}
                                 key={i}
@@ -51,11 +42,9 @@ class ContributedStoryList extends Component {
 };
 
 const mapStoreToProps = (reduxStore) => ({
-    user: reduxStore.user,
     userInfo: reduxStore.user.userInfo,
-    story: reduxStore.story,
-    storyDetail: reduxStore.storyDetail.likes,
     contributedStories: reduxStore.story.contributedStoryReducer
 });
 
 export default connect(mapStoreToProps)(ContributedStoryList);
+// export default ContributedStoryList;

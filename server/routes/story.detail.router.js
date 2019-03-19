@@ -37,12 +37,12 @@ router.get('/likes/:id', (req, res) => {
     if (req.isAuthenticated()) {
 
         const storyToGet = Number(req.params.id);
-        const queryText = `select (story.id) as story_id, count(story_likes.story_id) as likes
-                           from story_likes
-                           join story
-                           on story.id = story_likes.story_id
-                           where story_id = $1
-                           group by story.id;`;
+        const queryText = `SELECT (story.id) AS story_id, count(story_likes.story_id) as likes
+                           FROM story_likes
+                           JOIN story
+                           ON story.id = story_likes.story_id
+                           WHERE story_id = $1
+                           GROUP BY story.id;`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);
