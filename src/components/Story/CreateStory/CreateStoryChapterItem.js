@@ -13,14 +13,14 @@ class CreateStoryChapterItem extends Component {
 
     render() {
         const { chapter, template } = this.props;
-        const { getFieldDecorator } = this.form;
-        
+        const { getFieldDecorator } = this.props.form;
+
         return (
             <Form.Item
                 label={`Chapter${this.props.chapterId}`}
                 extra={template[this.props.chapterId].title !== '' ? template[this.props.chapterId].title : null}
             >
-                {getFieldDecorator('title', {initialValue: chapter[this.props.chapterId].title,}
+                {getFieldDecorator('title', 
                 )(
                 <Input allowClear
                        placeholder="Chapter title"

@@ -15,6 +15,16 @@ class CreateStoryChapter extends Component {
         this.props.history.push('/choose-template/');
     }
 
+    removeChapter = (chapter) => {
+        let dataToSend = { type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapter };
+        this.props.dispatch(dataToSend);
+    }
+    
+    addChapter = () => {
+        let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: {title: ''} };
+        this.props.dispatch(dataToSend);
+    }
+
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
     nextPage = (event) => {
@@ -22,6 +32,8 @@ class CreateStoryChapter extends Component {
         this.props.form.validateFieldsAndScroll((error, values) => {
             if (!error) {
                 console.log('Received values of form: ', values);
+            } else {
+                console.log('Error: ', values);
             }
         });
     } // end createChapter
@@ -30,8 +42,6 @@ class CreateStoryChapter extends Component {
 
         const { chapter, template } = this.props;
         const { getFieldDecorator, getFieldValue } = this.props.form;
-        const chapterArray = chapter.length > template.length ? chapter.map((item, i) => ( i )) : template.map((item, i) => (i));
-        console.log(chapterArray);
 
         const formItemLayout = {
             labelCol: {
@@ -64,44 +74,39 @@ class CreateStoryChapter extends Component {
             },
         };
 
-        // getFieldDecorator('keys', { initialValue: [0] });
-        // const keys = getFieldValue('keys');
-        // const formItems = keys.map((k, index) => (
-        // getFieldDecorator('chapter', { initialValue: chapter});
-        // const chapterArray = getFieldValue('chapter');
-        // const formItems = chapterArray.map((k, index) => (
-        //     <Form.Item index={formItemLayout}
-        //                label="Chapter"
-        //                required={true}
-        //                key={k}
-        //     >
-        //         {getFieldDecorator(`title[${k}]`, {
-        //             validateTrigger: ['onChange', 'onBlur'],
-        //             rules: [{ required: true,
-        //                       whitespace: true,
-        //                       message: "Please enter a chapter title or delete.",
-        //                    }],
-        //         })(
-        //             <Input style={{ width: '60%', marginRight: 8 }} />
-        //         )}
-        //         {chapterArray.length > 1 ? (
-        //             <Icon
-        //             className="dynamic-delete-button"
-        //             type="minus-circle-o"
-        //             disabled={chapterArray.length === 1}
-        //             onClick={() => this.remove(k)}
-        //             />
-        //         ) : null}
-        //     </Form.Item>
-        // ));
+        // getFieldDecorator('chapters', { initialValue: [0] });
+        // const chapters = getFieldValue('chapters');
+        const formItems = chapter.map((item, index) => (
+            <Form.Item index={formItemLayout}
+                       label="Chapter"
+                       required={true}
+                       key={index}
+            >
+                {getFieldDecorator(`title[${index}]`, {
+                    validateTrigger: ['onChange', 'onBlur'],
+                    rules: [{ required: true,
+                              whitespace: true,
+                              message: "Please enter a chapter title or delete.",
+                           }],
+                })(
+                    <Input style={{ width: '60%', marginRight: 8 }} />
+                )}
+                <Icon
+                    className="dynamic-delete-button"
+                    type="minus-circle-o"
+                    disabled={item.length === 1}
+                    onClick={() => this.removeChapter(item)}
+                />
+            </Form.Item>
+        ));
 
         return (
             <Form layout="vertical" onSubmit={this.nextPage}>
                 <h2>Add Chapters</h2>
                 <CreateStorySteps current={2} />
-                {chapter.length > 0 ? chapterArray.map((item, i) => ( <CreateStoryChapterItem key={i} chapterId={i} /> )) : ''}
+                {formItems}
                 <Form.Item {...formItemLayoutWithOutLabel}>
-                    <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
+                    <Button type="dashed" onClick={this.addChapter} style={{ width: '60%' }}>
                         <Icon type="plus" /> Add another chapter
                     </Button>
                 </Form.Item>
