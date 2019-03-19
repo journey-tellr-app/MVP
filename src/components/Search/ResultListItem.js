@@ -14,7 +14,7 @@ class ResultListItem extends Component {
   render() {
       const { item } = this.props;
       const { Meta } = Card;
-      console.log(item);
+    console.log(item.intro.substring(0, 40));
     return (
       <Row>
         <Col span={12}>            
@@ -22,11 +22,12 @@ class ResultListItem extends Component {
         >
           <List.Item.Meta
             title={item.title}
-            description={item.intro}
+            description={item.intro.substring(0, 40)}
           />
           {item.content}
         </List.Item>
           <List.Item
+            type="flex" justify="center" align="bottom"
             key={item.title}
             actions={[<Icon type="star-o" text={item.likes} />, <Icon type="like-o" text="156" />, <Icon type="message" text="2" />]}
           >

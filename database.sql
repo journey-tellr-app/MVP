@@ -8,7 +8,9 @@ CREATE TABLE "person" (
 	"last_name" varchar(40) NOT NULL,
 	"profile_pic" TEXT,
 	"date_created" DATE NOT NULL DEFAULT now(),
-	CONSTRAINT person_pk PRIMARY KEY ("id")
+	CONSTRAINT person_pk PRIMARY KEY ("id"),
+	"bio" character varying(360),
+	"department" varchar(40),
 ) WITH (
   OIDS=FALSE
 );
