@@ -11,11 +11,18 @@ router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
         // console.log(`req.body.id: ${req.user.id}`);
         const userId = req.user.id;
-        const queryText = `select header_photo, profile_pic, first_name, last_name, author, title, caption, intro, date_started, completed, last_edit, is_template, (story.id) as story_id
+        const queryText = `select header_photo, profile_pic, first_name, last_name, 
+                               author, title, caption, intro, date_started, completed, last_edit, 
+                               is_template, (story.id) as story_id, count(story_likes.story_id) as likes
                            from story
                            join person 
                            on story.author = person.id
-                           where author = $1;`;
+                           full outer join story_likes
+                           on story_likes.story_id = story.id
+                           where author = $1
+                           group by story.header_photo, person.profile_pic, 
+                               person.first_name, person.last_name, author, title, caption, 
+                               intro, date_started, completed, last_edit, is_template, story.id;`;
         pool.query(queryText, [userId])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);

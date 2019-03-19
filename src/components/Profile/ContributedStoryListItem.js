@@ -37,7 +37,7 @@ class ContributedStoryListItem extends Component {
 
 
                 <Title level={4}>{this.props.title}</Title>
-                <Icon type='like' /><p>{this.props.storyDetail.likes[0].likes}</p>
+                <Icon type='like' /><p>{this.props.story.contributedStoryReducer[0].likes}</p>
 
                 </Card> : (<p>loading...</p>)}
                 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 //Ant design imports
-import { Card, Avatar, Button } from 'antd';
+import { Card, Avatar, Button, Icon } from 'antd';
 const { Meta } = Card;
 
 class TopStoryItem extends Component {
@@ -27,15 +27,17 @@ class TopStoryItem extends Component {
                         title={this.props.title}
                     />
                     <h4>{this.props.name}</h4>
+                    <Icon type='like' /><p>{this.props.likes}</p>
                 </Card>
             </div>
         )
     }
 };
 
-// const mapStateToProps = (state) => ({
-//     state
-// });
+const mapStateToProps = (reduxStore) => ({
+    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail
+});
 
-// export default connect(mapStateToProps)(TopStoryItem);
-export default TopStoryItem;
+export default connect(mapStateToProps)(TopStoryItem);
+// export default TopStoryItem;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-import { Card, Avatar, Button } from 'antd';
+import { Card, Avatar, Button, Icon } from 'antd';
 
 const { Meta } = Card;
 
@@ -15,6 +15,7 @@ class ContributedListItem extends Component {
 
         return (
             <div>
+                {/* {JSON.stringify(this.props.story.contributedStoryReducer[0].likes)} */}
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
@@ -25,16 +26,18 @@ class ContributedListItem extends Component {
                         title={this.props.title}
                     />
                     <h4>{this.props.author}</h4>
+                    <Icon type='like'/><p>{this.props.story.contributedStoryReducer[0].likes}</p>
                 </Card>
             </div>
         )
     }
 };
 
-// const mapStateToProps = (state) => ({
-//     state
-// });
+const mapStateToProps = (reduxStore) => ({
+    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail
+});
 
-// export default connect(mapStateToProps)(ContributedListItem);
+export default connect(mapStateToProps)(ContributedListItem);
 
-export default ContributedListItem;
+// export default ContributedListItem;
