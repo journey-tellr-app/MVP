@@ -25,7 +25,7 @@ library.add(faSignInAlt)
 // this drawer contains the main nav
 // SideDrawer component is sourced in the Nav.js component
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 class SideDrawer extends Component {
     state = {

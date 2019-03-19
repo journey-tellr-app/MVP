@@ -26,7 +26,7 @@ import ContributorPopup from '../Story/Contributor/ContributorPopup';
 
 //styling imports
 import './App.css';
-import { Row, Col } from 'antd';
+import { Row } from 'antd';
 
 
 class App extends Component {

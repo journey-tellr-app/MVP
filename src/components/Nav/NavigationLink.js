@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { Typography, Icon } from 'antd';
 
