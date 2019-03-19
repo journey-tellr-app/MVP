@@ -23,6 +23,13 @@ class ContributedStoryListItem extends Component {
             payload: this.props.story.contributedStoryReducer[0].story_id
         })
     }
+    handleLike = (event) => {
+        this.props.dispatch({ type: 'LIKE_CONTRIBUTED_STORY',
+                              payload: {
+                                       user_id: this.props.user_id,
+                                       story_id: this.props.story.contributedStoryReducer[0].story_id
+                                    }});
+    }
 
     render() {
 
@@ -30,7 +37,6 @@ class ContributedStoryListItem extends Component {
             <div>
                 {this.props.storyDetail.likes.length !== 0 ?
                     <Card
-
                         style={{ width: 300 }}
                         cover={<img onClick={this.handleReadStory} width='150px' height='150px' src={this.props.header_photo} alt="story" />}
                     >

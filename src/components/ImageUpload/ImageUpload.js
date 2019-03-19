@@ -1,4 +1,4 @@
-import { Modal, Button } from 'antd';
+import { Modal, Button, Row, Col } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -60,6 +60,7 @@ class ImageUpload extends Component {
     render() {
         return (
             <div>
+                
                 <Button type="primary" onClick={this.showModal}>
                     {this.props.photoDetails.title}
                 </Button>
@@ -69,11 +70,15 @@ class ImageUpload extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div>  {/*Will look identical to file upload on desktop */}
-                    <h2>OR</h2>
-                    <div>Choose Photo From Library: <input type="file" accept="image/*" onChange={this.handleFileUpload}></input></div>
-                    {this.state.file !== null && this.appendPic()}
+                    {/* <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div> This is being commented out for the sake of the presentation since it is useless on browser */}
+                    {/* <h2>OR</h2> */}
+                    <Row type="flex" justify="center">
+                        <div>Choose Photo From Library:</div>
+                        <input type="file" accept="image/*" onChange={this.handleFileUpload}></input>
+                        {this.state.file !== null && this.appendPic()}
+                    </Row>
                 </Modal>
+                
             </div>
         );
     }
