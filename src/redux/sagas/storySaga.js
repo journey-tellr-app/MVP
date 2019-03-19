@@ -39,7 +39,7 @@ function* storyTemplateDetails(action) {
         // get template story details 
         const response = yield axios.get(`/template/story/${action.payload}`);
         // set the template story
-        const nextAction = { type: 'SET_NEW_STORY', payload: response.data };
+        const nextAction = { type: 'SET_NEW_STORY_FROM_TEMPLATE', payload: response.data };
         yield put(nextAction);
         // get chapter details for a story
         const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);

@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ChooseTemplate from './ChooseTemplate.js';
-import ContributorPopup from './../Contributor/ContributorPopup.js';
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
-import ChapterList from '../Chapter/ChapterList.js';
-import AddChapter from '../Chapter/AddChapter.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
 // ant design import
 import { Form, Input, Button } from 'antd';
 
-class NewStoryForm extends Component {
+class CreateStoryDetail extends Component {
 
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
@@ -60,17 +56,6 @@ class NewStoryForm extends Component {
         const { story, chapter, image } = this.props;
         const { getFieldDecorator } = this.props.form;
 
-        // const formItemLayout = {
-        //     labelCol: {
-        //         xs: { span: 24 },
-        //         sm: { span: 8 },
-        //     },
-        //     wrapperCol: {
-        //         xs: { span: 24 },
-        //         sm: { span: 16 },
-        //     },
-        // };
-
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -86,13 +71,8 @@ class NewStoryForm extends Component {
 
         return (
             <Form layout="vertical" onSubmit={this.createStory}>
-                <h2>Create a Story</h2>
-                <CreateStorySteps current="0" />
-                <Form.Item
-                    label="Create a story or choose a template"
-                >
-                    <ChooseTemplate />
-                </Form.Item>
+                <h2>Fill in the story details</h2>
+                <CreateStorySteps current={1} />
                 <Form.Item
                     label="Story title"
                 >
@@ -153,19 +133,6 @@ class NewStoryForm extends Component {
                     />
                     )}
                 </Form.Item>
-                <h3>Chapters</h3>
-                {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
-                <Form.Item
-                    label="Add a chapter"
-                >
-                    <AddChapter chapter={chapter} storyId="new" />
-                </Form.Item>
-                <h3>Contributors</h3>
-                <Form.Item
-                    label="Add contributors"
-                >
-                    <ContributorPopup />
-                </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
@@ -179,7 +146,7 @@ class NewStoryForm extends Component {
 
 }
 
-const WrappedNewStoryForm = Form.create()(NewStoryForm);
+const WrappedCreateStoryDetail = Form.create()(CreateStoryDetail);
 
 const mapStoreToProps = reduxStore => ({
     story: reduxStore.story.newStoryReducer,
@@ -188,4 +155,4 @@ const mapStoreToProps = reduxStore => ({
     image: reduxStore.story.imageReducer
 });
 
-export default connect(mapStoreToProps)(WrappedNewStoryForm);
+export default connect(mapStoreToProps)(WrappedCreateStoryDetail);

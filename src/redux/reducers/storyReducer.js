@@ -43,8 +43,10 @@ const userStoryReducer = (state = [], action) => {
 // initial value for newStoryReducer used to clear the reducer
 const initialNewStory = {name: '', title: '', caption: '', placeholder_image: '', intro: ''};
 const newStoryReducer = (state = initialNewStory, action) => {
-    if(action.type === 'SET_NEW_STORY') {
+    if(action.type === 'SET_NEW_STORY_FROM_TEMPLATE') {
         return action.payload;
+    } else if(action.type === 'SET_NEW_STORY') {
+        return {name: 'initial'};
     } else if(action.type === 'RESET_NEW_STORY') {
         return initialNewStory;
     }

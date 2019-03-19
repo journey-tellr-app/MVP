@@ -17,6 +17,7 @@ class ChooseTemplate extends Component {
         if(value === 'initial'){
             this.props.dispatch({ type: 'RESET_NEW_STORY' });
             this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
+            this.props.dispatch({ type: 'SET_NEW_STORY'});
         } else {
             this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
             this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value});

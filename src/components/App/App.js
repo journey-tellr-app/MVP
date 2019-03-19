@@ -19,6 +19,8 @@ import ProfilePage from '../Profile/ProfilePage';
 import SearchMain from '../Search/SearchMain';
 import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
+import CreateStory from '../Story/CreateStory/CreateStory.js';
+import CreateStoryDetail from './../Story/CreateStory/CreateStoryDetail.js';
 
 //for dev convenience
 import FakeData from '../Faker/FakeData';
@@ -54,7 +56,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact path='/choose-template'
-              component={NewStoryMain}
+              component={CreateStory}
             />
             <ProtectedRoute
               exact path='/profile'
@@ -86,7 +88,10 @@ class App extends Component {
               exact path='/fake-data'
               component={FakeData}
             />
-            
+            <ProtectedRoute
+              exact path='/choose-template/detail/'
+              component={CreateStoryDetail}
+            />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
             {/*  */}
