@@ -13,6 +13,10 @@ class CreateStoryDetail extends Component {
         this.props.history.push('/choose-template/');
     }
 
+    hasErrors = (fieldsError) => {
+        return Object.keys(fieldsError).some(field => fieldsError[field]);
+    }
+
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
     createStory = (event) => {
@@ -53,7 +57,7 @@ class CreateStoryDetail extends Component {
     render() {
 
         const { image, template } = this.props;
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator, getFieldsError } = this.props.form;
 
         const tailFormItemLayout = {
             wrapperCol: {
@@ -134,7 +138,7 @@ class CreateStoryDetail extends Component {
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
-                            disabled={values.title !== '' && values.intro !== '' && values.caption !== ''}
+                            disabled={this.hasErrors(getFieldsError())}
                     >
                         Next
                     </Button>

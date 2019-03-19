@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ChooseTemplate from './ChooseTemplate.js';
-import ContributorPopup from './../Contributor/ContributorPopup.js';
-import ImageUpload from './../../ImageUpload/ImageUpload.js';
-import ChapterList from '../Chapter/ChapterList.js';
-import AddChapter from '../Chapter/AddChapter.js';
+
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
 // ant design import
@@ -88,11 +84,7 @@ class NewStoryForm extends Component {
             <Form layout="vertical" onSubmit={this.createStory}>
                 <h2>Create a Story</h2>
                 <CreateStorySteps current="0" />
-                <Form.Item
-                    label="Create a story or choose a template"
-                >
-                    <ChooseTemplate />
-                </Form.Item>
+
                 <Form.Item
                     label="Story title"
                 >
@@ -121,23 +113,7 @@ class NewStoryForm extends Component {
                     />
                     )}
                 </Form.Item>
-                <Form.Item
-                    label="Select image"
-                >
-                    {/* Image Upload not currently working */}
-                    {getFieldDecorator('header_photo', {
-                        initialValue: image.storyImage,
-                        }, 
-                    )(
-                    <div>
-                        <img style={{ height: 150, width: 340 }}
-                             alt="header_photo"
-                             src={image.storyImage}
-                        />
-                        <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
-                    </div>
-                    )}
-                </Form.Item>
+
 
                 <Form.Item
                     label="Photo caption"
@@ -153,19 +129,7 @@ class NewStoryForm extends Component {
                     />
                     )}
                 </Form.Item>
-                <h3>Chapters</h3>
-                {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
-                <Form.Item
-                    label="Add a chapter"
-                >
-                    <AddChapter chapter={chapter} storyId="new" />
-                </Form.Item>
-                <h3>Contributors</h3>
-                <Form.Item
-                    label="Add contributors"
-                >
-                    <ContributorPopup />
-                </Form.Item>
+
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
