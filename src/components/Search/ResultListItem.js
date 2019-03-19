@@ -14,23 +14,23 @@ class ResultListItem extends Component {
   render() {
       const { item } = this.props;
       const { Meta } = Card;
-      const { ReadMore } = "... Read More"
+
     console.log(item.intro.substring(0, 40));
     return (
-      <Row Row type="flex" align="bottom">
+      <Row type="flex" align="bottom">
         <Col span={12}>            
-        <List.Item
-        >
+        <List.Item>
           <List.Item.Meta
             title={item.title}
             description={item.intro.substring(0, 100)}
+            align="top"
           />
           {item.content}
-        </List.Item>
+          </List.Item> {/*end first item */}
           <List.Item
-            type="flex" justify="center" align="bottom"
+
             key={item.title}
-            actions={[<Icon type="star-o" text={item.likes} />, <Icon type="like-o" text="156" />, <Icon type="message" text="2" />]}
+            actions={[<Icon type="like-o" text="156" />]}
           >
             <List.Item.Meta
               avatar={<Avatar src={item.profile_pic} />}
@@ -39,19 +39,23 @@ class ResultListItem extends Component {
             />
           </List.Item>
         </Col>
-        <Col span={12}><Card
-          hoverable
-          style={{ width: 240 }}
-          cover={<img alt="example" src={item.header_photo} />}
-        >
-          <Meta
-            description={item.caption}
-          />
-        </Card></Col>
+        <Col span={12}>
+          <Card
+            hoverable
+            style={{ width: 240 }}
+            cover={<img alt="example" src={item.header_photo} />}
+          >
+            <Meta
+              description={item.caption}
+            />
+          </Card>
+        </Col>
       </Row>
 
     )
   }
 }
+
+
 
 export default withRouter(ResultListItem);
