@@ -20,7 +20,7 @@ class NavigationLink extends Component {
             onClickFxn = () => this.props.dispatch({ type: 'LOGOUT' })
         }
         const textStyle = { color: 'inherit', fontSize: '16px' };
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-active'>
                 <div className='nav-link-div'>

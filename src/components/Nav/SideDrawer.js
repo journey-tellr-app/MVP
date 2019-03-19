@@ -73,8 +73,8 @@ class SideDrawer extends Component {
             { route: '/about', name: 'About', iconType: 'info-circle' },
             { route: '/', name: 'Log Out', iconType: 'logout' }];
 
-        console.log('in sidedrawer render', this.props);
-        console.log(this.props.location.pathname);
+        // console.log('in sidedrawer render', this.props);
+        // console.log(this.props.location.pathname);
         return (
             <div className='header-button-div'>
                 <FontAwesomeIcon
