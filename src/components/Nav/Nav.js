@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 
 import SideDrawer from './SideDrawer';
 
-import { Icon } from 'antd';
-
-import { Row, Col } from 'antd';
+import { Icon, Row, Col } from 'antd';
 import './Nav.css';
 
 class Nav extends React.Component {

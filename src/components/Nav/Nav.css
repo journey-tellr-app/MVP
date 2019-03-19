@@ -70,3 +70,15 @@
     margin: 10px;
     float: left;
 }
+
+.nav-link-div {
+    height: 40px;
+    padding: 10px;
+    align-items: center;
+    background-color: rgba(220, 220, 220, 0.671);
+}
+
+.nav-location {
+    background-color: #D98A4F;
+    color: white;
+}
