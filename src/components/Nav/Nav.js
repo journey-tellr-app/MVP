@@ -5,23 +5,24 @@ import { connect } from 'react-redux';
 import logo from './JourneyTellr-Nameonly-color-noR.png';
 import SideDrawer from './SideDrawer';
 
+import { Row, Col } from 'antd';
 import './Nav.css';
 
 const Nav = () => (
   <div className="nav">
-    <div>
-      <SideDrawer />
-    </div>
-    <Link to="/home">
-      <img src={logo} 
-          alt={'logo'} 
-          height="50"
-          width="380" 
-          className="logo" />
-    </Link>
-    <Link to='/fake-data'>
-      fake data
-    </Link>
+    <Row type="flex" justify="center">
+      <Col span={3}>
+        <SideDrawer />
+      </Col>
+      <Col span={18}>
+        <Link to="/home">
+          <img src={logo}
+            alt={'logo'}
+            className="logo" />
+        </Link>
+      </Col>
+      <Col span={3} />
+    </Row>
   </div>
 );
 
