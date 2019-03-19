@@ -10,7 +10,7 @@ import './Nav.css';
 
 const Nav = () => (
   <div className="nav">
-    <Row type="flex" justify="center">
+    <Row type="flex" justify="center" align='middle'>
       <Col span={3}>
         <SideDrawer />
       </Col>

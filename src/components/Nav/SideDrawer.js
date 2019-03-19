@@ -2,26 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../Common/LogOutButton';
-import { Drawer } from 'antd';
-import { Typography } from 'antd';
-import { Divider } from 'antd';
-import './Nav.css';
-import 'antd/dist/antd.css';
 
 // icons used on this component
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faPlusSquare, faBell, faUsers, faBook, faHome, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-
-import logo from './JourneyTellr-Logo_icononly_Color-version.png';
-
+import { Drawer, Typography, Divider } from 'antd';
+import './Nav.css';
+import 'antd/dist/antd.css';
 
 // adds fa icons to project icon library
 library.add(faBars)
@@ -31,10 +20,6 @@ library.add(faUsers)
 library.add(faBook)
 library.add(faHome)
 library.add(faSignInAlt)
-
-// with Ant Design, the specific type of typography component used needs to be declares as a constant
-const { Text } = Typography;
-const { Title } = Typography;
 
 // this drawer contains the main nav
 // SideDrawer component is sourced in the Nav.js component
@@ -62,9 +47,17 @@ class SideDrawer extends Component {
 
     render() {
         const { userInfo } = this.props;
-
+        const logo = './images/kevinslogos/JourneyTellr-Logo_icononly_Color-version.png';
+        // with Ant Design, the specific type of typography component used needs to be declares as a constant
+        const { Text, Title } = Typography;
+        let profilePic = './images/placeholder.png';
+        if(userInfo.profile_pic !== null){
+            profilePic = userInfo.profile_pic;
+        }
         return (
-            <div>
+            <div style={{
+                margin: 'auto',
+                width: '50%',}}>
 
                 <FontAwesomeIcon
                     className="drawer-btn"
@@ -87,7 +80,7 @@ class SideDrawer extends Component {
                         {/* Title contains current users profile picture and name */}
                         {/* When clicked on, the user will be taken to the Profile page */}
                         <Title level={4}>
-                            <img src={userInfo.profile_pic} height="60" alt='placeholder' />
+                            <img src={profilePic} height="60" alt='placeholder' />
                             &nbsp;&nbsp;
                             {userInfo.first_name}&nbsp;{userInfo.last_name}
                         </Title>
