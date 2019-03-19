@@ -58,7 +58,7 @@ class SideDrawer extends Component {
                 <FontAwesomeIcon
                     className="drawer-btn"
                     icon="bars"
-                    size="3x"
+                    size="2x"
                     onClick={this.showDrawer}
                     visible={toString(this.state.visible)}
                 />
