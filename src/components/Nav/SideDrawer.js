@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import LogOutButton from '../Common/LogOutButton';
+import AboutLink from './AboutLink';
 
 // icons used on this component
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faPlusSquare, faBell, faUsers, faBook, faHome, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { Drawer, Typography, Divider } from 'antd';
+import { Drawer, Typography, Divider, Icon } from 'antd';
 import './Nav.css';
 import 'antd/dist/antd.css';
 
@@ -42,8 +44,6 @@ class SideDrawer extends Component {
             visible: false,
         });
     };
-
-
 
     render() {
         const { userInfo } = this.props;
@@ -103,9 +103,7 @@ class SideDrawer extends Component {
                         <FontAwesomeIcon icon="home" /> {userInfo.id ? 'Home' : 'Login'}
                     </Link>
                     <Divider />
-                    <Link to="/about" onClick={this.onClose}>
-                        <Text>About</Text>
-                    </Link>
+                    <AboutLink onClose={this.onClose} />
                     <Divider />
                     {userInfo.id && (
                         <LogOutButton />
