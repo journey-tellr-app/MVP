@@ -14,15 +14,16 @@ class ResultListItem extends Component {
   render() {
       const { item } = this.props;
       const { Meta } = Card;
+      const { ReadMore } = "... Read More"
     console.log(item.intro.substring(0, 40));
     return (
-      <Row>
+      <Row Row type="flex" align="bottom">
         <Col span={12}>            
         <List.Item
         >
           <List.Item.Meta
             title={item.title}
-            description={item.intro.substring(0, 40)}
+            description={item.intro.substring(0, 100)}
           />
           {item.content}
         </List.Item>
@@ -34,6 +35,7 @@ class ResultListItem extends Component {
             <List.Item.Meta
               avatar={<Avatar src={item.profile_pic} />}
               description={item.full_name}
+              
             />
           </List.Item>
         </Col>

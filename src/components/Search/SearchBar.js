@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Select} from 'antd';
 
+
 class SearchBar extends Component {
     state = {
         dropdown: "AUTHOR",
@@ -22,7 +23,7 @@ class SearchBar extends Component {
         const Search = Input.Search;
         const Option = Select.Option;
         const selectBefore = (
-            <Select defaultValue="Author" onChange={this.handleChange} style={{ width: 115 }}>
+            <Select defaultValue="Author" onChange={this.handleChange} style={{ width: 115 }} justify="center">
                 <Option value="AUTHOR" >Author</Option>
                 <Option value="TITLE">Title</Option>
                 <Option value="DESCRIPTION">Description</Option>

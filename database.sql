@@ -8,8 +8,7 @@ CREATE TABLE person (
     last_name character varying(40) NOT NULL,
     profile_pic text,
     date_created date NOT NULL DEFAULT now(),
-    bio character varying(360),
-	department character varying(40)
+    bio character varying(360)
 );
 
 
