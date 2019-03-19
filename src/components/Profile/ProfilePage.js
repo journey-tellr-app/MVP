@@ -126,7 +126,7 @@ class ProfilePage extends Component {
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={18}>
-                        <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>;
+                        <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
                     </Col>
                 </Row>
                 <Row gutter={16}>
@@ -148,7 +148,7 @@ class ProfilePage extends Component {
                 </Row>
                 <Row gutter={16}>
                     <Col xs={24}>{this.props.story ?
-                        (<ContributedStoryList />) : (<p>loading...</p>)}</Col>
+                        (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}</Col>
                 </Row>
                 {/* this code is for the conditionally rendered modal, which only
                 appears when the profile picture is clicked on */}

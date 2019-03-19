@@ -31,6 +31,8 @@ class ContributedStoryList extends Component {
                         {this.props.story.contributedStoryReducer.map((story, i) => {
                             return <ContributedStoryListItem
                                 key={i}
+                                history={this.props.history}
+                                story_id={story.story_id}
                                 header_photo={story.header_photo}
                                 title={story.title}
                                 intro={story.intro}
@@ -53,6 +55,8 @@ const mapStoreToProps = (reduxStore) => ({
     user: reduxStore.user,
     story: reduxStore.story,
     storyDetail: reduxStore.storyDetail.likes,
+    contributedStories: reduxStore.story.contributedStoryReducer,
+
 });
 
 export default connect(mapStoreToProps)(ContributedStoryList);
