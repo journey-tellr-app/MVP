@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
 
 const baseQuery = `select story.id as story_id, header_photo, title, caption, 
     intro, date_started, completed, last_edit, profile_pic,
@@ -9,7 +11,7 @@ const baseQuery = `select story.id as story_id, header_photo, title, caption,
 
 //This Router is for when user searches data base for specific stories 
 //AUTHOR
-router.get('/author/:id', (req, res) => {
+router.get('/author/:id', rejectUnauthenticated, (req, res) => {
     // console.log('in search story', req.params);
     const queryParams = req.params.id;
     const queryText = `${baseQuery} WHERE LOWER (concat(first_name, ' ', last_name)) like $1
@@ -24,7 +26,7 @@ router.get('/author/:id', (req, res) => {
         })
 });
 //TITLE
-router.get('/title/:id', (req, res) => {
+router.get('/title/:id', rejectUnauthenticated, (req, res) => {
     // console.log('!!!!!!', req.params);
     const queryParams = req.params.id;
     const queryText = `${baseQuery}
@@ -40,7 +42,7 @@ router.get('/title/:id', (req, res) => {
         })
 });
 //DESCRIPTION
-router.get('/description/:id', (req, res) => {
+router.get('/description/:id', rejectUnauthenticated, (req, res) => {
     // console.log('in search story', req.params);
     const queryParams = req.params.id;
     const queryText = `${baseQuery}

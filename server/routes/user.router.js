@@ -47,7 +47,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/update-profile', (req, res) => {
+router.put('/update-profile', rejectUnauthenticated, (req, res) => {
   // console.log(req.body);
 
   // let user = req.params.id;
@@ -78,7 +78,7 @@ router.put('/update-profile', (req, res) => {
     })
 });
 
-router.put('/:id', (req, res) => {  //sets profile pic
+router.put('/:id', rejectUnauthenticated, (req, res) => {  //sets profile pic
   // console.log(req.body);
 
   let user = req.params.id;
