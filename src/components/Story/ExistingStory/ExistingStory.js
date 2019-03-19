@@ -49,8 +49,7 @@ class ExistingStory extends Component {
     // }
 
     render() {
-        const { summary, likes, contributor,
-            chapter } = this.props.storyDetail
+        const { summary, likes, contributor, chapter } = this.props.storyDetail
 
         return (
             <div>
@@ -64,7 +63,6 @@ class ExistingStory extends Component {
                             height='100px'
                             alt="Shows what caption describes" /></h3>
                         <h3>Caption: {summary[0].caption}</h3>
-
                     </div> : null
                     // when the component mounts
 
