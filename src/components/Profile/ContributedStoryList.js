@@ -57,12 +57,8 @@ const mapStoreToProps = (reduxStore) => ({
     userInfo: reduxStore.user.userInfo,
     story: reduxStore.story,
     storyDetail: reduxStore.storyDetail.likes,
-<<<<<<< HEAD
     contributedStories: reduxStore.story.contributedStoryReducer,
 
-=======
-    contributedStories: reduxStore.story.contributedStoryReducer
->>>>>>> bc57fcb9951d25699dbcc26e26b057750df3010c
 });
 
 export default connect(mapStoreToProps)(ContributedStoryList);
