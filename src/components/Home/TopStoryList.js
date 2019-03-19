@@ -21,6 +21,7 @@ class TopStoryList extends Component {
                 <Carousel>
                     {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
+                                    user_id={this.props.userInfo.id}
                                     id={story.story_id}
                                     history={this.props.history}
                                     key={i}
@@ -39,6 +40,7 @@ class TopStoryList extends Component {
 };
 
 const mapStateToProps = (state) => ({
+    userInfo: state.user.userInfo,
     topStories: state.story.topStoriesReducer
 });
 

@@ -12,6 +12,14 @@ class TopStoryItem extends Component {
         
         this.props.history.push(`/existing-story/${this.props.id}`);
     }
+    
+    handleLike = (event) => {
+        this.props.dispatch({ type: 'LIKE_TOP_STORY',
+                              payload: {
+                                  user_id: this.props.user_id,
+                                  story_id: this.props.id
+                              }});
+    }
 
     render() {
 
@@ -27,7 +35,7 @@ class TopStoryItem extends Component {
                         title={this.props.title}
                     />
                     <h4>{this.props.name}</h4>
-                    <Icon type='like' /><p>{this.props.likes}</p>
+                    <Icon type='like' onClick={this.handleLike}/><p>{this.props.likes}</p>
                 </Card>
             </div>
         )
