@@ -1,17 +1,20 @@
 -- name your database "journey_tellr"
 
-CREATE TABLE "person" (
-	"id" serial NOT NULL,
-	"email" varchar(40) NOT NULL UNIQUE,
-	"password" varchar(1000) NOT NULL,
-	"first_name" varchar(40) NOT NULL,
-	"last_name" varchar(40) NOT NULL,
-	"profile_pic" TEXT,
-	"date_created" DATE NOT NULL DEFAULT now(),
-	CONSTRAINT person_pk PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
+CREATE TABLE person (
+    id SERIAL PRIMARY KEY,
+    email character varying(40) NOT NULL UNIQUE,
+    password character varying(1000) NOT NULL,
+    first_name character varying(40) NOT NULL,
+    last_name character varying(40) NOT NULL,
+    profile_pic text,
+    date_created date NOT NULL DEFAULT now(),
+    bio character varying(360)
 );
+
+
+CREATE UNIQUE INDEX person_pk ON person(id int4_ops);
+CREATE UNIQUE INDEX person_email_key ON person(email text_ops);
+
 
 
 

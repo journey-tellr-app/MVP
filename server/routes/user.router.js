@@ -47,7 +47,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/update-profile', (req, res) => {  //sets profile pic
+router.put('/update-profile', (req, res) => {
   // console.log(req.body);
 
   // let user = req.params.id;
@@ -58,13 +58,15 @@ router.put('/update-profile', (req, res) => {  //sets profile pic
   UPDATE "person" 
   SET 
   "first_name"= $2,   
-  "last_name"= $3
+  "last_name"= $3,
+  "bio"= $4
   WHERE 
   "id" = $1;`;
   const queryValues = [
     content.id,
     content.first_name,
     content.last_name,
+    content.bio,
   ];
   pool.query(queryText, queryValues)
     .then((response) => {

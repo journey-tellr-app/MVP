@@ -40,9 +40,23 @@ function* addImagePerson(action) {
 
 }
 
+function* updatePicture(action) {
+
+    try {
+        yield axios.put(`/api/user/${action.id}`, action.payload);
+        yield put({ type: 'FETCH_USER' });
+    } catch (error) {
+        console.log('Error with addImage:', error);
+    }
+
+
+}
+
 function* imageSaga() {
     yield takeLatest('ADD_IMAGE_AWS', addImageAWS);
     yield takeLatest('ADD_IMAGE_PERSON', addImagePerson);
+    yield takeLatest('UPDATE_PICTURE', updatePicture);
+
 
 }
 
