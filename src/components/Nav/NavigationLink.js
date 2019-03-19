@@ -15,14 +15,14 @@ class NavigationLink extends Component {
 
     render() {
         const { route, name, iconType } = this.props.routeObj;
-        let onCloseFxn = this.props.onClose;
+        let onClickFxn = this.props.onClose;
         if (name === 'Log Out') {
-            onCloseFxn = () => this.props.dispatch({ type: 'LOGOUT' })
+            onClickFxn = () => this.props.dispatch({ type: 'LOGOUT' })
         }
         const textStyle = { color: 'inherit', fontSize: '16px' };
         console.log(this.props);
         return (
-            <NavLink exact to={route} onClick={this.handleClick} activeClassName='nav-active'>
+            <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-active'>
                 <div className='nav-link-div'>
                     <Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text>
                 </div>
