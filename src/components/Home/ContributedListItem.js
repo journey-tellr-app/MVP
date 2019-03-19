@@ -34,7 +34,7 @@ class ContributedListItem extends Component {
                     />
                     <h4>{this.props.author}</h4>
                     <Icon type='like' onClick={this.handleLike} />
-                    <p>{this.props.story.contributedStoryReducer[0].likes}</p>
+                    <p>{this.props.likes}</p>
                 </Card>
             </div>
         )
