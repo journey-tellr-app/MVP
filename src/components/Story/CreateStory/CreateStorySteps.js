@@ -8,7 +8,7 @@ class CreateStorySteps extends Component {
     render() {
         return (
             <Steps direction="horizontal" size="small" current={Number(this.props.current)}>
-                <Steps.Step title="Story Type" />
+                <Steps.Step title="Start" />
                 <Steps.Step title="Details" />
                 <Steps.Step title="Chapters" />
                 <Steps.Step title="Contributors" />

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ChooseTemplate from './ChooseTemplate.js';
+import ContributorPopup from './../Contributor/ContributorPopup.js';
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
+import ChapterList from '../Chapter/ChapterList.js';
+import AddChapter from '../Chapter/AddChapter.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
 // ant design import
 import { Form, Input, Button } from 'antd';
 
-class CreateStoryDetail extends Component {
-
-    // go bact to the previous page
-    prevousButton = () => {
-        this.props.history.push('/choose-template/');
-    }
+class NewStoryForm extends Component {
 
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
@@ -19,19 +18,23 @@ class CreateStoryDetail extends Component {
         event.preventDefault();
         this.props.form.validateFieldsAndScroll((error, values) => {
             if (!error) {
-                // variable for story data payload
-                let storyData = '';
+                console.log(values);
+
+                // seperate files for story, chapter and contributor data sent to the redux saga
+                let storyDataToSend = '';
+                let chapterDataToSend = this.props.chapter;
+                let contributorDataToSend = this.props.contributor;
 
                 // will create different data to send if the story statred as a template
-                if(this.props.template.title !== 'initial') {
-                    storyData = { title: values.title,
+                if(this.props.story.title !== '') {
+                    storyDataToSend = { title: values.title,
                                         header_photo: values.header_photo,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: true,
                                       };
                 } else {
-                    storyData = { title: values.title,
+                    storyDataToSend = { title: values.title,
                                         header_photo: values.header_photo,
                                         caption: values.caption,
                                         intro: values.intro,
@@ -39,9 +42,11 @@ class CreateStoryDetail extends Component {
                                       };
                 }
 
+                // bundle the story, chapter and contributon files together and create a payload
+                let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
+
                 // send data to the saga
-                this.props.dispatch({ type: 'SET_NEW_STORY', payload: storyData });
-                this.props.history.push('/choose-template/chapter/');
+                this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
 
                 // clear the fields
                 this.props.form.resetFields();
@@ -52,8 +57,19 @@ class CreateStoryDetail extends Component {
 
     render() {
 
-        const { image, template } = this.props;
+        const { story, chapter, image } = this.props;
         const { getFieldDecorator } = this.props.form;
+
+        // const formItemLayout = {
+        //     labelCol: {
+        //         xs: { span: 24 },
+        //         sm: { span: 8 },
+        //     },
+        //     wrapperCol: {
+        //         xs: { span: 24 },
+        //         sm: { span: 16 },
+        //     },
+        // };
 
         const tailFormItemLayout = {
             wrapperCol: {
@@ -70,32 +86,37 @@ class CreateStoryDetail extends Component {
 
         return (
             <Form layout="vertical" onSubmit={this.createStory}>
-                <h2>Fill in the story details</h2>
-                <CreateStorySteps current={1} />
+                <h2>Create a Story</h2>
+                <CreateStorySteps current="0" />
+                <Form.Item
+                    label="Create a story or choose a template"
+                >
+                    <ChooseTemplate />
+                </Form.Item>
                 <Form.Item
                     label="Story title"
-                    extra={template.title !== '' ? template.title : null}
                 >
                     {getFieldDecorator('title', {
+                        initialValue: story.title,
                         rules: [{ required: true, message: 'Please enter a story title!' }],
                         },
                     )(
                         <Input allowClear
-                               placeholder="Story title"
+                               placeholder={story.title !== '' ? story.title : "story title"}
                                style={{ width: 340 }} 
                         />
                     )}
                 </Form.Item>
                 <Form.Item
                     label="Story intro"
-                    extra={template.intro !== '' ? template.intro : null}
                 >
                     {getFieldDecorator('intro', {
+                        initialValue: story.intro,
                         rules: [{ required: true, message: 'Please enter an intro!' }],
                         }, 
                     )(
                     <Input allowClear
-                           placeholder="Enter an introduction"
+                           placeholder={story.intro !== '' ? story.intro : "story introduction"}
                            style={{ width: 340 }}
                     />
                     )}
@@ -103,6 +124,7 @@ class CreateStoryDetail extends Component {
                 <Form.Item
                     label="Select image"
                 >
+                    {/* Image Upload not currently working */}
                     {getFieldDecorator('header_photo', {
                         initialValue: image.storyImage,
                         }, 
@@ -119,27 +141,36 @@ class CreateStoryDetail extends Component {
 
                 <Form.Item
                     label="Photo caption"
-                    extra={template.caption !== '' ? template.caption : null}
                 >
                     {getFieldDecorator('caption', {
+                        initialValue: story.caption,
                         rules: [{ required: true, message: 'Please enter a caption!' }],
                         },
                     )(
                    <Input allowClear
-                          placeholder="Add a caption for your picture"
+                          placeholder={story.caption !== '' ? story.caption : "add a caption" }
                           style={{ width: 340 }} 
                     />
                     )}
                 </Form.Item>
+                <h3>Chapters</h3>
+                {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
+                <Form.Item
+                    label="Add a chapter"
+                >
+                    <AddChapter chapter={chapter} storyId="new" />
+                </Form.Item>
+                <h3>Contributors</h3>
+                <Form.Item
+                    label="Add contributors"
+                >
+                    <ContributorPopup />
+                </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
-                            disabled={values.title !== '' && values.intro !== '' && values.caption !== ''}
                     >
-                        Next
-                    </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                        Previous
+                        Create Story
                     </Button>
                 </Form.Item>
             </Form>
@@ -148,11 +179,13 @@ class CreateStoryDetail extends Component {
 
 }
 
-const WrappedCreateStoryDetail = Form.create()(CreateStoryDetail);
+const WrappedNewStoryForm = Form.create()(NewStoryForm);
 
 const mapStoreToProps = reduxStore => ({
-    image: reduxStore.story.imageReducer,
-    template: reduxStore.template.templateNewStoryReducer,
+    story: reduxStore.story.newStoryReducer,
+    chapter: reduxStore.chapter.newStoryChapterReducer,
+    contributor: reduxStore.contributor.pending,
+    image: reduxStore.story.imageReducer
 });
 
-export default connect(mapStoreToProps)(WrappedCreateStoryDetail);
+export default connect(mapStoreToProps)(WrappedNewStoryForm);
