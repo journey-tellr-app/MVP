@@ -1,0 +1,36 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { Typography, Icon } from 'antd';
+
+const { Text } = Typography;
+
+class NavigationLink extends Component {
+    handleClick = () => {
+        console.log('historypush');
+        this.props.history.push(this.props.route);
+    }
+
+    render() {
+        const { route, name, iconType } = this.props.routeObj;
+        let onCloseFxn = this.props.onClose;
+        if (name === 'Log Out') {
+            onCloseFxn = () => this.props.dispatch({ type: 'LOGOUT' })
+        }
+        const textStyle = { color: 'inherit', fontSize: '16px' };
+        console.log(this.props);
+        return (
+            <NavLink exact to={route} onClick={this.handleClick} activeClassName='nav-active'>
+                <div className='nav-link-div'>
+                    <Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text>
+                </div>
+            </NavLink>
+        )
+    }
+}
+
+const connectedNavigationLink = connect()(NavigationLink);
+
+export default withRouter(connectedNavigationLink);

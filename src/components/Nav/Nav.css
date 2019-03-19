@@ -75,10 +75,16 @@
     height: 40px;
     padding: 10px;
     align-items: center;
-    background-color: rgba(220, 220, 220, 0.671);
+    background-color: inherit;
+    color: black;
 }
 
-.nav-location {
-    background-color: #D98A4F;
+.nav-active {
+    background-color: rgba(217, 139, 79, 0.534);
     color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

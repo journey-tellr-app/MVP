@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
+import NavigationLink from './NavigationLink';
 
 // icons used on this component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faPlusSquare, faBell, faUsers, faBook, faHome, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { Drawer, Typography, Divider, Icon } from 'antd';
+import { Drawer, Typography, Divider } from 'antd';
 import './Nav.css';
 import 'antd/dist/antd.css';
 
@@ -29,20 +30,6 @@ const { Text, Title } = Typography;
 class SideDrawer extends Component {
     state = {
         visible: false,
-        // possible use in building nav links
-        routes: [
-            { route: '/home', name: 'Home', iconType: 'home' },
-            { route: '/notification', name: 'Notifications', iconType: 'bell' },
-            { route: '/choose-template', name: 'Begin Story', iconType: 'plus-square' },
-            { route: '/search', name: 'Browse Stories', iconType: 'search' },
-            { route: '/about', name: 'About', iconType: 'info-circle' },
-            { route: '/', name: 'Log Out', iconType: 'logout'}]
-    };
-
-    static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
     };
 
     componentDidMount() {
@@ -62,30 +49,11 @@ class SideDrawer extends Component {
         });
     };
 
-    getClass = (link) => {
-        const className = ['nav-link-div'];
-        if (link === this.props.location.pathname) {
-            className.push('nav-location');
-        }
 
-        return className.join(' ');
-    }
 
     buildLinks = () => {
-        return this.state.routes.map( (routeObj, i ) => {
-            const { route, name, iconType } = routeObj;
-            let onCloseFxn = this.onClose;
-            if(name === 'Log Out'){
-                onCloseFxn = () => this.props.dispatch({ type: 'LOGOUT' })
-            }
-            return (
-                <Link to={route} onClick={onCloseFxn} key={i}>
-                    <div className={this.getClass(route)}>
-                        <Text><Icon type={iconType} /> &nbsp; {name}</Text>
-                    </div>
-                </Link>
-            )
-        })
+
+        return
     }
 
     render() {
@@ -96,7 +64,17 @@ class SideDrawer extends Component {
         if (userInfo.profile_pic !== null) {
             profilePic = userInfo.profile_pic;
         }
-        // console.log(this.props);
+
+        const routes = [
+            { route: '/home', name: 'Home', iconType: 'home' },
+            { route: '/notification', name: 'Notifications', iconType: 'bell' },
+            { route: '/choose-template', name: 'Begin Story', iconType: 'plus-square' },
+            { route: '/search', name: 'Browse Stories', iconType: 'search' },
+            { route: '/about', name: 'About', iconType: 'info-circle' },
+            { route: '/', name: 'Log Out', iconType: 'logout' }];
+
+        console.log('in sidedrawer render', this.props);
+        console.log(this.props.location.pathname);
         return (
             <div className='header-button-div'>
                 <FontAwesomeIcon
@@ -126,9 +104,11 @@ class SideDrawer extends Component {
                         </Title>
                     </Link>
                     <Divider />
-
-                    {this.buildLinks()}
-
+                    {/* render directly instead of with buildLinks() */}
+                    {/* {this.buildLinks()}*/}
+                    {routes.map((routeObj, i) => {
+                        return <NavigationLink routeObj={routeObj} onClose={this.onClose} key={i} location={this.props.location.pathname} />
+                    })}
                 </Drawer>
             </div >
         );
@@ -140,7 +120,7 @@ const mapStateToProps = store => ({
     userInfo: store.user.userInfo
 });
 
-const SideDrawerWithRouter = withRouter(SideDrawer);
+const connectedSideDrawer = connect(mapStateToProps)(SideDrawer);
 
-export default connect(mapStateToProps)(SideDrawerWithRouter);
+export default withRouter(connectedSideDrawer);
 
