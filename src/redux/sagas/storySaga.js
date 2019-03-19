@@ -89,6 +89,8 @@ function* clearNewStory() {
         yield put(chapterAction);
         const contributorAction = { type: 'RESET_PENDING_CONTRIBUTOR' };
         yield put(contributorAction);
+        const imageAction = { type: 'RESET_IMAGE_STORY' };
+        yield put(imageAction);
     } catch (error) {
         // error message when clearing new story inputs
         console.log(`Error in clearNewStory saga: ${error}`);

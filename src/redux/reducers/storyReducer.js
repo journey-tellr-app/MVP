@@ -50,9 +50,14 @@ const newStoryReducer = (state = initialNewStory, action) => {
     }
     return state;
 }
-const imageReducer = (state = {}, action) => {
+
+// initial value for newStoryReducer used to clear the reducer
+const initialImage = {storyImage: "/images/placeholder.png"};
+const imageReducer = (state = initialImage, action) => {
     if (action.type === 'ADD_IMAGE_STORY') {
-        return action.payload.data.Location;
+        return {storyImage: action.payload.data.Location};
+    } else if(action.type === 'RESET_IMAGE_STORY') {
+        return initialImage;
     }
     return state;
 }

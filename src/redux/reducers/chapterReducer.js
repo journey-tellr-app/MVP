@@ -19,25 +19,22 @@ const newStoryChapterReducer = (state = initialNewStoryChapter, action) => {
     } else if(action.type === 'SET_TEMPLATE_NEW_STORY_CHAPTER') {
         return action.payload;
     } else if(action.type === 'UPDATE_NEW_STORY_CHAPTER') {
-        let updatedChapter = updateObjectInArray(state, action.payload);
+        let updatedChapter = updateChapterInStory(state, action.payload);
         return updatedChapter;
     }
     return state;
 }
 
-function updateObjectInArray(array, action) {
+// function will only update a specific chapter in the reducer
+function updateChapterInStory(array, action) {
     return array.map((item, index) => {
-      if (index !== action.id) {
-        // This isn't the item we care about - keep it as-is
-        return item
-      }
-  
-      // Otherwise, this is the one we want - return an updated value
-      return {
-        ...item,
-        ...action.item
-      }
-    })
+        if (index !== action.id) {
+            // This isn't the item we care about - keep it as-is
+            return item
+        }
+        // Otherwise, this is the one we want - return an updated value
+        return {...item,...action.item}
+    });
   }
 
 export default combineReducers({
