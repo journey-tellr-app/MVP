@@ -1,11 +1,11 @@
 /* .profile-element {
-    margin-bottom: .5 em;
+    margin: 5px;
 } */
 
 #edit-btn {
-    max-width: 70px;
-    max-height: 20px;
-    font-size: 8px;
+    max-width: 60px;
+    max-height: 12px;
+    font-size: 7px;
 }
 
 #avatar {
@@ -33,6 +33,6 @@
     margin: .3em;
 }
 
-/* #user-name {
+#user-name {
     font-size: 18px;
-} */
+}
