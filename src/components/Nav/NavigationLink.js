@@ -7,20 +7,15 @@ import { Typography, Icon } from 'antd';
 const { Text } = Typography;
 
 class NavigationLink extends Component {
-    handleClick = () => {
-        console.log('historypush');
-        this.props.history.push(this.props.route);
-    }
-
     render() {
-        console.log('in navigation link render');
+        // console.log('in navigation link render', this.props);
         const { route, name, iconType } = this.props.routeObj;
         let onClickFxn = this.props.handleSideBar.bind(this, false);
         if (name === 'Log Out') {
             onClickFxn = () => this.props.dispatch({ type: 'LOGOUT' })
         }
         const textStyle = { color: 'inherit', fontSize: '16px' };
-        // console.log(this.props);
+
         return (
             <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-link-active' className='nav-link-default'>
                 <div className='nav-link-div'>
@@ -31,4 +26,4 @@ class NavigationLink extends Component {
     }
 }
 
-export default connect()(NavigationLink);
+export default withRouter(connect()(NavigationLink));

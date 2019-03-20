@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import SideDrawer from './SideDrawer';
 
@@ -19,12 +17,6 @@ class NavButton extends Component {
         visible: false,
     };
 
-    static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-    };
-
     // this causes the nav drawer to appear when called
     handleSideBar = (bool, e) => {
         this.setState({
@@ -33,7 +25,7 @@ class NavButton extends Component {
     };
 
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         return (
             <div className='header-button-div'>
                 <FontAwesomeIcon
@@ -43,8 +35,8 @@ class NavButton extends Component {
                     onClick={this.handleSideBar.bind(this, true)}
                     visible={toString(this.state.visible)}
                 />
-                {this.state.visible && 
-                <SideDrawer handleSideBar={this.handleSideBar} visible={this.state.visible}/>
+                {this.state.visible &&
+                    <SideDrawer handleSideBar={this.handleSideBar} visible={this.state.visible} />
                 }
             </div>
         )

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import NavigationLink from './NavigationLink';
-
-// icons used on this component
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faBars, faPlusSquare, faBell, faUsers, faBook, faHome, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Drawer, Typography, Divider } from 'antd';
 import './Nav.css';
@@ -20,12 +14,6 @@ import 'antd/dist/antd.css';
 const { Title } = Typography;
 
 class SideDrawer extends Component {
-    static propTypes = {
-        visible: PropTypes.bool.isRequired,
-        userInfo: PropTypes.object.isRequired,
-        handleSideBar: PropTypes.func.isRequired,
-    }
-
     //creates navLinks
     buildLinks = () => {
         const routes = [
@@ -48,7 +36,7 @@ class SideDrawer extends Component {
         if (userInfo.profile_pic !== null) {
             profilePic = userInfo.profile_pic;
         }
-        console.log('in side drawer render');
+        // console.log('in side drawer render');
         return (
             <Drawer
                 width={300}
