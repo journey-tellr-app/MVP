@@ -36,7 +36,7 @@ class SideDrawer extends Component {
             { route: '/about', name: 'About', iconType: 'info-circle' },
             { route: '/', name: 'Log Out', iconType: 'logout' }];
         return routes.map((routeObj, i) => {
-            return <NavigationLink routeObj={routeObj} handleSideBar={this.props.handleSideBar} key={i} location={this.props.location.pathname} />
+            return <NavigationLink routeObj={routeObj} handleSideBar={this.props.handleSideBar} key={i} />
         })
     }
 
@@ -80,7 +80,5 @@ const mapStateToProps = store => ({
     userInfo: store.user.userInfo
 });
 
-const connectedSideDrawer = connect(mapStateToProps)(SideDrawer);
-
-export default withRouter(connectedSideDrawer);
+export default connect(mapStateToProps)(SideDrawer);
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CardDesigns.css';
 import { connect } from 'react-redux';
 
 import { Card, Avatar, Button, Icon } from 'antd';
@@ -10,13 +11,15 @@ class ContributedListItem extends Component {
     handleReadStory = (event) => {
         this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
-    
+
     handleLike = (event) => {
-        this.props.dispatch({ type: 'LIKE_CONTRIBUTED_STORY',
-                              payload: {
-                                       user_id: this.props.user_id,
-                                       story_id: this.props.story_id 
-                                    }});
+        this.props.dispatch({
+            type: 'LIKE_CONTRIBUTED_STORY',
+            payload: {
+                user_id: this.props.user_id,
+                story_id: this.props.story_id
+            }
+        });
     }
 
     render() {
@@ -24,6 +27,8 @@ class ContributedListItem extends Component {
         return (
             <div>
                 <Card
+                    id='card'
+                    bordered={true}
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
                     actions={[<Button>Read</Button>]}

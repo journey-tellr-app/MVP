@@ -13,6 +13,7 @@ class NavigationLink extends Component {
     }
 
     render() {
+        console.log('in navigation link render');
         const { route, name, iconType } = this.props.routeObj;
         let onClickFxn = this.props.handleSideBar.bind(this, false);
         if (name === 'Log Out') {
@@ -30,6 +31,4 @@ class NavigationLink extends Component {
     }
 }
 
-const connectedNavigationLink = connect()(NavigationLink);
-
-export default withRouter(connectedNavigationLink);
+export default connect()(NavigationLink);

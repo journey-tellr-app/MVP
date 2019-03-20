@@ -11,6 +11,7 @@ class Nav extends React.Component {
 
     render() {
         // console.log(this.props);
+        console.log('in nav render');
         let journeyTellrLogo = './images/kevinslogos/JourneyTellr-Nameonly-color-noR.png'
         return (
             <Row type="flex" justify="center" align='middle' className='nav'>
@@ -46,4 +47,5 @@ const mapRStoProps = (rs) => {
     return { user: rs.user.userInfo }
 }
 
+//given history so that NavigationLink can rerender based on changes in location.pathname
 export default withRouter(connect(mapRStoProps)(Nav));
