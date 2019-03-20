@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import SideDrawer from './SideDrawer';
@@ -46,4 +46,4 @@ const mapRStoProps = (rs) => {
     return { user: rs.user.userInfo }
 }
 
-export default connect(mapRStoProps)(Nav);
+export default withRouter(connect(mapRStoProps)(Nav));

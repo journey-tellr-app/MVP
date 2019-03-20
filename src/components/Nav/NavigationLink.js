@@ -21,7 +21,7 @@ class NavigationLink extends Component {
         const textStyle = { color: 'inherit', fontSize: '16px' };
         // console.log(this.props);
         return (
-            <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-active'>
+            <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-link-active' className='nav-link-default'>
                 <div className='nav-link-div'>
                     <Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text>
                 </div>
