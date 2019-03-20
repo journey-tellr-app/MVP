@@ -10,7 +10,7 @@ const { Title } = Typography;
 class ContributedStoryListItem extends Component {
 
     handleReadStory = (event) => {
-        console.log('in handleRead');
+        this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
 
     componentDidMount = () => {
@@ -23,6 +23,13 @@ class ContributedStoryListItem extends Component {
             payload: this.props.story.contributedStoryReducer[0].story_id
         })
     }
+    handleLike = (event) => {
+        this.props.dispatch({ type: 'LIKE_CONTRIBUTED_STORY',
+                              payload: {
+                                       user_id: this.props.user_id,
+                                       story_id: this.props.story.contributedStoryReducer[0].story_id
+                                    }});
+    }
 
     render() {
 
@@ -30,20 +37,19 @@ class ContributedStoryListItem extends Component {
             <div>
                 {this.props.storyDetail.likes.length !== 0 ?
                     <Card
-
                         style={{ width: 300 }}
-                        cover={<img width='150px' height='150px' src={this.props.header_photo} alt="story" />}
+                        cover={<img onClick={this.handleReadStory} width='150px' height='150px' src={this.props.header_photo} alt="story" />}
                     >
 
-<Title level={4}>{this.props.title}</Title>
-                <Icon type='like' /><p>{this.props.story.contributedStoryReducer[0].likes}</p>
+                        <Title onClick={this.handleReadStory} level={4}>{this.props.title}</Title>
+                        <Icon type='like' /><p>{this.props.story.contributedStoryReducer[0].likes}</p>
 
 
 
                     </Card> : (<p>loading...</p>)}
 
 
-                
+
 
             </div>
         )

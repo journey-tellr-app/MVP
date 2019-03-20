@@ -24,13 +24,12 @@ class ContributedList extends Component {
         // }
 
 
-        let header;
-
-        if (this.props.contributedStories.length === 1) {
-            header = <h4>1 story live</h4>;
-        } else {
-            header = <h4>{this.props.contributedStories.length} stories live</h4>
-        }
+        // let header;
+        // if (this.props.contributedStories.length === 1) {
+        //     header = <h4>1 story live</h4>;
+        // } else {
+        //     header = <h4>{this.props.contributedStories.length} stories live</h4>
+        // }
 
 
         return (
@@ -55,6 +54,7 @@ class ContributedList extends Component {
                             //for simplicity on the client
                             author={story.first_name + ' ' + story.last_name}
                             profile_pic={story.profile_pic}
+                            likes={story.likes}
                         />
                     })}
                 </Carousel>

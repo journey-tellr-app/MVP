@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd';
+import { Avatar, Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd';
 
 import './ProfilePage.css';
 import 'antd/dist/antd.css';
@@ -113,14 +113,13 @@ class ProfilePage extends Component {
             <div className="container">
                 <Row gutter={16}>
                     {/* {JSON.stringify(this.props.user.userInfo)} */}
-                    <Col xs={6}><img onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} height="75" alt="profile-pic" /></Col>
+                    <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
 
                     {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
                 </Row>
                 <Row gutter={16}>
-                    <Col xs={6}><Button className="profile-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button>
-                    </Col>
+                    <Col xs={6}></Col>
                     <Col xs={18}></Col>
                 </Row>
                 <Row gutter={16}>
@@ -148,7 +147,7 @@ class ProfilePage extends Component {
                 </Row>
                 <Row gutter={16}>
                     <Col xs={24}>{this.props.story ?
-                        (<ContributedStoryList />) : (<p>loading...</p>)}</Col>
+                        (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}</Col>
                 </Row>
                 {/* this code is for the conditionally rendered modal, which only
                 appears when the profile picture is clicked on */}
@@ -187,11 +186,20 @@ class ProfilePage extends Component {
         return (
             <div>
                 <Col xs={16}>
-                    <Title id="user-name" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Title>
-                    <Text className="text">{this.props.user.userInfo.bio}</Text>
+                    <Text id="user-name" level={4}>{this.props.user.userInfo.first_name}&nbsp;{this.props.user.userInfo.last_name}</Text>
                 </Col>
-                {/* <Col xs={4}>
-                </Col> */}
+                <Row gutter={16}>
+                    <Col xs={8}></Col>
+                    <Col xs={16}>
+                        <Text className="text">{this.props.user.userInfo.bio}</Text>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col xs={6}></Col>
+                    <Col xs={18}><Button size="small" className="edit-element" id="edit-btn" onClick={this.onEditBtnClick.bind(this)}>Edit Profile</Button>
+                    </Col>
+                </Row>
+
             </div>
 
 
