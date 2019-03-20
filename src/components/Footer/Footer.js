@@ -7,7 +7,7 @@ import React from 'react';
 
 const Footer = () => (
     <footer>
-        &copy; JourneyTellr 2019
+        &copy; .
   </footer>
 );
 

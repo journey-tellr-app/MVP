@@ -125,19 +125,19 @@ class ProfilePage extends Component {
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={18}>
-                        <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
+                        <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text className="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>;
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={18}>
-                        <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                        <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text className="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={16}>
-                        <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                        <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text className="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
                     </Col>
                 </Row>
                 <Divider />
