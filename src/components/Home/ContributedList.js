@@ -25,8 +25,7 @@ class ContributedList extends Component {
             <div className='contributions'>
                 {this.props.contributedStories.length !== 0 ?
                     (<div>
-                        <h3 align='center'>My Stories and Contributions</h3>
-
+                        {/* <h3 align='center'>My Stories and Contributions</h3> */}
                         {/* this div contains the actual story blocks */}
                         <Carousel swipeToSlide>
                             {this.props.contributedStories.map((story, i) => {

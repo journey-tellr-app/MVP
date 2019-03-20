@@ -27,7 +27,7 @@ class TopStoryItem extends Component {
     render() {
 
         return (
-            <div>
+            <div align='center'>
                 <Card
                     id='card'
                     style={{ width: 300 }}
@@ -39,8 +39,10 @@ class TopStoryItem extends Component {
                         avatar={<Avatar src={this.props.profile_pic} />}
                         title={this.props.title}
                     />
-                    <h4>{this.props.name}</h4>
-                    <Icon type='like' onClick={this.handleLike} /><p>{this.props.likes}</p>
+                    <br/>
+                    <h4 align='center'>Story by {this.props.name}</h4>
+                    <Icon type='like' onClick={this.handleLike} />
+                    <p>{this.props.likes} Likes!</p>
                 </Card>
             </div>
         )
