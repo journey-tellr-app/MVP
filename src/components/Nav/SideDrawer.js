@@ -72,7 +72,7 @@ class SideDrawer extends Component {
             { route: '/search', name: 'Browse Stories', iconType: 'search' },
             { route: '/about', name: 'About', iconType: 'info-circle' },
             { route: '/', name: 'Log Out', iconType: 'logout' }];
-
+            console.log('in sidedrawer render');
         // console.log('in sidedrawer render', this.props);
         // console.log(this.props.location.pathname);
         return (
@@ -107,7 +107,7 @@ class SideDrawer extends Component {
                     {/* render directly instead of with buildLinks() */}
                     {/* {this.buildLinks()}*/}
                     {routes.map((routeObj, i) => {
-                        return <NavigationLink routeObj={routeObj} onClose={this.onClose} key={i} location={this.props.location.pathname} />
+                        return <NavigationLink routeObj={routeObj} onClose={this.onClose} key={i} />
                     })}
                 </Drawer>
             </div >
@@ -120,7 +120,5 @@ const mapStateToProps = store => ({
     userInfo: store.user.userInfo
 });
 
-const connectedSideDrawer = connect(mapStateToProps)(SideDrawer);
-
-export default withRouter(connectedSideDrawer);
+export default connect(mapStateToProps)(SideDrawer);
 
