@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
 import AddChapter from './../Chapter/AddChapter.js';
+import { Row } from 'antd';
 
 class ExistingStorySummary extends Component {
     handlePostStory = () => {
@@ -23,13 +24,14 @@ class ExistingStorySummary extends Component {
                 before rendering its contents */}
                 {summary.length !== 0 ?
                     <div>
-                        <h1>Title: {summary[0].title}</h1>
-                        <h3>Photo: <img src={summary[0].header_photo}
-                            width='150px'
-                            height='100px'
-                            alt="Shows what caption describes" /></h3>
-                        <h3>Caption: {summary[0].caption}</h3>
-
+                        <Row type="flex" justify="center">
+                            <h1>{summary[0].title}</h1>
+                            <h3><img src={summary[0].header_photo}
+                                // width='100px'
+                                height='200px'
+                                alt="Shows what caption describes" /></h3>
+                            <h3 className="caption">{summary[0].caption}</h3>
+                        </Row>
                     </div> : null
                     // when the component mounts
 
