@@ -48,7 +48,7 @@ class SideDrawer extends Component {
         if (userInfo.profile_pic !== null) {
             profilePic = userInfo.profile_pic;
         }
-
+        console.log('in side drawer render');
         return (
             <Drawer
                 width={300}

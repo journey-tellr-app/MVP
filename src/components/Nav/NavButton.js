@@ -51,4 +51,4 @@ class NavButton extends Component {
     }
 }
 
-export default withRouter(NavButton);
+export default NavButton;
