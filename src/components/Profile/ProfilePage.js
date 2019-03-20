@@ -99,34 +99,32 @@ class ProfilePage extends Component {
                 <div className="profile-header">
                     <Row gutter={16}>
                         {/* {JSON.stringify(this.props.user.userInfo)} */}
-                        <Col xs={6}><Avatar size={90} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
+                        <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
 
                         {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
                     </Row>
                     <Divider />
                     <Row gutter={16}>
-                        <Col xs={6}></Col>
-                        <Col xs={18}></Col>
+                        <Col xs={24}></Col>
                     </Row>
-                    <Row gutter={16}>
-                        <Col xs={6}></Col>
-                        <Col xs={18}>
-                            <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
-                        </Col>
-                    </Row>
-                    <Row gutter={16}>
-                        <Col xs={6}></Col>
-                        <Col xs={18}>
-                            <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
-                        </Col>
-                    </Row>
-                    <Row gutter={16}>
-                        <Col xs={6}></Col>
-                        <Col xs={16}>
-                            <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
-                        </Col>
-                    </Row>
+                    <div className="stats-div">
+                        <Row gutter={16}>
+                            <Col xs={24}>
+                                <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
+                            </Col>
+                        </Row>
+                        <Row gutter={16}>
+                            <Col xs={24}>
+                                <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                            </Col>
+                        </Row>
+                        <Row gutter={16}>
+                            <Col xs={24}>
+                                <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                            </Col>
+                        </Row>
+                    </div>
                     <Divider />
 
                 </div>

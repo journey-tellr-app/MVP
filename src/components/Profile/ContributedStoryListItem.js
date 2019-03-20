@@ -37,13 +37,12 @@ class ContributedStoryListItem extends Component {
     render() {
 
         return (
-            <div>
+            <div className="card-div">
                 {this.props.storyDetail.likes.length !== 0 ?
                     <Card
                         className="profile-story-cards"
                         style={{ width: 275 }}
                         cover={<img onClick={this.handleReadStory} width='100px' height='100px' src={this.props.header_photo} alt="story" />}
-                        hoverable
                     >
 
                         <Title onClick={this.handleReadStory} level={4}>{this.props.title}</Title>
