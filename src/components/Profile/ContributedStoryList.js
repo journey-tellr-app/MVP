@@ -5,6 +5,8 @@ import { Carousel } from 'antd';
 
 import { connect } from 'react-redux';
 
+//this file is being used on the profile page to render
+//all of the stories that a user has BEGUN
 class ContributedStoryList extends Component {
 
     componentDidMount = () => {
