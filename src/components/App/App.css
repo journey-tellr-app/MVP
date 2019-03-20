@@ -32,6 +32,15 @@ input {
     margin-bottom: 10px;
 }
 
+.caption, .title-text {
+    margin-right: 40px;
+    margin-left: 40px;  
+    text-align: center;
+}
+.chapter-contents {
+    margin-right: 40px;
+    margin-left: 40px;  
+}
 .log-in, .log-out, .register {
   background-color: #00acb0;
   border-radius: 4px;
