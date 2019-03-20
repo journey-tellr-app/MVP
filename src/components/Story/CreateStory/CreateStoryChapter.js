@@ -14,9 +14,9 @@ class CreateStoryChapter extends Component {
         // can use data-binding to get
         const keys = form.getFieldValue('keys');
         // We need at least one passenger
-        if (keys.length === 1) {
-          return;
-        }
+        // if (keys.length === 1) {
+        //   return;
+        // }
     
         // can use data-binding to set
         form.setFieldsValue({
