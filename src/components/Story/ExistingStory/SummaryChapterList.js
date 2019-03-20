@@ -20,13 +20,10 @@ class SummaryChapterList extends Component {
         }
     }
     readChapter = (e) => {
-        console.log(e);
-        
         this.props.history.push(`/existing-story/${e.story_id}/chapter/${e.id}`)
-        //     / existing - story /: id / chapter /: chapterId
     }
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         // console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
         return (
             <div>
