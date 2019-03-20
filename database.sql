@@ -43,7 +43,7 @@ CREATE TABLE "chapter" (
 	"text" TEXT,
 	"date_created" timestamp,
 	"order" integer NOT NULL,
-	"chapter_photo" text DEFAULT 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553023535303-lg.jpg',
+	"chapter_photo" text DEFAULT 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553023535303-lg.jpg',  asef
 	CONSTRAINT chapter_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
