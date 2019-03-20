@@ -28,10 +28,11 @@ class ResultListItem extends Component {
 
     // console.log(item.intro.substring(0, 40));
     return (
-      <Row type="flex" align="bottom">
+      <Row type="flex" align="middle">
         <Col span={12}>            
         <List.Item>
           <List.Item.Meta
+              bordered="false"
             title={item.title}
             description={this.handleDescription()}
             align="top"
@@ -39,11 +40,12 @@ class ResultListItem extends Component {
           {item.content}
           </List.Item> {/*end first item */}
           <List.Item
-
+            bordered="false"
             key={item.title}
             actions={[<Icon type="like" text="156" />]}
           >
             <List.Item.Meta
+              bordered="false"
               avatar={<Avatar src={item.profile_pic} />}
               description={item.full_name}
             />
@@ -51,12 +53,14 @@ class ResultListItem extends Component {
         </Col>
         <Col span={12}>
           <Card
+            bordered="false"
             onClick={this.handleClick}
             hoverable
             style={{ width: 240 }}
             cover={<img alt="example" src={item.header_photo} />}
           >
             <Meta
+              bordered="false"
               description={item.caption}
             />
           </Card>
