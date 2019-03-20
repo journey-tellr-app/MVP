@@ -41,28 +41,24 @@ class CreateStoryChapter extends Component {
         this.props.history.push('/choose-template/');
     }
 
-    // removeChapter = (chapter) => {
-    //     let dataToSend = { type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapter };
-    //     this.props.dispatch(dataToSend);
-    // }
-    
-    // addChapter = () => {
-    //     let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: {title: ''} };
-    //     this.props.dispatch(dataToSend);
-    // }
-
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
     nextPage = (event) => {
         event.preventDefault();
         this.props.form.validateFieldsAndScroll((error, values) => {
             if (!error) {
-                console.log('Received values of form: ', values);
-                let filterValues = values.title.filter((item) => ({title: item}));
-                let newPayload = filterValues.map((ch) => ({title: ch}));
-                console.log(`New payload values`, newPayload);
-                let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: newPayload };
-                this.props.dispatch(dataToSend);
+                // check keys value to find out if there are any chapters
+                if(values.keys.length > 0) {
+                    // filter out empty chapters that have been removes
+                    let filterValues = values.title.filter((item) => ({title: item}));
+                    // package the chapters in an object for the reducer
+                    let newPayload = filterValues.map((ch) => ({title: ch}));
+
+                    // create a variable for dispatching to redux saga and send
+                    let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: newPayload };
+                    this.props.dispatch(dataToSend);
+                }
+                // go to the contributor page
                 this.props.history.push('/choose-template/contributor/');
             } else {
                 console.log('Error: ', values);
@@ -106,7 +102,8 @@ class CreateStoryChapter extends Component {
             },
         };
 
-        getFieldDecorator('keys', { initialValue: [] });
+        const newArray = template.length > 0 ? template.map((item, i) => (i)) : [];
+        getFieldDecorator('keys', { initialValue: newArray });
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => (
             <Form.Item index={formItemLayout}
