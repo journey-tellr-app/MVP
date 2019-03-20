@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 import ProfileInfo from './ProfileInfo';
 import UserInfo from './UserInfo';
+import ErrorNotification from '../Common/ErrorNotification';
+
+import { notification } from 'antd';
 
 class RegisterPage extends Component {
   state = {
@@ -24,11 +27,16 @@ class RegisterPage extends Component {
     this.setState({ page: page })
   }
 
+  showRegistrationErrorMessage = () => {
+    notification.open({})
+  }
+
   render() {
     const { registration } = this.props;
 
     return (
       <div>
+        {ErrorNotification()}
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
