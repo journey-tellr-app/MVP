@@ -102,7 +102,7 @@ function* storySaga() {
     yield takeLatest('GET_TOP_STORIES', getTopStories);
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     // yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
-    yield takeLatest('ADD_NEW_STORY', addAStory);
+    yield takeLatest('POST_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
 }
 

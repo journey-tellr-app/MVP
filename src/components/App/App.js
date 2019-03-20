@@ -16,7 +16,6 @@ import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import SearchMain from '../Search/SearchMain';
-import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
 import CreateStory from '../Story/CreateStory/CreateStory.js';
 import CreateStoryDetail from './../Story/CreateStory/CreateStoryDetail.js';

@@ -9,7 +9,7 @@ import { Form, Input, Button } from 'antd';
 class CreateStoryDetail extends Component {
 
     // go bact to the previous page
-    prevousButton = () => {
+    previousButton = () => {
         this.props.history.push('/choose-template/');
     }
 

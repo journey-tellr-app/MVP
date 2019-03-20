@@ -36,9 +36,9 @@ class CreateStoryChapter extends Component {
         });
     } // end addChapter
 
-    // go bact to the previous page
-    prevousButton = () => {
-        this.props.history.push('/choose-template/');
+    // go back to the previous page
+    previousButton = () => {
+        this.props.history.push('/choose-template/detail/');
     }
 
     // called when create story button is pressed
@@ -68,7 +68,7 @@ class CreateStoryChapter extends Component {
 
     render() {
 
-        const { chapter, template } = this.props;
+        const { template } = this.props;
         const { getFieldDecorator, getFieldValue } = this.props.form;
 
         const formItemLayout = {
@@ -161,7 +161,6 @@ const WrappedCreateStoryChapter = Form.create()(CreateStoryChapter);
 
 const mapStoreToProps = reduxStore => ({
     template: reduxStore.template.templateNewChapterReducer,
-    chapter: reduxStore.chapter.newStoryChapterReducer,
 });
 
 export default connect(mapStoreToProps)(WrappedCreateStoryChapter);
