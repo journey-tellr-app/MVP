@@ -3,6 +3,10 @@ import TopStoryItem from './TopStoryItem';
 
 // import Slider from 'react-slick';
 import { Carousel } from 'antd';
+<<<<<<< HEAD
+// import propTypes from 'prop-types';
+=======
+>>>>>>> dbd0603ed888ec758519c8e4c2d3da844b576956
 import { connect } from 'react-redux';
 
 class TopStoryList extends Component {
@@ -15,7 +19,7 @@ class TopStoryList extends Component {
         
         return (
             <div className='top-stories'>
-                <h3>Top Stories</h3>
+                <h3 align='center'>Top Stories at Prime</h3>
                 {/* this div contains the individual top stories */}
                 <Carousel>
                     {this.props.topStories.map( (story, i) => {

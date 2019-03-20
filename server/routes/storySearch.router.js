@@ -4,10 +4,12 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-const baseQuery = `select story.id as story_id, header_photo, title, caption, 
-    intro, date_started, completed, last_edit, profile_pic,
-    concat(first_name, ' ', last_name) as full_name
-    from story join person on story.author = person.id`
+const baseQuery = `SELECT story.id as story_id, header_photo, title, caption, 
+                          intro, date_started, completed, last_edit, profile_pic,
+                          concat(first_name, ' ', last_name) as full_name
+                   FROM story 
+                   JOIN person 
+                   ON story.author = person.id`
 
 //This Router is for when user searches data base for specific stories 
 //AUTHOR
