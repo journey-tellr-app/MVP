@@ -45,7 +45,7 @@ class LoginPage extends Component {
       description: this.props.errors.loginMessage,
       duration: 4,
     });
-    this.props.dispatch({type: 'CLEAR_LOGIN_ERROR' });
+    this.props.dispatch({ type: 'CLEAR_LOGIN_ERROR' });
   };
 
   render() {
@@ -54,56 +54,64 @@ class LoginPage extends Component {
     const { handleInputChangeFor } = this;
     return (
       <div>
-        <SubHeader headerText='Log In' />
         {this.props.errors.loginMessage &&
           this.showLoginErrorMessage()
         }
-        <form onSubmit={this.login} className="login-form">
-          <label htmlFor="email">
-            Email:
-              <Input
-              placeholder="Enter your email address"
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              suffix={suffix}
-              value={email}
-              id='email'
-              onChange={handleInputChangeFor}
-            />
-          </label>
+        <Row>
+          <Col>
+            <SubHeader headerText='Log In' />
+          </Col>
 
-          <label htmlFor="password">
-            Password:
-              <Input
-              placeholder='Enter you password'
-              prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password"
-              value={password}
-              id='password'
-              onChange={handleInputChangeFor}
-            />
-          </label>
-
-          <Button
-            type="primary"
-            htmlType='submit'>
-            Log In
-          </Button>
-        </form>
-
-        <center>
-          <Button
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
-            Register
-          </Button>
-        </center>
+          <Col>
+            <form onSubmit={this.login} className="login-form">
+              <Row type="flex" justify="center">
+                <Col span={18} style={{ margin: '10px 0px' }}>
+                  <label htmlFor="email">
+                    Email:
+                    <Input
+                      placeholder="Enter your email address"
+                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                      suffix={suffix}
+                      value={email}
+                      id='email'
+                      onChange={handleInputChangeFor} />
+                  </label>
+                </Col>
+                <Col span={18} style={{ marginBottom: '10px' }}>
+                  <label htmlFor="password">
+                    Password:
+                    <Input
+                      placeholder='Enter you password'
+                      prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                      type="password"
+                      value={password}
+                      id='password'
+                      onChange={handleInputChangeFor} />
+                  </label>
+                </Col>
+                <Col span={18} style={{ marginBottom: '10px' }}>
+                  <Button
+                    type="primary"
+                    htmlType='submit'
+                    style={{ width: '100%' }}>
+                    Log In</Button>
+                </Col>
+              </Row>
+            </form>
+          </Col>
+          <Col style={{
+            margin: '20px',
+            float: 'right',}}>
+            <Button
+              onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
+              Register</Button>
+          </Col>
+        </Row>
       </div>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
