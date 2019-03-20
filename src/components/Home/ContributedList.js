@@ -16,10 +16,6 @@ class ContributedList extends Component {
     };
 
 
-    handleStartStory = () => {
-        console.log('button clicked');
-    }
-
     render() {
         return (
             //this component will render all of the stories a 

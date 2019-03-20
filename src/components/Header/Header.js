@@ -2,22 +2,22 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import SideDrawer from './SideDrawer';
+import NavButton from '../Nav/NavButton.js';
 
 import { Icon, Row, Col } from 'antd';
-import './Nav.css';
+import '../Nav/Nav.css';
 
-class Nav extends React.Component {
+class Header extends React.Component {
 
     render() {
         // console.log(this.props);
-        console.log('in nav render');
+        console.log('in header render');
         let journeyTellrLogo = './images/kevinslogos/JourneyTellr-Nameonly-color-noR.png'
         return (
             <Row type="flex" justify="center" align='middle' className='nav'>
                 <Col span={3}>
                     {this.props.user.id !== undefined ?
-                        <SideDrawer />
+                        <NavButton />
                         :
                         <div className='header-button-div'>
                             <Link to="/about" >
@@ -47,5 +47,4 @@ const mapRStoProps = (rs) => {
     return { user: rs.user.userInfo }
 }
 
-//given history so that NavigationLink can rerender based on changes in location.pathname
-export default connect(mapRStoProps)(Nav);
+export default withRouter(connect(mapRStoProps)(Header));
