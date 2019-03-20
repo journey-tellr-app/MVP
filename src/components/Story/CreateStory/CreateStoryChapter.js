@@ -103,11 +103,13 @@ class CreateStoryChapter extends Component {
         };
 
         const newArray = template.length > 0 ? template.map((item, i) => (i)) : [];
+        const isTemplate = template.length > 0 ? true : false;
         getFieldDecorator('keys', { initialValue: newArray });
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => (
             <Form.Item index={formItemLayout}
                        label="Chapter"
+                       extra={isTemplate && (k >= 0 && k <= (template.length - 1)) ? template[k].text : '' }
                        required={true}
                        key={k}
             >
