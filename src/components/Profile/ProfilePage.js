@@ -112,7 +112,7 @@ class ProfilePage extends Component {
 
             <div className="container">
                 <Row gutter={16}>
-                    {/* {JSON.stringify(this.props.user.userInfo)} */}
+                    {JSON.stringify('userStoryReducer: ', this.props.story.userStoryReducer)}
                     <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
 
                     {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
@@ -131,18 +131,18 @@ class ProfilePage extends Component {
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={18}>
-                        <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                        <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories I've Begun</Text>
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col xs={6}></Col>
                     <Col xs={16}>
-                        <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                        <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Stories I'm Contributing To</Text>
                     </Col>
                 </Row>
                 <Divider />
                 <Row gutter={16}>
-                    <Col xs={8}><Title level={4}>Stories</Title></Col>
+                    <Col xs={8}><Title level={4} align='center'>Stories</Title></Col>
                     <Col xs={18}></Col>
                 </Row>
                 <Row gutter={16}>
