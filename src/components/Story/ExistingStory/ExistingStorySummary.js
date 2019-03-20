@@ -25,7 +25,7 @@ class ExistingStorySummary extends Component {
                 {summary.length !== 0 ?
                     <div>
                         <Row type="flex" justify="center">
-                            <h1>{summary[0].title}</h1>
+                            <h1 className="title-text">{summary[0].title}</h1>
                             <h3><img src={summary[0].header_photo}
                                 // width='100px'
                                 height='200px'

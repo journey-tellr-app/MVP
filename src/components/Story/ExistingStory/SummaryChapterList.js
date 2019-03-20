@@ -33,8 +33,8 @@ class SummaryChapterList extends Component {
                         const { order, chapter_photo, text, title } = item;
                         return (
                             <List.Item
-                                key={title}
-                                extra={<img width={100} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
+                                key={title} type="flex" align="top" className="chapter-contents"
+                                extra={<img width={200} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
                             >
                                 <List.Item.Meta
                                     title={<Link to={`${this.props.match.url}/chapter/${order}`}>{title}</Link>}
