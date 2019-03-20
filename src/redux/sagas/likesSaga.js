@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* likeContributedStory(action) {
     try {
-        const serverResponse = yield axios.post('/like', action.payload);
+        yield axios.post('/like', action.payload);
 
         yield put({ type: 'GET_MY_CONTRIBUTIONS'});
         
@@ -14,7 +14,7 @@ function* likeContributedStory(action) {
 
 function* likeTopStory(action) {
     try {
-        const serverResponse = yield axios.post('/like', action.payload);
+        yield axios.post('/like', action.payload);
 
         yield put({ type: 'GET_TOP_STORIES'});
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { Typography, Icon } from 'antd';
 
@@ -13,7 +13,6 @@ class NavigationLink extends Component {
     }
 
     render() {
-        console.log('in navigation link render');
         const { route, name, iconType } = this.props.routeObj;
         let onClickFxn = this.props.handleSideBar.bind(this, false);
         if (name === 'Log Out') {

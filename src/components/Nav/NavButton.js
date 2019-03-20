@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 import SideDrawer from './SideDrawer';
 
@@ -33,7 +33,6 @@ class NavButton extends Component {
     };
 
     render() {
-        console.log(this.state);
         return (
             <div className='header-button-div'>
                 <FontAwesomeIcon
