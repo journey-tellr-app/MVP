@@ -55,7 +55,7 @@ class ContributorPopup extends Component {
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    {ContributorBtnName}</Button>
+                    Add Contributors</Button>
                 <Modal
                     visible={visible}
                     title="Adding Contributors"

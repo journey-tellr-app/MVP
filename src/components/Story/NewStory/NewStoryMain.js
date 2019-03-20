@@ -7,7 +7,7 @@ import ChapterList from '../Chapter/ChapterList.js';
 import AddChapter from '../Chapter/AddChapter.js';
 
 // ant design import
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Divider } from 'antd';
 
 class NewStoryForm extends Component {
 
@@ -85,7 +85,7 @@ class NewStoryForm extends Component {
 
         return (
             <Form layout="vertical" onSubmit={this.createStory}>
-                <h2>Create a Story</h2>
+                <Divider><h2 align='center'>Create a Story</h2></Divider>
                 <Form.Item
                     label="Create a story or choose a template"
                 >
@@ -154,13 +154,13 @@ class NewStoryForm extends Component {
                 <h3>Chapters</h3>
                 {chapter.length !== 0 ? <ChapterList chapter={chapter} /> : ''}
                 <Form.Item
-                    label="Add a chapter"
+                    // label="Add a chapter"
                 >
                     <AddChapter chapter={chapter} storyId="new" />
                 </Form.Item>
                 <h3>Contributors</h3>
                 <Form.Item
-                    label="Add contributors"
+                    // label="Add contributors"
                 >
                     <ContributorPopup />
                 </Form.Item>
