@@ -23,7 +23,6 @@ class ContributedListItem extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <Card
