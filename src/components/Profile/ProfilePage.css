@@ -14,7 +14,7 @@
     border-color: #D98A4F;
 }
 
-.container {
+.profile-header {
     margin-left: 2.5em;
     margin-right: auto;
     margin-top: 1.5em;
@@ -36,3 +36,7 @@
 #user-name {
     font-size: 18px;
 }
+
+/* .profile-story-cards {
+    border: 1px solid gray;
+} */

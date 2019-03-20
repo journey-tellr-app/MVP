@@ -95,46 +95,52 @@ class ProfilePage extends Component {
 
         return (
 
-            <div className="container">
-                <Row gutter={16}>
-                    <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
+            <div className="container" >
+                <div className="profile-header">
+                    <Row gutter={16}>
+                        {/* {JSON.stringify(this.props.user.userInfo)} */}
+                        <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
 
-                    {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
+                        {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
-                </Row>
-                <Row gutter={16}>
-                    <Col xs={6}></Col>
-                    <Col xs={18}></Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col xs={6}></Col>
-                    <Col xs={18}>
-                        <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text className="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>;
-                    </Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col xs={6}></Col>
-                    <Col xs={18}>
-                        <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Stories I've Begun</Text>
-                    </Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col xs={6}></Col>
-                    <Col xs={16}>
+                    </Row>
+                    <Row gutter={16}>
+                        <Col xs={6}></Col>
+                        <Col xs={18}></Col>
+                    </Row>
+                    <Row gutter={16}>
+                        <Col xs={6}></Col>
+                        <Col xs={18}>
+                            <Icon className="profile-element" type="calendar" style={{ fontSize: "12px" }} /><Text class="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
+                        </Col>
+                    </Row>
+                    <Row gutter={16}>
+                        <Col xs={6}></Col>
+                        <Col xs={18}>
+                            <Icon className="profile-element" type="book" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                        </Col>
+                    </Row>
+                    <Row gutter={16}>
+                        <Col xs={6}></Col>
+                        <Col xs={16}>
+                            <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                        </Col>
+                    </Row>
+                </div>
 
-                        <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{}&nbsp;Stories I'm Contributing To</Text>
-
-                    </Col>
-                </Row>
                 <Divider />
-                <Row gutter={16}>
-                    <Col xs={8}><Title level={4} align='center'>Stories</Title></Col>
-                    <Col xs={18}></Col>
-                </Row>
-                <Row gutter={16}>
-                    <Col xs={24}>{this.props.story ?
-                        (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}</Col>
-                </Row>
+                <div align="center">
+                    <Row gutter={8}>
+                        <Col xs={24}>
+                            <Divider><Title level={4}>Stories</Title></Divider>
+                        </Col>
+                    </Row>
+                    <Row gutter={16}>
+                        <Col xs={24}>{this.props.story ?
+                            (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}</Col>
+                    </Row>
+                </div>
+        
                 {/* this code is for the conditionally rendered modal, which only
                 appears when the profile picture is clicked on */}
                 <div>
