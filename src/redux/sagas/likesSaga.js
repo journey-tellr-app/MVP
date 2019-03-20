@@ -3,10 +3,8 @@ import axios from 'axios';
 
 function* likeContributedStory(action) {
     try {
-        // console.log('in likeContributedStory saga, action.payload: ', action.payload);
         yield axios.post('/like', action.payload);
         yield put({ type: 'GET_MY_CONTRIBUTIONS'});
-        
     } catch(error) {
         console.log(`Error in likeContributedStory saga: ${error}`);
     }
@@ -14,10 +12,8 @@ function* likeContributedStory(action) {
 
 function* likeTopStory(action) {
     try {
-        // console.log('in likeTopStory saga, action.payload: ', action.payload);
         yield axios.post('/like', action.payload);
         yield put({ type: 'GET_TOP_STORIES'});
-
     } catch(error) {
         console.log(`Error in likeTopStory saga: ${error}`);
     }

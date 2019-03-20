@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { Typography, Icon } from 'antd';
 
@@ -26,4 +26,4 @@ class NavigationLink extends Component {
     }
 }
 
-export default withRouter(connect()(NavigationLink));
+export default connect()(NavigationLink);

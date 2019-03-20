@@ -3,7 +3,7 @@ import TopStoryItem from './TopStoryItem';
 
 // import Slider from 'react-slick';
 import { Carousel } from 'antd';
-// import propTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 
 class TopStoryList extends Component {

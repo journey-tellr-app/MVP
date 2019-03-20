@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import SideDrawer from './SideDrawer';
 
 // icons used on this component

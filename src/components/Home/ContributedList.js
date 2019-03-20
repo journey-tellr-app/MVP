@@ -15,8 +15,8 @@ class ContributedList extends Component {
         contributedStories: propTypes.array.isRequired,
     };
 
-    render() {
 
+    render() {
         return (
             //this component will render all of the stories a 
             //user has started or contributed to.
