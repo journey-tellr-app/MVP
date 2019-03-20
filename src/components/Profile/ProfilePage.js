@@ -89,7 +89,7 @@ class ProfilePage extends Component {
     testThings = () => {
         console.log(this.props.reduxStore.user);
     }
- 
+
 
     render() {
 
@@ -99,11 +99,12 @@ class ProfilePage extends Component {
                 <div className="profile-header">
                     <Row gutter={16}>
                         {/* {JSON.stringify(this.props.user.userInfo)} */}
-                        <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
+                        <Col xs={6}><Avatar size={90} onClick={this.showModal} id="avatar" className="profile-element" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
 
                         {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
                     </Row>
+                    <Divider />
                     <Row gutter={16}>
                         <Col xs={6}></Col>
                         <Col xs={18}></Col>
@@ -126,13 +127,13 @@ class ProfilePage extends Component {
                             <Icon className="profile-element" type="profile" style={{ fontSize: "12px" }} /><Text class="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
                         </Col>
                     </Row>
-                </div>
+                    <Divider />
 
-                <Divider />
+                </div>
                 <div align="center">
                     <Row gutter={8}>
                         <Col xs={24}>
-                            <Divider><Title level={4}>Stories</Title></Divider>
+                            <Title level={4}>Stories</Title>
                         </Col>
                     </Row>
                     <Row gutter={16}>
@@ -140,7 +141,7 @@ class ProfilePage extends Component {
                             (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}</Col>
                     </Row>
                 </div>
-        
+
                 {/* this code is for the conditionally rendered modal, which only
                 appears when the profile picture is clicked on */}
                 <div>
