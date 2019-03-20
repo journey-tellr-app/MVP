@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import SubHeader from '../Common/SubHeader';
+
+import { Input, Icon, Row, Col, Button } from 'antd';
+import './LoginPage.css';
+
 class LoginPage extends Component {
   state = {
-
     email: '',
     password: '',
   };
 
   login = (event) => {
     event.preventDefault();
-
     if (this.state.email && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
@@ -24,15 +27,24 @@ class LoginPage extends Component {
     }
   } // end login
 
-  handleInputChangeFor = propertyName => (event) => {
+  handleInputChangeFor = (event) => {
     this.setState({
-      [propertyName]: event.target.value,
+      [event.target.id]: event.target.value,
     });
   }
 
+  emitEmpty = () => {
+    this.userNameInput.focus();
+    this.setState({ email: '' });
+  }
+
   render() {
+    const suffix = email ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
+    const { email, password } = this.state;
+    const { handleInputChangeFor } = this;
     return (
       <div>
+        <SubHeader headerText='Log In' />
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -42,46 +54,42 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login} className="login-form">
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="email">
-              Email:
-              <input
-                type="text"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleInputChangeFor('email')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
+          <label htmlFor="email">
+            Email:
+              <Input
+              placeholder="Enter your email address"
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              suffix={suffix}
+              value={email}
+              id='email'
+              onChange={handleInputChangeFor}
             />
-          </div>
+          </label>
+
+          <label htmlFor="password">
+            Password:
+              <Input
+              placeholder='Enter you password'
+              prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
+              type="password"
+              value={password}
+              id='password'
+              onChange={handleInputChangeFor}
+            />
+          </label>
+
+          <Button
+            type="primary"
+            htmlType='submit'>
+            Log In
+          </Button>
         </form>
+
         <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
-          >
+          <Button
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
             Register
-          </button>
+          </Button>
         </center>
       </div>
     );
