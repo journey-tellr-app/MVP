@@ -35,63 +35,37 @@ class UserInfo extends Component {
       handleInputChangeFor,
       handleRegisterNavButton, } = this.props;
 
-    //took out getFieldsError for now
-    const {
-      getFieldDecorator,
-      getFieldError,
-      isFieldTouched,
-    } = this.props.form;
-
-    // Only show error after a field is touched.
-    const userNameError = isFieldTouched('userName') && getFieldError('userName');
-    // const passwordError = isFieldTouched('password') && getFieldError('password');
-
     return (
       <div>
         <h2>Enter User Info</h2>
-        <Form layout='vertical' onSubmit={this.registerUser}>
-          <Form.Item
-            validateStatus={userNameError ? 'error' : ''}
-            help={userNameError || ''}
-            label="Email"
-          >
-            {getFieldDecorator('email', {
-              rules: [{ type: 'email', message: 'The input is not valid email!', },
-              { required: true, message: 'Please enter a valid email address eg user@site.com' }],
-              initialValue: registration.email
-            })(
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Username"
-                onChange={handleInputChangeFor('email')}
-                name='email' />
-            )}
-          </Form.Item>
-        </Form>
         <form onSubmit={this.registerUser}>
-          <Input
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Username"
-            onChange={handleInputChangeFor('email')}
-            name='email'
-            required />
+
+          <label htmlFor="email">
+            <Input
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="yourname@email.com"
+              onChange={handleInputChangeFor}
+              name='email'
+              required />
+          </label>
+
           <label htmlFor="confirm_email">
             Confirm Email:
-              <input
+            <Input
               type="text"
               name="confirm_email"
               value={registration.confirm_email}
-              onChange={handleInputChangeFor('confirm_email')}
-              required
-            />
+              onChange={handleInputChangeFor}
+              required />
           </label>
+
           <label htmlFor="password">
             Password:
               <input
               type="password"
               name="password"
               value={registration.password}
-              onChange={handleInputChangeFor('password')}
+              onChange={handleInputChangeFor}
               required
             />
           </label>
@@ -101,7 +75,7 @@ class UserInfo extends Component {
               type="password"
               name="confirm_password"
               value={registration.confirm_password}
-              onChange={handleInputChangeFor('confirm_password')}
+              onChange={handleInputChangeFor}
               required
             />
           </label>

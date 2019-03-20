@@ -5,20 +5,20 @@ import { connect } from 'react-redux';
 
 import ProfileInfo from './ProfileInfo';
 import UserInfo from './UserInfo';
-import ErrorNotification from '../Common/ErrorNotification';
+import SubHeader from '../Common/SubHeader';
 
-import { notification } from 'antd';
+import { notification, Row, Col, Button } from 'antd';
 
 class RegisterPage extends Component {
   state = {
     page: 'profile',
   }
 
-  handleInputChangeFor = propertyName => (event) => {
+  handleInputChangeFor = (event) => {
     this.props.dispatch({
       type: 'UPDATE_REGISTRATION',
       payload: {
-        [propertyName]: event.target.value,
+        [event.target.name]: event.target.value,
       }
     });
   }
@@ -27,8 +27,14 @@ class RegisterPage extends Component {
     this.setState({ page: page })
   }
 
-  showRegistrationErrorMessage = () => {
-    notification.open({})
+  showRegisterErrorMessage = () => {
+    notification.open({
+      key: 'registerMessage',
+      message: 'Error with Registration',
+      description: this.props.errors.registrationMessage,
+      duration: 4,
+    });
+    this.props.dispatch({ type: 'CLEAR_REGISTRATION_ERROR' });
   }
 
   render() {
@@ -36,39 +42,39 @@ class RegisterPage extends Component {
 
     return (
       <div>
-        {ErrorNotification()}
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
-
-        <h1>New User Registration</h1>
-
-        {this.state.page === 'profile' &&
-          <ProfileInfo registration={registration}
-            handleInputChangeFor={this.handleInputChangeFor}
-            handleRegisterNavButton={this.handleRegisterNavButton} />
+        {this.props.errors.registrationMessage &&
+          this.showRegisterErrorMessage()
         }
+        <Row>
+          <Col>
+            <SubHeader headerText='New User Registration' />
+          </Col>
 
-        {this.state.page === 'user' &&
-          <UserInfo registration={registration}
-            handleInputChangeFor={this.handleInputChangeFor}
-            handleRegisterNavButton={this.handleRegisterNavButton} />
-        }
+          {this.state.page === 'profile' &&
+            <Col>
+              <ProfileInfo registration={registration}
+                handleInputChangeFor={this.handleInputChangeFor}
+                handleRegisterNavButton={this.handleRegisterNavButton} />
+            </Col>
+          }
 
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
-          >
-            Return to Login
-          </button>
-        </center>
+          {this.state.page === 'user' &&
+            <Col>
+              <UserInfo registration={registration}
+                handleInputChangeFor={this.handleInputChangeFor}
+                handleRegisterNavButton={this.handleRegisterNavButton} />
+            </Col>
+          }
+          <Col style={{
+            margin: '20px',
+            float: 'right',
+          }}>
+            <Button
+              onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}>
+              Return to Login
+            </Button>
+          </Col>
+        </Row>
       </div>
     );
   }
