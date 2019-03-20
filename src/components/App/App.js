@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 //app routes
@@ -111,7 +110,6 @@ class App extends Component {
             <Route render={() => <h1>404</h1>} />
             {/*  */}
           </Switch>
-          <Footer />
         </div>
       </Router>
     )

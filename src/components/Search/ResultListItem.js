@@ -30,12 +30,11 @@ class ResultListItem extends Component {
           <List.Item
 
             key={item.title}
-            actions={[<Icon type="like-o" text="156" />]}
+            actions={[<Icon type="like" text="156" />]}
           >
             <List.Item.Meta
               avatar={<Avatar src={item.profile_pic} />}
               description={item.full_name}
-              
             />
           </List.Item>
         </Col>
@@ -51,11 +50,8 @@ class ResultListItem extends Component {
           </Card>
         </Col>
       </Row>
-
     )
   }
 }
-
-
 
 export default withRouter(ResultListItem);

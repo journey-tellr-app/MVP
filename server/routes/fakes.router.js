@@ -123,8 +123,8 @@ router.post('/chapter', rejectUnauthenticated, (req, res) => {
                     text: faker.lorem.paragraph(),
                     chapter_photo: faker.image.avatar()
                 }
-                const queryText = `insert into chapter("story_id", "title", "text", "chapter_photo")
-                                    values ($1, $2, $3, $4);`;
+                const queryText = `INSERT INTO chapter("story_id", "title", "text", "chapter_photo")
+                                   VALUES ($1, $2, $3, $4);`;
                 const values = [
                     fakeChapter.story_id,
                     fakeChapter.title,
