@@ -5,16 +5,12 @@ import { connect } from 'react-redux';
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
 
-
-// import { Carousel } from 'antd';
-
-
 class HomePage extends Component {
     
     render() {
         return (
             <div>
-                <h1>Home page</h1>
+                <h1 align='center'>Home page</h1>
                 <ContributedList
                     history={this.props.history}
                 />

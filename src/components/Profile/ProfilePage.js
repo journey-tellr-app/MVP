@@ -9,12 +9,9 @@ import moment from 'moment'
 
 import ContributedStoryList from './ContributedStoryList';
 
-
 const { Title } = Typography;
 const { Text } = Typography;
 const { TextArea } = Input;
-
-
 
 // this component displays the user's profile information and stories
 class ProfilePage extends Component {
@@ -28,14 +25,12 @@ class ProfilePage extends Component {
             visible: false,
             file: null
         };
-
     // functions for image upload   
     showModal = () => {
         this.setState({
             visible: true,
         });
     }
-
     handleOk = (e) => {
         console.log(e);
         this.submitFile();
@@ -43,14 +38,12 @@ class ProfilePage extends Component {
             visible: false,
         });
     }
-
     handleCancel = (e) => {
         console.log(e);
         this.setState({
             visible: false,
         });
     }
-
     submitFile = (event) => {
         // console.log('in sF');
 
@@ -65,7 +58,6 @@ class ProfilePage extends Component {
         }
         this.props.dispatch(action);
         // console.log(this.props.photoDetails.typeOfPhoto);
-
     }
     appendPic = () => {
         let statePic = this.state.file
@@ -77,18 +69,15 @@ class ProfilePage extends Component {
             file: event.target.files[0]
         })
     }
-
     // functions for editing input fields
     onEditBtnClick() {
         this.setState(state => ({
             isHidden: !state.isHidden
         }));
     }
-
     handleChange = propertyName => event => {
         this.setState({ [propertyName]: event.target.value });
     }
-
     submitEditedName() {
         const editedName = { id: this.state.id, first_name: this.state.first_name, last_name: this.state.last_name, bio: this.state.bio }
         console.log(editedName);
@@ -97,14 +86,10 @@ class ProfilePage extends Component {
             isHidden: !state.isHidden
         }));
     }
-
-
-
-
     testThings = () => {
         console.log(this.props.reduxStore.user);
-
     }
+ 
 
     render() {
 
@@ -155,6 +140,7 @@ class ProfilePage extends Component {
                             (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}</Col>
                     </Row>
                 </div>
+        
                 {/* this code is for the conditionally rendered modal, which only
                 appears when the profile picture is clicked on */}
                 <div>

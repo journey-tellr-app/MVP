@@ -76,11 +76,21 @@
     padding: 10px;
     align-items: center;
     background-color: inherit;
+    color: inherit;
+}
+
+.nav-link-default {
+    background-color: rgba(220, 220, 220, 0.671);
     color: black;
 }
 
-.nav-active {
-    background-color: rgba(217, 139, 79, 0.534);
+.nav-link-default:hover {
+    background-color: rgb(217, 139, 79);
+    color: white;
+}
+
+.nav-link-active {
+    background-color: rgb(217, 139, 79);
     color: white;
 }
 

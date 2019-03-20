@@ -47,15 +47,8 @@ class ContributedStoryListItem extends Component {
                     >
 
                         <Title onClick={this.handleReadStory} level={4}>{this.props.title}</Title>
-                        <Icon type='like' /><p>{this.props.story.contributedStoryReducer[0].likes}</p>
-
-
-
+                        <Icon type='like' /><p>{this.props.likes}</p>
                     </Card> : (<p>loading...</p>)}
-
-
-
-
             </div>
         )
     }

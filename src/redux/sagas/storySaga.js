@@ -97,6 +97,7 @@ function* clearNewStory() {
     }
 }
 
+
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
     yield takeLatest('GET_TOP_STORIES', getTopStories);

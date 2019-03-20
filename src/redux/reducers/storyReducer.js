@@ -62,6 +62,7 @@ const imageReducer = (state = initialImage, action) => {
     return state;
 }
 
+
 export default combineReducers({
     contributedStoryReducer, // used on the home page
     topStoriesReducer, //used the home page
