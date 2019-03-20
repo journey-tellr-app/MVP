@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   HashRouter as Router,
   Route,
@@ -6,27 +7,25 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
+import Header from '../Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+//app routes
 import AboutPage from '../AboutPage/AboutPage';
-// import UserPage from '../UserPage/UserPage';
 import HomePage from '../Home/HomePage';
-//for use in other components
-import ContributorPopup from '../Story/Contributor/ContributorPopup';
-
-import ChooseTemplate from '../Story/NewStory/ChooseTemplate';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
-import Search from '../Search/Search';
+import SearchMain from '../Search/SearchMain';
+import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
+import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
 
+//for dev convenience
+import FakeData from '../Faker/FakeData';
+import ContributorPopup from '../Story/Contributor/ContributorPopup';
+
+//styling imports
 import './App.css';
-import ExistingStory from '../Story/ExistingStory/ExistingStory';
-import LoginPage from '../LoginPage/LoginPage';
+import { Row } from 'antd';
 
 
 class App extends Component {
@@ -38,7 +37,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Row>
+            <Header />
+          </Row>
+
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -49,55 +51,49 @@ class App extends Component {
               path="/about"
               component={AboutPage}
             />
-            {/* <Route
-              exact path='/home'
-              component={HomePage}
-            /> */}
-            <Route
+            <ProtectedRoute
               exact path='/notification'
               component={Notification}
             />
-            <Route
+            <ProtectedRoute
               exact path='/choose-template'
-              component={ChooseTemplate}
+              component={NewStoryMain}
             />
-            <Route
+            <ProtectedRoute
               exact path='/profile'
               component={ProfilePage}
             />
-            <Route
+            <ProtectedRoute
               exact path='/search'
-              component={Search}
+              component={SearchMain}
             />
-            {/* <Route
-              exact path='/login'
-              component={LoginPage}
-            /> */}
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/home will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
-            Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute
               exact
               path="/home"
               component={HomePage}
             />
-            {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
-            <Route
+            <ProtectedRoute
               exact
               path="/contributor"
               component={ContributorPopup}
             />
-            <Route
-            exact path='/existing-story'
-            component={ExistingStory}
+            <ProtectedRoute
+              exact path='/existing-story/:id'
+              component={ExistingStoryMain}
             />
+            <ProtectedRoute
+              exact path='/existing-story/:id/chapter/:chapterId'
+              component={ExistingStoryMain}
+            />
+            <Route
+              exact path='/fake-data'
+              component={FakeData}
+            />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
             {/*  */}
           </Switch>
-          <Footer />
         </div>
       </Router>
     )

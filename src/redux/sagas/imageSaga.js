@@ -2,15 +2,17 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addImageAWS(action) {
+    console.log('in addImage AWS', action);
     let awsResponse;
     try {
             yield axios.post(`/awsS3`, action.payload, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(response => {
+            })
+            .then(response => {
                 awsResponse = response; 
-                console.log(awsResponse);
+                // console.log(awsResponse);
 
             }).catch(error => {
                 console.log(error);
@@ -29,14 +31,20 @@ function* addImageAWS(action) {
 function* addImagePerson(action) {
 
     try {
-        
-        yield axios.put(`/api/user/${action.id}`, action.payload, {
-        }).then(response => {
-            console.log(response);
+        yield axios.put(`/api/user/${action.id}`, action.payload);
+        yield put({ type: 'FETCH_USER' });
+    } catch (error) {
+        console.log('Error with addImage:', error);
+    }
 
-        }).catch(error => {
-            console.log(error);
-        });  //end put
+
+}
+
+function* updatePicture(action) {
+
+    try {
+        yield axios.put(`/api/user/${action.id}`, action.payload);
+        yield put({ type: 'FETCH_USER' });
     } catch (error) {
         console.log('Error with addImage:', error);
     }
@@ -47,6 +55,8 @@ function* addImagePerson(action) {
 function* imageSaga() {
     yield takeLatest('ADD_IMAGE_AWS', addImageAWS);
     yield takeLatest('ADD_IMAGE_PERSON', addImagePerson);
+    yield takeLatest('UPDATE_PICTURE', updatePicture);
+
 
 }
 

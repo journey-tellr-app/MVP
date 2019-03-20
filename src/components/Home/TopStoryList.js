@@ -1,38 +1,47 @@
 import React, { Component } from 'react';
 import TopStoryItem from './TopStoryItem';
 
+// import Slider from 'react-slick';
+import { Carousel } from 'antd';
+// import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class TopStoryList extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_STORIES' });
+        this.props.dispatch({ type: 'GET_TOP_STORIES' });
     }
 
     render() {
+        
         return (
             <div className='top-stories'>
-                {/* {JSON.stringify(this.props.state.story.topStoriesReducer)} */}
-                <h3>Top Stories</h3>
+                <h3 align='center'>Top Stories at Prime</h3>
                 {/* this div contains the individual top stories */}
-                <div>
-                    {this.props.state.story.topStoriesReducer.map( (story, i) => {
+                <Carousel>
+                    {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
+                                    user_id={this.props.userInfo.id}
+                                    id={story.story_id}
+                                    history={this.props.history}
                                     key={i}
                                     header_photo={story.header_photo}
                                     title={story.title}
                                     intro={story.intro}
                                     name={story.first_name + ' ' + story.last_name} 
-                                    profile_pic={this.profile_pic}/>
+                                    profile_pic={this.profile_pic}
+                                    likes={story.likes} />
+                                    
                     })}
-                </div>
+                </Carousel>
             </div>
         )
     }
 };
 
 const mapStateToProps = (state) => ({
-    state
+    userInfo: state.user.userInfo,
+    topStories: state.story.topStoriesReducer
 });
 
 export default connect(mapStateToProps)(TopStoryList);

@@ -1,30 +1,56 @@
 import React, { Component } from 'react';
+import './CardDesigns.css';
 import { connect } from 'react-redux';
+
+import { Card, Avatar, Button, Icon } from 'antd';
+
+const { Meta } = Card;
 
 class ContributedListItem extends Component {
 
     handleReadStory = (event) => {
-        console.log('in handleRead');
+        this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
-    
+
+    handleLike = (event) => {
+        this.props.dispatch({
+            type: 'LIKE_CONTRIBUTED_STORY',
+            payload: {
+                user_id: this.props.user_id,
+                story_id: this.props.story_id
+            }
+        });
+    }
+
     render() {
 
         return (
             <div>
-               <h3>{this.props.title}</h3>
-               <img width='150px' 
-                    height='100px' 
-                    src={this.props.header_photo} />
-               <h4>{this.props.author}</h4>
-               {this.props.profile_pic}
-               <button onClick={this.handleReadStory}>Read</button>
+                <Card
+                    id='card'
+                    bordered={true}
+                    style={{ width: 300 }}
+                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button>Read</Button>]}
+                >
+                    <Meta
+                        avatar={<Avatar src={this.props.profile_pic} />}
+                        title={this.props.title}
+                    />
+                    <h4>{this.props.author}</h4>
+                    <Icon type='like' onClick={this.handleLike} />
+                    <p>{this.props.likes}</p>
+                </Card>
             </div>
         )
     }
 };
 
-const mapStateToProps = (state) => ({
-    state
+const mapStateToProps = (reduxStore) => ({
+    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail
 });
 
 export default connect(mapStateToProps)(ContributedListItem);
+
+// export default ContributedListItem;

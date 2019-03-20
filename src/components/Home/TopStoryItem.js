@@ -1,33 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './CardDesigns.css';
+
+//Ant design imports
+import { Card, Avatar, Button, Icon } from 'antd';
+const { Meta } = Card;
 
 class TopStoryItem extends Component {
 
     handleReadStory = (event) => {
-        console.log('in readStory');
+        console.log('in hRS');
+
+        this.props.history.push(`/existing-story/${this.props.id}`);
     }
-    
+
+    handleLike = (event) => {
+        this.props.dispatch({
+            type: 'LIKE_TOP_STORY',
+            payload: {
+                user_id: this.props.user_id,
+                story_id: this.props.id
+            }
+        });
+    }
+
     render() {
 
         return (
             <div>
-                {this.props.title}
-                <img 
-                    width='150px' 
-                    height='100px' 
-                    src={this.props.header_photo} />
-                <h3>Started by {this.props.name}</h3>
-                <img width='150px' 
-                     height='100px'
-                     src={this.props.profile_pic} />
-                <button onClick={this.handleReadStory}>Read</button>
+                <Card
+                    id='card'
+                    style={{ width: 300 }}
+                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                >
+                    <Meta
+                        id='card'
+                        avatar={<Avatar src={this.props.profile_pic} />}
+                        title={this.props.title}
+                    />
+                    <h4>{this.props.name}</h4>
+                    <Icon type='like' onClick={this.handleLike} /><p>{this.props.likes}</p>
+                </Card>
             </div>
         )
     }
 };
 
-const mapStateToProps = (state) => ({
-    state
+const mapStateToProps = (reduxStore) => ({
+    story: reduxStore.story,
+    storyDetail: reduxStore.storyDetail
 });
 
 export default connect(mapStateToProps)(TopStoryItem);
+// export default TopStoryItem;

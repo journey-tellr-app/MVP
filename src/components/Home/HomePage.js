@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
 
-import { connect } from 'react-redux';
-
 class HomePage extends Component {
+    
     render() {
         return (
             <div>
-                <h1>Home page</h1>
-                <ContributedList/>
-                <TopStoryList/>
+                <h1 align='center'>Home page</h1>
+                <ContributedList
+                    history={this.props.history}
+                />
+                <TopStoryList
+                    history={this.props.history}
+                />
             </div>
         )
     }

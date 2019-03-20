@@ -14,6 +14,7 @@ function* getEmployees(action) {
 function* getContributor(action) {
     try {
         //gets contributors for a given story
+        yield console.log('in getContributor saga with:', action)
     } catch (error) {
         console.log('Error with storyTemplateDetails:', error);
     }
@@ -22,6 +23,7 @@ function* getContributor(action) {
 function* deleteContributor(action) {
     try {
         //delete contributor from story
+        yield console.log('in deleteContributor saga with:', action)
     } catch (error) {
         console.log('Error with storyTemplateDetails:', error);
     }
@@ -30,6 +32,7 @@ function* deleteContributor(action) {
 function* addContributor(action) {
     try {
         //add contributor to story
+        yield console.log('in addContributor saga with:', action)
     } catch (error) {
         console.log('Error with storyTemplateDetails:', error);
     }

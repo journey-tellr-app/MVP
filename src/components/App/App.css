@@ -1,6 +1,15 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Montserrat, Lato, sans-serif;
     margin: 0px;
+    font-size: 12px;
+}
+
+#user-name {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 1px;
+
 }
 
 .alert {
@@ -8,7 +17,7 @@ body {
     margin: 50px;
 }
 
-form {
+.login-form {
     background-color: #dbd5d5;
     width: 30%;
     height: 250px;

@@ -7,6 +7,11 @@ import profileSaga from './profileSaga';
 import contributorSaga from './contributorSaga';
 import imageSaga from './imageSaga';
 import storySaga from './storySaga';
+import notificationsSaga from './notificationSaga';
+import storyDetailSaga from './storyDetailSaga';
+import searchStorySaga from './searchStoriesSaga';
+import chapterSaga from './chapterSaga';
+import likesSaga from './likesSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -17,6 +22,7 @@ import storySaga from './storySaga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
+    likesSaga(),
     loginSaga(),
     registrationSaga(),
     userSaga(),
@@ -25,5 +31,9 @@ export default function* rootSaga() {
     contributorSaga(),
     imageSaga(),
     storySaga(),
+    notificationsSaga(),
+    storyDetailSaga(),
+    searchStorySaga(),
+    chapterSaga(),
   ]);
 }

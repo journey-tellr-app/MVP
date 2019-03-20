@@ -1,0 +1,38 @@
+/* .profile-element {
+    margin: 5px;
+} */
+
+#edit-btn {
+    max-width: 60px;
+    max-height: 12px;
+    font-size: 7px;
+}
+
+#avatar {
+    border-radius: 50%;
+    border: 2px solid;
+    border-color: #D98A4F;
+}
+
+.container {
+    margin-left: 2.5em;
+    margin-right: auto;
+    margin-top: 1.5em;
+}
+
+.stats-text {
+    font-size: 10px;
+    margin-left: .5em;
+}
+
+.edit-input {
+    margin: .3em;
+}
+
+.edit-element {
+    margin: .3em;
+}
+
+#user-name {
+    font-size: 18px;
+}

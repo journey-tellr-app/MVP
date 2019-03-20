@@ -1,120 +1,83 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import LogOutButton from '../Common/LogOutButton';
-import { Drawer } from 'antd';
-import { Typography } from 'antd';
-import { Divider } from 'antd';
-import { Avatar } from 'antd';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import NavigationLink from './NavigationLink';
+
+// icons used on this component
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faBars, faPlusSquare, faBell, faUsers, faBook, faHome, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+
+import { Drawer, Typography, Divider } from 'antd';
 import './Nav.css';
 import 'antd/dist/antd.css';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
+// this drawer contains the main nav
+// SideDrawer component is sourced in the Nav.js component
 
-import logo from './JourneyTellr-Logo_icononly_Color-version.png';
-
-
-
-library.add(faBars)
-library.add(faPlusSquare)
-library.add(faBell)
-library.add(faUsers)
-library.add(faBook)
-library.add(faHome)
-library.add(faSignInAlt)
-
-
-
-
-
-
-
-const { Text } = Typography;
-
-
+const { Title } = Typography;
 
 class SideDrawer extends Component {
-    state = { visible: false };
+    static propTypes = {
+        visible: PropTypes.bool.isRequired,
+        userInfo: PropTypes.object.isRequired,
+        handleSideBar: PropTypes.func.isRequired,
+    }
 
-    showDrawer = () => {
-        this.setState({
-            visible: true,
-        });
-    };
-
-    onClose = () => {
-        this.setState({
-            visible: false,
-        });
-    };
+    //creates navLinks
+    buildLinks = () => {
+        const routes = [
+            { route: '/home', name: 'Home', iconType: 'home' },
+            { route: '/notification', name: 'Notifications', iconType: 'bell' },
+            { route: '/choose-template', name: 'Begin Story', iconType: 'plus-square' },
+            { route: '/search', name: 'Browse Stories', iconType: 'search' },
+            { route: '/about', name: 'About', iconType: 'info-circle' },
+            { route: '/', name: 'Log Out', iconType: 'logout' }];
+        return routes.map((routeObj, i) => {
+            return <NavigationLink routeObj={routeObj} handleSideBar={this.props.handleSideBar} key={i} />
+        })
+    }
 
     render() {
+        const { userInfo, visible, handleSideBar } = this.props;
+        const logo = './images/kevinslogos/JourneyTellr-Logo_icononly_Color-version.png';
+        //determines if placeholder pic needs to be used
+        let profilePic = './images/placeholder.png';
+        if (userInfo.profile_pic !== null) {
+            profilePic = userInfo.profile_pic;
+        }
+        console.log('in side drawer render');
         return (
-            <div>
-
-                <FontAwesomeIcon
-                    className="drawer-btn"
-                    icon="bars"
-                    size="3x"
-                    onClick={this.showDrawer}
-                />
-
-                <Drawer
-                    width={300}
-                    placement="left"
-                    closable={true}
-                    onClose={this.onClose}
-                    visible={this.state.visible}
-                >
-                    <img src={logo} alt={'logo'} height="40" width="40" className="logo-icon-only" />
-                    <Divider />
-                    <Link to="/profile" onClick={this.onClose}>
-                        <Text strong><Avatar shape="square" size="large" icon="user" /> &nbsp; Profile Will Go Here</Text>
-                    </Link>
-                    <Divider />
-                    <Link to="/choose-template" onClick={this.onClose}>
-                        <Text><FontAwesomeIcon icon="plus-square" /> &nbsp; Create New Story</Text>
-                    </Link>
-                    <Divider />
-                    <Link to="/notification" onClick={this.onClose}>
-                        <Text><FontAwesomeIcon icon="bell" /> &nbsp; Notifications</Text>
-                    </Link>
-                    <Divider />
-                    <Link to="/search" onClick={this.onClose}>
-                        <Text><FontAwesomeIcon icon="book" /> &nbsp; All Stories</Text>
-                    </Link>
-                    <Divider />
-                    {/* <Link to="/home" onClick={this.onClose}>
-                        <Text><FontAwesomeIcon icon="home" /> &nbsp; Home</Text>
-                    </Link> */}
-                    <Link to="/home" onClick={this.onClose}>
-                        <FontAwesomeIcon icon="home" /> {this.props.reduxStore.user.id ? 'Home' : 'Login'}
-                    </Link>
-                    <Divider />
-                    <Link to="/about" onClick={this.onClose}>
-                        <Text>About</Text>
-                    </Link>
-                    <Divider />
-                    {this.props.reduxStore.user.id && (
-                        <LogOutButton />
-                    )}
-                </Drawer>
-            </div >
+            <Drawer
+                width={300}
+                placement="left"
+                closable={true}
+                onClose={handleSideBar.bind(this, false)}
+                visible={visible}
+            >
+                <img src={logo} alt={'logo'} height="40" width="40" className="logo-icon-only" />
+                <Divider />
+                <Link to="/profile" onClick={handleSideBar.bind(this, false)} >
+                    {/* Title contains current users profile picture and name */}
+                    {/* When clicked on, the user will be taken to the Profile page */}
+                    <Title level={4}>
+                        <img src={profilePic} height="60" alt='placeholder' />
+                        &nbsp;&nbsp;
+                            {userInfo.first_name}&nbsp;{userInfo.last_name}
+                    </Title>
+                </Link>
+                <Divider />
+                {this.buildLinks()}
+            </Drawer>
         );
     }
 };
 
 
-const mapStateToProps = reduxStore => ({
-    reduxStore
+const mapStateToProps = store => ({
+    userInfo: store.user.userInfo
 });
 
 export default connect(mapStateToProps)(SideDrawer);

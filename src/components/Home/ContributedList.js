@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ContributedListItem from './ContributedListItem';
 
+import propTypes from 'prop-types';
+import { Carousel, Button } from 'antd';
 import { connect } from 'react-redux';
 
 class ContributedList extends Component {
@@ -9,42 +11,54 @@ class ContributedList extends Component {
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
     }
 
+    static propTypes = {
+        contributedStories: propTypes.array.isRequired,
+    };
+
     render() {
 
         return (
-                <div className='contributions'>
-                    {/* {JSON.stringify(this.props.state.story.storyReducer)} */}
-                    <h3>My stories and contributions</h3>
-                    {/* this line below will conditionally render 'story' or 'stories' depending on length of reducer */}
-                    {
-                        this.props.state.story.storyReducer.length === 1 ?
-                            <h4>1 story live</h4> :
-                            <h4>{this.props.state.story.storyReducer.length} stories live</h4>
-                    }
+            //this component will render all of the stories a 
+            //user has started or contributed to.
+            //If the user has not begun or contributed to a story,
+            //a button prompting the user to create a new one will render.
+            <div className='contributions'>
+                {this.props.contributedStories.length !== 0 ?
+                    (<div>
+                        <h3 align='center'>My Stories and Contributions</h3>
 
-                    {/* this div contains the actual story blocks */}
-                    <div>
-                        {this.props.state.story.storyReducer.map( (story, i) => {
-                            return <ContributedListItem 
-                                key={i}
-                                header_photo={story.header_photo}
-                                title={story.title}
-                                intro={story.intro}
-                                //just combining the DB columns into a props item 'author'
-                                //for simplicity on the client
-                                author={story.first_name + ' ' + story.last_name}
-                                profile_pic={story.profile_pic}
-                            />
-                        })}
-                    </div>
-                </div>
-           
+                        {/* this div contains the actual story blocks */}
+                        <Carousel swipeToSlide>
+                            {this.props.contributedStories.map((story, i) => {
+                                return <ContributedListItem
+                                    user_id={this.props.userInfo.id}
+                                    history={this.props.history}
+                                    story_id={story.story_id}
+                                    key={i}
+                                    header_photo={story.header_photo}
+                                    title={story.title}
+                                    intro={story.intro}
+                                    //combining the DB columns into a props item 'author'
+                                    //for simplicity on the client
+                                    author={story.first_name + ' ' + story.last_name}
+                                    profile_pic={story.profile_pic}
+                                    likes={story.likes}
+                                />
+                            })}
+                        </Carousel>
+                    </div>) : (<div>
+                                   {/* render this button if the user has no contributed stories */}
+                                   <Button align='center' onClick={this.handleStartStory}>Start Your First Story!</Button>
+                               </div>)}
+            </div>
+
         )
     }
 };
 
 const mapStateToProps = (state) => ({
-    state
+    userInfo: state.user.userInfo,
+    contributedStories: state.story.contributedStoryReducer
 });
 
 export default connect(mapStateToProps)(ContributedList);

@@ -10,7 +10,7 @@ class ContributorList extends Component {
         const { pendingContributors } = this.props;
         return (
             <div>
-                {this.props.pendingContributors &&
+                {pendingContributors &&
                     <List
                         itemLayout="horizontal"
                         dataSource={pendingContributors}
