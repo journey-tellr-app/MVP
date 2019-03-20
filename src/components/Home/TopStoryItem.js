@@ -44,6 +44,10 @@ class TopStoryItem extends Component {
                     <Icon type='like' onClick={this.handleLike} />
                     <p>{this.props.likes} Likes!</p>
                 </Card>
+                {/* these break tags are so the user can see the carousel dots
+                at the bottom of the cards */}
+                <br/>
+                <br/>
             </div>
         )
     }

@@ -2,6 +2,7 @@ body {
     font-family: Montserrat, Lato, sans-serif;
     margin: 0px;
     font-size: 12px;
+    /* background-color: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
 }
 
 #user-name {
