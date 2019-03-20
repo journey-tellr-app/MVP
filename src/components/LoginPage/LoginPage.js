@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import SubHeader from '../Common/SubHeader';
 
-import { Input, Icon, Row, Col, Button } from 'antd';
+import { Input, Icon, Row, Col, Button, notification } from 'antd';
 import './LoginPage.css';
 
 class LoginPage extends Component {
@@ -38,6 +38,16 @@ class LoginPage extends Component {
     this.setState({ email: '' });
   }
 
+  showLoginErrorMessage = () => {
+    notification.open({
+      key: 'loginMessage',
+      message: 'An Error Occurred When Logging In',
+      description: this.props.errors.loginMessage,
+      duration: 4,
+    });
+    this.props.dispatch({type: 'CLEAR_LOGIN_ERROR' });
+  };
+
   render() {
     const suffix = email ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
     const { email, password } = this.state;
@@ -45,14 +55,9 @@ class LoginPage extends Component {
     return (
       <div>
         <SubHeader headerText='Log In' />
-        {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
+        {this.props.errors.loginMessage &&
+          this.showLoginErrorMessage()
+        }
         <form onSubmit={this.login} className="login-form">
           <label htmlFor="email">
             Email:
