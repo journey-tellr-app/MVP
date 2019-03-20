@@ -45,14 +45,10 @@ class ContributedStoryList extends Component {
 
 const mapStoreToProps = (reduxStore) => ({
     userInfo: reduxStore.user.userInfo,
-<<<<<<< HEAD
-    contributedStories: reduxStore.story.contributedStoryReducer
-=======
     story: reduxStore.story,
     storyDetail: reduxStore.storyDetail.likes,
     contributedStories: reduxStore.story.contributedStoryReducer,
 
->>>>>>> dbd0603ed888ec758519c8e4c2d3da844b576956
 });
 
 export default connect(mapStoreToProps)(ContributedStoryList);

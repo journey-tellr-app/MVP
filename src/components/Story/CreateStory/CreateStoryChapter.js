@@ -58,8 +58,9 @@ class CreateStoryChapter extends Component {
         this.props.form.validateFieldsAndScroll((error, values) => {
             if (!error) {
                 console.log('Received values of form: ', values);
-                let newPayload = values.title.filter((item) => ( {title: index } ));
-
+                let filterValues = values.title.filter((item) => ({title: item}));
+                let newPayload = filterValues.map((ch) => ({title: ch}));
+                console.log(`New payload values`, newPayload);
                 let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: newPayload };
                 this.props.dispatch(dataToSend);
                 this.props.history.push('/choose-template/contributor/');

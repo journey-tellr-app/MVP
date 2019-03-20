@@ -15,27 +15,9 @@ class ContributedList extends Component {
         contributedStories: propTypes.array.isRequired,
     };
 
-<<<<<<< HEAD
     handleStartStory = () => {
         console.log('button clicked');
     }
-=======
-    render() {
-        //these lines will render 'story' or 'stories' depending on the length
-        //of the contributedStoryReducer
-        // const settings = {
-        //     dots: true,
-        //     slidesToShow: 2,
-        // }
-
-
-        // let header;
-        // if (this.props.contributedStories.length === 1) {
-        //     header = <h4>1 story live</h4>;
-        // } else {
-        //     header = <h4>{this.props.contributedStories.length} stories live</h4>
-        // }
->>>>>>> dbd0603ed888ec758519c8e4c2d3da844b576956
 
     render() {
 
