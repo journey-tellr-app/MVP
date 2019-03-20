@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import NavigationLink from './NavigationLink';
 
 // icons used on this component
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { faBars, faPlusSquare, faBell, faUsers, faBook, faHome, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -48,7 +48,6 @@ class SideDrawer extends Component {
         if (userInfo.profile_pic !== null) {
             profilePic = userInfo.profile_pic;
         }
-        console.log('in side drawer render');
         return (
             <Drawer
                 width={300}

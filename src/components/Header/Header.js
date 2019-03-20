@@ -10,8 +10,6 @@ import '../Nav/Nav.css';
 class Header extends React.Component {
 
     render() {
-        // console.log(this.props);
-        console.log('in header render');
         let journeyTellrLogo = './images/kevinslogos/JourneyTellr-Nameonly-color-noR.png'
         return (
             <Row type="flex" justify="center" align='middle' className='nav'>
