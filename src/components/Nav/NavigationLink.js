@@ -14,7 +14,7 @@ class NavigationLink extends Component {
 
     render() {
         const { route, name, iconType } = this.props.routeObj;
-        let onClickFxn = this.props.onClose;
+        let onClickFxn = this.props.handleSideBar.bind(this, false);
         if (name === 'Log Out') {
             onClickFxn = () => this.props.dispatch({ type: 'LOGOUT' })
         }
