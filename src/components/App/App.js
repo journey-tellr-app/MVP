@@ -7,7 +7,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 //app routes
@@ -38,7 +38,7 @@ class App extends Component {
       <Router>
         <div>
           <Row>
-            <Nav />
+            <Header />
           </Row>
 
           <Switch>
