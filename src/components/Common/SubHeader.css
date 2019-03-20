@@ -1,0 +1,10 @@
+.sub-header {
+    background-color: rgb(217, 139, 79);
+}
+
+.sub-header-text {
+    text-align: center;
+    padding: 5px 0px;
+    /* overrides ant margin */
+    margin-bottom: 0px !important;
+}
