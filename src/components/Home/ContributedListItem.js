@@ -31,7 +31,7 @@ class ContributedListItem extends Component {
                     bordered={true}
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                    actions={[<Button>Read</Button>]}
                 >
                     <Meta
                         avatar={<Avatar src={this.props.profile_pic} />}
