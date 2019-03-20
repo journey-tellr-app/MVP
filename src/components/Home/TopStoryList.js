@@ -3,7 +3,6 @@ import TopStoryItem from './TopStoryItem';
 
 // import Slider from 'react-slick';
 import { Carousel } from 'antd';
-import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class TopStoryList extends Component {
@@ -21,6 +20,7 @@ class TopStoryList extends Component {
                 <Carousel>
                     {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
+                                    user_id={this.props.userInfo.id}
                                     id={story.story_id}
                                     history={this.props.history}
                                     key={i}
@@ -28,7 +28,9 @@ class TopStoryList extends Component {
                                     title={story.title}
                                     intro={story.intro}
                                     name={story.first_name + ' ' + story.last_name} 
-                                    profile_pic={this.profile_pic}/>
+                                    profile_pic={this.profile_pic}
+                                    likes={story.likes} />
+                                    
                     })}
                 </Carousel>
             </div>
@@ -37,6 +39,7 @@ class TopStoryList extends Component {
 };
 
 const mapStateToProps = (state) => ({
+    userInfo: state.user.userInfo,
     topStories: state.story.topStoriesReducer
 });
 

@@ -30,6 +30,7 @@ import ContributorPopup from '../Story/Contributor/ContributorPopup';
 
 //styling imports
 import './App.css';
+import { Row } from 'antd';
 
 
 class App extends Component {
@@ -41,7 +42,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Row>
+            <Nav />
+          </Row>
+
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -102,6 +106,7 @@ class App extends Component {
               exact path='/choose-template/contributor/'
               component={CreateStoryContributor}
             />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
             {/*  */}

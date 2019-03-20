@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import ContributorPopup from '../Contributor/ContributorPopup.js';
+import ContributorList from '../Contributor/ContributorList.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
 // ant design import
 import { Form, Input, Button } from 'antd';
 
-class NewStoryForm extends Component {
+class CreateStoryContributor extends Component {
 
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
@@ -14,58 +15,19 @@ class NewStoryForm extends Component {
         event.preventDefault();
         this.props.form.validateFieldsAndScroll((error, values) => {
             if (!error) {
-                console.log(values);
-
-                // seperate files for story, chapter and contributor data sent to the redux saga
-                let storyDataToSend = '';
-                let chapterDataToSend = this.props.chapter;
-                let contributorDataToSend = this.props.contributor;
-
-                // will create different data to send if the story statred as a template
-                if(this.props.story.title !== '') {
-                    storyDataToSend = { title: values.title,
-                                        header_photo: values.header_photo,
-                                        caption: values.caption,
-                                        intro: values.intro,
-                                        is_template: true,
-                                      };
-                } else {
-                    storyDataToSend = { title: values.title,
-                                        header_photo: values.header_photo,
-                                        caption: values.caption,
-                                        intro: values.intro,
-                                        is_template: false,
-                                      };
-                }
-
-                // bundle the story, chapter and contributon files together and create a payload
-                let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
-
                 // send data to the saga
-                this.props.dispatch({ type: 'ADD_NEW_STORY', payload: completeDataToSend });
-
+                this.props.dispatch({ type: 'POST_NEW_STORY' });
                 // clear the fields
                 this.props.form.resetFields();
-
+                // go to home page
+                this.props.history.push('/home');
             }
         });
     } // end createStory
 
     render() {
 
-        const { story, chapter, image } = this.props;
-        const { getFieldDecorator } = this.props.form;
-
-        // const formItemLayout = {
-        //     labelCol: {
-        //         xs: { span: 24 },
-        //         sm: { span: 8 },
-        //     },
-        //     wrapperCol: {
-        //         xs: { span: 24 },
-        //         sm: { span: 16 },
-        //     },
-        // };
+        const { contributor } = this.props;
 
         const tailFormItemLayout = {
             wrapperCol: {
@@ -82,54 +44,14 @@ class NewStoryForm extends Component {
 
         return (
             <Form layout="vertical" onSubmit={this.createStory}>
-                <h2>Create a Story</h2>
-                <CreateStorySteps current="0" />
-
+                <h2>Add Contributors</h2>
+                <CreateStorySteps current="3" />
                 <Form.Item
-                    label="Story title"
+                    label="Add contributors"
                 >
-                    {getFieldDecorator('title', {
-                        initialValue: story.title,
-                        rules: [{ required: true, message: 'Please enter a story title!' }],
-                        },
-                    )(
-                        <Input allowClear
-                               placeholder={story.title !== '' ? story.title : "story title"}
-                               style={{ width: 340 }} 
-                        />
-                    )}
+                    <ContributorPopup />
                 </Form.Item>
-                <Form.Item
-                    label="Story intro"
-                >
-                    {getFieldDecorator('intro', {
-                        initialValue: story.intro,
-                        rules: [{ required: true, message: 'Please enter an intro!' }],
-                        }, 
-                    )(
-                    <Input allowClear
-                           placeholder={story.intro !== '' ? story.intro : "story introduction"}
-                           style={{ width: 340 }}
-                    />
-                    )}
-                </Form.Item>
-
-
-                <Form.Item
-                    label="Photo caption"
-                >
-                    {getFieldDecorator('caption', {
-                        initialValue: story.caption,
-                        rules: [{ required: true, message: 'Please enter a caption!' }],
-                        },
-                    )(
-                   <Input allowClear
-                          placeholder={story.caption !== '' ? story.caption : "add a caption" }
-                          style={{ width: 340 }} 
-                    />
-                    )}
-                </Form.Item>
-
+                {contributor.length !== 0 ? <ContributorList /> : ''}
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
@@ -143,13 +65,10 @@ class NewStoryForm extends Component {
 
 }
 
-const WrappedNewStoryForm = Form.create()(NewStoryForm);
+const WrappedCreateStoryContributor = Form.create()(CreateStoryContributor);
 
 const mapStoreToProps = reduxStore => ({
-    story: reduxStore.story.newStoryReducer,
-    chapter: reduxStore.chapter.newStoryChapterReducer,
     contributor: reduxStore.contributor.pending,
-    image: reduxStore.story.imageReducer
 });
 
-export default connect(mapStoreToProps)(WrappedNewStoryForm);
+export default connect(mapStoreToProps)(WrappedCreateStoryContributor);

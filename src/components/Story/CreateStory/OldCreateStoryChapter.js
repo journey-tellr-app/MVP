@@ -1,55 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CreateStorySteps from './CreateStorySteps.js'
+import CreateStoryChapterItem from './CreateStoryChapterItem.js';
 
 // ant design import
 import { Form, Input, Button, Icon } from 'antd';
 
-let id = 0;
+let id = 1;
 
 class CreateStoryChapter extends Component {
-
-    removeChapter = (k) => {
-        const { form } = this.props;
-        // can use data-binding to get
-        const keys = form.getFieldValue('keys');
-        // We need at least one passenger
-        if (keys.length === 1) {
-          return;
-        }
-    
-        // can use data-binding to set
-        form.setFieldsValue({
-          keys: keys.filter(key => key !== k),
-        });
-    } // end removeChapter
-    
-    addChapter = () => {
-        const { form } = this.props;
-        // can use data-binding to get
-        const keys = form.getFieldValue('keys');
-        const nextKeys = keys.concat(id++);
-        // can use data-binding to set
-        // important! notify form to detect changes
-        form.setFieldsValue({
-          keys: nextKeys,
-        });
-    } // end addChapter
 
     // go bact to the previous page
     prevousButton = () => {
         this.props.history.push('/choose-template/');
     }
 
-    // removeChapter = (chapter) => {
-    //     let dataToSend = { type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapter };
-    //     this.props.dispatch(dataToSend);
-    // }
+    removeChapter = (chapter) => {
+        let dataToSend = { type: 'REMOVE_NEW_STORY_CHAPTER', payload: chapter };
+        this.props.dispatch(dataToSend);
+    }
     
-    // addChapter = () => {
-    //     let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: {title: ''} };
-    //     this.props.dispatch(dataToSend);
-    // }
+    addChapter = () => {
+        let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: {title: ''} };
+        this.props.dispatch(dataToSend);
+    }
 
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
@@ -58,10 +32,12 @@ class CreateStoryChapter extends Component {
         this.props.form.validateFieldsAndScroll((error, values) => {
             if (!error) {
                 console.log('Received values of form: ', values);
-                let newPayload = values.title.filter((item) => ( {title: index } ));
-
-                let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: newPayload };
-                this.props.dispatch(dataToSend);
+                this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
+                if(values != {}) {
+                    let newPayload = values.title.flatMap((index) => ( {title: index } ));
+                    let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: newPayload };
+                    this.props.dispatch(dataToSend);
+                }
                 this.props.history.push('/choose-template/contributor/');
             } else {
                 console.log('Error: ', values);
@@ -105,15 +81,15 @@ class CreateStoryChapter extends Component {
             },
         };
 
-        getFieldDecorator('keys', { initialValue: [] });
-        const keys = getFieldValue('keys');
-        const formItems = keys.map((k, index) => (
+        // getFieldDecorator('chapters', { initialValue: [0] });
+        // const chapters = getFieldValue('chapters');
+        const formItems = chapter.map((item, index) => (
             <Form.Item index={formItemLayout}
                        label="Chapter"
                        required={true}
-                       key={k}
+                       key={index}
             >
-                {getFieldDecorator(`title[${k}]`, {
+                {getFieldDecorator(`title[${index}]`, {
                     validateTrigger: ['onChange', 'onBlur'],
                     rules: [{ required: true,
                               whitespace: true,
@@ -125,8 +101,8 @@ class CreateStoryChapter extends Component {
                 <Icon
                     className="dynamic-delete-button"
                     type="minus-circle-o"
-                    disabled={keys.length === 1}
-                    onClick={() => this.removeChapter(k)}
+                    disabled={item.length === 1}
+                    onClick={() => this.removeChapter(item)}
                 />
             </Form.Item>
         ));

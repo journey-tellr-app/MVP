@@ -2,10 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const faker = require('faker');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
 
 //this will allow an admin to add 30 randomized 
 //stories to the story table from the about page
-router.post('/story', (req, res) => {
+router.post('/story', rejectUnauthenticated, (req, res) => {
     (async () => {
         const client = await pool.connect();
 
@@ -54,7 +56,7 @@ router.post('/story', (req, res) => {
 
 //this will allow an admin to add 300 randomized 
 //people to the person table from the about page
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 
     (async () => {
         const client = await pool.connect();
@@ -105,7 +107,7 @@ router.post('/', (req, res) => {
 
 //this will fill in the required columns for the chapter table, 
 //adding dummy chapter data to random stories
-router.post('/chapter', (req, res) => {
+router.post('/chapter', rejectUnauthenticated, (req, res) => {
     (async () => {
         const client = await pool.connect();
 
@@ -150,7 +152,7 @@ router.post('/chapter', (req, res) => {
 });
 
 //this will add 25 likes to random stories from random employees
-router.post('/likes', (req, res) => {
+router.post('/likes', rejectUnauthenticated, (req, res) => {
     (async () => {
         const client = await pool.connect();
 
