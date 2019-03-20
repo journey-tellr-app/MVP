@@ -15,8 +15,6 @@ class ContributedList extends Component {
         contributedStories: propTypes.array.isRequired,
     };
 
-
-
     render() {
 
         return (
