@@ -29,14 +29,14 @@ class CreateStoryDetail extends Component {
                 // will create different data to send if the story statred as a template
                 if(this.props.template.title !== 'initial') {
                     storyData = { title: values.title,
-                                        header_photo: values.header_photo,
+                                        header_photo: this.props.image.storyImage,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: true,
                                       };
                 } else {
                     storyData = { title: values.title,
-                                        header_photo: values.header_photo,
+                                        header_photo: this.props.image.storyImage,
                                         caption: values.caption,
                                         intro: values.intro,
                                         is_template: false,
