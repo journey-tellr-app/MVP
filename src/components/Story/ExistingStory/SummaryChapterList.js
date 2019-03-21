@@ -26,7 +26,7 @@ class SummaryChapterList extends Component {
         // console.log(this.props);
         // console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
         return (
-            <div>
+            <div >
                 <h1>Chapters</h1>
                 <List
                     itemLayout="vertical"
