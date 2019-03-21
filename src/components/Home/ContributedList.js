@@ -15,12 +15,8 @@ class ContributedList extends Component {
         contributedStories: propTypes.array.isRequired,
     };
 
-    handleStartStory = () => {
-        console.log('button clicked');
-    }
 
     render() {
-
         return (
             //this component will render all of the stories a 
             //user has started or contributed to.
@@ -29,8 +25,7 @@ class ContributedList extends Component {
             <div className='contributions'>
                 {this.props.contributedStories.length !== 0 ?
                     (<div>
-                        <h3 align='center'>My Stories and Contributions</h3>
-
+                        {/* <h3 align='center'>My Stories and Contributions</h3> */}
                         {/* this div contains the actual story blocks */}
                         <Carousel swipeToSlide>
                             {this.props.contributedStories.map((story, i) => {
@@ -51,9 +46,9 @@ class ContributedList extends Component {
                             })}
                         </Carousel>
                     </div>) : (<div>
-                                   {/* render this button if the user has no contributed stories */}
-                                   <Button align='center' onClick={this.handleStartStory}>Start Your First Story!</Button>
-                               </div>)}
+                        {/* render this button if the user has no contributed stories */}
+                        <Button align='center' onClick={this.handleStartStory}>Start Your First Story!</Button>
+                    </div>)}
             </div>
 
         )

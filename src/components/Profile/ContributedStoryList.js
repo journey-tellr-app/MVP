@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ContributedStoryListItem from './ContributedStoryListItem';
 
-import { Carousel } from 'antd';
 
 import { connect } from 'react-redux';
 
+//this file is being used on the profile page to render
+//all of the stories that a user has BEGUN
 class ContributedStoryList extends Component {
 
     componentDidMount = () => {
@@ -15,27 +16,31 @@ class ContributedStoryList extends Component {
 
     render() {
 
+
         return (
             <div className='contributions'>
                 <div>
-                    <Carousel swipeToSlide>
-                        {this.props.contributedStories.map((story, i) => {
-                            return <ContributedStoryListItem
-                                user_id={this.props.userInfo.id}
-                                key={i}
-                                history={this.props.history}
-                                story_id={story.story_id}
-                                header_photo={story.header_photo}
-                                title={story.title}
-                                intro={story.intro}
-                                //just combining the DB columns into a props item 'author'
-                                //for simplicity on the client
-                                author={story.first_name + ' ' + story.last_name}
-                                profile_pic={story.profile_pic}
-                                likes={story.likes}
-                            />
-                        })}
-                    </Carousel>
+
+
+                    {/* {JSON.stringify(this.props.storyDetail.likes)} */}
+
+                    {this.props.story.contributedStoryReducer.map((story, i) => {
+                        return <ContributedStoryListItem
+                            user_id={this.props.userInfo.id}
+                            key={i}
+                            history={this.props.history}
+                            story_id={story.story_id}
+                            header_photo={story.header_photo}
+                            title={story.title}
+                            intro={story.intro}
+                            //just combining the DB columns into a props item 'author'
+                            //for simplicity on the client
+                            author={story.first_name + ' ' + story.last_name}
+                            profile_pic={story.profile_pic}
+                            likes={story.likes}
+                        />
+                    })}
+
                 </div>
             </div>
 

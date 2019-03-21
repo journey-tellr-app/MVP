@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ContributorPopup from '../Contributor/ContributorPopup.js';
+import ContributorForm from '../Contributor/ContributorForm.js';
 import ContributorList from '../Contributor/ContributorList.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
@@ -63,7 +63,7 @@ class CreateStoryContributor extends Component {
                 <Form.Item
                     label="Add contributors"
                 >
-                    <ContributorPopup page={'new_story'}/>
+                    <ContributorForm />
                 </Form.Item>
                 {contributor.length !== 0 ? <ContributorList /> : ''}
                 <Form.Item {...tailFormItemLayout}>

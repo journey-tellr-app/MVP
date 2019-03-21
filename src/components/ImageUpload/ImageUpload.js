@@ -1,4 +1,4 @@
-import { Modal, Button, Row, Col } from 'antd';
+import { Modal, Button, Row } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 

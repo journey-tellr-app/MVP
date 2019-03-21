@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ChooseTemplate from './../NewStory/ChooseTemplate.js';
+import ChooseTemplate from './ChooseTemplate.js';
 import CreateStorySteps from './CreateStorySteps.js';
 
 // ant design import

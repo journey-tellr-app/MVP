@@ -48,4 +48,4 @@ const mapRStoProps = (rs) => {
 }
 
 //given history so that NavigationLink can rerender based on changes in location.pathname
-export default withRouter(connect(mapRStoProps)(Nav));
+export default connect(mapRStoProps)(Nav);

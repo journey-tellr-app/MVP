@@ -15,9 +15,9 @@ class TopStoryList extends Component {
         
         return (
             <div className='top-stories'>
-                <h3 align='center'>Top Stories at Prime</h3>
+                {/* <h3 align='center'>Top Stories at Prime</h3> */}
                 {/* this div contains the individual top stories */}
-                <Carousel>
+                <Carousel swipeToSlide>
                     {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
                                     user_id={this.props.userInfo.id}
