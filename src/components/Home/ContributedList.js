@@ -14,7 +14,10 @@ class ContributedList extends Component {
     static propTypes = {
         contributedStories: propTypes.array.isRequired,
     };
-
+    handleStartStory = () => {
+        // console.log('in hSS');
+        this.props.history.push(`/choose-template`)
+    }
 
     render() {
         return (
@@ -45,7 +48,7 @@ class ContributedList extends Component {
                                 />
                             })}
                         </Carousel>
-                    </div>) : (<div>
+                    </div>) : (<div className='center-button'>
                         {/* render this button if the user has no contributed stories */}
                         <Button align='center' onClick={this.handleStartStory}>Start Your First Story!</Button>
                     </div>)}
