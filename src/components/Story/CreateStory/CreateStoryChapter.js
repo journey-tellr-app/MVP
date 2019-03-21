@@ -102,8 +102,11 @@ class CreateStoryChapter extends Component {
             },
         };
 
+        // create initial values for the 'keys' to show template chapters
         const newArray = template.length > 0 ? template.map((item, i) => (i)) : [];
+        // used in the formItems map to display a user prompt if a template
         const isTemplate = template.length > 0 ? true : false;
+        
         getFieldDecorator('keys', { initialValue: newArray });
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => (

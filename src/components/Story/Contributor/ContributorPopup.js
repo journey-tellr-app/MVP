@@ -44,7 +44,8 @@ class ContributorPopup extends Component {
                             icon='usergroup-add'>
                             Send Invites</Button>);
         }
-        let ContributorBtnName;
+
+        let ContributorBtnName = 'Add Contributors';
         //some logic to change button name based on edit/view and  
         // whether there are many contributors, none, or one
         // if('no contributors' === 'no contributors' && 'edit' === 'edit'){
@@ -54,7 +55,7 @@ class ContributorPopup extends Component {
         // }
         return (
             <div>
-                <Button type="primary" onClick={this.showModal}>
+                <Button onClick={this.showModal}>
                     {ContributorBtnName}</Button>
                 <Modal
                     visible={visible}

@@ -63,7 +63,7 @@ class CreateStoryContributor extends Component {
                 <Form.Item
                     label="Add contributors"
                 >
-                    <ContributorPopup />
+                    <ContributorPopup page={'new_story'}/>
                 </Form.Item>
                 {contributor.length !== 0 ? <ContributorList /> : ''}
                 <Form.Item {...tailFormItemLayout}>
@@ -88,7 +88,7 @@ const WrappedCreateStoryContributor = Form.create()(CreateStoryContributor);
 const mapStoreToProps = reduxStore => ({
     story: reduxStore.story.newStoryReducer,
     chapter: reduxStore.chapter.newStoryChapterReducer,
-    contributor: reduxStore.contributor.employeeResults,
+    contributor: reduxStore.contributor.pending,
 });
 
 export default connect(mapStoreToProps)(WrappedCreateStoryContributor);
