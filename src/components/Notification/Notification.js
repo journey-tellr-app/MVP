@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import InviteList from './InviteList';
+import './Notification.css';
 
 class Notification extends Component {
 
@@ -12,7 +13,8 @@ class Notification extends Component {
     render() {
         const { invite } = this.props
         return (
-            <div align="center">
+            <div className="list"
+                align="center">
                 <h1>Notifications</h1>
                 {invite.length > 0 ?
                     <InviteList invite={invite} />
