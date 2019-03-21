@@ -52,7 +52,10 @@ class CreateStoryChapter extends Component {
                     // filter out empty chapters that have been removes
                     let filterValues = values.title.filter((item) => ({title: item}));
                     // package the chapters in an object for the reducer
-                    let newPayload = filterValues.map((ch) => ({title: ch}));
+                    let newPayload = filterValues.map((ch) => ({title: ch,
+                                                                text: '',
+                                                                chapter_photo: '/images/placeholder.png',
+                                                               }));
 
                     // create a variable for dispatching to redux saga and send
                     let dataToSend = { type: 'SET_NEW_STORY_CHAPTER', payload: newPayload };

@@ -14,11 +14,13 @@ router.post('/:storyId/:isNew', (req, res) => {
         let scrubCounter = 2;
         req.body.map((chapter) => {
             values.push(chapter.title);
+            values.push(chapter.text);
             values.push(req.params.isNew === 'true' ? order : chapter.order);
-            queryValueString.push(`($1, $${scrubCounter++}, $${scrubCounter++} )`);
+            values.push(chapter.chapter_photo);
+            queryValueString.push(`($1, $${scrubCounter++}, $${scrubCounter++}, $${scrubCounter++}, $${scrubCounter++} )`);
             order++;
         });
-        let queryText = `INSERT INTO "chapter" ("story_id", "title", "order")
+        let queryText = `INSERT INTO "chapter" ("story_id", "title", "text", "order", "chapter_photo")
                          VALUES ${queryValueString.join(',')};`;
         pool.query(queryText, values).then((result) => {
             // send a response of created back to the client
