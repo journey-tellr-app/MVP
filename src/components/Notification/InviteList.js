@@ -26,7 +26,7 @@ class InviteList extends Component {
         const { invite } = this.props;
         return (
             <List
-                itemLayout="vertical"
+                itemLayout="horizontal"
                 dataSource={invite}
                 renderItem={invite => (
                     <List.Item actions={[
@@ -35,7 +35,7 @@ class InviteList extends Component {
                     ]}>
                         <List.Item.Meta
                             avatar={<Avatar src={invite.profile_pic} />}
-                            title={`${invite.first_name} ${invite.last_name} invites you to contribute on "${invite.title}"`}
+                            description={`${invite.first_name} ${invite.last_name} invites you to contribute on "${invite.title}"`}
                         />
                     </List.Item>
                 )}
