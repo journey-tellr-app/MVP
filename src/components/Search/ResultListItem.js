@@ -42,7 +42,7 @@ class ResultListItem extends Component {
           <List.Item
             bordered="false"
             key={item.title}
-            actions={[<Icon type="like" text="156" />]}
+            actions={[<p>hello</p>, <Icon type="like" text="156" />]}
           >
             <List.Item.Meta
               bordered="false"

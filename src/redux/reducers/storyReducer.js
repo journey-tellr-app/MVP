@@ -62,6 +62,12 @@ const imageReducer = (state = initialImage, action) => {
     return state;
 }
 
+const contributors = (state = [], action) => {
+    if (action.type === 'SET_CONTRIBUTORS') {
+        return action.payload;
+    }
+    return state;
+}
 
 export default combineReducers({
     contributedStoryReducer, // used on the home page
@@ -71,4 +77,5 @@ export default combineReducers({
     userStoryReducer, // for an user profile story page
     newStoryReducer, // called when creating a new story
     imageReducer, //holds AWS image location
+    contributors //this returns the names of all contributors to a story (for home page)
 });

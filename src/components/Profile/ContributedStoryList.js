@@ -57,4 +57,3 @@ const mapStoreToProps = (reduxStore) => ({
 });
 
 export default connect(mapStoreToProps)(ContributedStoryList);
-// export default ContributedStoryList;
