@@ -36,7 +36,7 @@ class InviteList extends Component {
                     ]}>
                         <List.Item.Meta
                             avatar={<Avatar src={invite.profile_pic} />}
-                            description={`${invite.first_name} ${invite.last_name} invites you to contribute on "${invite.title}"`}
+                            description={`${invite.first_name} ${invite.last_name} invited you to contribute to: "${invite.title}"`}
                         />
                     </List.Item>
                 )}
