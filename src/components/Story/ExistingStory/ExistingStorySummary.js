@@ -17,20 +17,21 @@ class ExistingStorySummary extends Component {
 
     render() {
         const { summary, chapter } = this.props;
-
+        console.log(this.props);
+        
         return (
             <div>
                 {/* this will check that the storyDetail reducer is populated 
                 before rendering its contents */}
                 {summary.length !== 0 ?
                     <div>
+                        <Row><h1 className="title-text">{summary[0].title}</h1></Row>
                         <Row type="flex" justify="center">
-                            <h1 className="title-text">{summary[0].title}</h1>
-                            <h3><img src={summary[0].header_photo}
+                            <img src={summary[0].header_photo}
                                 // width='100px'
                                 height='200px'
-                                alt="Shows what caption describes" /></h3>
-                            <h3 className="caption">{summary[0].caption}</h3>
+                                alt="Shows what caption describes" />
+                            <h4 className="caption">{summary[0].caption}</h4>
                         </Row>
                     </div> : null
                     // when the component mounts
