@@ -11,10 +11,12 @@ class HomePage extends Component {
     componentDidMount() {
         if (this.props.invite.length > 0) {
             notification.open({
-                message: 'Notification Title',
-                description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+                message: `Welcome, ${this.props.user.first_name}`,
+                description: `You have ${this.props.invite.length} notifications`,
+                duration: 0,
                 onClick: () => {
-                    console.log('Notification Clicked!');
+                    // console.log('Notification Clicked!');
+                    this.props.history.push('/notification');
                 },
             });
         }
@@ -41,6 +43,7 @@ class HomePage extends Component {
 
 const mapStateToProps = (reduxStore) => ({
     invite: reduxStore.notification.invite,
+    user: reduxStore.user.userInfo,
 });
 
 export default connect(mapStateToProps)(HomePage);
