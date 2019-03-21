@@ -63,7 +63,8 @@ class ExistingStoryMain extends Component {
            <ExistingStorySummary
                   summary={summary}
                   chapter={chapter}
-                  editMode={editMode} />
+                  editMode={editMode}
+                  contributor={contributor} />
               //chapter id sent on params
         }
         {chapter.length > 0 && isNaN(chapterId) !== true &&
