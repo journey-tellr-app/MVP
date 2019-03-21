@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 import { Button, Icon, Row, Col, Input } from 'antd';
 import './RegisterPage.css';
@@ -24,7 +25,7 @@ class ProfileInfo extends Component {
       <form onSubmit={this.advanceRegistration}>
         <Row type="flex" justify="center">
           <Col span={18} style={{ margin: '10px 0px' }}>
-            <h3>Please enter your profile information.</h3>
+            <h3>Please enter your public profile info.</h3>
           </Col>
           <Col span={18} style={{ marginBottom: '10px' }}>
             <label htmlFor="first_name">
@@ -51,13 +52,18 @@ class ProfileInfo extends Component {
             </label>
           </Col>
 
+          <Col span={18} style={{ marginBottom: '10px' }} >
+            <ImageUpload photoDetails={{ typeOfPhoto: 'REGISTER', title: 'Add Profile Photo' }} />
+          </Col>
+
+
           <Col span={12}>
 
           </Col>
           <Col span={12}>
             <Button
               type='primary'
-              htmlType='submit' 
+              htmlType='submit'
               className='registration-button'>
               Next
               <Icon type="right" />
