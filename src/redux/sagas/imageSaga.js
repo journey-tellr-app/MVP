@@ -23,8 +23,8 @@ function* addImageAWS(action) {
     let nextAction = {
         type: action.nextType,
         payload: awsResponse,
-        id: action.id,
     }
+    
     yield put(nextAction);
 }
 

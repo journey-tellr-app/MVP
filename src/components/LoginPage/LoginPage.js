@@ -82,7 +82,7 @@ class LoginPage extends Component {
                   <label htmlFor="password">
                     Password:
                     <Input
-                      placeholder='Enter you password'
+                      placeholder='Enter your password'
                       prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                       type="password"
                       value={password}

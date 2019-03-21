@@ -14,16 +14,18 @@ class UserInfo extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
-    const { registration } = this.props;
+    const { first_name, last_name, email, password,
+      profile_pic, confirm_email, confirm_password } = this.props.registration;
 
-    if (registration.first_name && registration.last_name && (registration.email === registration.confirm_email) && (registration.password === registration.confirm_password)) {
+    if (first_name && last_name && (email === confirm_email) && (password === confirm_password)) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
-          first_name: registration.first_name,
-          last_name: registration.last_name,
-          email: registration.email,
-          password: registration.password,
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: password,
+          profile_pic: profile_pic
         },
       });
     } else {
@@ -56,6 +58,7 @@ class UserInfo extends Component {
             <label htmlFor="confirm_email">
               Confirm Email:
             <Input
+                placeholder="yourname@email.com"
                 type="email"
                 name="confirm_email"
                 value={registration.confirm_email}
@@ -68,6 +71,7 @@ class UserInfo extends Component {
             <label htmlFor="password">
               Password:
               <Input
+                placeholder="Enter your password"
                 type="password"
                 name="password"
                 value={registration.password}
@@ -80,6 +84,7 @@ class UserInfo extends Component {
             <label htmlFor="confirm_password">
               Confirm Password:
               <Input
+                placeholder="Re-enter your password"
                 type="password"
                 name="confirm_password"
                 value={registration.confirm_password}
