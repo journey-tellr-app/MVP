@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 function* getMyContributions(action) {
     try {
         const serverResponse = yield axios.get('story/story-contributions');
@@ -33,24 +36,6 @@ function* storyTemplate(action) {
     }
 }
 
-// get the story and chapter details from a template then set the reducers
-function* storyTemplateDetails(action) {
-    try {
-        // get template story details 
-        const response = yield axios.get(`/template/story/${action.payload}`);
-        // set the template story
-        const nextAction = { type: 'SET_NEW_STORY', payload: response.data };
-        yield put(nextAction);
-        // get chapter details for a story
-        const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);
-        // set the chapter details
-        const chapterAction = { type: 'SET_TEMPLATE_NEW_STORY_CHAPTER', payload: chapterResponse.data };
-        yield put(chapterAction);
-    } catch (error) {
-        console.log('Error with storyTemplateDetails:', error);
-    }
-}
-
 // send a new story to the server
 function* addAStory(action) {
     try {
@@ -72,15 +57,17 @@ function* addAStory(action) {
         } // end if
         
         // clear the new story reducers
+        message.success('You successfully created a story!');
         const nextAction = { type: 'CLEAR_NEW_STORY' };
         yield put(nextAction);
     } catch (error) {
-        // error message when trying to add a story
+        // error message and alert when trying to add a story fails
         console.log(`Add story failed: ${error}`);
+        message.error('There was a problem when creating your story');
     }
 }
 
-// reset story, chapter and contributor to initial values
+// reset story, image, chapter and contributor to initial values
 function* clearNewStory() {
     try {
         const storyAction = { type: 'RESET_NEW_STORY' };
@@ -102,8 +89,7 @@ function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
     yield takeLatest('GET_TOP_STORIES', getTopStories);
     yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
-    yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
-    yield takeLatest('ADD_NEW_STORY', addAStory);
+    yield takeLatest('POST_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
 }
 

@@ -34,38 +34,36 @@ class AddChapter extends Component {
 
     // submits the currently entered field and allows the user to create another chapter
     addChapter = () => {
-        // if storyId is new it is a new story otherwise add to existing story
-        if(this.props.storyId === 'new') {
-            this.props.dispatch({ type: 'SET_NEW_STORY_CHAPTER', payload: { title: this.state.title,
-                                                                            disabled: true, }
-            });
-        } else {
-            // add 1 to the length of existing chapters to get the new chapter order
-            let newOrder = this.props.chapter.length + 1;
+        // add 1 to the length of existing chapters to get the new chapter order
+        let newOrder = this.props.chapter.length + 1;
 
-            // create an array to use the existing chapter router POST route
-            let chapterArray = [];
-            chapterArray.push({ title: this.state.title, order: newOrder, disabled: true, });
+        // create an array to use the existing chapter router POST route
+        let chapterArray = [];
+        chapterArray.push({ title: this.state.title,
+                            text: '',
+                            order: newOrder,
+                            chapter_photo: '/images/placeholder.png',
+                            disabled: true,
+                         });
 
-            // package the data to be sent to the server
-            let dataToSend = { chapter: chapterArray,
-                               storyId: this.props.storyId,
-                             };
-            // call reduxSaga for adding a new chapter passing the chapter array and story id
-            this.props.dispatch({ type: 'ADD_EXISTING_STORY_CHAPTER', payload: dataToSend });
-        } // end if
+        // package the data to be sent to the server
+        let dataToSend = { chapter: chapterArray,
+                           storyId: this.props.storyId,
+                         };
+        // call reduxSaga for adding a new chapter passing the chapter array and story id
+        this.props.dispatch({ type: 'ADD_EXISTING_STORY_CHAPTER', payload: dataToSend });
 
         // set state to intial value
         this.setState(this.baseState);
         
-    }
+    } // end addChapter
 
     // do not save the entered chapter data and close modal
     cancelEntry = () => {
         this.setState({
             visible: false,
         })
-    }
+    } // end cancelEntry
 
     render() {
 
@@ -85,16 +83,11 @@ class AddChapter extends Component {
                            value={this.state.title}
                            onChange={this.onInputChange} 
                            allowClear 
-                        //    style={{ width: 340 }}
                     />
                 </Modal>
             </div>
         )
     }
 };
-
-// const mapStoreToProps = reduxStore => ({
-//     chapter: reduxStore.chapter.newStoryChapterReducer,
-// });
 
 export default connect()(AddChapter);

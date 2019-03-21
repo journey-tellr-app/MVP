@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Row, Col, Typography } from 'antd';
+import { Row, Typography } from 'antd';
 import './SubHeader.css';
 
 const { Title } = Typography;

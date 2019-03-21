@@ -50,9 +50,10 @@ class LoginPage extends Component {
   };
 
   render() {
-    const suffix = email ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
     const { email, password } = this.state;
     const { handleInputChangeFor } = this;
+    const suffix = email ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
+
     return (
       <div>
         {this.props.errors.loginMessage &&

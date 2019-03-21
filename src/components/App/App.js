@@ -14,8 +14,11 @@ import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import SearchMain from '../Search/SearchMain';
-import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
+import CreateStoryMain from '../Story/CreateStory/CreateStoryMain.js';
+import CreateStoryDetail from './../Story/CreateStory/CreateStoryDetail.js';
+import CreateStoryChapter from './../Story/CreateStory/CreateStoryChapter.js';
+import CreateStoryContributor from './../Story/CreateStory/CreateStoryContributor.js';
 import NavButton from '../Nav/NavButton';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -79,7 +82,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact path='/choose-template'
-              component={NewStoryMain}
+              component={CreateStoryMain}
             />
             <ProtectedRoute
               exact path='/profile'
@@ -110,6 +113,18 @@ class App extends Component {
             <Route
               exact path='/fake-data'
               component={FakeData}
+            />
+            <ProtectedRoute
+              exact path='/choose-template/detail/'
+              component={CreateStoryDetail}
+            />
+            <ProtectedRoute
+              exact path='/choose-template/chapter/'
+              component={CreateStoryChapter}
+            />
+            <ProtectedRoute
+              exact path='/choose-template/contributor/'
+              component={CreateStoryContributor}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}

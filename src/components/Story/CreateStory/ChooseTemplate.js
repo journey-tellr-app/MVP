@@ -13,12 +13,9 @@ class ChooseTemplate extends Component {
 
     // gets template details from the database and sets the reducer
     handleChange = (value) => {
-        // send the value(id) to get selected template
         if(value === 'initial'){
-            this.props.dispatch({ type: 'RESET_NEW_STORY' });
-            this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
+            this.props.dispatch({type: 'SET_TEMPLATE_NEW_CREATE'})
         } else {
-            this.props.dispatch({ type: 'RESET_NEW_STORY_CHAPTER' });
             this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value});
         }
     }

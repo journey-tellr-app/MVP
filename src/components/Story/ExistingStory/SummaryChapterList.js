@@ -39,7 +39,7 @@ class SummaryChapterList extends Component {
                     }}
                     dataSource={this.props.chapter}
                     renderItem={item => {
-                        const { order, chapter_photo, text, title } = item;
+                        const { order, chapter_photo, title } = item;
                         return (
                             <List.Item
                                 key={title} type="flex" align="top" className="chapter-contents"
