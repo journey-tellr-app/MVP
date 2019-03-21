@@ -5,6 +5,14 @@ body {
     /* background-color: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
 }
 
+.ant-list-item-meta-description {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+
+
 #user-name {
     font-family: Montserrat, sans-serif;
     font-weight: 600;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Notification.css'
 
 import { List, Avatar, Button } from 'antd';
 
@@ -26,16 +27,16 @@ class InviteList extends Component {
         const { invite } = this.props;
         return (
             <List
-                itemLayout="vertical"
+                itemLayout="horizontal"
                 dataSource={invite}
                 renderItem={invite => (
                     <List.Item actions={[
-                        <Button onClick={this.handleInvite.bind(this, invite.invite_id, 'accepted')}> Accept</Button>,
-                        <Button onClick={this.handleInvite.bind(this, invite.invite_id, 'rejected')}> Maybe Later</Button>,
+                        <Button size="small" id="notification-btn" onClick={this.handleInvite.bind(this, invite.invite_id, 'accepted')}>Accept</Button>,
+                        <Button size="small" id="notification-btn" onClick={this.handleInvite.bind(this, invite.invite_id, 'rejected')}>Maybe Later</Button>,
                     ]}>
                         <List.Item.Meta
                             avatar={<Avatar src={invite.profile_pic} />}
-                            title={`${invite.first_name} ${invite.last_name} invites you to contribute on "${invite.title}"`}
+                            description={`${invite.first_name} ${invite.last_name} invited you to contribute to: "${invite.title}"`}
                         />
                     </List.Item>
                 )}
