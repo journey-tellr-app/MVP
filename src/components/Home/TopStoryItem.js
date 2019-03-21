@@ -9,25 +9,35 @@ const { Meta } = Card;
 class TopStoryItem extends Component {
 
     handleReadStory = (event) => {
-        console.log('in hRS');
+        console.log('in hRS', this.props);
 
-        this.props.history.push(`/existing-story/${this.props.id}`);
+        this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
 
     handleLike = (event) => {
+        console.log(this.props);
+        
         this.props.dispatch({
             type: 'LIKE_TOP_STORY',
             payload: {
                 user_id: this.props.user_id,
-                story_id: this.props.id
+                story_id: this.props.story_id
             }
         });
+    }
+
+    componentDidMount = (event) => {
+        this.props.dispatch({
+            type: 'GET_CONTRIBUTORS',
+            payload: this.props.story_id
+        })
     }
 
     render() {
 
         return (
             <div align='center'>
+            {/* {JSON.stringify(this.props.story.contributors)}  */}
                 <Card
                     id='card'
                     style={{ width: 300 }}

@@ -19,7 +19,7 @@ class SummaryChapterList extends Component {
 
     render() {
         return (
-            <div>
+            <div >
                 <h1>Chapters</h1>
                 <List
                     itemLayout="vertical"

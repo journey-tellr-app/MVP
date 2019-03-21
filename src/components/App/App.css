@@ -5,6 +5,14 @@ body {
     /* background-color: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
 }
 
+.ant-list-item-meta-description {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+
+
 #user-name {
     font-family: Montserrat, sans-serif;
     font-weight: 600;
@@ -22,7 +30,10 @@ input {
     margin: 5px;
     margin-bottom: 10px;
 }
-
+.ant-list-pagination {
+  margin-top: 24px;
+  text-align: center;
+}
 .caption, .title-text {
     margin-right: 40px;
     margin-left: 40px;  
@@ -31,6 +42,10 @@ input {
 .chapter-contents {
     margin-right: 40px;
     margin-left: 40px;  
+}
+.search-story {
+    margin-right: 10px;
+    margin-left: 10px;  
 }
 .log-in, .log-out, .register {
   background-color: #00acb0;
@@ -45,7 +60,10 @@ input {
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #008183;
 }
+.center-button {
+    text-align: center;
 
+}
 /* This line makes the "Register" and "Login" buttons look like links */
 .link-button {
     background:none;
