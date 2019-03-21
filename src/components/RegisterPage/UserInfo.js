@@ -56,6 +56,7 @@ class UserInfo extends Component {
             <label htmlFor="confirm_email">
               Confirm Email:
             <Input
+                placeholder="yourname@email.com"
                 type="email"
                 name="confirm_email"
                 value={registration.confirm_email}
@@ -68,6 +69,7 @@ class UserInfo extends Component {
             <label htmlFor="password">
               Password:
               <Input
+                placeholder="Enter your password"
                 type="password"
                 name="password"
                 value={registration.password}
@@ -80,6 +82,7 @@ class UserInfo extends Component {
             <label htmlFor="confirm_password">
               Confirm Password:
               <Input
+                placeholder="Re-enter your password"
                 type="password"
                 name="confirm_password"
                 value={registration.confirm_password}
