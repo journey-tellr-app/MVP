@@ -12,7 +12,6 @@ function* getMyContributions(action) {
     }
 }
 
-
 function* getTopStories(action) {
     try {
         // console.log('in getTopStories' );
@@ -97,6 +96,17 @@ function* clearNewStory() {
     }
 }
 
+function* getContributors(action) {
+    try {
+        // console.log(action.payload);
+        const serverResponse = yield axios.get(`story/contributors/${action.payload}`);
+        yield put({type: 'SET_CONTRIBUTORS', payload: serverResponse.data});
+
+    } catch(e) {
+        console.log(`Error in getContributors saga: ${e}`);
+    }
+}
+
 
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
@@ -105,6 +115,7 @@ function* storySaga() {
     yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
     yield takeLatest('ADD_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
+    yield takeLatest('GET_CONTRIBUTORS', getContributors);
 }
 
 export default storySaga;

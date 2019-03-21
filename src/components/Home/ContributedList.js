@@ -30,6 +30,7 @@ class ContributedList extends Component {
                         <Carousel swipeToSlide>
                             {this.props.contributedStories.map((story, i) => {
                                 return <ContributedListItem
+                                    story={story}
                                     user_id={this.props.userInfo.id}
                                     history={this.props.history}
                                     story_id={story.story_id}
@@ -56,6 +57,7 @@ class ContributedList extends Component {
 };
 
 const mapStateToProps = (state) => ({
+    story: state.story,
     userInfo: state.user.userInfo,
     contributedStories: state.story.contributedStoryReducer
 });

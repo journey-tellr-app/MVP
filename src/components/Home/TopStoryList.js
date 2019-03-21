@@ -22,7 +22,7 @@ class TopStoryList extends Component {
                     {this.props.topStories.map( (story, i) => {
                         return <TopStoryItem 
                                     user_id={this.props.userInfo.id}
-                                    id={story.story_id}
+                                    story_id={story.story_id}
                                     history={this.props.history}
                                     key={i}
                                     header_photo={story.header_photo}
