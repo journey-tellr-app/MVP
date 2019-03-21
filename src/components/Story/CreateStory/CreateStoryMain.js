@@ -4,6 +4,8 @@ import ChooseTemplate from './ChooseTemplate.js';
 import CreateStorySteps from './CreateStorySteps.js';
 import './CreateStory.css'
 
+import SubHeader from '../../Common/SubHeader';
+
 // ant design import
 import { Form, Button } from 'antd';
 import { Divider } from 'antd';
@@ -42,8 +44,9 @@ class CreateStoryMain extends Component {
             <div className="container">
                 <Form layout="vertical" onSubmit={this.nextPage}>
                     <br />
-                    <h1 align='center'>Create a Story</h1>
-                    <br />
+                    <SubHeader headerText='Create a Story' />
+                    {/* <h1 align='center'>Create a Story</h1> */}
+                    
                     <CreateStorySteps
                         current={0}
                     />

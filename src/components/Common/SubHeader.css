@@ -1,5 +1,5 @@
 .sub-header {
-    background-color: rgb(217, 139, 79);
+    /* background-color: rgb(217, 139, 79); */
     margin: 10px 0px;
 }
 
@@ -8,4 +8,5 @@
     padding: 5px 0px;
     /* overrides ant margin */
     margin-bottom: 0px !important;
+    color: rgb(217, 139, 79) !important;
 }

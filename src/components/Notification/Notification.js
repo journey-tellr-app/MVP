@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import SubHeader from '../Common/SubHeader';
 import InviteList from './InviteList';
 import { Divider } from 'antd';
 
@@ -24,7 +25,8 @@ class Notification extends Component {
             </div> */}
                 <div className="list"
                     align="center">
-                    <h1>Notifications</h1>
+                    <SubHeader headerText='Notifications' />
+                    {/* <h1>Notifications</h1> */}
                     {invite.length > 0 ?
                         <InviteList
                             story_id={invite.story_id}
