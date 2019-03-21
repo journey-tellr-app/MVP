@@ -12,7 +12,7 @@ class ContributorList extends Component {
 
         //checks to see if list is being used on existing story view
         if (editMode !== undefined){
-            dataSource = storyContributors;
+            dataSource = [...storyContributors, ...pendingContributors];
         }
         return (
             <div>

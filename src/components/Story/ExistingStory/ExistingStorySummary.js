@@ -50,11 +50,11 @@ class ExistingStorySummary extends Component {
                     </Col>
 
                     <Col span={20}>
-                        <Title level={4} >{`By ${summary[0].author_name}${contributorDescription}`} </Title>
+                        <Title level={4} style={{ textAlign: 'center'}}>{`By ${summary[0].author_name}${contributorDescription}`} </Title>
                     </Col>
-                    {contributor.length > 1 &&
+                    {contributor.length > 0 &&
                         <Col span={10}>
-                            <ContributorPopup editMode={editMode}/>
+                            <ContributorPopup editMode={editMode} story_id={summary[0].id}/>
                         </Col>
                     }
                 </Row>

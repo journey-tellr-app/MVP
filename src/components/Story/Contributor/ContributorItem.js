@@ -14,12 +14,8 @@ class ContributorItem extends Component {
 
     render() {
         const { item, editMode } = this.props;
-        let eHandler;
-        if(editMode === undefined) {
-            eHandler  = this.handleClick;
-        }
         return (
-            <List.Item onClick={eHandler}>
+            <List.Item onClick={this.handleClick}>
                 <List.Item.Meta
                     avatar={<Avatar src={`${item.profile_pic}`} />}
                     title={`${item.first_name} ${item.last_name}`}

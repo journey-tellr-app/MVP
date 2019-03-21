@@ -58,7 +58,7 @@ router.get('/contributor/:id', (req, res) => {
     // console.log(Number(req.params.id));
     if (req.isAuthenticated()) {
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT person.first_name, person.last_name, profile_pic
+        const queryText = `SELECT person.first_name, person.last_name, profile_pic, person.id
             FROM contributor
             JOIN person ON contributor.person_id = person.id
             WHERE story_id = $1 AND status = 'accepted';`;

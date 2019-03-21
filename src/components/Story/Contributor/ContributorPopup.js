@@ -19,6 +19,16 @@ class ContributorPopup extends Component {
     }
 
     handleCancel = () => {
+        this.props.dispatch({ type: "RESET_PENDING_CONTRIBUTOR" })
+        this.setState({ visible: false });
+    }
+
+    handleInvite = () => {
+        const fullPayload = {
+            story_id: this.props.story_id,
+            pendingContributor: this.props.pendingContributor
+        }
+        this.props.dispatch({ type: 'ADD_CONTRIBUTOR', payload: fullPayload});
         this.setState({ visible: false });
     }
 
@@ -41,11 +51,11 @@ class ContributorPopup extends Component {
             //adds footer actions for editors
             footer.push(<Button key="back"
                 onClick={this.handleCancel}>
-                Return</Button>);
+                Cancel</Button>);
             footer.push(<Button key="submit"
                 type="primary"
                 loading={loading}
-                onClick={this.handleOk}
+                onClick={this.handleInvite}
                 icon='usergroup-add'>
                 Send Invites</Button>);
         }
@@ -72,4 +82,10 @@ class ContributorPopup extends Component {
     }
 }
 
-export default connect()(ContributorPopup);
+const mapRStoProps = (rs) => {
+    return {
+        pendingContributor: rs.contributor.pending
+    }
+}
+
+export default connect(mapRStoProps)(ContributorPopup);
