@@ -106,5 +106,22 @@ router.delete('/', (req, res) => {
 
 });
 
+router.get('/contributors/:id', (req, res) => {
+    const storyId = req.params.id;
+    const queryText = `SELECT story_id, count(concat(person.first_name, ' ', person.last_name)) AS contributors
+                       FROM contributor
+                       JOIN person
+                       ON contributor.person_id = person.id
+                       JOIN story
+                       ON story_id = story.id
+                       WHERE story_id = $1
+                       GROUP BY story.id, contributor.story_id`;
+    pool.query(queryText, [storyId])
+    .then( (sqlResult) => {
+        res.send(sqlResult.rows);
+    }).catch( (e) => {
+        console.log(`Error in contributors router: ${e}`);
+    });
+});
 
 module.exports = router;

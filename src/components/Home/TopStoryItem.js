@@ -19,15 +19,23 @@ class TopStoryItem extends Component {
             type: 'LIKE_TOP_STORY',
             payload: {
                 user_id: this.props.user_id,
-                story_id: this.props.id
+                story_id: this.props.story_id
             }
         });
+    }
+
+    componentDidMount = (event) => {
+        this.props.dispatch({
+            type: 'GET_CONTRIBUTORS',
+            payload: this.props.story_id
+        })
     }
 
     render() {
 
         return (
             <div align='center'>
+            {/* {JSON.stringify(this.props.story.contributors)}  */}
                 <Card
                     id='card'
                     style={{ width: 300 }}

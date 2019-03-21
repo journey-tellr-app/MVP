@@ -22,6 +22,13 @@ class ContributedListItem extends Component {
         });
     }
 
+    componentDidMount = (event) => {
+        this.props.dispatch({
+            type: 'GET_CONTRIBUTORS',
+            payload: this.props.story_id
+        })
+    }
+
     render() {
         return (
             <div align='center'>
