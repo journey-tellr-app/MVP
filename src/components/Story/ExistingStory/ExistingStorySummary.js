@@ -17,7 +17,6 @@ class ExistingStorySummary extends Component {
 
     render() {
         const { summary, chapter } = this.props;
-        console.log(this.props);
         
         return (
             <div>
