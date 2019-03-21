@@ -17,7 +17,11 @@ class Notification extends Component {
                 align="center">
                 <h1>Notifications</h1>
                 {invite.length > 0 ?
-                    <InviteList invite={invite} />
+                    <InviteList
+                        story_id={invite.story_id}
+                        history={this.props.history}
+                        invite={invite}
+                    />
                     :
                     <p>You have no invites at this time</p>
                 }
