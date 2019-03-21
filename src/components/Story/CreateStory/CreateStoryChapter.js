@@ -13,10 +13,6 @@ class CreateStoryChapter extends Component {
         const { form } = this.props;
         // can use data-binding to get
         const keys = form.getFieldValue('keys');
-        // We need at least one passenger
-        // if (keys.length === 1) {
-        //   return;
-        // }
     
         // can use data-binding to set
         form.setFieldsValue({
@@ -29,6 +25,7 @@ class CreateStoryChapter extends Component {
         // can use data-binding to get
         const keys = form.getFieldValue('keys');
         const nextKeys = keys.concat(id++);
+
         // can use data-binding to set
         // important! notify form to detect changes
         form.setFieldsValue({
@@ -39,7 +36,7 @@ class CreateStoryChapter extends Component {
     // go back to the previous page
     previousButton = () => {
         this.props.history.push('/choose-template/detail/');
-    }
+    } // end previousButton
 
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
@@ -67,6 +64,7 @@ class CreateStoryChapter extends Component {
                 console.log('Error: ', values);
             }
         });
+        
     } // end createChapter
 
     render() {

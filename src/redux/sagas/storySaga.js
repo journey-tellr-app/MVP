@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 function* getMyContributions(action) {
     try {
         const serverResponse = yield axios.get('story/story-contributions');
@@ -54,15 +57,17 @@ function* addAStory(action) {
         } // end if
         
         // clear the new story reducers
+        message.success('You successfully created a story!');
         const nextAction = { type: 'CLEAR_NEW_STORY' };
         yield put(nextAction);
     } catch (error) {
-        // error message when trying to add a story
+        // error message and alert when trying to add a story fails
         console.log(`Add story failed: ${error}`);
+        message.error('There was a problem when creating your story');
     }
 }
 
-// reset story, chapter and contributor to initial values
+// reset story, image, chapter and contributor to initial values
 function* clearNewStory() {
     try {
         const storyAction = { type: 'RESET_NEW_STORY' };

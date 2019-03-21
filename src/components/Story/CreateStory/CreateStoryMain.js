@@ -6,7 +6,7 @@ import CreateStorySteps from './CreateStorySteps.js';
 // ant design import
 import { Form, Button } from 'antd';
 
-class CreateStory extends Component {
+class CreateStoryMain extends Component {
 
     componentDidMount() {
         this.props.form.validateFields();
@@ -59,10 +59,10 @@ class CreateStory extends Component {
 
 }
 
-const WrappedCreateStoryForm = Form.create()(CreateStory);
+const WrappedCreateStoryMain = Form.create()(CreateStoryMain);
 
 const mapStoreToProps = reduxStore => ({
     template: reduxStore.template.templateNewStoryReducer,
 });
 
-export default connect(mapStoreToProps)(WrappedCreateStoryForm);
+export default connect(mapStoreToProps)(WrappedCreateStoryMain);
