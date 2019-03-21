@@ -4,7 +4,14 @@ import './Notification.css'
 
 import { List, Avatar, Button } from 'antd';
 
+
 class InviteList extends Component {
+
+    handleReadStory = (id) => {
+        console.log('error', id)
+
+        this.props.history.push(`/existing-story/${id}`);
+    }
 
     buildListItems = (item) => {
         return <List.Item>
@@ -17,15 +24,20 @@ class InviteList extends Component {
     }
 
     handleInvite = (id, status, event) => {
+        console.log('error error')
         this.props.dispatch({
             type: `SEND_INVITE_RESPONSE`,
             payload: { invite_id: id, status: status }
         })
+        this.handleReadStory(id);
     }
+
+
 
     render() {
         const { invite } = this.props;
         return (
+
             <List
                 itemLayout="horizontal"
                 dataSource={invite}
@@ -46,5 +58,6 @@ class InviteList extends Component {
         )
     }
 };
+
 
 export default connect()(InviteList);
