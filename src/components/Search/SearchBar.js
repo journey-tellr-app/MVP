@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Select} from 'antd';
 
+import './SearchBar.css'
 
 class SearchBar extends Component {
     state = {
@@ -30,11 +31,13 @@ class SearchBar extends Component {
             </Select>
         );
         return (
-            <div>
+            <div className='box'>
+                <br/>
                 <h1>Search All Stories</h1>
+                <br/>
                 <Search
                     addonBefore={selectBefore}
-                    placeholder="input search text"
+                    placeholder="Search"
                     onSearch={value => this.sendSearch(value)}
                     style={{ width: 300 }}
                 />

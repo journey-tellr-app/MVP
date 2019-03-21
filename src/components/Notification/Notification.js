@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import InviteList from './InviteList';
+import { Divider } from 'antd';
 
 class Notification extends Component {
 
@@ -13,11 +14,12 @@ class Notification extends Component {
     const { invite } = this.props
         return (
             <div>
-                <h1>Notifications</h1>
+                <br/>
+                <h1 align='center'>Notifications</h1>
                 {invite.length > 0 ? 
                 <InviteList invite={invite}/>
                 :
-                <p>You have no invites at this time</p>
+                <Divider>You have no invites at this time.</Divider>
                 }
             </div>
         )

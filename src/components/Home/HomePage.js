@@ -6,6 +6,8 @@ import { Divider } from 'antd';
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
 
+import './CardDesigns.css';
+
 class HomePage extends Component {
     
     render() {
