@@ -23,6 +23,8 @@ const registration = (state = registrationState, action) => {
   switch (action.type) {
     case 'UPDATE_REGISTRATION':
       return { ...state, ...action.payload };
+    case 'CLEAR_REGISTRATION':
+      return registrationState;
     default:
       return state;
   }

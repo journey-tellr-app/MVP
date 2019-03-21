@@ -67,7 +67,7 @@ class RegisterPage extends Component {
           }
           <Col style={{
             margin: '20px',
-            float: 'right',
+            float: 'left',
           }}>
             <Button
               onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}>

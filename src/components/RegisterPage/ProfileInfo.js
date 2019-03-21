@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 
 import { Button, Icon, Row, Col, Input } from 'antd';
+import './RegisterPage.css';
 
 class ProfileInfo extends Component {
   static propTypes = {
@@ -51,13 +52,20 @@ class ProfileInfo extends Component {
           </Col>
 
           <Col span={12}>
+
           </Col>
-          <Col span ={12}>
-          <Button type='primary' htmlType='submit' > User Info <Icon type="right" /></Button>
+          <Col span={12}>
+            <Button
+              type='primary'
+              htmlType='submit' 
+              className='registration-button'>
+              Next
+              <Icon type="right" />
+            </Button>
           </Col>
         </Row>
 
-        
+
       </form>
     )
   }
