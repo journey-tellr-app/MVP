@@ -1,8 +1,12 @@
+body {
+  background-color: rgba(220, 220, 220, 0.671);
+}
+
 .ant-carousel{
     overflow: hidden;
     color: black;
     /* height: 160px; */
-    background-color: #D98A4F
+    /* background-color: #D98A4F */
     /* background-image: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
   }
   

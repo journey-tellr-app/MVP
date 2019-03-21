@@ -2,7 +2,11 @@ body {
     font-family: Montserrat, Lato, sans-serif;
     margin: 0px;
     font-size: 12px;
-    /* background-color: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
+    /* background-color: rgba(220, 220, 220, 0.671); */
+}
+
+h1 {
+    color: rgb(217, 139, 79);
 }
 
 .ant-list-item-meta-description {
