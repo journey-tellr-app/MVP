@@ -23,7 +23,8 @@ class ChapterView extends Component {
         //took out likes for now
         const { summary, chapter, contributor, editMode } = this.props;
         const { chapterId } = this.props.match.params;
-
+        console.log(chapterId, chapter);
+        
         // console.log('editMode:', this.state.editMode);
         const contributorSum = contributor.length;
         let contributorDescription;
@@ -34,8 +35,8 @@ class ChapterView extends Component {
         } else if (contributorSum < 2) {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
-        const currChapter = chapter[chapterId - 1];
-        // console.log(currChapter);
+        const currChapter = chapter[0];
+        console.log('currChapter', currChapter);
         return (
 
             <div>
