@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
-import { List, Button, Row } from 'antd';
+import { List, Button, Row, Typography, Divider } from 'antd';
+
+const { Title } = Typography;
 
 class SummaryChapterList extends Component {
     static propTypes = {
@@ -20,7 +22,10 @@ class SummaryChapterList extends Component {
     render() {
         return (
             <div >
-                <h1>Chapters</h1>
+                <Divider>
+                    <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Chapters</Title>
+                </Divider>
+
                 <List
                     itemLayout="vertical"
                     size="large"
@@ -38,7 +43,7 @@ class SummaryChapterList extends Component {
                             textToShow = text.substring(0, 150);
                         }
                         let imgToShow = './images/placeholder.png';
-                        if( chapter_photo !== null) {
+                        if (chapter_photo !== null) {
                             imgToShow = chapter_photo;
                         }
                         return (
@@ -51,7 +56,7 @@ class SummaryChapterList extends Component {
                                     description={textToShow}
                                 />
                                 <Row type="flex" justify="end"><Button onClick={() => this.readChapter(item)}>Read Chapter</Button></Row>
-                                
+
                             </List.Item>
                         )
                     }}

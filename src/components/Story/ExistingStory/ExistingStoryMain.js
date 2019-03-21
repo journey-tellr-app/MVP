@@ -31,7 +31,7 @@ class ExistingStoryMain extends Component {
     //searches contributors for user id
     const contributorCheck = contributor.filter(
       contributorObj => contributorObj.id === user.id).length > 0;
-    console.log(contributorCheck);
+    // console.log(contributorCheck);
     //checks user id against author id
     const authorCheck = summary.author_id === user.id;
     if (contributorCheck || authorCheck) {

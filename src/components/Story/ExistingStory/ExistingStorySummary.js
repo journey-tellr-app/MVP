@@ -6,11 +6,12 @@ import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
 import AddChapter from './../Chapter/AddChapter.js';
 import SubHeader from '../../Common/SubHeader';
+import EditButton from './EditButton';
 
-import { Row, Col, Card, Typography } from 'antd';
+import { Row, Col, Card, Typography, Divider } from 'antd';
 
 const { Meta } = Card;
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 class ExistingStorySummary extends Component {
     static propTypes = {
@@ -30,6 +31,7 @@ class ExistingStorySummary extends Component {
 
     render() {
         const { summary, chapter, contributor, editMode } = this.props;
+        const { title, author_name, id, header_photo, caption, intro } = summary[0];
         const contributorSum = contributor.length;
         let contributorDescription;
         if (contributorSum === 0) {
@@ -46,27 +48,82 @@ class ExistingStorySummary extends Component {
                 before rendering its contents */}
                 <Row type="flex" justify="space-around" align="middle">
                     <Col span={24}>
-                        <SubHeader headerText={summary[0].title} />
+                        <SubHeader headerText={title} />
                     </Col>
-
+                    {editMode &&
+                        <Col span={18} style={{marginBottom: 20}}>
+                            <EditButton
+                                valueToEdit={title}
+                                type='Story'
+                                name='Title'
+                                id={id} />
+                        </Col>
+                    }
                     <Col span={20}>
-                        <Title level={4} style={{ textAlign: 'center'}}>{`By ${summary[0].author_name}${contributorDescription}`} </Title>
+                        <Title level={4} style={{ textAlign: 'center' }}>{`By ${author_name}${contributorDescription}`} </Title>
                     </Col>
                     {contributor.length > 0 &&
-                        <Col span={10}>
-                            <ContributorPopup editMode={editMode} story_id={summary[0].id}/>
+                        <Col span={10} style={{ marginBottom: 20 }}>
+                            <ContributorPopup editMode={editMode} story_id={id} />
                         </Col>
                     }
                 </Row>
 
                 <Card
-                    style={{ width: 300 }}
-                    cover={<img alt="story book cover" src={summary[0].header_photo} />}
+                    style={{
+                        width: 300, display: 'block', margin: 'auto', marginBottom: 10,
+                    }}
+                    cover={<img alt="story book cover" src={header_photo} />}
                 >
                     <Meta
-                        description={summary[0].caption}
+                        description={caption}
                     />
                 </Card>
+                
+                {editMode && 
+                <Row type='flex' justify='center'>
+                    <Col>
+                        <EditButton
+                            valueToEdit={caption}
+                            type='Story'
+                            name='Caption'
+                            id={id} />
+                    </Col>
+                    <Col>
+
+                    </Col>
+                </Row>
+                }
+                
+
+                <Row type='flex' justify='center'>
+                    <Divider>
+                        <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Introduction</Title>
+                    </Divider>
+                    {intro !== null ?
+                        <Col span={18}>
+                            <Paragraph>
+                                {intro}
+                            </Paragraph>
+                        </Col>
+                        :
+                        <Col span={18}>
+                            <Paragraph> This story has no introduction yet! </Paragraph>
+                        </Col>
+                        
+                    }
+                    {editMode  && 
+                        <Col span={18}>
+                        <EditButton
+                            valueToEdit={intro}
+                            type='Story'
+                            name='Intro'
+                            id={id} />
+                        </Col>
+                    }
+                    
+                </Row>
+
 
                 {/* chapters div here */}
                 {chapter &&
