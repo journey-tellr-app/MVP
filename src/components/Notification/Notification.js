@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import InviteList from './InviteList';
+import './Notification.css';
 
 class Notification extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch({ type: 'GET_INVITES' })
     }
 
     render() {
-    const { invite } = this.props
+        const { invite } = this.props
         return (
-            <div>
+            <div className="list"
+                align="center">
                 <h1>Notifications</h1>
-                {invite.length > 0 ? 
-                <InviteList invite={invite}/>
-                :
-                <p>You have no invites at this time</p>
+                {invite.length > 0 ?
+                    <InviteList invite={invite} />
+                    :
+                    <p>You have no invites at this time</p>
                 }
             </div>
         )
@@ -25,7 +27,7 @@ class Notification extends Component {
 };
 
 const mapRStoProps = (rs) => {
-    return {invite: rs.notification.invite}
+    return { invite: rs.notification.invite }
 }
 
 export default connect(mapRStoProps)(Notification);
