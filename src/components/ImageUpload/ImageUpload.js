@@ -1,5 +1,6 @@
 import { Modal, Button, Row } from 'antd';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 
@@ -8,6 +9,11 @@ class ImageUpload extends Component {
     state = {
         visible: false,
         file: null
+    }
+
+    //photo details contains title for button name and typeOfPhoto keywords for next saga
+    static propTypes = {
+        photoDetails: PropTypes.object.isRequired,
     }
 
     showModal = () => {
@@ -61,7 +67,7 @@ class ImageUpload extends Component {
         return (
             <div>
                 
-                <Button type="primary" onClick={this.showModal}>
+                <Button type="default" onClick={this.showModal}>
                     {this.props.photoDetails.title}
                 </Button>
                 <Modal

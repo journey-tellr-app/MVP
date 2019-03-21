@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SubHeader from '../Common/SubHeader';
+import ErrorNotification from '../Common/ErrorNotification';
 
 import { Input, Icon, Row, Col, Button, notification } from 'antd';
 import './LoginPage.css';
@@ -58,12 +59,12 @@ class LoginPage extends Component {
         {this.props.errors.loginMessage &&
           this.showLoginErrorMessage()
         }
-        <Row>
-          <Col>
+        <Row type='flex' align='middle' justify='center'>
+          <Col span={24}>
             <SubHeader headerText='Log In' />
           </Col>
 
-          <Col>
+          <Col span={20}>
             <form onSubmit={this.login} className="login-form">
               <Row type="flex" justify="center">
                 <Col span={18} style={{ margin: '10px 0px' }}>
@@ -82,7 +83,7 @@ class LoginPage extends Component {
                   <label htmlFor="password">
                     Password:
                     <Input
-                      placeholder='Enter you password'
+                      placeholder='Enter your password'
                       prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                       type="password"
                       value={password}
@@ -100,6 +101,9 @@ class LoginPage extends Component {
               </Row>
             </form>
           </Col>
+        </Row>
+        
+        <Row>
           <Col style={{
             margin: '20px',
             float: 'right',}}>
