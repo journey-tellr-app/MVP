@@ -14,6 +14,10 @@ import 'antd/dist/antd.css';
 const { Title } = Typography;
 
 class SideDrawer extends Component {
+
+    componentDidMount() {
+        this.props.dispatch({ type: "GET_INVITES" });
+    }
     //creates navLinks
     buildLinks = () => {
         const routes = [
@@ -24,7 +28,7 @@ class SideDrawer extends Component {
             { route: '/about', name: 'About', iconType: 'info-circle' },
             { route: '/', name: 'Log Out', iconType: 'logout' }];
         return routes.map((routeObj, i) => {
-            return <NavigationLink routeObj={routeObj} handleSideBar={this.props.handleSideBar} key={i} />
+            return <NavigationLink routeObj={routeObj} notificationCount={this.props.invite.length} handleSideBar={this.props.handleSideBar} key={i} />
         })
     }
 
@@ -65,7 +69,8 @@ class SideDrawer extends Component {
 
 
 const mapStateToProps = store => ({
-    userInfo: store.user.userInfo
+    userInfo: store.user.userInfo,
+    invite: store.notification.invite,
 });
 
 export default connect(mapStateToProps)(SideDrawer);
