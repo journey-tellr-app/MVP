@@ -65,7 +65,7 @@ class ContributorPopup extends Component {
         return (
             <div>
                 <Button onClick={this.showModal}
-                    style={{ display: 'block', margin: 'auto' }}    >
+                    className='edit-button'   >
                     {ContributorBtnName}</Button>
                 <Modal
                     visible={visible}

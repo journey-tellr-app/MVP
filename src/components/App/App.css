@@ -58,10 +58,7 @@ input {
     margin-left: 40px;  
     text-align: center;
 }
-.chapter-contents {
-    margin-right: 40px;
-    margin-left: 40px;  
-}
+
 .search-story {
     margin-right: 10px;
     margin-left: 10px;  
@@ -93,4 +90,12 @@ input {
     outline:0;
     border-bottom:1px solid #444; 
     cursor: pointer;
+}
+
+.edit-button {
+    display: block;
+    margin: auto; 
+    background-color: rgb(217, 139, 79); 
+    font-weight: bold; 
+    color: black; 
 }

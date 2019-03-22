@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
-import { List, Button, Row, Typography, Divider } from 'antd';
+import AddChapter from './../Chapter/AddChapter.js';
+
+import { List, Row, Typography, Divider, Col, Avatar } from 'antd';
 
 const { Title } = Typography;
 
@@ -12,7 +14,10 @@ class SummaryChapterList extends Component {
     static propTypes = {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
+        history: PropTypes.object.isRequired,
+        storyId: PropTypes.number.isRequired,
+        chapter: PropTypes.array.isRequired,
+        editMode: PropTypes.bool.isRequired,
     };
 
     readChapter = (e) => {
@@ -20,47 +25,57 @@ class SummaryChapterList extends Component {
     }
 
     render() {
+        const { chapter, storyId, editMode } = this.props
         return (
             <div >
                 <Divider>
                     <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Chapters</Title>
                 </Divider>
+                <Row type='flex' align='middle' justify='center'>
+                    {editMode &&
+                        <Col>
+                            <AddChapter chapter={chapter} storyId={storyId} />
+                        </Col>
+                    }
 
-                <List
-                    itemLayout="vertical"
-                    size="large"
-                    pagination={{
-                        onChange: (page) => {
-                            console.log(page);
-                        },
-                        pageSize: 3,
-                    }}
-                    dataSource={this.props.chapter}
-                    renderItem={item => {
-                        const { order, chapter_photo, title, text } = item;
-                        let textToShow = '';
-                        if (text !== null) {
-                            textToShow = text.substring(0, 150);
-                        }
-                        let imgToShow = './images/placeholder.png';
-                        if (chapter_photo !== null) {
-                            imgToShow = chapter_photo;
-                        }
-                        return (
-                            <List.Item
-                                key={title} type="flex" align="top" className="chapter-contents"
-                                extra={<img width={100} alt={`for chapter ${order}`} src={imgToShow} />}
-                            >
-                                <List.Item.Meta
-                                    title={<Link to={`${this.props.match.url}/chapter/${order}`}>{title}</Link>}
-                                    description={textToShow}
-                                />
-                                <Row type="flex" justify="end"><Button onClick={() => this.readChapter(item)}>Read Chapter</Button></Row>
+                    <Col span={18}>
+                        <List
+                            itemLayout="vertical"
+                            size="large"
+                            pagination={{
+                                onChange: (page) => {
+                                    console.log(page);
+                                },
+                                pageSize: 3,
+                            }}
+                            dataSource={this.props.chapter}
+                            renderItem={item => {
+                                const { chapter_photo, title, text } = item;
+                                let textToShow = '';
+                                if (text !== null) {
+                                    textToShow = text.substring(0, 40) + '...';
+                                }
+                                let imgToShow = './images/placeholder.png';
+                                if (chapter_photo !== null) {
+                                    imgToShow = chapter_photo;
+                                }
+                                return (
+                                    <List.Item
+                                        key={title}
+                                    >
+                                        <List.Item.Meta
+                                            avatar={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}><Avatar src={imgToShow} shape="square" size={64} /></Link>}
+                                            title={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}>{title}</Link>}
+                                            description={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}>{textToShow}</Link>}
+                                        />
+                                    </List.Item>
 
-                            </List.Item>
-                        )
-                    }}
-                />
+                                )
+                            }}
+                        />
+                    </Col>
+                </Row>
+
             </div>
         )
     }

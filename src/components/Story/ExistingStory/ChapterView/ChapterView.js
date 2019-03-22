@@ -13,6 +13,7 @@ class ChapterView extends Component {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         contributor: PropTypes.array.isRequired,
+        editMode: PropTypes.bool.isRequired,
     };
 
     turnPage = (page, pageSize) => {
@@ -35,7 +36,7 @@ class ChapterView extends Component {
         } else if (contributorSum < 2) {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
-        const currChapter = chapter[0];
+        const currChapter = chapter[chapterId];
         console.log('currChapter', currChapter);
         return (
 
