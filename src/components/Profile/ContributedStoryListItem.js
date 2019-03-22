@@ -58,7 +58,7 @@ class ContributedStoryListItem extends Component {
                         actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
                     >
 
-                        <Title onClick={this.handleReadStory} level={4}>{this.props.title}</Title>
+                        <Title onClick={this.handleReadStory} level={4} >{this.props.title}</Title>
                         <Button onClick={this.handleLike}>
                             <Icon type='like' />
                         </Button>

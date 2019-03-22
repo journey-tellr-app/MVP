@@ -40,7 +40,9 @@ class SummaryChapterList extends Component {
                     dataSource={this.props.chapter}
                     renderItem={item => {
                         const { order, chapter_photo, title } = item;
-                        return (
+
+                        return item.text !== null ? 
+                        (
                             <List.Item
                                 key={title} type="flex" align="top" className="chapter-contents"
                                 extra={<img width={200} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
@@ -52,7 +54,20 @@ class SummaryChapterList extends Component {
                                 <Row type="flex" justify="end"><Button onClick={() => this.readChapter(item)}>Read Chapter</Button></Row>
                                 
                             </List.Item>
-                        )
+                        ) : ((
+                            <List.Item
+                                key={title} type="flex" align="top" className="chapter-contents"
+                                extra={<img width={200} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
+                            >
+                                <List.Item.Meta
+                                    title={<Link to={`${this.props.match.url}/chapter/${order}`}>{title}</Link>}
+                                />
+                                <Row type="flex" justify="end"><Button onClick={() => this.readChapter(item)}>Read Chapter</Button></Row>
+                                
+                            </List.Item>
+                        ))
+
+                        
                     }}
                 />
             </div>
