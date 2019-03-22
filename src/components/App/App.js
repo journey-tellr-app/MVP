@@ -27,7 +27,7 @@ import FakeData from '../Faker/FakeData';
 import ContributorPopup from '../Story/Contributor/ContributorPopup';
 
 //styling imports
-import { Icon, Row, Col } from "antd";
+import { Icon, Row, Col, BackTop } from "antd";
 import './App.css';
 import '../Nav/Nav.css';
 
@@ -65,7 +65,7 @@ class App extends Component {
             </Col>
             <Col span={3} />
           </Row>
-              {/* end header */}
+          {/* end header */}
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -131,6 +131,7 @@ class App extends Component {
             <Route render={() => <h1>404</h1>} />
             {/*  */}
           </Switch>
+          <BackTop />
         </div>
       </Router>
     )
