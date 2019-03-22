@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
-import { List, Button, Row } from 'antd';
+import { List, Button, Row, Divider } from 'antd';
 
 class SummaryChapterList extends Component {
     static propTypes = {
@@ -27,7 +27,7 @@ class SummaryChapterList extends Component {
         // console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
         return (
             <div >
-                <h1>Chapters</h1>
+                <Divider><h3>Chapters</h3></Divider>
                 <List
                     itemLayout="vertical"
                     size="large"
