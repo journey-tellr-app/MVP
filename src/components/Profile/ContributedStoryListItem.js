@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import './ProfilePage.css';
 import { Card, Icon } from 'antd';
 // import { Button } from 'antd';
-import { Typography } from 'antd';
+import { Typography, Spin } from 'antd';
 
 const { Title } = Typography;
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+
 
 
 class ContributedStoryListItem extends Component {
@@ -47,7 +49,7 @@ class ContributedStoryListItem extends Component {
 
                         <Title onClick={this.handleReadStory} level={4}>{this.props.title}</Title>
                         <Icon type='like' /><p>{this.props.likes}</p>
-                    </Card> : (<p>loading...</p>)}
+                    </Card> : (<Spin indicator={antIcon} />)}
             </div>
         )
     }
