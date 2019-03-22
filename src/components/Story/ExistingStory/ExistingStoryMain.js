@@ -6,6 +6,16 @@ import ChapterView from './ChapterView/ChapterView';
 import ExistingStorySummary from './ExistingStorySummary';
 
 class ExistingStoryMain extends Component {
+
+  state = {
+    editMode: false,
+  }
+
+  static propTypes = {
+    storyDetail: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.dispatch({
@@ -41,15 +51,6 @@ class ExistingStoryMain extends Component {
     }
   }
 
-  static propTypes = {
-    storyDetail: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
-  }
-
-  state = {
-    editMode: false,
-  }
-
   render() {
     //took out likes and contributor for now b/c compile warnings
     const { summary, chapter, contributor } = this.props.storyDetail;
@@ -63,7 +64,7 @@ class ExistingStoryMain extends Component {
            <ExistingStorySummary
                   summary={summary}
                   chapter={chapter}
-                  editMode={editMode} />
+                  editMode={(this.props.user.id != summary[0].author_id) ? false : true} />
               //chapter id sent on params
         }
         {chapter.length > 0 && isNaN(chapterId) !== true &&
@@ -72,7 +73,7 @@ class ExistingStoryMain extends Component {
                   chapter={chapter}
                   contributor={contributor}
                   key={chapterId}
-                  editMode={editMode} />
+                  editMode={this.props.user.id != summary[0].author_id ? false : true} />
         }
       </div>
     )

@@ -24,6 +24,7 @@ function* addImageAWS(action) {
         type: action.nextType,
         payload: awsResponse,
     }
+    console.log(`addImageAWS nextaction`, nextAction);
     
     yield put(nextAction);
 }

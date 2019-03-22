@@ -24,8 +24,8 @@ class ChapterView extends Component {
         //took out likes for now
         const { summary, chapter, contributor, editMode } = this.props;
         const { chapterId } = this.props.match.params;
-        console.log(chapterId, chapter);
-        
+        console.log(`Edit mode`, editMode);
+
         // console.log('editMode:', this.state.editMode);
         const contributorSum = contributor.length;
         let contributorDescription;
@@ -37,16 +37,16 @@ class ChapterView extends Component {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
         const currChapter = chapter.find((item) => (item.id === Number(chapterId)));
-        console.log('currChapter', currChapter);
+        console.log(currChapter);
 
         return (
 
             <div>
-                {currChapter !== undefined ?
+                {chapterId !== undefined ?
                     <div>
                         <PageHeader
                             title={`Chapter ${currChapter.order}: ${currChapter.title}`}
-                            subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
+                            subTitle={`in story "${summary.title}" by ${summary.author_name}${contributorDescription}. `}
                         />
                         {editMode &&
                             <ChapterEditButton
@@ -64,12 +64,12 @@ class ChapterView extends Component {
                         </Card>
                         {editMode &&
                         <div>
-                            <ChapterEditButton
-                                valueToEdit={currChapter.text}
-                                type='Chapter'
-                                name='Text'
-                                id={currChapter.id} />
-                            <ImageUpload photoDetails={{typeOfPhoto:'CHAPTER', title: "Edit story picture"}}/>
+                        <ChapterEditButton
+                            valueToEdit={currChapter.text}
+                            type='Chapter'
+                            name='Text'
+                            id={currChapter.id} />
+                        <ImageUpload photoDetails={{typeOfPhoto:'CHAPTER', title: "Add chapter picture"}}/>
                         </div>
                         }
                         <Pagination
@@ -88,4 +88,8 @@ class ChapterView extends Component {
 
 const ChapterViewWithRouter = withRouter(ChapterView);
 
-export default connect()(ChapterViewWithRouter);
+const mapStoreToProps = reduxStore => ({
+    image: reduxStore.chapter.chapterImageReducer,
+});
+
+export default connect(mapStoreToProps)(ChapterViewWithRouter);

@@ -15,9 +15,18 @@ function* addExistingStoryChapter(action) {
     }
 }
 
+function* changeChapterImage(action) {
+    try {
+
+    } catch(error) {
+        // error message when editing the chapter image
+        console.log(`Error in changeChapterImage: ${error}`);
+    }
+}
+
 function* chapterSaga() {
     yield takeLatest('ADD_EXISTING_STORY_CHAPTER', addExistingStoryChapter);
-    
+    yield takeLatest('ADD_IMAGE_CHAPTER', changeChapterImage);
 }
 
 export default chapterSaga;
