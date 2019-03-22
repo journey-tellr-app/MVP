@@ -112,10 +112,12 @@ class CreateStoryDetail extends Component {
                         }, 
                     )(
                     <div>
+                        { image.storyImage !== '/images/placeholder.png' ?
                         <img style={{ height: 150, width: 340 }}
                              alt="header_photo"
                              src={image.storyImage}
                         />
+                        : '' }
                         <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
                     </div>
                     )}
@@ -125,9 +127,7 @@ class CreateStoryDetail extends Component {
                     label="Photo caption"
                     extra={template.caption !== '' ? template.caption : null}
                 >
-                    {getFieldDecorator('caption', {
-                        rules: [{ required: true, message: 'Please enter a caption!' }],
-                        },
+                    {getFieldDecorator('caption'
                     )(
                    <Input allowClear
                           placeholder="Add a caption for your picture"
