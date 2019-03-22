@@ -15,13 +15,12 @@ class NavigationLink extends Component {
             onClickFxn = () => this.props.dispatch({ type: 'LOGOUT' })
         }
         const textStyle = { color: 'inherit', fontSize: '16px' };
-        let notificationCount = this.props.invite.length;
 
         return (
             <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-link-active' className='nav-link-default'>
                 <div className='nav-link-div'>
                     {name === 'Notifications' ?
-                        (<Badge count={notificationCount}><Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text></Badge>)
+                        (<Badge count={this.props.notificationCount}><Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text></Badge>)
                         : (<Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text>)}
                 </div>
             </NavLink>

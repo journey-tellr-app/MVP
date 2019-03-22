@@ -12,6 +12,7 @@
 
 .nav {
     overflow: hidden;
+    /* background-color: white; */
     background-color: rgba(220, 220, 220, 0.671);
     min-height: 75px;
     padding: 10px 0px;

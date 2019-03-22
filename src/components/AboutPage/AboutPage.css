@@ -1,17 +1,17 @@
-.app-photo {
+#app-photo {
     margin-top: 100px;
     margin-bottom: 20px;
     background-color: white;
+
 }
 
 .paragraph {
     margin-bottom: 20px;
     margin-top: 40px;
-
 }
 
 .about {
     height: 650px;
-    background: url("https://cdn.pixabay.com/photo/2017/03/20/05/29/summer-2158317_1280.jpg") no-repeat;
+    background: url("https://images.drstockphoto.com/0/path-through-the-woods.jpg") no-repeat;
     background-size: 100%;
 }
