@@ -6,10 +6,9 @@ function* addExistingStoryChapter(action) {
         // tell the chapter route that the story exists so order is not assigned
         const newStory = false;
         // call to the chapter route and POST the added chapter
-        console.log(action);
         yield axios.post(`chapter/${action.payload.storyId}/${newStory}`, action.payload.chapter);
         // refresh the story chapter detail with the added chapter
-        yield put({type: 'GET_STORY_CHAPTER_DETAIL', payload: action.payload.storyId});   
+        yield put({type: 'GET_STORY_CHAPTER_DETAIL', payload: action.payload.storyId});
     } catch(error) {
         console.log(`Error in addExistingStoryChapter: ${error}`);
     }
@@ -17,7 +16,13 @@ function* addExistingStoryChapter(action) {
 
 function* changeChapterImage(action) {
     try {
-
+        // package the image data
+        let dataToSend = { image: action.payload.data.Location };
+        // replace the old picture with the new picture
+        const response = yield axios.put(`chapter/image/${action.chapterId}`, dataToSend);
+        // refresh the chapter detail with the added photo
+        const nextAction = {type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data};
+        yield put(nextAction);
     } catch(error) {
         // error message when editing the chapter image
         console.log(`Error in changeChapterImage: ${error}`);

@@ -69,7 +69,10 @@ class ChapterView extends Component {
                                 type='Chapter'
                                 name='Text'
                                 id={currChapter.id} />
-                            <ImageUpload photoDetails={{typeOfPhoto:'CHAPTER', title: "Edit story picture"}}/>
+                            <ImageUpload photoDetails={{typeOfPhoto:'CHAPTER',
+                                                        title: "Edit story picture",
+                                                        chapterId: currChapter.id,
+                                                       }}/>
                         </div>
                         }
                         <Pagination

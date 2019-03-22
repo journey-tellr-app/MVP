@@ -23,6 +23,7 @@ function* addImageAWS(action) {
     let nextAction = {
         type: action.nextType,
         payload: awsResponse,
+        chapterId: action.chapterId,
     }
     console.log(`addImageAWS nextaction`, nextAction);
     

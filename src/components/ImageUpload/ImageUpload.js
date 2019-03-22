@@ -38,7 +38,7 @@ class ImageUpload extends Component {
     }
     submitFile = (event) => {
         // console.log('in sF');
-
+        console.log(`This props:`, this.props);
         // event.preventDefault();
         const formData = new FormData();
         formData.append('file', this.state.file);
@@ -46,7 +46,8 @@ class ImageUpload extends Component {
             type: 'ADD_IMAGE_AWS',  //directs dispach on which saga to use based on props
             nextType: `ADD_IMAGE_${this.props.photoDetails.typeOfPhoto}`,
             payload: formData,
-            id: this.props.user.userInfo.id
+            id: this.props.user.userInfo.id,
+            chapterId: this.props.photoDetails.chapterId,
         }
         this.props.dispatch(action);
         // console.log(this.props.photoDetails.typeOfPhoto);
