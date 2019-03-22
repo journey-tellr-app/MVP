@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
-import AddChapter from './../Chapter/AddChapter.js';
 import SubHeader from '../../Common/SubHeader';
 import EditButton from './EditButton';
 
@@ -127,9 +126,8 @@ class ExistingStorySummary extends Component {
 
                 {/* chapters div here */}
                 {chapter &&
-                    <SummaryChapterList chapter={chapter} />
+                    <SummaryChapterList chapter={chapter} storyId={summary[0].id} editMode={editMode}/>
                 }
-                <span>Add chapter</span><AddChapter chapter={chapter} storyId={summary[0].id} />
                 <button onClick={this.handlePostStory}>Post Story</button>
             </div>
         )
