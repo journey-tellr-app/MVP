@@ -21,8 +21,7 @@ function* changeChapterImage(action) {
         // replace the old picture with the new picture
         const response = yield axios.put(`chapter/image/${action.chapterId}`, dataToSend);
         // refresh the chapter detail with the added photo
-        const nextAction = {type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data};
-        yield put(nextAction);
+        yield put({type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data});
     } catch(error) {
         // error message when editing the chapter image
         console.log(`Error in changeChapterImage: ${error}`);

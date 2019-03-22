@@ -6,6 +6,7 @@ import { Typography } from 'antd';
 import './AboutPage.css';
 import logo from './JourneyTellr-color.png';
 
+
 const { Paragraph } = Typography;
 
 class AboutPage extends Component {

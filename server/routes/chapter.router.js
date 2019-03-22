@@ -59,6 +59,7 @@ router.put('/image/:chapterId', rejectUnauthenticated, (req, res) => {
                      RETURNING "story_id";`;
     pool.query(queryText,[req.body.image, Number(req.params.chapterId)]).catch((result) => {
         // send back a created code
+        console.log(result.rows);
         res.send(result.rows);
     }).catch((error) => {
         // console log and error message

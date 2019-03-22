@@ -36,9 +36,9 @@ router.post('/:storyId', (req, res) => {
         req.body.map( (contributor) => {
             values.push(contributor.person_id);
             queryValueString.push(`($1, $2, $${scrubCounter++})`)
-            console.log(scrubCounter);
-            console.log(values);
-            console.log(queryValueString);
+            // console.log(scrubCounter);
+            // console.log(values);
+            // console.log(queryValueString);
         });
         let queryText = `INSERT INTO "contributor" ("story_id", "status", "person_id")
                          VALUES ${queryValueString.join(',')};`;

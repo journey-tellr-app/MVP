@@ -92,9 +92,24 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 
 //edits made a story title, photo, caption after its begun
-router.put('/edit', (req, res) => {
-
-})
+router.put('/', (req, res) => {
+    const { id, colName, updatedValue } = req.body;
+    if (req.isAuthenticated() && (colName === 'Intro' || colName === 'Caption' || colName === 'Title')) {
+        const queryText = `UPDATE story 
+            SET ${colName.toLowerCase()} = $1 
+            WHERE id = $2;`;
+        const value = [updatedValue, id];
+        pool.query(queryText, value)
+            .then(response => {
+                res.sendStatus(201);
+            }).catch(e => {
+                console.log(`error in /story put`, e);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
 
 //when story finalized, sets completed to true
 router.put('/complete', (req, res) => {
