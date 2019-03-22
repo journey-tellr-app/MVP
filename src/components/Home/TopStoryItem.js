@@ -50,8 +50,9 @@ class TopStoryItem extends Component {
                         title={this.props.title}
                     />
                     <br/>
-                    <h4 align='center'>Story by {this.props.name}</h4>
-                    <Icon type='like' onClick={this.handleLike} />
+                    <Button onClick={this.handleLike}>
+                        <Icon type='like' />
+                    </Button>
                     <p>{this.props.likes} Likes!</p>
                 </Card>
                 {/* these break tags are so the user can see the carousel dots
