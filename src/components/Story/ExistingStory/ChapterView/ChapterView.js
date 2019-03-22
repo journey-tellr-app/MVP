@@ -6,7 +6,7 @@ import { withRouter } from "react-router";
 import ImageUpload from './../../../ImageUpload/ImageUpload.js';
 import EditButton from '../EditButton';
 
-import { PageHeader, Pagination, Card, Icon } from 'antd';
+import { PageHeader, Pagination, Card, Icon, Row } from 'antd';
 
 class ChapterView extends Component {
     static propTypes = {
@@ -14,6 +14,7 @@ class ChapterView extends Component {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         contributor: PropTypes.array.isRequired,
+        editMode: PropTypes.bool.isRequired,
     };
 
     turnPage = (page, pageSize) => {
@@ -36,14 +37,14 @@ class ChapterView extends Component {
         } else if (contributorSum < 2) {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
-        const currChapter = chapter.find((item) => (item.id === Number(chapterId)));
+        const currChapter = chapter[chapterId];
         console.log('currChapter', currChapter);
 
         return (
 
             <div>
                 {currChapter !== undefined ?
-                    <div>
+                    <Row type="flex" justify="space-around" align="middle">
                         <PageHeader
                             title={`Chapter ${currChapter.order}: ${currChapter.title}`}
                             subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
@@ -88,7 +89,7 @@ class ChapterView extends Component {
                             pageSize={1}
                             total={Number(chapter.length)}
                             onChange={this.turnPage} />
-                    </div>
+                    </Row>
                     :
                     <p> Page is loading.</p>
                 }

@@ -74,7 +74,7 @@ class ExistingStoryMain extends Component {
                   chapter={chapter}
                   contributor={contributor}
                   key={chapterId}
-                  editMode={this.props.user.id != summary[0].author_id ? false : true} />
+                  editMode={this.props.user.id !== summary[0].author_id ? false : true} />
         }
       </div>
     )

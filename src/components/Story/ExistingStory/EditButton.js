@@ -69,10 +69,7 @@ class EditButton extends Component {
                     type="default"
                     icon='edit'
                     onClick={this.handleModalBtn.bind(this, true)}
-                    style={{ 
-                        display: 'block', margin: 'auto', 
-                        backgroundColor: 'rgb(217, 139, 79)', 
-                        fontWeight: 'bold', color: 'black' }}>
+                    className='edit-button'>
                     {`${name}`}</Button>
                 <Modal
                     title={`Editing ${type} ${name}`}
