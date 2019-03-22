@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
-import { List, Button, Row } from 'antd';
+import { List, Button, Row, Typography, Divider } from 'antd';
+
+const { Title } = Typography;
 
 class SummaryChapterList extends Component {
     static propTypes = {
@@ -12,22 +14,18 @@ class SummaryChapterList extends Component {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired
     };
-    handleDescription = (e) => {
-        if (e.length < 200) {
-            return e
-        } else {
-            return `${e.substring(0, 200)}...`
-        }
-    }
+
     readChapter = (e) => {
         this.props.history.push(`/existing-story/${e.story_id}/chapter/${e.id}`)
     }
+
     render() {
-        // console.log(this.props);
-        // console.log(`/#${this.props.match.url}/chapter/${this.props.chapter.order}`)
         return (
             <div >
-                <h1>Chapters</h1>
+                <Divider>
+                    <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Chapters</Title>
+                </Divider>
+
                 <List
                     itemLayout="vertical"
                     size="large"
@@ -39,18 +37,26 @@ class SummaryChapterList extends Component {
                     }}
                     dataSource={this.props.chapter}
                     renderItem={item => {
-                        const { order, chapter_photo, title } = item;
+                        const { order, chapter_photo, title, text } = item;
+                        let textToShow = '';
+                        if (text !== null) {
+                            textToShow = text.substring(0, 150);
+                        }
+                        let imgToShow = './images/placeholder.png';
+                        if (chapter_photo !== null) {
+                            imgToShow = chapter_photo;
+                        }
                         return (
                             <List.Item
                                 key={title} type="flex" align="top" className="chapter-contents"
-                                extra={<img width={200} alt={`for chapter ${order}`} src={`${chapter_photo}`} />}
+                                extra={<img width={100} alt={`for chapter ${order}`} src={imgToShow} />}
                             >
                                 <List.Item.Meta
                                     title={<Link to={`${this.props.match.url}/chapter/${order}`}>{title}</Link>}
-                                    description={this.handleDescription(item.text)}
+                                    description={textToShow}
                                 />
                                 <Row type="flex" justify="end"><Button onClick={() => this.readChapter(item)}>Read Chapter</Button></Row>
-                                
+
                             </List.Item>
                         )
                     }}

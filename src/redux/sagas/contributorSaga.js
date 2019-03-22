@@ -33,6 +33,7 @@ function* addContributor(action) {
     try {
         //add contributor to story
         yield console.log('in addContributor saga with:', action)
+        yield axios.post(`/invite/contributor/${action.payload.story_id}`, action.payload.pendingContributor )
     } catch (error) {
         console.log('Error with storyTemplateDetails:', error);
     }

@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
 import AddChapter from './../Chapter/AddChapter.js';
-import { Row } from 'antd';
+import SubHeader from '../../Common/SubHeader';
+import EditButton from './EditButton';
+
+import { Row, Col, Card, Typography, Divider } from 'antd';
+
+const { Meta } = Card;
+const { Title, Paragraph } = Typography;
 
 class ExistingStorySummary extends Component {
+    static propTypes = {
+        summary: PropTypes.array.isRequired,
+        contributor: PropTypes.array.isRequired,
+        chapter: PropTypes.array.isRequired,
+        editMode: PropTypes.bool.isRequired,
+    }
+
     handlePostStory = () => {
         console.log('post story clicked');
     }
@@ -16,38 +30,106 @@ class ExistingStorySummary extends Component {
     }
 
     render() {
-        const { summary, chapter } = this.props;
-        
+        const { summary, chapter, contributor, editMode } = this.props;
+        const { title, author_name, id, header_photo, caption, intro } = summary[0];
+        const contributorSum = contributor.length;
+        let contributorDescription;
+        if (contributorSum === 0) {
+            contributorDescription = '';
+        } else if (contributorSum === 1) {
+            contributorDescription = ` and ${contributor[0].first_name} ${contributor[0].last_name}`;
+        } else if (contributorSum > 1) {
+            contributorDescription = ` and ${contributorSum} contributors`;
+        }
+
         return (
             <div>
                 {/* this will check that the storyDetail reducer is populated 
                 before rendering its contents */}
-                {summary.length !== 0 ?
-                    <div>
-                        <Row><h1 className="title-text">{summary[0].title}</h1></Row>
-                        <Row type="flex" justify="center">
-                            <img src={summary[0].header_photo}
-                                // width='100px'
-                                height='200px'
-                                alt="Shows what caption describes" />
-                            <h4 className="caption">{summary[0].caption}</h4>
-                        </Row>
-                    </div> : null
-                    // when the component mounts
+                <Row type="flex" justify="space-around" align="middle">
+                    <Col span={24}>
+                        <SubHeader headerText={title} />
+                    </Col>
+                    {editMode &&
+                        <Col span={18} style={{marginBottom: 20}}>
+                            <EditButton
+                                valueToEdit={title}
+                                type='Story'
+                                name='Title'
+                                id={id} />
+                        </Col>
+                    }
+                    <Col span={20}>
+                        <Title level={4} style={{ textAlign: 'center' }}>{`By ${author_name}${contributorDescription}`} </Title>
+                    </Col>
+                    {contributor.length > 0 &&
+                        <Col span={10} style={{ marginBottom: 20 }}>
+                            <ContributorPopup editMode={editMode} story_id={id} />
+                        </Col>
+                    }
+                </Row>
 
+                <Card
+                    style={{
+                        width: 300, display: 'block', margin: 'auto', marginBottom: 10,
+                    }}
+                    cover={<img alt="story book cover" src={header_photo} />}
+                >
+                    <Meta
+                        description={caption}
+                    />
+                </Card>
+                
+                {editMode && 
+                <Row type='flex' justify='center'>
+                    <Col>
+                        <EditButton
+                            valueToEdit={caption}
+                            type='Story'
+                            name='Caption'
+                            id={id} />
+                    </Col>
+                    <Col>
+
+                    </Col>
+                </Row>
                 }
+                
+
+                <Row type='flex' justify='center'>
+                    <Divider>
+                        <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Introduction</Title>
+                    </Divider>
+                    {intro !== null ?
+                        <Col span={18}>
+                            <Paragraph>
+                                {intro}
+                            </Paragraph>
+                        </Col>
+                        :
+                        <Col span={18}>
+                            <Paragraph> This story has no introduction yet! </Paragraph>
+                        </Col>
+                        
+                    }
+                    {editMode  && 
+                        <Col span={18}>
+                        <EditButton
+                            valueToEdit={intro}
+                            type='Story'
+                            name='Intro'
+                            id={id} />
+                        </Col>
+                    }
+                    
+                </Row>
+
+
                 {/* chapters div here */}
-                {chapter.length > 0 &&
-                <SummaryChapterList chapter={chapter} />
+                {chapter &&
+                    <SummaryChapterList chapter={chapter} />
                 }
                 <span>Add chapter</span><AddChapter chapter={chapter} storyId={summary[0].id} />
-
-                {/* contributor button here */}
-                {/* when the user clicks this link, JSON line below it renders all contributors */}
-                <ContributorPopup />
-                {/* chapters div here */}
-
-                {/* post story button here only if author of story */}
                 <button onClick={this.handlePostStory}>Post Story</button>
             </div>
         )
