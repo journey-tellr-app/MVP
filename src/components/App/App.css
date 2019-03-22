@@ -29,7 +29,22 @@ h1 {
     background-color: #ff4545;
     margin: 50px;
 }
-
+.ant-carousel .slick-dots li button {
+  display: block;
+  width: 16px;
+  height: 3px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  background:black;
+  border: 0;
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.3;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
 input {
     margin: 5px;
     margin-bottom: 10px;
