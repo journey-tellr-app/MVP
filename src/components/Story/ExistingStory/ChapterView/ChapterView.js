@@ -6,7 +6,7 @@ import { withRouter } from "react-router";
 import ImageUpload from './../../../ImageUpload/ImageUpload.js';
 import EditButton from '../EditButton';
 
-import { PageHeader, Pagination, Card } from 'antd';
+import { PageHeader, Pagination, Card, Icon } from 'antd';
 
 class ChapterView extends Component {
     static propTypes = {
@@ -57,12 +57,20 @@ class ChapterView extends Component {
                         <Card
                             style={{ width: 300 }}
                             cover={<img alt={`Chapter ${chapterId} header`} src={currChapter.chapter_photo} />}
-                        >
+                            actions={editMode ? [<EditButton valueToEdit={currChapter.text}
+                                                  type='Chapter'
+                                                  name='Text'
+                                                  id={currChapter.id} />,
+                                      <ImageUpload photoDetails={{typeOfPhoto:'CHAPTER',
+                                                   title: <Icon type="file-jpg" />,
+                                                   chapterId: currChapter.id, }}/>,
+                                     ] : '' }
+                        > 
                             <Card.Meta
                                 description={currChapter.text}
                             />
                         </Card>
-                        {editMode &&
+                        {/* {editMode &&
                         <div>
                             <EditButton
                                 valueToEdit={currChapter.text}
@@ -74,7 +82,7 @@ class ChapterView extends Component {
                                                         chapterId: currChapter.id,
                                                        }}/>
                         </div>
-                        }
+                        } */}
                         <Pagination
                             defaultCurrent={Number(chapterId)}
                             pageSize={1}
