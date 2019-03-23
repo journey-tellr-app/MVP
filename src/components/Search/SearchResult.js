@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { List } from 'antd';
+import { List, Typography } from 'antd';
 import ResultListItem from './ResultListItem';
 
 
@@ -10,7 +10,8 @@ class SearchResult extends Component {
 
         return (
             <div>
-                {searchResults &&
+                {searchResults.length > 0 ?
+                <div>
                     <List
                         itemLayout="vertical"
                         size="large"
@@ -19,12 +20,20 @@ class SearchResult extends Component {
                                 console.log(page);
                             },
                             pageSize: 3,
+                            hideOnSinglePage: true,
                         }}
                         dataSource={searchResults}
                         renderItem={item => (
                             <ResultListItem item={item} />
                         )}
                     />
+                </div>
+                :
+                <div>
+                    <Typography align='center'>
+                        Your search results will appear here.
+                    </Typography>
+                </div>
                 }
 
             </div>
