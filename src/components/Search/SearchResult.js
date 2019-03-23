@@ -19,8 +19,9 @@ class SearchResult extends Component {
                             onChange: (page) => {
                                 console.log(page);
                             },
-                            pageSize: 3,
+                            pageSize: 2,
                             hideOnSinglePage: true,
+                            style: {marginTop: 0, marginBottom: 20}
                         }}
                         dataSource={searchResults}
                         renderItem={item => (

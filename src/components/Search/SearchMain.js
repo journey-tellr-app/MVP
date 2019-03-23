@@ -8,7 +8,7 @@ export default class SearchMain extends Component {
   render() {
     return (
       <div>
-        <SubHeader headerText='Notifications' />
+        <SubHeader headerText='Browse Stories' />
         <SearchBar />
         <SearchResults />
       </div>
