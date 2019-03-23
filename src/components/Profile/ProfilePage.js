@@ -62,7 +62,7 @@ class ProfilePage extends Component {
     appendPic = () => {
         let statePic = this.state.file
         let picURL = URL.createObjectURL(statePic)
-        return <img height="100" width="100" src={picURL} alt="thumbnail chosen" />
+        return <img height='150' src={picURL} alt="thumbnail chosen" />
     }
     handleFileUpload = (event) => {
         this.setState({
@@ -99,7 +99,7 @@ class ProfilePage extends Component {
                 <div className="profile-header">
                     <Row gutter={16}>
                         {/* {JSON.stringify(this.props.user.userInfo)} */}
-                        <Col xs={6}><Avatar size={80} onClick={this.showModal} id="avatar" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
+                        <Col xs={6}><img onClick={this.showModal} className="contain" src={this.props.user.userInfo.profile_pic} alt="profile-pic" /></Col>
 
                         {this.state.isHidden ? this.renderStaticName() : this.renderEditName()}
 
