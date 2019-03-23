@@ -40,7 +40,7 @@ class AddChapter extends Component {
         // create an array to use the existing chapter router POST route
         let chapterArray = [];
         chapterArray.push({ title: this.state.title,
-                            text: '',
+                            text: 'This is a newly made chapter.',
                             order: newOrder,
                             chapter_photo: '/images/placeholder.png',
                             disabled: true,
@@ -55,7 +55,6 @@ class AddChapter extends Component {
 
         // set state to intial value
         this.setState(this.baseState);
-        
     } // end addChapter
 
     // do not save the entered chapter data and close modal
@@ -77,6 +76,7 @@ class AddChapter extends Component {
                 <Modal title="New chapter title"
                        visible={this.state.visible}
                        onOk={this.addChapter}
+                       okText='Add Chapter'
                        onCancel={this.cancelEntry}
                        keyboard={true}
                 >

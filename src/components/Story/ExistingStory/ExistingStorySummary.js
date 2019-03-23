@@ -6,8 +6,9 @@ import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
 import SubHeader from '../../Common/SubHeader';
 import EditButton from './EditButton';
+import FinalizeStoryButton from './FinalizeStoryButton';
 
-import { Row, Col, Card, Typography, Divider } from 'antd';
+import { Row, Col, Card, Typography, Divider, PageHeader, Button } from 'antd';
 
 const { Meta } = Card;
 const { Title, Paragraph } = Typography;
@@ -18,18 +19,11 @@ class ExistingStorySummary extends Component {
         contributor: PropTypes.array.isRequired,
         chapter: PropTypes.array.isRequired,
         editMode: PropTypes.bool.isRequired,
-    }
-
-    handlePostStory = () => {
-        console.log('post story clicked');
-    }
-
-    handleAddChapter = () => {
-        console.log('add story clicked');
+        user: PropTypes.object.isRequired,
     }
 
     render() {
-        const { summary, chapter, contributor, editMode } = this.props;
+        const { summary, chapter, contributor, editMode, user } = this.props;
         const { title, author_name, id, header_photo, caption, intro } = summary[0];
         const contributorSum = contributor.length;
         let contributorDescription;
@@ -47,10 +41,14 @@ class ExistingStorySummary extends Component {
                 before rendering its contents */}
                 <Row type="flex" justify="space-around" align="middle">
                     <Col span={24}>
-                        <SubHeader headerText={title} />
+                        <SubHeader headerText='Story Summary' />
                     </Col>
+                    <PageHeader
+                        title={title}
+                        subTitle={`By ${author_name}${contributorDescription}`}
+                    />
                     {editMode &&
-                        <Col span={18} style={{marginBottom: 20}}>
+                        <Col span={8} style={{ marginBottom: 20 }}>
                             <EditButton
                                 valueToEdit={title}
                                 type='Story'
@@ -58,11 +56,8 @@ class ExistingStorySummary extends Component {
                                 id={id} />
                         </Col>
                     }
-                    <Col span={20}>
-                        <Title level={4} style={{ textAlign: 'center' }}>{`By ${author_name}${contributorDescription}`} </Title>
-                    </Col>
                     {contributor.length > 0 &&
-                        <Col span={10} style={{ marginBottom: 20 }}>
+                        <Col span={12} style={{ marginBottom: 20 }}>
                             <ContributorPopup editMode={editMode} story_id={id} />
                         </Col>
                     }
@@ -78,22 +73,22 @@ class ExistingStorySummary extends Component {
                         description={caption}
                     />
                 </Card>
-                
-                {editMode && 
-                <Row type='flex' justify='center'>
-                    <Col>
-                        <EditButton
-                            valueToEdit={caption}
-                            type='Story'
-                            name='Caption'
-                            id={id} />
-                    </Col>
-                    <Col>
 
-                    </Col>
-                </Row>
+                {editMode &&
+                    <Row type='flex' justify='center'>
+                        <Col>
+                            <EditButton
+                                valueToEdit={caption}
+                                type='Story'
+                                name='Caption'
+                                id={id} />
+                        </Col>
+                        <Col>
+
+                        </Col>
+                    </Row>
                 }
-                
+
 
                 <Row type='flex' justify='center'>
                     <Divider>
@@ -109,26 +104,26 @@ class ExistingStorySummary extends Component {
                         <Col span={18}>
                             <Paragraph> This story has no introduction yet! </Paragraph>
                         </Col>
-                        
+
                     }
-                    {editMode  && 
+                    {editMode &&
                         <Col span={18}>
-                        <EditButton
-                            valueToEdit={intro}
-                            type='Story'
-                            name='Intro'
-                            id={id} />
+                            <EditButton
+                                valueToEdit={intro}
+                                type='Story'
+                                name='Intro'
+                                id={id} />
                         </Col>
                     }
-                    
+
                 </Row>
 
 
                 {/* chapters div here */}
                 {chapter &&
-                    <SummaryChapterList chapter={chapter} storyId={summary[0].id} editMode={editMode}/>
+                    <SummaryChapterList chapter={chapter} storyId={summary[0].id} editMode={editMode} />
                 }
-                <button onClick={this.handlePostStory}>Post Story</button>
+                <FinalizeStoryButton />
             </div>
         )
     }
@@ -136,6 +131,7 @@ class ExistingStorySummary extends Component {
 
 const mapStoreToProps = reduxStore => ({
     storyDetail: reduxStore.storyDetail,
+    user: reduxStore.user.userInfo,
 })
 
 export default connect(mapStoreToProps)(ExistingStorySummary);

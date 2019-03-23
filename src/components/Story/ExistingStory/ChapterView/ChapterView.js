@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
 import EditButton from '../EditButton';
+import FinalizeStoryButton from '../FinalizeStoryButton';
 
 import { PageHeader, Pagination, Card } from 'antd';
 
@@ -41,7 +42,7 @@ class ChapterView extends Component {
         return (
 
             <div>
-                {currChapter !== undefined ?
+                {currChapter !== undefined && summary.length > 0 ?
                     <div>
                         <PageHeader
                             title={`Chapter ${chapterId}: ${currChapter.title}`}
@@ -77,6 +78,9 @@ class ChapterView extends Component {
                     :
                     <p> Page is loading.</p>
                 }
+
+                <FinalizeStoryButton />
+
             </div>
         )
     }
