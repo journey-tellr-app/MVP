@@ -1,0 +1,5 @@
+/* this is styles the child img of that have the ant avatar class */
+
+.ant-avatar > img  {
+    object-fit: contain;
+}

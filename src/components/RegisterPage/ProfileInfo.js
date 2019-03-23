@@ -53,7 +53,7 @@ class ProfileInfo extends Component {
           </Col>
 
           <Col span={18} style={{ marginBottom: '10px' }} >
-            <ImageUpload photoDetails={{ typeOfPhoto: 'REGISTER', title: 'Add Profile Photo' }} />
+            <ImageUpload photoDetails={{ typeOfPhoto: 'REGISTER', title: 'Choosing New Profile Photo', buttonName: 'Add Profile Photo' }} />
           </Col>
 
 
