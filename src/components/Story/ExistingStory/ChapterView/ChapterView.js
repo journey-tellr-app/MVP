@@ -40,7 +40,7 @@ class ChapterView extends Component {
         const currChapter = chapter[chapterId];
         console.log('currChapter', currChapter);
         return (
-
+            
             <div>
                 {currChapter !== undefined && summary.length > 0 ?
                     <div>
