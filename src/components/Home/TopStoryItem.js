@@ -16,7 +16,7 @@ class TopStoryItem extends Component {
 
     handleLike = (event) => {
         console.log(this.props);
-        
+
         this.props.dispatch({
             type: 'LIKE_TOP_STORY',
             payload: {
@@ -37,22 +37,23 @@ class TopStoryItem extends Component {
 
         return (
             <div align='center'>
-            {/* {JSON.stringify(this.props.story.contributors)}  */}
                 <Card
                     id='card'
-                    style={{ width: 300 }}
+                    bordered={true}
+                    style={{ width: 350 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
                     actions={[<Button type='primary'
-                                      onClick={this.handleReadStory}>Read
+                        onClick={this.handleReadStory}>Read
                               </Button>]}
                 >
                     <Meta
-                        id='card'
-                        avatar={<Avatar src={this.props.profile_pic} />}
+                        align='center'
+                        avatar={<img className="author-avatar" alt="author avatar" src={this.props.profile_pic} />}
                         title={this.props.title}
                     />
-                    <br/>
-                    <Button onClick={this.handleLike}>
+                    <br />
+                    <h4 align='center'>Story by {this.props.author}</h4>
+                    <Button onClick={this.handleLike} >
                         <Icon type='like' />
                     </Button>
                     <p>{this.props.likes} Likes!</p>
