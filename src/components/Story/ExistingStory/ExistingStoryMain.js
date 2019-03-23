@@ -34,10 +34,13 @@ class ExistingStoryMain extends Component {
     let authorCheck = false;
     if (summary.length > 0) {
       //sets author t/f only after summary loads
-      authorCheck = (summary.author_id === user.id);
+      console.log('summary has loaded');
+      authorCheck = (summary[0].author_id === user.id);
+      // console.log(authorCheck);
 
       //if story is completed edit mode always false
       if (summary[0].completed) {
+        // console.log('story complete');
         return { editMode: false }
       }
     }
@@ -50,6 +53,7 @@ class ExistingStoryMain extends Component {
     //checks user id against author id
 
     if (contributorCheck || authorCheck) {
+      // console.log('user is a contributor or author');
       return { editMode: true }
     } else {
       return null;
