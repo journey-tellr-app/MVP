@@ -7,7 +7,7 @@ import SummaryChapterList from './SummaryChapterList';
 import SubHeader from '../../Common/SubHeader';
 import EditButton from './EditButton';
 
-import { Row, Col, Card, Typography, Divider } from 'antd';
+import { Row, Col, Card, Typography, Divider, PageHeader } from 'antd';
 
 const { Meta } = Card;
 const { Title, Paragraph } = Typography;
@@ -47,10 +47,14 @@ class ExistingStorySummary extends Component {
                 before rendering its contents */}
                 <Row type="flex" justify="space-around" align="middle">
                     <Col span={24}>
-                        <SubHeader headerText={title} />
+                        <SubHeader headerText='Story Summary' />
                     </Col>
+                    <PageHeader
+                        title={title}
+                        subTitle={`By ${author_name}${contributorDescription}`}
+                    />
                     {editMode &&
-                        <Col span={18} style={{marginBottom: 20}}>
+                        <Col span={8} style={{marginBottom: 20}}>
                             <EditButton
                                 valueToEdit={title}
                                 type='Story'
@@ -58,11 +62,8 @@ class ExistingStorySummary extends Component {
                                 id={id} />
                         </Col>
                     }
-                    <Col span={20}>
-                        <Title level={4} style={{ textAlign: 'center' }}>{`By ${author_name}${contributorDescription}`} </Title>
-                    </Col>
                     {contributor.length > 0 &&
-                        <Col span={10} style={{ marginBottom: 20 }}>
+                        <Col span={12} style={{ marginBottom: 20 }}>
                             <ContributorPopup editMode={editMode} story_id={id} />
                         </Col>
                     }

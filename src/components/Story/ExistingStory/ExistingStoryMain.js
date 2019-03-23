@@ -27,6 +27,12 @@ class ExistingStoryMain extends Component {
   static getDerivedStateFromProps(props, state) {
     const { contributor, summary } = props.storyDetail;
     const { user } = props;
+
+    //editmode always false for completed stories
+    if (summary.completed) {
+      return { editMode: false }
+    }
+
     //default edit mode is false
     //searches contributors for user id
     const contributorCheck = contributor.filter(
