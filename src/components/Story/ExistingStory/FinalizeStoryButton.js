@@ -10,6 +10,9 @@ class FinalizeStoryButton extends Component {
     handlePostStory = () => {
         console.log('post story clicked');
         //confirm finishing story with modal
+        
+        //onOk function does not have access to component scope so pulling these off props now
+        const { dispatch, summary } = this.props;
         confirm({
             title: 'Are you done editing and ready to complete this story?',
             content: `Please review the story summary, chapter contents, and photos before completing the story.`,
@@ -20,9 +23,9 @@ class FinalizeStoryButton extends Component {
             },
             cancelText: 'Keep Editing',
             onOk() {
-                this.props.dispatch({
+                dispatch({
                     type: 'COMPLETE_STORY',
-                    payload: this.props.summary.id
+                    payload: summary.id
                 })
             },
             onCancel() {
