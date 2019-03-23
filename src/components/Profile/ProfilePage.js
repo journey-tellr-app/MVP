@@ -128,7 +128,7 @@ class ProfilePage extends Component {
                     <Divider />
 
                 </div>
-                <div >
+                <div align="center">
                     <Row gutter={8}>
                         <Col xs={24}>
                             <Title level={4}>Stories</Title>

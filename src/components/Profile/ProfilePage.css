@@ -10,10 +10,18 @@
 }
 
 #like-btn {
-    max-width: 60px;
-    max-height: 20px;
-    font-size: 12px;
+    max-width: 65px;
+    max-height: 2.5em;
+    font-size: 11px;
+    padding: 5px;
 }
+
+/* .likes-count {
+    border-radius: 50%;
+    border: 1px
+} */
+
+
 
 .contain {
     /* border-radius: 50%; */
@@ -26,10 +34,14 @@
 }
 
 .story-photo {
-    height: 200px;
+    height: 150px;
     width: auto;
     object-fit: cover;
 
+}
+
+.story-title {
+    font-size: 15px;
 }
 
 .profile-header {
