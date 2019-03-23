@@ -55,7 +55,7 @@ class ImageUpload extends Component {
     appendPic = () => {
         let statePic = this.state.file
         let picURL = URL.createObjectURL(statePic)
-        return <img height="100" width="100" src={picURL} alt="thumbnail chosen" />
+        return <img src={picURL} alt="thumbnail chosen" />
     }
     handleFileUpload = (event) => {
         this.setState({
@@ -66,7 +66,7 @@ class ImageUpload extends Component {
     render() {
         return (
             <div>
-                
+
                 <Button type="default" onClick={this.showModal}>
                     {this.props.photoDetails.title}
                 </Button>
@@ -84,7 +84,7 @@ class ImageUpload extends Component {
                         {this.state.file !== null && this.appendPic()}
                     </Row>
                 </Modal>
-                
+
             </div>
         );
     }
