@@ -56,12 +56,12 @@ class ContributedStoryListItem extends Component {
                     <Card
                         className="profile-story-cards"
                         style={{ width: 275 }}
-                        cover={<img src={this.props.header_photo} alt="story" />}
+                        cover={<img className="story-photo" src={this.props.header_photo} alt="story" />}
                         actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
                     >
 
                         <Title onClick={this.handleReadStory} level={4} >{this.props.title}</Title>
-                        <Button onClick={this.handleLike}>
+                        <Button id="like-btn" onClick={this.handleLike}>
                             <Icon type='like' />
                         </Button>
                         <p>{this.props.likes} Likes!</p>
