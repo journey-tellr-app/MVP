@@ -52,19 +52,14 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/image/:chapterId', rejectUnauthenticated, (req, res) => {
-    console.log('in put chapter image');
-    console.log(`req.body `, req.body);
-    console.log(`params: `, req.params.chapterId);
     // sql statement for inserting new photo
     let queryText = `UPDATE "chapter"
                      SET "chapter_photo" = $1
                      WHERE "id" = $2
                      RETURNING "story_id";`;
     pool.query(queryText,[req.body.image, Number(req.params.chapterId)]).then((result) => {
-        // send back a created code
-        console.log(result.rows);
+        // send back the resulting story id for reloading the chapter
         res.send(result.rows[0].story_id.toString());
-        // res.send(result.rows[0].story_id);
     }).catch((error) => {
         // console log and error message
         console.log(`Error with changing the chapter image: ${error}`);

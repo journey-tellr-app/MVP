@@ -12,6 +12,7 @@ function* getMyContributions(action) {
 
     } catch (error) {
         console.log(`Error in getMyContributions: ${error}`);
+        message.error('There was a problem when setting story contributions');
     }
 }
 
@@ -24,6 +25,7 @@ function* getTopStories(action) {
 
     } catch (error) {
         console.log(`Error in getStories: ${error}`);
+        message.error('There was a problem getting your top stories');
     }
 }
 
@@ -32,6 +34,7 @@ function* storyTemplate(action) {
         yield console.log('in storyTemplate saga:')
     } catch (error) {
         console.log('Error with storyTemplate:', error);
+        message.error('There was a problem with the template');
     }
 }
 
@@ -80,6 +83,7 @@ function* clearNewStory() {
     } catch (error) {
         // error message when clearing new story inputs
         console.log(`Error in clearNewStory saga: ${error}`);
+        message.error('Error with clearing stories');
     }
 }
 
@@ -91,6 +95,7 @@ function* getContributors(action) {
 
     } catch(e) {
         console.log(`Error in getContributors saga: ${e}`);
+        message.error('Error getting contributors');
     }
 }
 

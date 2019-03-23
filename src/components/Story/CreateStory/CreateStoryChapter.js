@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CreateStorySteps from './CreateStorySteps.js'
 
 // ant design import
-import { Form, Input, Button, Icon, Row } from 'antd';
+import { Form, Input, Button, Icon } from 'antd';
 
 let id = 0;
 
@@ -136,7 +136,6 @@ class CreateStoryChapter extends Component {
         ));
 
         return (
-            <Row type="flex" justify="space-around" align="middle">
             <Form layout="vertical" onSubmit={this.nextPage}>
                 <h2>Add Chapters</h2>
                 <CreateStorySteps current={2} />
@@ -157,7 +156,6 @@ class CreateStoryChapter extends Component {
                     </Button>
                 </Form.Item>
             </Form>
-            </Row>
         )
     }
 

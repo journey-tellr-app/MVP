@@ -27,6 +27,7 @@ class ImageUpload extends Component {
         this.submitFile();
         this.setState({
             visible: false,
+            file: null,
         });
     }
 
@@ -38,7 +39,6 @@ class ImageUpload extends Component {
     }
     submitFile = (event) => {
         // console.log('in sF');
-        console.log(`This props:`, this.props);
         // event.preventDefault();
         const formData = new FormData();
         formData.append('file', this.state.file);
@@ -51,7 +51,6 @@ class ImageUpload extends Component {
         }
         this.props.dispatch(action);
         // console.log(this.props.photoDetails.typeOfPhoto);
-
     }
     appendPic = () => {
         let statePic = this.state.file

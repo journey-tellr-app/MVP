@@ -5,7 +5,7 @@ import ContributorList from '../Contributor/ContributorList.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
 // ant design import
-import { Form, Button, Row } from 'antd';
+import { Form, Button } from 'antd';
 
 class CreateStoryContributor extends Component {
 
@@ -57,7 +57,6 @@ class CreateStoryContributor extends Component {
         };
 
         return (
-            <Row type="flex" justify="space-around" align="middle">
             <Form layout="vertical" onSubmit={this.createStory}>
                 <h2>Add Contributors</h2>
                 <CreateStorySteps current="3" />
@@ -79,7 +78,6 @@ class CreateStoryContributor extends Component {
                     </Button>
                 </Form.Item>
             </Form>
-            </Row>
         )
     }
 
