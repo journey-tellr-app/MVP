@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 class ImageUpload extends Component {
     state = {
         visible: false,
-        file: null
+        file: null,
+        confirmLoading: false,
     }
 
     //photo details contains title for button name and typeOfPhoto keywords for next saga
@@ -26,8 +27,13 @@ class ImageUpload extends Component {
         console.log(e);
         this.submitFile();
         this.setState({
-            visible: false,
+            confirmLoading: true,
         });
+        setTimeout(() => {this.setState({
+            visible: false,
+            file: null,
+            confirmLoading: false,
+        }); }, 2000);
     }
 
     handleCancel = (e) => {
@@ -38,7 +44,6 @@ class ImageUpload extends Component {
     }
     submitFile = (event) => {
         // console.log('in sF');
-
         // event.preventDefault();
         const formData = new FormData();
         formData.append('file', this.state.file);
@@ -46,11 +51,11 @@ class ImageUpload extends Component {
             type: 'ADD_IMAGE_AWS',  //directs dispach on which saga to use based on props
             nextType: `ADD_IMAGE_${this.props.photoDetails.typeOfPhoto}`,
             payload: formData,
-            id: this.props.user.userInfo.id
+            id: this.props.user.userInfo.id,
+            chapterId: this.props.photoDetails.chapterId,
         }
         this.props.dispatch(action);
         // console.log(this.props.photoDetails.typeOfPhoto);
-
     }
     appendPic = () => {
         let statePic = this.state.file
@@ -75,6 +80,7 @@ class ImageUpload extends Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    confirmLoading={this.state.confirmLoading}
                 >
                     {/* <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div> This is being commented out for the sake of the presentation since it is useless on browser */}
                     {/* <h2>OR</h2> */}

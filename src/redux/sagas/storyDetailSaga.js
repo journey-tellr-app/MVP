@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 function* getIndividualStory(action) {
     try {
         console.log('in getIndividualStory saga, action.payload: ', action.payload);
@@ -8,6 +11,7 @@ function* getIndividualStory(action) {
         yield put({ type: 'SET_STORY_DETAIL', payload: serverResponse.data });
     } catch (error) {
         console.log(`Error in getting individual story: ${error}`);
+        message.error('Error loading a story');
     }
 }
 
@@ -18,6 +22,7 @@ function* getChapterDetail(action) {
         yield put({ type: 'SET_STORY_DETAIL_CHAPTER', payload: response.data });
     } catch (error) {
         console.log(`Error in getChapterDetail saga:`, error);
+        message.error('Error loading the chapter detail');
     }
 }
 
@@ -25,8 +30,9 @@ function* editChapter(action) {
     try {
         const response = yield axios.put(`/chapter`, action.payload);
         yield put({ type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data[0].story_id });
-    } catch (e) {
-        console.log('Error in editChapter saga:', e)
+    }catch(e){
+        console.log('Error in editChapter saga:', e);
+        message.error('Error in chapter edit');
     }
 }
 
@@ -36,6 +42,7 @@ function* editStory(action) {
         yield put({ type: 'GET_INDIVIDUAL_STORY', payload: action.payload.id })
     } catch (e) {
         console.log('Error in editStory saga:', e);
+        message.error('Error in story edit');
     }
 }
 
@@ -48,6 +55,7 @@ function* getStoryContributors(action) {
         yield put({ type: 'SET_STORY_DETAIL_CONTRIBUTOR', payload: serverResponse.data });
     } catch (e) {
         console.log(`Error getting story contributors: ${e}`);
+        message.error('Error getting the story contributors');
     }
 }
 
@@ -60,6 +68,7 @@ function* getStoryLikes(action) {
         yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });
     } catch (e) {
         console.log(`Error getting story likes: ${e}`);
+        message.error('Error getting story likes');
     }
 }
 

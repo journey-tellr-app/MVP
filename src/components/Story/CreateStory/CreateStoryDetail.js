@@ -5,7 +5,7 @@ import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 import './CreateStory.css';
 
 // ant design import
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Avatar } from 'antd';
 
 class CreateStoryDetail extends Component {
 
@@ -114,10 +114,11 @@ class CreateStoryDetail extends Component {
                             }, 
                         )(
                         <div className="image-upload">
-                            <img style={{ height: 150, width: 340 }}
-                                alt="header_photo"
-                                src={image.storyImage}
-                            />
+                            {image.storyImage !== "/images/placeholder.png" ?
+                            <Avatar shape="square"
+                                    size={150}
+                                    src={image.storyImage}
+                            /> : ''}
                             <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
                         </div>
                         )}

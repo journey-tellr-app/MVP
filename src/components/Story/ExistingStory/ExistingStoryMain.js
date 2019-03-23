@@ -6,6 +6,16 @@ import ChapterView from './ChapterView/ChapterView';
 import ExistingStorySummary from './ExistingStorySummary';
 
 class ExistingStoryMain extends Component {
+
+  state = {
+    editMode: false,
+  }
+
+  static propTypes = {
+    storyDetail: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.dispatch({
@@ -58,15 +68,6 @@ class ExistingStoryMain extends Component {
     } else {
       return null;
     }
-  }
-
-  static propTypes = {
-    storyDetail: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
-  }
-
-  state = {
-    editMode: false,
   }
 
   render() {

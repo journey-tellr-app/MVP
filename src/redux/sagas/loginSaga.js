@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
   try {
@@ -22,6 +25,7 @@ function* loginUser(action) {
     yield put({type: 'FETCH_USER'});
   } catch (error) {
     console.log('Error with user login:', error);
+    message.error('Login error');
     if (error.response.status === 401) {
       // The 401 is the error status sent from passport
       // if user isn't in the database or
@@ -56,6 +60,7 @@ function* logoutUser(action) {
 
   } catch (error) {
     console.log('Error with user logout:', error);
+    message.error('Logout error');
   }
 }
 
