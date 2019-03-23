@@ -28,8 +28,8 @@ class SummaryChapterList extends Component {
         const { chapter, storyId, editMode } = this.props
         return (
             <div >
-                <Divider>
-                    <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Chapters</Title>
+                <Divider style={{ marginTop: 30, marginBottom: 0}}>
+                    <Title level={4} style={{ textAlign: 'center' }}>Chapters</Title>
                 </Divider>
                 <Row type='flex' align='middle' justify='center'>
                     {editMode &&
