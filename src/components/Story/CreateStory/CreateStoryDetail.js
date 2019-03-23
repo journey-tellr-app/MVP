@@ -74,9 +74,9 @@ class CreateStoryDetail extends Component {
         };
 
         return (
-            <div>
+            <div className="new-story-form">
                 <Form layout="vertical" onSubmit={this.createStory}>
-                    <h2>Fill in the story details</h2>
+                    <h1>Fill in the story details</h1>
                     <CreateStorySteps current={1} />
                     <Form.Item
                         label="Story title"
