@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
+import './CreateStory.css';
 
 // ant design import
 import { Form, Input, Button } from 'antd';
@@ -73,80 +74,82 @@ class CreateStoryDetail extends Component {
         };
 
         return (
-            <Form layout="vertical" onSubmit={this.createStory}>
-                <h2>Fill in the story details</h2>
-                <CreateStorySteps current={1} />
-                <Form.Item
-                    label="Story title"
-                    extra={template.title !== '' ? template.title : null}
-                >
-                    {getFieldDecorator('title', {
-                        rules: [{ required: true, message: 'Please enter a story title!' }],
-                        },
-                    )(
-                        <Input allowClear
-                               placeholder="Story title"
-                               style={{ width: 340 }} 
-                        />
-                    )}
-                </Form.Item>
-                <Form.Item
-                    label="Story intro"
-                    extra={template.intro !== '' ? template.intro : null}
-                >
-                    {getFieldDecorator('intro', {
-                        rules: [{ required: true, message: 'Please enter an intro!' }],
-                        }, 
-                    )(
-                    <Input allowClear
-                           placeholder="Enter an introduction"
-                           style={{ width: 340 }}
-                    />
-                    )}
-                </Form.Item>
-                <Form.Item
-                    label="Select image"
-                >
-                    {getFieldDecorator('header_photo', {
-                        initialValue: image.storyImage,
-                        }, 
-                    )(
-                    <div>
-                        <img style={{ height: 150, width: 340 }}
-                             alt="header_photo"
-                             src={image.storyImage}
-                        />
-                        <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
-                    </div>
-                    )}
-                </Form.Item>
-
-                <Form.Item
-                    label="Photo caption"
-                    extra={template.caption !== '' ? template.caption : null}
-                >
-                    {getFieldDecorator('caption', {
-                        rules: [{ required: true, message: 'Please enter a caption!' }],
-                        },
-                    )(
-                   <Input allowClear
-                          placeholder="Add a caption for your picture"
-                          style={{ width: 340 }} 
-                    />
-                    )}
-                </Form.Item>
-                <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary"
-                            htmlType="submit"
-                            disabled={this.hasErrors(getFieldsError())}
+            <div>
+                <Form layout="vertical" onSubmit={this.createStory}>
+                    <h2>Fill in the story details</h2>
+                    <CreateStorySteps current={1} />
+                    <Form.Item
+                        label="Story title"
+                        extra={template.title !== '' ? template.title : null}
                     >
-                        Next
-                    </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                        Previous
-                    </Button>
-                </Form.Item>
-            </Form>
+                        {getFieldDecorator('title', {
+                            rules: [{ required: true, message: 'Please enter a story title!' }],
+                            },
+                        )(
+                            <Input allowClear
+                                placeholder="Story title"
+                                style={{ width: 340 }} 
+                            />
+                        )}
+                    </Form.Item>
+                    <Form.Item
+                        label="Story intro"
+                        extra={template.intro !== '' ? template.intro : null}
+                    >
+                        {getFieldDecorator('intro', {
+                            rules: [{ required: true, message: 'Please enter an intro!' }],
+                            }, 
+                        )(
+                        <Input allowClear
+                            placeholder="Enter an introduction"
+                            style={{ width: 340 }}
+                        />
+                        )}
+                    </Form.Item>
+                    <Form.Item
+                        label="Select image"
+                    >
+                        {getFieldDecorator('header_photo', {
+                            initialValue: image.storyImage,
+                            }, 
+                        )(
+                        <div>
+                            <img style={{ height: 150, width: 340 }}
+                                alt="header_photo"
+                                src={image.storyImage}
+                            />
+                            <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                        </div>
+                        )}
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Photo caption"
+                        extra={template.caption !== '' ? template.caption : null}
+                    >
+                        {getFieldDecorator('caption', {
+                            rules: [{ required: true, message: 'Please enter a caption!' }],
+                            },
+                        )(
+                    <Input allowClear
+                            placeholder="Add a caption for your picture"
+                            style={{ width: 340 }} 
+                        />
+                        )}
+                    </Form.Item>
+                    <Form.Item {...tailFormItemLayout}>
+                        <Button type="primary"
+                                htmlType="submit"
+                                disabled={this.hasErrors(getFieldsError())}
+                        >
+                            Next
+                        </Button>
+                        <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
+                            Previous
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </div>
         )
     }
 
