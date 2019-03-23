@@ -9,4 +9,11 @@ body {
     /* background-color: #D98A4F */
     /* background-image: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
   }
-  
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+}

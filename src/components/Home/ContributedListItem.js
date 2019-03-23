@@ -38,21 +38,21 @@ class ContributedListItem extends Component {
                 <Card
                     id='card'
                     bordered={true}
-                    style={{ width: 300 }}
+                    style={{ width: 350 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
                     actions={[<Button type='primary'
-                                      onClick={this.handleReadStory}>Read
+                        onClick={this.handleReadStory}>Read
                               </Button>]}
                 >
                     <Meta
                         align='center'
-                        avatar={<Avatar src={this.props.profile_pic} />}
+                        avatar={<img className="author-avatar" alt="author avatar" src={this.props.profile_pic} />}
                         title={this.props.title}
                     />
-                    <br/>
+                    <br />
                     <h4 align='center'>Story by {this.props.author}</h4>
                     <Button onClick={this.handleLike} >
-                        <Icon type='like'/>
+                        <Icon type='like' />
                     </Button>
                     <p>{this.props.likes} Likes!</p>
                 </Card>
