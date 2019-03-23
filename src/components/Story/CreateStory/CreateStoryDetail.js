@@ -113,7 +113,7 @@ class CreateStoryDetail extends Component {
                             initialValue: image.storyImage,
                             }, 
                         )(
-                        <div>
+                        <div className="image-upload">
                             <img style={{ height: 150, width: 340 }}
                                 alt="header_photo"
                                 src={image.storyImage}
