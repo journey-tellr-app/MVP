@@ -30,7 +30,7 @@ class ExistingStoryMain extends Component {
     //default edit mode is false
     //searches contributors for user id
     const contributorCheck = contributor.filter(
-      contributorObj => contributorObj.person_id === user.id).length > 0;
+      contributorObj => contributorObj.id === user.id).length > 0;
     // console.log(contributorCheck);
     //checks user id against author id
     const authorCheck = summary.author_id === user.id;
@@ -63,7 +63,8 @@ class ExistingStoryMain extends Component {
            <ExistingStorySummary
                   summary={summary}
                   chapter={chapter}
-                  editMode={editMode} />
+                  editMode={editMode}
+                  contributor={contributor} />
               //chapter id sent on params
         }
         {chapter.length > 0 && isNaN(chapterId) !== true &&
