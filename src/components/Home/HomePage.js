@@ -27,9 +27,9 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>
+            <div align="center">
                 <br />
-                <h1 align='center'>Home</h1>
+                <h1>Home</h1>
                 <Divider>My Stories and Contributions</Divider>
                 <ContributedList
                     history={this.props.history}

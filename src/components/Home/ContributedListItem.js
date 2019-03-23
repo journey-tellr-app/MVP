@@ -34,27 +34,23 @@ class ContributedListItem extends Component {
     render() {
 
         return (
-            <div align='center'>
+            <div>
                 <Card
                     id='card'
                     bordered={true}
-                    style={{ width: 300 }}
-                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button type='primary'
-                                      onClick={this.handleReadStory}>Read
-                              </Button>]}
+                    style={{ width: 325 }}
+                    cover={<img className="story-photo" alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button onClick={this.handleLike} ><Icon type='like' />
+                    </Button>, <Button onClick={this.handleReadStory}>Read</Button>]}
                 >
                     <Meta
-                        align='center'
-                        avatar={<Avatar src={this.props.profile_pic} />}
+
+                        avatar={<img className="author-avatar" alt="author avatar" src={this.props.profile_pic} />}
                         title={this.props.title}
                     />
-                    <br/>
-                    <h4 align='center'>Story by {this.props.author}</h4>
-                    <Button onClick={this.handleLike} >
-                        <Icon type='like'/>
-                    </Button>
-                    <p>{this.props.likes} Likes!</p>
+                    <br />
+                    <h5>by {this.props.author}</h5>
+                    <p>{this.props.likes} Likes</p>
                 </Card>
                 <br />
                 <br />

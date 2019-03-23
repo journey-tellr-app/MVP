@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './ProfilePage.css';
 import { Card, Icon } from 'antd';
 import { Button } from 'antd';
-import { Typography, Spin } from 'antd';
+import { Typography, Spin, Badge } from 'antd';
 
 const { Title } = Typography;
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
@@ -55,16 +55,18 @@ class ContributedStoryListItem extends Component {
                 {this.props.storyDetail.likes.length !== 0 ?
                     <Card
                         className="profile-story-cards"
-                        style={{ width: 275 }}
-                        cover={<img src={this.props.header_photo} alt="story" />}
-                        actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                        style={{ width: 325 }}
+                        cover={<img className="story-photo" src={this.props.header_photo} alt="story" />}
+                        actions={[<Button id="like-btn" onClick={this.handleLike}><Icon type='like' />Like</Button>,
+                        <Button id="like-btn" onClick={this.handleReadStory}>Read</Button>
+
+
+                        ]}
                     >
 
-                        <Title onClick={this.handleReadStory} level={4} >{this.props.title}</Title>
-                        <Button onClick={this.handleLike}>
-                            <Icon type='like' />
-                        </Button>
-                        <p>{this.props.likes} Likes!</p>
+                        <h3 className="story-title" onClick={this.handleReadStory} level={4} >{this.props.title}</h3>
+                        <p>{this.props.likes} Likes</p>
+
                     </Card> : (<Spin indicator={antIcon} />)}
             </div>
         )
