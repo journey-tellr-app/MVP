@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 class ImageUpload extends Component {
     state = {
         visible: false,
-        file: null
+        file: null,
+        confirmLoading: false,
     }
 
     //photo details contains title for button name and typeOfPhoto keywords for next saga
@@ -26,9 +27,13 @@ class ImageUpload extends Component {
         console.log(e);
         this.submitFile();
         this.setState({
+            confirmLoading: true,
+        });
+        setTimeout(() => {this.setState({
             visible: false,
             file: null,
-        });
+            confirmLoading: false,
+        }); }, 2000);
     }
 
     handleCancel = (e) => {
@@ -75,6 +80,7 @@ class ImageUpload extends Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    confirmLoading={this.state.confirmLoading}
                 >
                     {/* <div>Take A Photo: <input label='upload file' type='file' accept="image/*" capture="camera" onChange={this.handleFileUpload} /></div> This is being commented out for the sake of the presentation since it is useless on browser */}
                     {/* <h2>OR</h2> */}

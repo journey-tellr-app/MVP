@@ -114,7 +114,7 @@ class CreateStoryDetail extends Component {
                     )(
                     <div>
                         { image.storyImage !== '/images/placeholder.png' ?
-                        <Avatar shape="square" size={64} src={image.storyImage} />
+                        <Avatar shape="square" size={150} src={image.storyImage} />
                         // {<img style={{ height: 150, width: 340 }}
                         //      alt="header_photo"
                         //      src={image.storyImage}
