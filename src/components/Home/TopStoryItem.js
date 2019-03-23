@@ -42,7 +42,9 @@ class TopStoryItem extends Component {
                     id='card'
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                    actions={[<Button type='primary'
+                                      onClick={this.handleReadStory}>Read
+                              </Button>]}
                 >
                     <Meta
                         id='card'
@@ -50,14 +52,13 @@ class TopStoryItem extends Component {
                         title={this.props.title}
                     />
                     <br/>
-                    <h4 align='center'>Story by {this.props.name}</h4>
-                    <Icon type='like' onClick={this.handleLike} />
+                    <Button onClick={this.handleLike}>
+                        <Icon type='like' />
+                    </Button>
                     <p>{this.props.likes} Likes!</p>
                 </Card>
-                {/* these break tags are so the user can see the carousel dots
-                at the bottom of the cards */}
-                <br/>
-                <br/>
+                <br />
+                <br />
             </div>
         )
     }
