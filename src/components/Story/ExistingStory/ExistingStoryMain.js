@@ -27,15 +27,30 @@ class ExistingStoryMain extends Component {
   static getDerivedStateFromProps(props, state) {
     const { contributor, summary } = props.storyDetail;
     const { user } = props;
+    console.log(props);
+    //editmode always false for completed stories
+    console.log('in getderived state', summary.completed)
+    console.log(summary);
+    let authorCheck = false;
+    if (summary.length > 0) {
+      //sets author t/f only after summary loads
+      authorCheck = (summary.author_id === user.id);
+
+      //if story is completed edit mode always false
+      if (summary[0].completed) {
+        return { editMode: false }
+      }
+    }
+
     //default edit mode is false
     //searches contributors for user id
     const contributorCheck = contributor.filter(
-      contributorObj => contributorObj.person_id === user.id).length > 0;
+      contributorObj => contributorObj.id === user.id).length > 0;
     // console.log(contributorCheck);
     //checks user id against author id
-    const authorCheck = summary.author_id === user.id;
+
     if (contributorCheck || authorCheck) {
-      return {editMode: true}
+      return { editMode: true }
     } else {
       return null;
     }
@@ -60,19 +75,20 @@ class ExistingStoryMain extends Component {
       <div>
         {/* checks to make sure all relevant existing story data has loaded */}
         {summary.length > 0 && isNaN(chapterId) &&
-           <ExistingStorySummary
-                  summary={summary}
-                  chapter={chapter}
-                  editMode={editMode} />
-              //chapter id sent on params
+          <ExistingStorySummary
+            summary={summary}
+            chapter={chapter}
+            editMode={editMode}
+            contributor={contributor} />
+          //chapter id sent on params
         }
         {chapter.length > 0 && isNaN(chapterId) !== true &&
-        <ChapterView
-                  summary={summary}
-                  chapter={chapter}
-                  contributor={contributor}
-                  key={chapterId}
-                  editMode={editMode} />
+          <ChapterView
+            summary={summary}
+            chapter={chapter}
+            contributor={contributor}
+            key={chapterId}
+            editMode={editMode} />
         }
       </div>
     )

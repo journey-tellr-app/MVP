@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import ChapterEditButton from './ChapterEditButton';
+import EditButton from '../EditButton';
+import FinalizeStoryButton from '../FinalizeStoryButton';
 
 import { PageHeader, Pagination, Card } from 'antd';
 
@@ -13,6 +14,7 @@ class ChapterView extends Component {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         contributor: PropTypes.array.isRequired,
+        editMode: PropTypes.bool.isRequired,
     };
 
     turnPage = (page, pageSize) => {
@@ -35,19 +37,19 @@ class ChapterView extends Component {
         } else if (contributorSum < 2) {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
-        const currChapter = chapter[0];
+        const currChapter = chapter[chapterId];
         console.log('currChapter', currChapter);
         return (
 
             <div>
-                {currChapter !== undefined ?
+                {currChapter !== undefined && summary.length > 0 ?
                     <div>
                         <PageHeader
                             title={`Chapter ${chapterId}: ${currChapter.title}`}
                             subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
                         />
                         {editMode &&
-                            <ChapterEditButton
+                            <EditButton
                                 valueToEdit={currChapter.title}
                                 type='Chapter'
                                 name='Title'
@@ -61,7 +63,7 @@ class ChapterView extends Component {
                             />
                         </Card>
                         {editMode &&
-                        <ChapterEditButton
+                        <EditButton
                             valueToEdit={currChapter.text}
                             type='Chapter'
                             name='Text'
@@ -76,6 +78,9 @@ class ChapterView extends Component {
                     :
                     <p> Page is loading.</p>
                 }
+
+                <FinalizeStoryButton />
+
             </div>
         )
     }

@@ -6,7 +6,6 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //incoming routes have /story/detail in route URL
 
 //retrieve individual story details for viewing or editing
-
 router.get('/summary/:id', (req, res) => {
     // console.log('req.params: ', req.params);
     if (req.isAuthenticated()) {
@@ -58,7 +57,10 @@ router.get('/contributor/:id', (req, res) => {
     // console.log(Number(req.params.id));
     if (req.isAuthenticated()) {
         const storyToGet = Number(req.params.id);
-        const queryText = `SELECT * FROM contributor WHERE story_id = $1 AND status = 'accepted';`;
+        const queryText = `SELECT person.first_name, person.last_name, profile_pic, person.id
+            FROM contributor
+            JOIN person ON contributor.person_id = person.id
+            WHERE story_id = $1 AND status = 'accepted';`;
         pool.query(queryText, [storyToGet])
             .then((sqlResult) => {
                 res.send(sqlResult.rows);

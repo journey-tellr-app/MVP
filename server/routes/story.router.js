@@ -36,11 +36,6 @@ router.get('/story-contributions', (req, res) => {
 
 });
 
-//when user searches data base for specific stories 
-router.get('/search', (req, res) => {
-
-});
-
 //retrieves 10 recent stories for home page feed
 router.get('/recent', (req, res) => {
 
@@ -90,15 +85,38 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 }); // end POST route
 
-
 //edits made a story title, photo, caption after its begun
-router.put('/edit', (req, res) => {
-
-})
+router.put('/', (req, res) => {
+    const { id, colName, updatedValue } = req.body;
+    if (req.isAuthenticated() && (colName === 'Intro' || colName === 'Caption' || colName === 'Title')) {
+        const queryText = `UPDATE story 
+            SET ${colName.toLowerCase()} = $1 
+            WHERE id = $2;`;
+        const value = [updatedValue, id];
+        pool.query(queryText, value)
+            .then(response => {
+                res.sendStatus(201);
+            }).catch(e => {
+                console.log(`error in /story put`, e);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
 
 //when story finalized, sets completed to true
-router.put('/complete', (req, res) => {
-
+router.put('/complete/:storyId', rejectUnauthenticated, (req, res) => {
+    const queryText = `UPDATE story 
+        SET completed = true WHERE author = $1 AND id = $2;`;
+    const queryValues = [req.user.id, req.params.storyId];
+    pool.query(queryText, queryValues)
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(e => {
+            console.log('error in /story/complete put route', e);
+            res.sendStatus(500);
+        })
 });
 
 //STRETCH admin can remove of a story

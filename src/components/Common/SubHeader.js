@@ -19,7 +19,7 @@ export default class SubHeader extends Component {
                  gutter={16}
                  className='sub-header'>
                 <Title 
-                    level={2} 
+                    level={3} 
                     className='sub-header-text'>
                     {this.props.headerText}
                 </Title>

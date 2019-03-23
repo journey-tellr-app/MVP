@@ -13,8 +13,7 @@ class ContributorItem extends Component {
     }
 
     render() {
-        const { item } = this.props;
-
+        const { item, editMode } = this.props;
         return (
             <List.Item onClick={this.handleClick}>
                 <List.Item.Meta
