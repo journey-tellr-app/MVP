@@ -39,88 +39,91 @@ class ExistingStorySummary extends Component {
 
         return (
             <div>
-                {/* this will check that the storyDetail reducer is populated 
-                before rendering its contents */}
                 <Row type="flex" justify="space-around" align="middle">
                     <Col span={24}>
                         <SubHeader headerText='Story Summary' />
                     </Col>
-                    <PageHeader
-                        title={title}
-                        subTitle={`By ${author_name}${contributorDescription}`}
-                    />
-                    {editMode &&
-                        <Col span={8} style={{ marginBottom: 20 }}>
-                            <EditButton
-                                valueToEdit={title}
-                                type='Story'
-                                name='Title'
-                                id={id} />
-                        </Col>
-                    }
-                    {contributor.length > 0 &&
-                        <Col span={12} style={{ marginBottom: 20 }}>
-                            <ContributorPopup editMode={editMode} story_id={id} />
-                        </Col>
-                    }
                 </Row>
+                {/* this will check that the storyDetail reducer is populated 
+                before rendering its contents */}
+                {this.props.summary.length > 0 &&
+                    <div>
+                        <Row type='flex' justify="space-around" align="middle">
+                            <PageHeader
+                                title={title}
+                                subTitle={`By ${author_name}${contributorDescription}`}
+                            />
+                            {editMode &&
+                                <Col span={8} style={{ marginBottom: 20 }}>
+                                    <EditButton
+                                        valueToEdit={title}
+                                        type='Story'
+                                        name='Title'
+                                        id={id} />
+                                </Col>
+                            }
+                            {contributor.length > 0 &&
+                                <Col span={12} style={{ marginBottom: 20 }}>
+                                    <ContributorPopup editMode={editMode} story_id={id} />
+                                </Col>
+                            }
+                        </Row>
+                        <Card
+                            style={{
+                                width: 300, display: 'block', margin: 'auto', marginBottom: 10,
+                            }}
+                            cover={<img alt="story book cover" src={header_photo} />}
+                        >
+                            <Meta
+                                description={caption}
+                            />
+                        </Card>
 
-                <Card
-                    style={{
-                        width: 300, display: 'block', margin: 'auto', marginBottom: 10,
-                    }}
-                    cover={<img alt="story book cover" src={header_photo} />}
-                >
-                    <Meta
-                        description={caption}
-                    />
-                </Card>
+                        {editMode &&
+                            <Row type='flex' justify='center'>
+                                <Col>
+                                    <EditButton
+                                        valueToEdit={caption}
+                                        type='Story'
+                                        name='Caption'
+                                        id={id} />
+                                </Col>
+                                <Col>
 
-                {editMode &&
-                    <Row type='flex' justify='center'>
-                        <Col>
-                            <EditButton
-                                valueToEdit={caption}
-                                type='Story'
-                                name='Caption'
-                                id={id} />
-                        </Col>
-                        <Col>
+                                </Col>
+                            </Row>
+                        }
 
-                        </Col>
-                    </Row>
+
+                        <Row type='flex' justify='center'>
+                            <Divider>
+                                <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Introduction</Title>
+                            </Divider>
+                            {intro !== null ?
+                                <Col span={18}>
+                                    <Paragraph>
+                                        {intro}
+                                    </Paragraph>
+                                </Col>
+                                :
+                                <Col span={18}>
+                                    <Paragraph> This story has no introduction yet! </Paragraph>
+                                </Col>
+
+                            }
+                            {editMode &&
+                                <Col span={18}>
+                                    <EditButton
+                                        valueToEdit={intro}
+                                        type='Story'
+                                        name='Intro'
+                                        id={id} />
+                                </Col>
+                            }
+
+                        </Row>
+                    </div>
                 }
-
-
-                <Row type='flex' justify='center'>
-                    <Divider>
-                        <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Introduction</Title>
-                    </Divider>
-                    {intro !== null ?
-                        <Col span={18}>
-                            <Paragraph>
-                                {intro}
-                            </Paragraph>
-                        </Col>
-                        :
-                        <Col span={18}>
-                            <Paragraph> This story has no introduction yet! </Paragraph>
-                        </Col>
-
-                    }
-                    {editMode &&
-                        <Col span={18}>
-                            <EditButton
-                                valueToEdit={intro}
-                                type='Story'
-                                name='Intro'
-                                id={id} />
-                        </Col>
-                    }
-
-                </Row>
-
-
                 {/* chapters div here */}
                 {chapter &&
                     <SummaryChapterList chapter={chapter} storyId={summary[0].id} editMode={editMode} />
@@ -132,7 +135,6 @@ class ExistingStorySummary extends Component {
 };
 
 const mapStoreToProps = reduxStore => ({
-    storyDetail: reduxStore.storyDetail,
     user: reduxStore.user.userInfo,
 })
 

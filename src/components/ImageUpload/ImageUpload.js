@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-
-
 class ImageUpload extends Component {
     state = {
         visible: false,
@@ -15,6 +13,7 @@ class ImageUpload extends Component {
     //photo details contains title for button name and typeOfPhoto keywords for next saga
     static propTypes = {
         photoDetails: PropTypes.object.isRequired,
+        editMode: PropTypes.bool,
     }
 
     showModal = () => {
@@ -68,11 +67,18 @@ class ImageUpload extends Component {
         })
     }
 
+    
+
     render() {
+        // determines button class based on whether its used on for story editing
+        let buttonClass;
+        if(this.props.editMode){
+            buttonClass = 'edit-button';
+        } 
         return (
             <div>
 
-                <Button type="default" onClick={this.showModal}>
+                <Button type="default" onClick={this.showModal} className={buttonClass}>
                     {this.props.photoDetails.title}
                 </Button>
                 <Modal

@@ -37,14 +37,14 @@ class ExistingStoryMain extends Component {
   static getDerivedStateFromProps(props, state) {
     const { contributor, summary } = props.storyDetail;
     const { user } = props;
-    console.log(props);
+    // console.log(props);
     //editmode always false for completed stories
-    console.log('in getderived state', summary.completed)
-    console.log(summary);
+    // console.log('in getderived state', summary.completed)
+    // console.log(summary);
     let authorCheck = false;
     if (summary.length > 0) {
       //sets author t/f only after summary loads
-      console.log('summary has loaded');
+      // console.log('summary has loaded');
       authorCheck = (summary[0].author_id === user.id);
       // console.log(authorCheck);
 
@@ -85,13 +85,14 @@ class ExistingStoryMain extends Component {
             chapter={chapter}
             editMode={editMode}
             contributor={contributor} />
-          //chapter id sent on params
         }
+        {/* if chapter id is on param loads chapter view */}
         {chapter.length > 0 && isNaN(chapterId) !== true &&
           <ChapterView
             summary={summary}
             chapter={chapter}
             contributor={contributor}
+            // chapterId is key so component rerenders on params change
             key={chapterId}
             editMode={editMode} />
         }
