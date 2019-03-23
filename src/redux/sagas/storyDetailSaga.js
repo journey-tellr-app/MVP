@@ -27,7 +27,7 @@ function* getChapterDetail(action) {
 }
 
 function* editChapter(action) {
-    try{ 
+    try {
         const response = yield axios.put(`/chapter`, action.payload);
         yield put({ type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data[0].story_id });
     }catch(e){
@@ -37,10 +37,10 @@ function* editChapter(action) {
 }
 
 function* editStory(action) {
-    try{
+    try {
         yield axios.put('/story', action.payload);
-        yield put({ type: 'GET_INDIVIDUAL_STORY', payload: action.payload.id})
-    }catch(e){
+        yield put({ type: 'GET_INDIVIDUAL_STORY', payload: action.payload.id })
+    } catch (e) {
         console.log('Error in editStory saga:', e);
         message.error('Error in story edit');
     }
@@ -72,7 +72,17 @@ function* getStoryLikes(action) {
     }
 }
 
-//post story?
+//completes story making it uneditable
+function* completeStory(action) {
+    try {
+        const storyId = action.payload;
+        yield axios.put(`/story/complete/${storyId}`);
+        yield put({ type: 'GET_INDIVIDUAL_STORY', payload: storyId })
+    } catch (e) {
+        console.log('Error finalizing story:', e)
+    }
+}
+
 
 function* storyDetailSaga() {
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
@@ -81,7 +91,7 @@ function* storyDetailSaga() {
     yield takeLatest('EDIT_CHAPTER', editChapter);
     yield takeLatest('EDIT_STORY', editStory);
     yield takeLatest('GET_STORY_LIKES', getStoryLikes);
-
+    yield takeLatest('COMPLETE_STORY', completeStory);
 }
 
 export default storyDetailSaga;

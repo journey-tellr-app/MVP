@@ -5,8 +5,9 @@ import { withRouter } from "react-router";
 
 import ImageUpload from './../../../ImageUpload/ImageUpload.js';
 import EditButton from '../EditButton';
+import FinalizeStoryButton from '../FinalizeStoryButton';
 
-import { PageHeader, Pagination, Card, Button, Row, Icon } from 'antd';
+import { PageHeader, Pagination, Card, Row } from 'antd';
 
 class ChapterView extends Component {
     static propTypes = {
@@ -43,8 +44,8 @@ class ChapterView extends Component {
         return (
 
             <div>
-                {currChapter !== undefined ?
-                    <Row type="flex" justify="space-around" align="middle">
+                {currChapter !== undefined && summary.length > 0 ?
+                    <div>
                         <PageHeader
                             title={`Chapter ${currChapter.order}: ${currChapter.title}`}
                             subTitle={`in story "${summary[0].title}" by ${summary[0].author_name}${contributorDescription}. `}
@@ -89,10 +90,13 @@ class ChapterView extends Component {
                             pageSize={1}
                             total={Number(chapter.length)}
                             onChange={this.turnPage} />
-                    </Row>
+                    </div>
                     :
                     <p> Page is loading.</p>
                 }
+
+                <FinalizeStoryButton />
+
             </div>
         )
     }
