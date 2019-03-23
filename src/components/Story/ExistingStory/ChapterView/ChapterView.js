@@ -92,8 +92,9 @@ class ChapterView extends Component {
                                     <ImageUpload
                                         photoDetails={{
                                             typeOfPhoto: 'CHAPTER',
-                                            title: "Change Picture",
+                                            title: `Changing Chapter ${currChapter.order} Photo`,
                                             chapterId: currChapter.id,
+                                            buttonName: "Change Photo"
                                         }}
                                         editMode={editMode} />
                                 </Col>
