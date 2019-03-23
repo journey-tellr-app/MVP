@@ -17,3 +17,14 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.story-photo {
+  height: 150px;
+  width: auto;
+  object-fit: contain;
+
+}
+
+.story-title {
+  font-size: 15px;
+}

@@ -16,10 +16,31 @@ h1 {
   }
 
 .ant-card-body {
-    padding: 10px;
+    padding: 5px;
     zoom: 1;
     margin: 5px;
 }
+
+.ant-card-meta-avatar {
+    padding: 2px;
+    margin-left: 20px;
+    
+  }
+
+.ant-card-meta-title {
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: -3.5em;  
+    margin-top: .7em;
+    text-overflow: ellipsis;
+}
+
+.ant-card-meta {
+    margin: -4px 0;
+    zoom: 1;
+  }
 
 
 

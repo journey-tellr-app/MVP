@@ -40,11 +40,10 @@ class TopStoryItem extends Component {
                 <Card
                     id='card'
                     bordered={true}
-                    style={{ width: 350 }}
-                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button type='primary'
-                        onClick={this.handleReadStory}>Read
-                              </Button>]}
+                    style={{ width: 325 }}
+                    cover={<img className="story-photo" alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button onClick={this.handleLike} ><Icon type='like' />
+                    </Button>, <Button onClick={this.handleReadStory}>Read</Button>]}
                 >
                     <Meta
                         align='center'
@@ -52,10 +51,7 @@ class TopStoryItem extends Component {
                         title={this.props.title}
                     />
                     <br />
-                    <h4 align='center'>Story by {this.props.author}</h4>
-                    <Button onClick={this.handleLike} >
-                        <Icon type='like' />
-                    </Button>
+                    <h5>by {this.props.author}</h5>
                     <p>{this.props.likes} Likes!</p>
                 </Card>
                 <br />
