@@ -13,6 +13,7 @@ class ContributedListItem extends Component {
     }
 
     handleLike = (event) => {
+
         this.props.dispatch({
             type: 'LIKE_CONTRIBUTED_STORY',
             payload: {
@@ -20,6 +21,7 @@ class ContributedListItem extends Component {
                 story_id: this.props.story_id
             }
         });
+
     }
 
     componentDidMount = (event) => {
@@ -30,6 +32,7 @@ class ContributedListItem extends Component {
     }
 
     render() {
+
         return (
             <div align='center'>
                 <Card
@@ -37,7 +40,9 @@ class ContributedListItem extends Component {
                     bordered={true}
                     style={{ width: 300 }}
                     cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button onClick={this.handleReadStory}>Read</Button>]}
+                    actions={[<Button type='primary'
+                                      onClick={this.handleReadStory}>Read
+                              </Button>]}
                 >
                     <Meta
                         align='center'
@@ -46,13 +51,13 @@ class ContributedListItem extends Component {
                     />
                     <br/>
                     <h4 align='center'>Story by {this.props.author}</h4>
-                    <Icon type='like' onClick={this.handleLike} />
+                    <Button onClick={this.handleLike} >
+                        <Icon type='like'/>
+                    </Button>
                     <p>{this.props.likes} Likes!</p>
                 </Card>
-                {/* these break tags are so the user can see the carousel dots
-                at the bottom of the cards */}
-                <br/>
-                <br/>
+                <br />
+                <br />
             </div>
         )
     }

@@ -20,8 +20,6 @@ class ContributedStoryList extends Component {
         return (
             <div className='contributions'>
                 <div>
-
-
                     {/* {JSON.stringify(this.props.storyDetail.likes)} */}
 
                     {this.props.story.contributedStoryReducer.map((story, i) => {
