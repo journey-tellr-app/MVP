@@ -133,7 +133,7 @@ router.get('/contributors/:id', (req, res) => {
                        JOIN story
                        ON story_id = story.id
                        WHERE story_id = $1
-                       GROUP BY story.id, contributor.story_id`;
+                       GROUP BY story.id, contributor.story_id;`;
     pool.query(queryText, [storyId])
     .then( (sqlResult) => {
         res.send(sqlResult.rows);
