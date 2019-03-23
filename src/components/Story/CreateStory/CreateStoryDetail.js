@@ -138,16 +138,17 @@ class CreateStoryDetail extends Component {
                         />
                         )}
                     </Form.Item>
-                    <Form.Item {...tailFormItemLayout}>
+                    <Form.Item {...tailFormItemLayout}>                        
+                        <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
+                            Previous
+                        </Button>
                         <Button type="primary"
                                 htmlType="submit"
                                 disabled={this.hasErrors(getFieldsError())}
                         >
                             Next
                         </Button>
-                        <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                            Previous
-                        </Button>
+
                     </Form.Item>
                 </Form>
             </div>
