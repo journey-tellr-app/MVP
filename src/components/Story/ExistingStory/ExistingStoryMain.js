@@ -85,13 +85,14 @@ class ExistingStoryMain extends Component {
             chapter={chapter}
             editMode={editMode}
             contributor={contributor} />
-          //chapter id sent on params
         }
+        {/* if chapter id is on param loads chapter view */}
         {chapter.length > 0 && isNaN(chapterId) !== true &&
           <ChapterView
             summary={summary}
             chapter={chapter}
             contributor={contributor}
+            // chapterId is key so component rerenders on params change
             key={chapterId}
             editMode={editMode} />
         }
