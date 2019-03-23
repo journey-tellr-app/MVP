@@ -116,7 +116,7 @@ class CreateStoryDetail extends Component {
                         <div className="image-upload">
                             {image.storyImage !== "/images/placeholder.png" ?
                             <Avatar shape="square"
-                                    size={64}
+                                    size={150}
                                     src={image.storyImage}
                             /> : ''}
                             <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
