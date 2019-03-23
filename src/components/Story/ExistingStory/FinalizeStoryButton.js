@@ -1,25 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import {Button, Row, Col } from 'antd';
+import { Button, Row, Col, Modal } from 'antd';
+
+const confirm = Modal.confirm;
 
 class FinalizeStoryButton extends Component {
 
     handlePostStory = () => {
         console.log('post story clicked');
+        //confirm finishing story with modal
+        confirm({
+            title: 'Are you done editing and ready to complete this story?',
+            content: `Please review the story summary, chapter contents, and photos before completing the story.`,
+            okText: 'Complete Story',
+            okType: 'danger',
+            okButtonProps: {
+                type: 'danger',
+            },
+            cancelText: 'Keep Editing',
+            onOk() {
+                this.props.dispatch({
+                    type: 'COMPLETE_STORY',
+                    payload: this.props.summary.id
+                })
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+
+
     }
 
     render() {
         const { user, summary } = this.props;
         return (
             <div>
-                {user.id === summary.author_id &&
+                {/* only shows button if user is author and story has not already been completed */}
+                {user.id === summary.author_id && summary.completed === false &&
                     <Row type='flex' justify='center'>
                         <Col span={18}>
                             <Button
                                 type="primary"
                                 onClick={this.handlePostStory}
-                                style={{ width: '100%' }}>
+                                style={{ width: '100%', margin: '20px 0' }}>
                                 Finalize Story</Button>
                         </Col>
                     </Row>
