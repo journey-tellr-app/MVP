@@ -8,7 +8,7 @@ import EditButton from '../EditButton';
 import FinalizeStoryButton from '../FinalizeStoryButton';
 import SubHeader from '../../../Common/SubHeader';
 
-import { PageHeader, Pagination, Card, Row, Col, Typography } from 'antd';
+import { PageHeader, Pagination, Card, Row, Col, Typography, Button } from 'antd';
 
 const { Title, Paragraph } = Typography;
 
@@ -23,6 +23,10 @@ class ChapterView extends Component {
 
     turnPage = (page, pageSize) => {
         this.props.history.push(`${page - 1}`)
+    }
+
+    handleReturn = () => {
+        this.props.history.push(`/existing-story/${this.props.summary[0].id}`)
     }
 
     render() {
@@ -98,10 +102,19 @@ class ChapterView extends Component {
                         
                         <Row type="flex" justify="center" align="middle">
                             <Pagination
-                            current={Number(chapterId + 1)}
+                            defaultCurrent={currChapter.order}
                             pageSize={1}
                             total={Number(chapter.length)}
-                            onChange={this.turnPage} />
+                            onChange={this.turnPage}
+                            hideOnSinglePage={true} />
+
+                            <Col span={18}>
+                                <Button 
+                                    onClick={this.handleReturn}
+                                    style={{marginTop: 10, marginBottom: 10, display: 'block', width: '100%'}}>
+                                    Return To Summary
+                                </Button>
+                            </Col>
                         </Row>
                         <FinalizeStoryButton />
                     </div>
