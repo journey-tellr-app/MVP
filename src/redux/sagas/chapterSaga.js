@@ -16,11 +16,13 @@ function* addExistingStoryChapter(action) {
 
 function* changeChapterImage(action) {
     try {
+        console.log(`in changeChapterImage`)
         // package the image data
         let dataToSend = { image: action.payload.data.Location };
         // replace the old picture with the new picture
-        const response = yield axios.put(`chapter/image/${action.chapterId}`, dataToSend);
+        const response = yield axios.put(`/chapter/image/${action.chapterId}`, dataToSend);
         // refresh the chapter detail with the added photo
+        console.log(response);
         yield put({type: 'GET_STORY_CHAPTER_DETAIL', payload: response.data});
     } catch(error) {
         // error message when editing the chapter image

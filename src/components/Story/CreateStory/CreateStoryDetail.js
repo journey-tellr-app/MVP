@@ -4,7 +4,7 @@ import ImageUpload from './../../ImageUpload/ImageUpload.js';
 import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
 
 // ant design import
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Row, Col, Divider, Avatar } from 'antd';
 
 class CreateStoryDetail extends Component {
 
@@ -73,6 +73,7 @@ class CreateStoryDetail extends Component {
         };
 
         return (
+            <Row type="flex" justify="space-around" align="middle">
             <Form layout="vertical" onSubmit={this.createStory}>
                 <h2>Fill in the story details</h2>
                 <CreateStorySteps current={1} />
@@ -113,12 +114,15 @@ class CreateStoryDetail extends Component {
                     )(
                     <div>
                         { image.storyImage !== '/images/placeholder.png' ?
-                        <img style={{ height: 150, width: 340 }}
-                             alt="header_photo"
-                             src={image.storyImage}
-                        />
+                        <Avatar shape="square" size={64} src={image.storyImage} />
+                        // {<img style={{ height: 150, width: 340 }}
+                        //      alt="header_photo"
+                        //      src={image.storyImage}
+                        // />} />
                         : '' }
+                        <Divider>
                         <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                        </Divider>
                     </div>
                     )}
                 </Form.Item>
@@ -135,6 +139,7 @@ class CreateStoryDetail extends Component {
                     />
                     )}
                 </Form.Item>
+                <Divider>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary"
                             htmlType="submit"
@@ -146,7 +151,9 @@ class CreateStoryDetail extends Component {
                         Previous
                     </Button>
                 </Form.Item>
+                </Divider>
             </Form>
+            </Row>
         )
     }
 

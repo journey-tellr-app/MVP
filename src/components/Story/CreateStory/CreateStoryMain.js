@@ -7,8 +7,7 @@ import './CreateStory.css'
 import SubHeader from '../../Common/SubHeader';
 
 // ant design import
-import { Form, Button } from 'antd';
-import { Divider } from 'antd';
+import { Form, Button, Row, Divider } from 'antd';
 
 class CreateStoryMain extends Component {
 
@@ -41,7 +40,7 @@ class CreateStoryMain extends Component {
         };
 
         return (
-            <div className="container">
+            <Row type="flex" justify="space-around" align="middle">
                 <Form layout="vertical" onSubmit={this.nextPage}>
                     <br />
                     <SubHeader headerText='Create a Story' />
@@ -71,7 +70,7 @@ class CreateStoryMain extends Component {
                     </Button></Divider>
                     </Form.Item>
                 </Form>
-            </div>
+            </Row>
         )
     }
 
