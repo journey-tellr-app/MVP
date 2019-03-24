@@ -78,10 +78,10 @@ class CreateStoryDetail extends Component {
                                         {getFieldDecorator('title', {
                                             initialValue: story.title,
                                             rules: [{ required: true, message: 'Please enter a story title!' }],
-                                        })
-                                            (<Input allowClear
-                                                placeholder="Story title" />
-                                            )}
+                                        })(<Input 
+                                                allowClear 
+                                                placeholder="Story title" />)
+                                        }
                                     </Form.Item>
                                 </Col>
                                 <Col span={24}>
@@ -135,7 +135,8 @@ class CreateStoryDetail extends Component {
                                     </Form.Item>
                                 </Col>
                                 <Col span={9}>
-                                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
+                                    <Button onClick={this.previousButton}
+                                        className='create-story-nav-btn'>
                                         <Icon type="left" />
                                         Previous
                                     </Button>
@@ -143,6 +144,7 @@ class CreateStoryDetail extends Component {
                                 <Col span={9}>
                                     <Button type="primary"
                                         htmlType="submit"
+                                        className='create-story-nav-btn'
                                         disabled={this.hasErrors(getFieldsError())}>
                                         Next
                                     <Icon type="right" />
