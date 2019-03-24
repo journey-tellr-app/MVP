@@ -36,15 +36,8 @@ class SearchBar extends Component {
                     addonBefore={selectBefore}
                     placeholder="Search"
                     onSearch={value => this.sendSearch(value)}
-                    style={{ width: 300 }}
+                    style={{ width: '100%' }}
                 />
-                {/* <div>
-                    <Select defaultValue="Search By: Author" style={{ width: 160 }} onChange={this.handleChange}>
-                        <Option value="AUTHOR" >Author</Option>
-                        <Option value="TITLE">Title</Option>
-                        <Option value="DESCRIPTION">Description</Option>
-                    </Select>
-                </div> */}
             </div>
         )
     }
