@@ -10,11 +10,6 @@ import SubHeader from '../../Common/SubHeader';
 import { Form, Button, Icon, Row, Col } from 'antd';
 
 class CreateStoryMain extends Component {
-
-    // componentDidMount() {
-    //     this.props.form.validateFields();
-    // }
-
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
     nextPage = (event) => {
@@ -23,21 +18,7 @@ class CreateStoryMain extends Component {
     } // end createStory
 
     render() {
-
         const { template } = this.props;
-
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
 
         return (
             <div>
@@ -50,11 +31,11 @@ class CreateStoryMain extends Component {
                     </Col>
                     <Col span={18}>
                         <Form layout="vertical" onSubmit={this.nextPage}>
-                            <Form.Item
-                                label="Create a story or choose a template">
-                                <ChooseTemplate />
-                            </Form.Item>
                             <Row type="flex" justify="space-between">
+                                <Col span={24}>
+                                    <ChooseTemplate />
+                                </Col>
+
                                 <Col span={9}>
                                     <Button
                                         className='create-story-nav-btn'>

@@ -82,10 +82,13 @@ class ImageUpload extends Component {
         }
         return (
             <div>
-
-                <Button type="default" onClick={this.showModal} className={buttonClass}>
+                   <Button 
+                    type="default" 
+                    onClick={this.showModal} 
+                    className={buttonClass}
+                    style={{width: '100%'}}>
                     {buttonName}
-                </Button>
+                </Button> 
                 <Modal
                     title={title}
                     style={{ top: 20 }}
