@@ -4,8 +4,6 @@ const router = express.Router();
 const storyDetailRouter = require('./story.detail.router');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.use('/detail', storyDetailRouter);
-
 //gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
@@ -65,11 +63,6 @@ router.get('/recent', (req, res) => {
 
 });
 
-//retrieves template story from template table for autopopulating story
-router.get('/template', (req, res) => {
-
-});
-
 //creates new story with author, title, etc
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText = `INSERT INTO "story" ("title", "caption", "header_photo", "intro", "author", "is_template")
@@ -85,6 +78,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 }); // end POST route
 
+<<<<<<< HEAD
+=======
 //edits made a story title, photo, caption after its begun
 router.put('/', (req, res) => {
     const { id, colName, updatedValue } = req.body;
@@ -119,6 +114,7 @@ router.put('/complete/:storyId', rejectUnauthenticated, (req, res) => {
         })
 });
 
+>>>>>>> 116dd6a5df8db21bb81a8caacb4dd043812c71af
 //STRETCH admin can remove of a story
 router.delete('/', (req, res) => {
 
