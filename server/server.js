@@ -40,7 +40,7 @@ app.use('/chapter', chapterRouter);
 app.use('/awsS3', awsS3Router);
 app.use('/fakes', fakesRouter);
 app.use('/template', templateRouter);
-// app.use('/story/detail', storyDetailRouter);
+app.use('/story/detail', storyDetailRouter);
 
 app.use('/search-story', storySearchRouter);
 

@@ -183,12 +183,31 @@ INSERT INTO person ("id", "email", "password", "first_name", "last_name", "profi
 	VALUES (999999, 'test@test.com', 'saltAndHash', 'Testee', 'McGee', '/images/placeholder.png');
 
 INSERT INTO template_story ("id", "creator", "name", "title", "caption", "placeholder_image", "intro")
-	VALUES (100, 999999, 'Your First Day', 'Your Name First Day', 'A sentence about you and a blurb', '/images/placeholder.png', 'Write about one thing you are looking forward to with this role and one challenge'),
-	(200, 999999, 'Holiday/Social Event', 'Event Name', 'A sentence about the reason for the event', '/images/placeholder.png', 'Who, what, where, when, and why'),
-	(300, 999999, 'Team Meeting', 'Your Team/Dept Name and Project', 'Biggest accomplishment', '/images/placeholder.png', 'Write about your main purpose and memorable moment');
+	VALUES (400, 999999, 'Solo Project', 'Solo Project', 'Solo Project Home Page', '/images/placeholder.png', 'Write about your apps main purpose and the problem it solves'),
+	(500, 999999, 'Potluck', 'Potluck', 'Potluck', '/images/placeholder.png', 'This and Group Project are solely to flesh out the template select'),
+	(600, 999999, 'Group Project', 'Group Project', 'Group Project', '/images/placeholder.png', 'Write about your Group Project main purpose and the problem it solves');
 
 INSERT INTO template_chapter ("template_id", "title", "text", "order")
     VALUES (100, 'Title related to your personal history', 'Share about your strengths, interests, and passions to help others get to know you.', 1),
     (100, 'Add Your Team Name Introductions', 'Take a picture with the team or a member and share about a conversation you had with them', 2),
     (100, 'Your First Accomplishment', 'Share about how you overcame a challenge using resources, skills, and/or a coworker.', 3),
     (100, 'Reflection and Onward', 'Share about something that would have helped you to learn sooner and something you are looking forward to.', 4);
+
+INSERT INTO story (header_photo, author, title, caption, intro) 
+VALUES ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553449838530-lg.jpg', 1, 'Exchanging Ideas at the Grain Exchange', 'Mike and Shamarke peer programming', 'Four times in the last thiry years has the moon been fully exlipsed. In the last decade, tens of thousands of college students have graduated in the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553449895291-lg.jpg', 1, 'Coding at the Water Cooler', 'Nick and Max peer programming', 'Four times in the last thiry years has the moon been fully eclipsed. In the last decade, tens of thousands of college students have graduated in the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553450041909-lg.jpg', 1, 'Anthony Gets a Lesson', 'Anthony and Britt', 'In the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553450364129-lg.jpg', 1, 'Collaboration with UX', 'UX and Zaurak', 'A great man once said :In the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453185640-lg.jpg', 1, 'Max working on the balcony', 'Working.', 'He decided to get some peace and quiet on the balcony to work.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453237076-lg.jpg', 1, 'James and his cardboard friend.', 'Hello, is there any body out there?', 'James shows off his new friend.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453363955-lg.jpg', 1, 'Primes view of the skyline!', 'Minneapolis skyline from Prime digital academy.', 'This is a story about different views in Prime.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453449770-lg.jpg', 1, 'Classmates working on their projects.', 'Working hard!', 'This is a story about the affine cohort working on their solo projects!');
+
+INSERT INTO story (header_photo, author, title, caption, intro) 
+VALUES ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453207563-lg.jpg', 306, 'Creating JourneyTellr', 'We Meet Our Client', 'Even the largest journeys begin with the smallest step. That was our mantra as we began this project. We were given the idea for a huge and ambitious app, and everyday we tried to make that idea a reality.');
+
+--You will need to change story ID to match the JT story
+INSERT INTO chapter("story_id", "title", "text", "chapter_photo")
+VALUES ($1, 'The Dream Team Assembles', 'Assembling The Dream Team ', 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453707742-lg.jpg'),
+($1, 'Coding Begins!', 'After hours of meetings and deliberation, we were eager to finally get our hands on the keyboard.', 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453807741-lg.jpg'),
+($1, 'UX Meets JourneyTellr', 'We had the privilege to have members of the UX cohort take a look at JT and offer their advice.', 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453888929-lg.jpg');
