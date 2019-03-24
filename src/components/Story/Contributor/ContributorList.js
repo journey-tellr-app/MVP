@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ContributorItem from './ContributorItem';
 
-import { List } from 'antd';
+import { List, Typography } from 'antd';
 
 class ContributorList extends Component {
     render() {
@@ -16,6 +16,9 @@ class ContributorList extends Component {
         }
         return (
             <div>
+                <Typography align="center">
+                    Click contributor to remove them.
+                </Typography>
                 {pendingContributors &&
                     <List
                         itemLayout="horizontal"
