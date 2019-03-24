@@ -57,7 +57,7 @@ class CreateStoryDetail extends Component {
 
     render() {
 
-        const { image, template } = this.props;
+        const { story, image, template } = this.props;
         const { getFieldDecorator, getFieldsError } = this.props.form;
 
         const tailFormItemLayout = {
@@ -83,6 +83,7 @@ class CreateStoryDetail extends Component {
                         // extra={template.title !== '' ? template.title : null}
                     >
                         {getFieldDecorator('title', {
+                            initialValue: story.title,
                             rules: [{ required: true, message: 'Please enter a story title!' }],
                             },
                         )(
@@ -97,6 +98,7 @@ class CreateStoryDetail extends Component {
                         extra={template.intro !== '' ? template.intro : null}
                     >
                         {getFieldDecorator('intro', {
+                            initialValue: story.intro,
                             rules: [{ required: true, message: 'Please enter an intro!' }],
                             }, 
                         )(
@@ -129,7 +131,7 @@ class CreateStoryDetail extends Component {
                         // extra={template.caption !== '' ? template.caption : null}
                     >
                         {getFieldDecorator('caption', {
-                            rules: [{ required: true, message: 'Please enter a caption!' }],
+                            initialValue: story.caption,
                             },
                         )(
                     <Input allowClear
@@ -160,6 +162,7 @@ class CreateStoryDetail extends Component {
 const WrappedCreateStoryDetail = Form.create()(CreateStoryDetail);
 
 const mapStoreToProps = reduxStore => ({
+    story: reduxStore.story.newStoryReducer,
     image: reduxStore.story.imageReducer,
     template: reduxStore.template.templateNewStoryReducer,
 });
