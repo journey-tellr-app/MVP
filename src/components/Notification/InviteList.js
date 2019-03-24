@@ -39,6 +39,7 @@ class InviteList extends Component {
         return (
 
             <List
+                className="notification-item"
                 itemLayout="horizontal"
                 dataSource={invite}
                 renderItem={invite => (

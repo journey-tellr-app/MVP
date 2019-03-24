@@ -1,12 +1,12 @@
 #notification-btn {
     max-width: 60px;
-    max-height: 15px;
+    max-height: 25px;
     font-size: 7px;
     font-weight: 500;
 }
 
 .list {
-    margin: 2em;
+    margin: 3em;
 }
 
 
