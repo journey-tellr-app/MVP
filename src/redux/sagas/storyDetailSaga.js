@@ -62,10 +62,10 @@ function* getStoryContributors(action) {
 //likes for individual stories
 function* getStoryLikes(action) {
     try {
-        // console.log('getStoryLikes action: ', action);
-        const serverResponse = yield axios.get(`/story/detail/likes/${action.payload}`, action.payload);
 
+        const serverResponse = yield axios.get(`/story/detail/likes/${action.payload}`, action.payload);
         yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });
+        
     } catch (e) {
         console.log(`Error getting story likes: ${e}`);
         message.error('Error getting story likes');

@@ -71,7 +71,8 @@ class ContributedListItem extends Component {
 
 const mapStateToProps = (reduxStore) => ({
     story: reduxStore.story,
-    storyDetail: reduxStore.storyDetail
+    storyDetail: reduxStore.storyDetail,
+    contributors: reduxStore.story.contributors
 });
 
 export default connect(mapStateToProps)(ContributedListItem);
