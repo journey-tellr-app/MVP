@@ -200,4 +200,10 @@ VALUES ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/155344983853
 ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553450364129-lg.jpg', 1, 'Collaboration with UX', 'UX and Zaurak', 'A great man once said :In the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.');
 
 INSERT INTO story (header_photo, author, title, caption, intro) 
-VALUES ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453207563-lg.jpg', 306, 'Creating JourneyTellr', 'We Meet Our Client', 'Even the largest journeys begin with the smallest step. That was our mantra as we began this project. We were given the idea for a huge and ambitious app, and everyday we tried to make that idea a reality.')
+VALUES ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453207563-lg.jpg', 306, 'Creating JourneyTellr', 'We Meet Our Client', 'Even the largest journeys begin with the smallest step. That was our mantra as we began this project. We were given the idea for a huge and ambitious app, and everyday we tried to make that idea a reality.');
+
+--You will need to change story ID to match the JT story
+INSERT INTO chapter("story_id", "title", "text", "chapter_photo")
+VALUES ($1, 'The Dream Team Assembles', 'Assembling The Dream Team ', 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453707742-lg.jpg'),
+($1, 'Coding Begins!', 'After hours of meetings and deliberation, we were eager to finally get our hands on the keyboard.', 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453807741-lg.jpg'),
+($1, 'UX Meets JourneyTellr', 'We had the privilege to have members of the UX cohort take a look at JT and offer their advice.', 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553453888929-lg.jpg');
