@@ -43,14 +43,21 @@ class ResultListItem extends Component {
                   <Link to={`/existing-story/${story_id}`} >{title}</Link>
                 </Typography.Title>
               </Col>
-              <Col span={8}>
-                <Avatar size={64} src={profile_pic} />
+              
+              <Col span={24}>
+                <Row type='flex' align='middle' justify='center' style={{ marginBottom: 20 }}>
+                  <Col span={8}>
+                    <Avatar size={64} src={profile_pic} />
+                  </Col>
+                  <Col span={12}>
+                    <Typography>
+                      {`By ${full_name}`}
+                    </Typography>
+                  </Col>
+                </Row>
               </Col>
-              <Col span={12}>
-                <Typography>
-                  {`By ${full_name}`}
-                </Typography>
-              </Col>
+
+
 
               {intro.length > 80 &&
                 <Col span={20}>
