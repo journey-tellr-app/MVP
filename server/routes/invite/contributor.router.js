@@ -71,11 +71,6 @@ router.put('/:id/:status', (req, res) => {
     }
 });
 
-//story author can remove contributors from story by deleting person id from contributor table
-router.delete('/', (req, res) => {
-
-})
-
 
 
 module.exports = router;

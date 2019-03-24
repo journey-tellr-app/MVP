@@ -4,8 +4,6 @@ const router = express.Router();
 const storyDetailRouter = require('./story.detail.router');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.use('/detail', storyDetailRouter);
-
 //gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
@@ -33,11 +31,6 @@ router.get('/story-contributions', (req, res) => {
     } else {
         res.sendStatus(403);
     }
-
-});
-
-//when user searches data base for specific stories 
-router.get('/search', (req, res) => {
 
 });
 
@@ -70,11 +63,6 @@ router.get('/recent', (req, res) => {
 
 });
 
-//retrieves template story from template table for autopopulating story
-router.get('/template', (req, res) => {
-
-});
-
 //creates new story with author, title, etc
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText = `INSERT INTO "story" ("title", "caption", "header_photo", "intro", "author", "is_template")
@@ -89,17 +77,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
     });
 }); // end POST route
-
-
-//edits made a story title, photo, caption after its begun
-router.put('/edit', (req, res) => {
-
-})
-
-//when story finalized, sets completed to true
-router.put('/complete', (req, res) => {
-
-});
 
 //STRETCH admin can remove of a story
 router.delete('/', (req, res) => {
