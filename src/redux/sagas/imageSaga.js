@@ -1,8 +1,11 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 function* addImageAWS(action) {
-    console.log('in addImage AWS', action);
+    // console.log('in addImage AWS', action);
     let awsResponse;
     try {
             yield axios.post(`/awsS3`, action.payload, {
@@ -19,11 +22,14 @@ function* addImageAWS(action) {
             });
         } catch (error) {
             console.log('Error with addImageAWS:', error);
+            message.error('Error sending the image to AWS');
         }
     let nextAction = {
         type: action.nextType,
         payload: awsResponse,
+        chapterId: action.chapterId,
     }
+    // console.log(`addImageAWS nextaction`, nextAction);
     
     yield put(nextAction);
 }
@@ -35,6 +41,7 @@ function* addImagePerson(action) {
         yield put({ type: 'FETCH_USER' });
     } catch (error) {
         console.log('Error with addImage:', error);
+        message.error('Error adding a user profile image');
     }
 
 
@@ -47,6 +54,7 @@ function* updatePicture(action) {
         yield put({ type: 'FETCH_USER' });
     } catch (error) {
         console.log('Error with addImage:', error);
+        message.error('Error updating user profile image');
     }
 
 

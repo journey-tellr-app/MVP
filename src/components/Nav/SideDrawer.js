@@ -14,10 +14,6 @@ import 'antd/dist/antd.css';
 const { Title } = Typography;
 
 class SideDrawer extends Component {
-
-    componentDidMount() {
-        this.props.dispatch({ type: "GET_INVITES" });
-    }
     //creates navLinks
     buildLinks = () => {
         const routes = [

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Input, Select} from 'antd';
 
 import './SearchBar.css'
-import SubHeader from '../Common/SubHeader';
 
 class SearchBar extends Component {
     state = {
@@ -33,10 +32,6 @@ class SearchBar extends Component {
         );
         return (
             <div className='box'>
-                <br/>
-                <SubHeader headerText='Notifications' />
-                {/* <h1>Search All Stories</h1> */}
-                <br/>
                 <Search
                     addonBefore={selectBefore}
                     placeholder="Search"

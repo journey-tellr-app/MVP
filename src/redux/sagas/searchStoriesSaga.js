@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 // get stories searching by author
 function* getStoriesAuthor(action) {
     try {
@@ -11,6 +14,7 @@ function* getStoriesAuthor(action) {
     } catch (error) {
         // error message when trying to add a story
         console.log(`getStoriesAuthor failed: ${error}`);
+        message.error('Error serching by author');
     }
 }
 function* getStoriesTitle(action) {
@@ -23,6 +27,7 @@ function* getStoriesTitle(action) {
     } catch (error) {
         // error message when trying to add a story
         console.log(`getStoriesAuthor failed: ${error}`);
+        message.error('Error serching by title');
     }
 }
 function* getStoriesDescription(action) {
@@ -34,6 +39,7 @@ function* getStoriesDescription(action) {
     } catch (error) {
         // error message when trying to add a story
         console.log(`getStoriesAuthor failed: ${error}`);
+        message.error('Error serching by description');
     }
 }
 

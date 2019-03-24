@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //Ant design
-import { Divider, Button, notification } from 'antd';
+import { Divider, notification } from 'antd';
 
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
+import SubHeader from '../Common/SubHeader';
 
 import './CardDesigns.css';
 
 class HomePage extends Component {
-
     componentDidMount() {
         if (this.props.invite.length > 0) {
             notification.open({
@@ -24,12 +24,10 @@ class HomePage extends Component {
         }
     };
 
-
     render() {
         return (
-            <div>
-                <br />
-                <h1 align='center'>Home</h1>
+            <div align="center">
+            <SubHeader headerText='Home'/>
                 <Divider>My Stories and Contributions</Divider>
                 <ContributedList
                     history={this.props.history}

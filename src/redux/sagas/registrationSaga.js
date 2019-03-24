@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 // worker Saga: will be fired on "REGISTER" actions
 function* registerUser(action) {
   try {
@@ -21,6 +24,7 @@ function* registerUser(action) {
     yield put({type: 'CLEAR_REGISTRATION'});
   } catch (error) {
       console.log('Error with user registration:', error);
+      message.error('Error in registration');
       yield put({type: 'REGISTRATION_FAILED'});
   }
 }

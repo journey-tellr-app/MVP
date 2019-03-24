@@ -12,6 +12,7 @@ function* getMyContributions(action) {
 
     } catch (error) {
         console.log(`Error in getMyContributions: ${error}`);
+        message.error('There was a problem when setting story contributions');
     }
 }
 
@@ -24,16 +25,18 @@ function* getTopStories(action) {
 
     } catch (error) {
         console.log(`Error in getStories: ${error}`);
+        message.error('There was a problem getting your top stories');
     }
 }
 
-function* storyTemplate(action) {
-    try {
-        yield console.log('in storyTemplate saga:')
-    } catch (error) {
-        console.log('Error with storyTemplate:', error);
-    }
-}
+// function* storyTemplate(action) {
+//     try {
+//         yield console.log('in storyTemplate saga:')
+//     } catch (error) {
+//         console.log('Error with storyTemplate:', error);
+//         message.error('There was a problem with the template');
+//     }
+// }
 
 // send a new story to the server
 function* addAStory(action) {
@@ -80,6 +83,7 @@ function* clearNewStory() {
     } catch (error) {
         // error message when clearing new story inputs
         console.log(`Error in clearNewStory saga: ${error}`);
+        message.error('Error with clearing stories');
     }
 }
 
@@ -91,6 +95,7 @@ function* getContributors(action) {
 
     } catch(e) {
         console.log(`Error in getContributors saga: ${e}`);
+        message.error('Error getting contributors');
     }
 }
 
@@ -98,7 +103,7 @@ function* getContributors(action) {
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
     yield takeLatest('GET_TOP_STORIES', getTopStories);
-    yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
+    // yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('POST_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
     yield takeLatest('GET_CONTRIBUTORS', getContributors);

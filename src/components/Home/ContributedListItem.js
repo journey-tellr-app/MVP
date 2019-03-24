@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CardDesigns.css';
 import { connect } from 'react-redux';
 
-import { Card, Avatar, Button, Icon } from 'antd';
+import { Card, Button, Icon, Row, Col, Badge } from 'antd';
 
 const { Meta } = Card;
 
@@ -34,27 +34,33 @@ class ContributedListItem extends Component {
     render() {
 
         return (
-            <div align='center'>
+            <div>
                 <Card
                     id='card'
                     bordered={true}
-                    style={{ width: 300 }}
-                    cover={<img alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button type='primary'
-                                      onClick={this.handleReadStory}>Read
-                              </Button>]}
+                    style={{ width: 325 }}
+                    cover={<img className="story-photo" alt="headshot of author" src={this.props.header_photo} />}
+                    actions={[<Button icon="like" onClick={this.handleLike} ><Badge count={this.props.likes} style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}></Badge>
+                    </Button>, <Button onClick={this.handleReadStory}>Read</Button>]}
                 >
-                    <Meta
-                        align='center'
-                        avatar={<Avatar src={this.props.profile_pic} />}
-                        title={this.props.title}
-                    />
-                    <br/>
-                    <h4 align='center'>Story by {this.props.author}</h4>
-                    <Button onClick={this.handleLike} >
-                        <Icon type='like'/>
-                    </Button>
-                    <p>{this.props.likes} Likes!</p>
+                    <Row>
+                        <Col span={24}>
+                            <h1 id="story-title">{this.props.title}</h1>
+                        </Col>
+                    </Row>
+                    <Row gutter={8}>
+                        <Col span={6}>
+                        </Col>
+                        <Col span={6}>
+                            <img id="author-avatar" alt="author avatar" src={this.props.profile_pic} />
+                        </Col>
+
+                        <Col span={6}>
+                            <h5 id="story-author" align="left">By {this.props.author}</h5>
+                        </Col>
+                        <Col span={6}>
+                        </Col>
+                    </Row>
                 </Card>
                 <br />
                 <br />

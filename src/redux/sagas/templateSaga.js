@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 function* storyTemplate(action) {
   try {
     //gets template story id and name for dropdown
@@ -9,6 +12,7 @@ function* storyTemplate(action) {
     yield put(action);
   } catch (error) {
     console.log('Error with storyTemplate:', error);
+    message.error('There was a problem when setting the templates');
   }
 }
 
@@ -27,6 +31,7 @@ function* storyTemplateDetails(action) {
       yield put(chapterAction);
   } catch (error) {
       console.log('Error with storyTemplateDetails:', error);
+      message.error('There was a problem using the story template');
   }
 }
 

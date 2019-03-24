@@ -13,7 +13,7 @@ class ErrorNotification extends Component {
     }
 
     showErrorMessage = () => {
-        const { nKey, message, description, dispatchType } = this.props
+        const { nKey, message, description } = this.props
         notification.open({
             key: nKey,
             message: message,

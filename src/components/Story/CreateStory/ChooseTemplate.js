@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 // ant design import
 import { Select } from 'antd';
-import { Divider } from 'antd';
 
 class ChooseTemplate extends Component {
 

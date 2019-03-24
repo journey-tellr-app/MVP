@@ -13,7 +13,7 @@ class CreateStoryChapter extends Component {
         const { form } = this.props;
         // can use data-binding to get
         const keys = form.getFieldValue('keys');
-    
+
         // can use data-binding to set
         form.setFieldsValue({
           keys: keys.filter(key => key !== k),
@@ -69,7 +69,7 @@ class CreateStoryChapter extends Component {
 
     render() {
 
-        const { template } = this.props;
+        const { template, chapter } = this.props;
         const { getFieldDecorator, getFieldValue } = this.props.form;
 
         const formItemLayout = {
@@ -104,11 +104,14 @@ class CreateStoryChapter extends Component {
         };
 
         // create initial values for the 'keys' to show template chapters
-        const newArray = template.length > 0 ? template.map((item, i) => (i)) : [];
+        const tempArray = template.length > 0 ? template.map((item, i) => (i)) : [];
+        const chapArray = chapter.length > 0 ? chapter.map((item,i) => (i)) : [];
+        const useArray = chapter.length !== 0 ? chapArray : tempArray;
+
         // used in the formItems map to display a user prompt if a template
         const isTemplate = template.length > 0 ? true : false;
         
-        getFieldDecorator('keys', { initialValue: newArray });
+        getFieldDecorator('keys', { initialValue: useArray });
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => (
             <Form.Item index={formItemLayout}
@@ -118,13 +121,14 @@ class CreateStoryChapter extends Component {
                        key={k}
             >
                 {getFieldDecorator(`title[${k}]`, {
+                    initialValue: chapter.length > 0 && chapter.length === k ? chapter[k].title : '',
                     validateTrigger: ['onChange', 'onBlur'],
                     rules: [{ required: true,
                               whitespace: true,
                               message: "Please enter a chapter title or delete.",
                            }],
                 })(
-                    <Input style={{ width: '60%', marginRight: 8 }} />
+                    <Input style={{ width: '60%', marginRight: 8 }}/>
                 )}
                 <Icon
                     className="dynamic-delete-button"
@@ -146,14 +150,15 @@ class CreateStoryChapter extends Component {
                     </Button>
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
+                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
+                        Previous
+                    </Button>
                     <Button type="primary"
                             htmlType="submit"
                     >
                         Next
                     </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                        Previous
-                    </Button>
+
                 </Form.Item>
             </Form>
         )
@@ -164,6 +169,7 @@ class CreateStoryChapter extends Component {
 const WrappedCreateStoryChapter = Form.create()(CreateStoryChapter);
 
 const mapStoreToProps = reduxStore => ({
+    chapter: reduxStore.chapter.newStoryChapterReducer,
     template: reduxStore.template.templateNewChapterReducer,
 });
 
