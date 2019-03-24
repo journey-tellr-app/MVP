@@ -7,13 +7,13 @@ import './CreateStory.css'
 import SubHeader from '../../Common/SubHeader';
 
 // ant design import
-import { Form, Button, Divider } from 'antd';
+import { Form, Button, Icon, Row, Col } from 'antd';
 
 class CreateStoryMain extends Component {
 
-    componentDidMount() {
-        this.props.form.validateFields();
-    }
+    // componentDidMount() {
+    //     this.props.form.validateFields();
+    // }
 
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
@@ -40,42 +40,57 @@ class CreateStoryMain extends Component {
         };
 
         return (
-            <Form layout="vertical" onSubmit={this.nextPage}>
-                <br />
-                <SubHeader headerText='Create a Story' />
-                {/* <h1 align='center'>Create a Story</h1> */}
-                    
-                <CreateStorySteps current={0} />
-                <Divider>
-                <br />
-                <br />
-                <Form.Item
-                    label="Create a story or choose a template"
-                >
-                    <ChooseTemplate />
-                </Form.Item>
-                </Divider>
-                <Form.Item {...tailFormItemLayout}>
-                    <Divider>
-                    <Button id='next-btn'
-                            type="primary"
-                            htmlType="submit"
-                            disabled={template.name === ''}
-                    >
-                         Next
-                    </Button>
-                    </Divider>
-                </Form.Item>
-            </Form>
+            <div>
+                <Row type='flex' align='middle' justify='center'>
+                    <Col span={24}>
+                        <SubHeader headerText='Create a Story' />
+                    </Col>
+                    <Col span={18}>
+                        <CreateStorySteps current={0} />
+                    </Col>
+                    <Col span={18}>
+                        <Form layout="vertical" onSubmit={this.nextPage}>
+                            <Form.Item
+                                label="Create a story or choose a template">
+                                <ChooseTemplate />
+                            </Form.Item>
+                            <Row type="flex" justify="space-between">
+                                <Col span={9}>
+                                    <Button
+                                        className='create-story-nav-btn'>
+                                        Cancel
+                                    </Button>
+                                </Col>
+
+                                <Col span={9}>
+                                    <Button
+                                        className='create-story-nav-btn'
+                                        type="primary"
+                                        htmlType="submit"
+                                        disabled={template.name === ''}>
+                                        Next
+                                        <Icon type="right" />
+                                    </Button>
+                                </Col>
+
+                            </Row>
+                        </Form>
+                    </Col>
+
+                </Row>
+
+
+
+
+            </div>
+
         )
     }
 
 }
 
-const WrappedCreateStoryMain = Form.create()(CreateStoryMain);
-
 const mapStoreToProps = reduxStore => ({
     template: reduxStore.template.templateNewStoryReducer,
 });
 
-export default connect(mapStoreToProps)(WrappedCreateStoryMain);
+export default connect(mapStoreToProps)(CreateStoryMain);

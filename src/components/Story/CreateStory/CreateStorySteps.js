@@ -8,18 +8,13 @@ import { Steps } from 'antd';
 class CreateStorySteps extends Component {
 
     render() {
-        return (
-
-            <div className='story-steps'>            
-                <Steps current={Number(this.props.current)} >
-                    <Steps.Step title="Start" />
-                    <Steps.Step title="Details" />
+        return (          
+                <Steps current={Number(this.props.current)} size='small'>
+                    <Steps.Step title="New or Template" />
+                    <Steps.Step title="Story Details" />
                     <Steps.Step title="Chapters" />
                     <Steps.Step title="Contributors" />
                 </Steps>
-            </div>
-
-            
         )
     }
 
