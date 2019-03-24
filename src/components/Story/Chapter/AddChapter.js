@@ -69,13 +69,8 @@ class AddChapter extends Component {
         return (
             <div>
                 <Button 
-<<<<<<< HEAD
-                    type='primary'
-                    onClick={this.openChapterModal}>
-=======
                     onClick={this.openChapterModal} 
                     className='edit-button'>
->>>>>>> 116dd6a5df8db21bb81a8caacb4dd043812c71af
                     Add Chapter
                 </Button>
                 <Modal title="New chapter title"
