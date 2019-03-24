@@ -5,7 +5,7 @@ import axios from 'axios';
 import { message } from 'antd';
 
 function* addImageAWS(action) {
-    console.log('in addImage AWS', action);
+    // console.log('in addImage AWS', action);
     let awsResponse;
     try {
             yield axios.post(`/awsS3`, action.payload, {
@@ -29,7 +29,7 @@ function* addImageAWS(action) {
         payload: awsResponse,
         chapterId: action.chapterId,
     }
-    console.log(`addImageAWS nextaction`, nextAction);
+    // console.log(`addImageAWS nextaction`, nextAction);
     
     yield put(nextAction);
 }

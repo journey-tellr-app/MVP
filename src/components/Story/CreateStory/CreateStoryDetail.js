@@ -119,7 +119,7 @@ class CreateStoryDetail extends Component {
                                     size={150}
                                     src={image.storyImage}
                             /> : ''}
-                            <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Add story picture"}}/>
+                            <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Adding Photo for New Story", buttonName: 'Add Story Photo'}}/>
                         </div>
                         )}
                     </Form.Item>

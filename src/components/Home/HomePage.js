@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //Ant design
-import { Divider, Button, notification } from 'antd';
+import { Divider, notification } from 'antd';
 
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
@@ -27,9 +27,9 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>
+            <div align="center">
                 <br />
-                <h1 align='center'>Home</h1>
+                <h1>Home</h1>
                 <Divider>My Stories and Contributions</Divider>
                 <ContributedList
                     history={this.props.history}

@@ -28,55 +28,64 @@ class SummaryChapterList extends Component {
         const { chapter, storyId, editMode } = this.props
         return (
             <div >
-                <Divider style={{ marginTop: 30, marginBottom: 0}}>
-                    <Title level={4} style={{ textAlign: 'center' }}>Chapters</Title>
-                </Divider>
-                <Row type='flex' align='middle' justify='center'>
-                    {editMode &&
-                        <Col>
-                            <AddChapter chapter={chapter} storyId={storyId} />
+                {/* this will only show chapters if user is editor so they can see add chapter button */}
+                {(editMode || chapter.length > 0) &&
+                    <div>
+                        <Divider style={{ marginTop: 30, marginBottom: 0 }}>
+                            <Title level={4} style={{ textAlign: 'center' }}>Chapters</Title>
+                        </Divider>
+                        <Row type='flex' align='middle' justify='center'>
+                            {editMode &&
+                                <Col>
+                                    <AddChapter chapter={chapter} storyId={storyId} />
+                                </Col>
+                            }
+                        </Row>
+                    </div>
+                }
+                {chapter.length > 0 ?
+                    <Row type='flex' align='middle' justify='center'>
+                        <Col span={18}>
+                            <List
+                                itemLayout="vertical"
+                                size="large"
+                                pagination={{
+                                    onChange: (page) => {
+                                        console.log(page);
+                                    },
+                                    pageSize: 3,
+                                }}
+                                dataSource={this.props.chapter}
+                                renderItem={item => {
+                                    const { chapter_photo, title, text } = item;
+                                    let textToShow = '';
+                                    if (text !== null) {
+                                        textToShow = text.substring(0, 40) + '...';
+                                    }
+                                    let imgToShow = './images/placeholder.png';
+                                    if (chapter_photo !== null) {
+                                        imgToShow = chapter_photo;
+                                    }
+                                    return (
+                                        <List.Item
+                                            key={title}
+                                        >
+                                            <List.Item.Meta
+                                                avatar={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}><Avatar src={imgToShow} shape="square" size={64} /></Link>}
+                                                title={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}>{title}</Link>}
+                                                description={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}>{textToShow}</Link>}
+                                            />
+                                        </List.Item>
+
+                                    )
+                                }}
+                            />
                         </Col>
-                    }
-
-                    <Col span={18}>
-                        <List
-                            itemLayout="vertical"
-                            size="large"
-                            pagination={{
-                                onChange: (page) => {
-                                    console.log(page);
-                                },
-                                pageSize: 3,
-                            }}
-                            dataSource={this.props.chapter}
-                            renderItem={item => {
-                                const { chapter_photo, title, text } = item;
-                                let textToShow = '';
-                                if (text !== null) {
-                                    textToShow = text.substring(0, 40) + '...';
-                                }
-                                let imgToShow = './images/placeholder.png';
-                                if (chapter_photo !== null) {
-                                    imgToShow = chapter_photo;
-                                }
-                                return (
-                                    <List.Item
-                                        key={title}
-                                    >
-                                        <List.Item.Meta
-                                            avatar={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}><Avatar src={imgToShow} shape="square" size={64} /></Link>}
-                                            title={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}>{title}</Link>}
-                                            description={<Link to={`${this.props.match.url}/chapter/${this.props.chapter.indexOf(item)}`}>{textToShow}</Link>}
-                                        />
-                                    </List.Item>
-
-                                )
-                            }}
-                        />
-                    </Col>
-                </Row>
-
-            </div>
+                    </Row>
+                    :
+                    null
+                }
+            </div >
         )
     }
 };

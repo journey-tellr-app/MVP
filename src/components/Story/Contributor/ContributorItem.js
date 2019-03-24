@@ -14,8 +14,14 @@ class ContributorItem extends Component {
 
     render() {
         const { item, editMode } = this.props;
+        
+        // only lets editors remove contributors
+        let itemClick;
+        if(editMode) {
+            itemClick = this.handleClick;
+        }
         return (
-            <List.Item onClick={this.handleClick}>
+            <List.Item onClick={itemClick}>
                 <List.Item.Meta
                     avatar={<Avatar src={`${item.profile_pic}`} />}
                     title={`${item.first_name} ${item.last_name}`}
