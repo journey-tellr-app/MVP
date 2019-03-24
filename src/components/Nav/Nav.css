@@ -10,13 +10,6 @@
     margin-bottom: 10px;
 }
 
-.nav {
-    overflow: hidden;
-    background-color: rgba(220, 220, 220, 0.671);
-    min-height: 75px;
-    padding: 10px 0px;
-}
-
 .nav-link {
     float: left;
     color: #f2f2f2;

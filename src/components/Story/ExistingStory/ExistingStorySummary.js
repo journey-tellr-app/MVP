@@ -1,59 +1,141 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import ContributorPopup from '../Contributor/ContributorPopup';
 import SummaryChapterList from './SummaryChapterList';
-import AddChapter from './../Chapter/AddChapter.js';
+import SubHeader from '../../Common/SubHeader';
+import EditButton from './EditButton';
+import FinalizeStoryButton from './FinalizeStoryButton';
+
+import { Row, Col, Card, Typography, Divider, PageHeader } from 'antd';
+
+const { Meta } = Card;
+const { Title, Paragraph } = Typography;
 
 class ExistingStorySummary extends Component {
-    handlePostStory = () => {
-        console.log('post story clicked');
-    }
-
-    handleAddChapter = () => {
-        console.log('add story clicked');
+    static propTypes = {
+        summary: PropTypes.array.isRequired,
+        contributor: PropTypes.array.isRequired,
+        chapter: PropTypes.array.isRequired,
+        editMode: PropTypes.bool.isRequired,
+        user: PropTypes.object.isRequired,
     }
 
     render() {
-        const { summary, chapter } = this.props;
+        const { summary, chapter, contributor, editMode } = this.props;
+        const { title, author_name, id, header_photo, caption, intro } = summary[0];
+        const contributorSum = contributor.length;
+        let contributorDescription;
+        if (contributorSum === 0) {
+            contributorDescription = '';
+        } else if (contributorSum === 1) {
+            contributorDescription = ` and ${contributor[0].first_name} ${contributor[0].last_name}`;
+        } else if (contributorSum > 1) {
+            contributorDescription = ` and ${contributorSum} contributors`;
+        }
+
+        console.log('in existingstory: ', this.props);
 
         return (
             <div>
+                <Row type="flex" justify="space-around" align="middle">
+                    <Col span={24}>
+                        <SubHeader headerText='Story Summary' />
+                    </Col>
+                </Row>
                 {/* this will check that the storyDetail reducer is populated 
                 before rendering its contents */}
-                {summary.length !== 0 ?
+                {this.props.summary.length > 0 &&
                     <div>
-                        <h1>Title: {summary[0].title}</h1>
-                        <h3>Photo: <img src={summary[0].header_photo}
-                            width='150px'
-                            height='100px'
-                            alt="Shows what caption describes" /></h3>
-                        <h3>Caption: {summary[0].caption}</h3>
+                        <Row type='flex' justify="space-around" align="middle">
+                            <PageHeader
+                                title={title}
+                                subTitle={`By ${author_name}${contributorDescription}`}
+                            />
+                            {editMode &&
+                                <Col span={8} style={{ marginBottom: 20 }}>
+                                    <EditButton
+                                        valueToEdit={title}
+                                        type='Story'
+                                        name='Title'
+                                        id={id} />
+                                </Col>
+                            }
+                            {contributor.length > 0 &&
+                                <Col span={12} style={{ marginBottom: 20 }}>
+                                    <ContributorPopup editMode={editMode} story_id={id} />
+                                </Col>
+                            }
+                        </Row>
+                        <Card
+                            style={{
+                                width: 300, display: 'block', margin: 'auto', marginBottom: 10,
+                            }}
+                            cover={<img alt="story book cover" src={header_photo} />}
+                        >
+                            <Meta
+                                description={caption}
+                            />
+                        </Card>
 
-                    </div> : null
-                    // when the component mounts
+                        {editMode &&
+                            <Row type='flex' justify='center'>
+                                <Col>
+                                    <EditButton
+                                        valueToEdit={caption}
+                                        type='Story'
+                                        name='Caption'
+                                        id={id} />
+                                </Col>
+                                <Col>
 
+                                </Col>
+                            </Row>
+                        }
+
+
+                        <Row type='flex' justify='center'>
+                            <Divider>
+                                <Title level={4} style={{ textAlign: 'center', marginTop: 10 }}>Introduction</Title>
+                            </Divider>
+                            {intro !== null ?
+                                <Col span={18}>
+                                    <Paragraph>
+                                        {intro}
+                                    </Paragraph>
+                                </Col>
+                                :
+                                <Col span={18}>
+                                    <Paragraph> This story has no introduction yet! </Paragraph>
+                                </Col>
+
+                            }
+                            {editMode &&
+                                <Col span={18}>
+                                    <EditButton
+                                        valueToEdit={intro}
+                                        type='Story'
+                                        name='Intro'
+                                        id={id} />
+                                </Col>
+                            }
+
+                        </Row>
+                    </div>
                 }
                 {/* chapters div here */}
-                {chapter.length > 0 &&
-                <SummaryChapterList chapter={chapter} />
+                {chapter &&
+                    <SummaryChapterList chapter={chapter} storyId={summary[0].id} editMode={editMode} />
                 }
-                <span>Add chapter</span><AddChapter chapter={chapter} storyId={summary[0].id} />
-
-                {/* contributor button here */}
-                {/* when the user clicks this link, JSON line below it renders all contributors */}
-                <ContributorPopup />
-                {/* chapters div here */}
-
-                {/* post story button here only if author of story */}
-                <button onClick={this.handlePostStory}>Post Story</button>
+                <FinalizeStoryButton />
             </div>
         )
     }
 };
 
 const mapStoreToProps = reduxStore => ({
-    storyDetail: reduxStore.storyDetail,
+    user: reduxStore.user.userInfo,
 })
 
 export default connect(mapStoreToProps)(ExistingStorySummary);

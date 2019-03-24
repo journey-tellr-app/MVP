@@ -14,8 +14,11 @@ import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
 import SearchMain from '../Search/SearchMain';
-import NewStoryMain from '../Story/NewStory/NewStoryMain.js';
 import ExistingStoryMain from '../Story/ExistingStory/ExistingStoryMain';
+import CreateStoryMain from '../Story/CreateStory/CreateStoryMain.js';
+import CreateStoryDetail from './../Story/CreateStory/CreateStoryDetail.js';
+import CreateStoryChapter from './../Story/CreateStory/CreateStoryChapter.js';
+import CreateStoryContributor from './../Story/CreateStory/CreateStoryContributor.js';
 import NavButton from '../Nav/NavButton';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -24,7 +27,7 @@ import FakeData from '../Faker/FakeData';
 import ContributorPopup from '../Story/Contributor/ContributorPopup';
 
 //styling imports
-import { Icon, Row, Col } from "antd";
+import { Icon, Row, Col, BackTop } from "antd";
 import './App.css';
 import '../Nav/Nav.css';
 
@@ -62,7 +65,7 @@ class App extends Component {
             </Col>
             <Col span={3} />
           </Row>
-              {/* end header */}
+          {/* end header */}
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -79,7 +82,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact path='/choose-template'
-              component={NewStoryMain}
+              component={CreateStoryMain}
             />
             <ProtectedRoute
               exact path='/profile'
@@ -111,11 +114,24 @@ class App extends Component {
               exact path='/fake-data'
               component={FakeData}
             />
+            <ProtectedRoute
+              exact path='/choose-template/detail/'
+              component={CreateStoryDetail}
+            />
+            <ProtectedRoute
+              exact path='/choose-template/chapter/'
+              component={CreateStoryChapter}
+            />
+            <ProtectedRoute
+              exact path='/choose-template/contributor/'
+              component={CreateStoryContributor}
+            />
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
             {/*  */}
           </Switch>
+          <BackTop />
         </div>
       </Router>
     )

@@ -1,0 +1,11 @@
+.story-steps { 
+    margin: auto;
+    width: 100%;
+    max-width: 140px;
+    text-align: center; 
+  }
+
+  .new-story-form{
+    display: flex;
+    justify-content: center;
+  }

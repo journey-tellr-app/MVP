@@ -1,17 +1,20 @@
-.app-photo {
+#app-photo {
     margin-top: 100px;
     margin-bottom: 20px;
     background-color: white;
+    opacity: .8;
 }
 
 .paragraph {
     margin-bottom: 20px;
     margin-top: 40px;
-
+    opacity: .8;
+    font-size: 16;
+    font-weight: bold;
 }
 
 .about {
     height: 650px;
-    background: url("https://cdn.pixabay.com/photo/2017/03/20/05/29/summer-2158317_1280.jpg") no-repeat;
+    background: url("./bridge-daylight-environment-775201.jpg") no-repeat;
     background-size: 100%;
 }

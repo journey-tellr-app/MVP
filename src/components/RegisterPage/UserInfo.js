@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Button, Icon, Input, Form } from 'antd';
+import { Button, Icon, Input, Row, Col } from 'antd';
+import './RegisterPage.css';
 
 class UserInfo extends Component {
   static propTypes = {
@@ -13,16 +14,18 @@ class UserInfo extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
-    const { registration } = this.props;
+    const { first_name, last_name, email, password,
+      profile_pic, confirm_email, confirm_password } = this.props.registration;
 
-    if (registration.first_name && registration.last_name && (registration.email === registration.confirm_email) && (registration.password === registration.confirm_password)) {
+    if (first_name && last_name && (email === confirm_email) && (password === confirm_password)) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
-          first_name: registration.first_name,
-          last_name: registration.last_name,
-          email: registration.email,
-          password: registration.password,
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: password,
+          profile_pic: profile_pic
         },
       });
     } else {
@@ -35,81 +38,81 @@ class UserInfo extends Component {
       handleInputChangeFor,
       handleRegisterNavButton, } = this.props;
 
-    //took out getFieldsError for now
-    const {
-      getFieldDecorator,
-      getFieldError,
-      isFieldTouched,
-    } = this.props.form;
-
-    // Only show error after a field is touched.
-    const userNameError = isFieldTouched('userName') && getFieldError('userName');
-    // const passwordError = isFieldTouched('password') && getFieldError('password');
-
     return (
-      <div>
-        <h2>Enter User Info</h2>
-        <Form layout='vertical' onSubmit={this.registerUser}>
-          <Form.Item
-            validateStatus={userNameError ? 'error' : ''}
-            help={userNameError || ''}
-            label="Email"
-          >
-            {getFieldDecorator('email', {
-              rules: [{ type: 'email', message: 'The input is not valid email!', },
-              { required: true, message: 'Please enter a valid email address eg user@site.com' }],
-              initialValue: registration.email
-            })(
+      <form onSubmit={this.registerUser}>
+        <Row type="flex" justify="space-around" >
+          <Col span={18} style={{ margin: '10px 0px' }}>
+            <h3>Please enter your log in information.</h3>
+          </Col>
+          <Col span={18} style={{ marginBottom: '10px' }}>
+            <label htmlFor="email">
               <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Username"
-                onChange={handleInputChangeFor('email')}
-                name='email' />
-            )}
-          </Form.Item>
-        </Form>
-        <form onSubmit={this.registerUser}>
-          <Input
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Username"
-            onChange={handleInputChangeFor('email')}
-            name='email'
-            required />
-          <label htmlFor="confirm_email">
-            Confirm Email:
-              <input
-              type="text"
-              name="confirm_email"
-              value={registration.confirm_email}
-              onChange={handleInputChangeFor('confirm_email')}
-              required
-            />
-          </label>
-          <label htmlFor="password">
-            Password:
-              <input
-              type="password"
-              name="password"
-              value={registration.password}
-              onChange={handleInputChangeFor('password')}
-              required
-            />
-          </label>
-          <label htmlFor="confirm_password">
-            Confirm Password:
-              <input
-              type="password"
-              name="confirm_password"
-              value={registration.confirm_password}
-              onChange={handleInputChangeFor('confirm_password')}
-              required
-            />
-          </label>
-          <Button onClick={handleRegisterNavButton.bind(this, 'profile')}> Profile Info </Button>
-          <Button onClick={this.registerUser} type="submit"> Register </Button>
+                placeholder="yourname@email.com"
+                onChange={handleInputChangeFor}
+                name='email'
+                required />
+            </label>
+          </Col>
 
-        </form>
-      </div>
+          <Col span={18} style={{ marginBottom: '10px' }}>
+            <label htmlFor="confirm_email">
+              Confirm Email:
+            <Input
+                placeholder="yourname@email.com"
+                type="email"
+                name="confirm_email"
+                value={registration.confirm_email}
+                onChange={handleInputChangeFor}
+                required />
+            </label>
+          </Col>
+
+          <Col span={18} style={{ marginBottom: '10px' }}>
+            <label htmlFor="password">
+              Password:
+              <Input
+                placeholder="Enter your password"
+                type="password"
+                name="password"
+                value={registration.password}
+                onChange={handleInputChangeFor}
+                required />
+            </label>
+          </Col>
+
+          <Col span={18} style={{ marginBottom: '10px' }}>
+            <label htmlFor="confirm_password">
+              Confirm Password:
+              <Input
+                placeholder="Re-enter your password"
+                type="password"
+                name="confirm_password"
+                value={registration.confirm_password}
+                onChange={handleInputChangeFor}
+                required
+              />
+            </label>
+          </Col>
+
+          <Col span={10}>
+            <Button
+              onClick={handleRegisterNavButton.bind(this, 'profile')}
+              className='registration-button'>
+              <Icon type='left' />
+              Back
+            </Button>
+          </Col>
+          <Col span={10}>
+            <Button onClick={this.registerUser}
+              type="primary"
+              htmlType='submit'
+              className='registration-button'>
+              Register </Button>
+          </Col>
+        </Row>
+
+
+      </form>
 
     )
   }

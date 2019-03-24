@@ -1,6 +1,7 @@
-/* .profile-element {
-    margin: 5px;
-} */
+.profile-element {
+    margin-right: 1em;
+    box-shadow: 3px 3px 2px grey;
+}
 
 #edit-btn {
     max-width: 60px;
@@ -8,10 +9,39 @@
     font-size: 7px;
 }
 
-#avatar {
+#like-btn {
+    max-width: 65px;
+    max-height: 2.5em;
+    font-size: 11px;
+    padding: 5px;
+}
+
+/* .likes-count {
     border-radius: 50%;
-    border: 2px solid;
+    border: 1px
+} */
+
+
+
+.contain {
+    /* border-radius: 50%; */
+    border: 1.5px solid;
+    border-radius: 50%;
     border-color: #D98A4F;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.story-photo {
+    height: 150px;
+    width: auto;
+    object-fit: cover;
+
+}
+
+.story-title {
+    font-size: 15px;
 }
 
 .profile-header {
@@ -21,8 +51,8 @@
 }
 
 .stats-text {
-    font-size: 10px;
-    margin-left: .5em;
+    font-size: 14px;
+    margin-left: .2em;
 }
 
 .edit-input {
@@ -37,6 +67,25 @@
     font-size: 18px;
 }
 
-/* .profile-story-cards {
-    border: 1px solid gray;
-} */
+.card-div {
+    margin: 2em;
+}
+
+.profile-story-cards {
+    margin: 1em;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.stats-div {
+    margin-left: 3em;
+    margin-right: auto;
+}
+
+.profile-pic {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+p {
+    font-size: 12px;
+}

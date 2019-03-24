@@ -78,10 +78,64 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 }); // end POST route
 
+<<<<<<< HEAD
+=======
+//edits made a story title, photo, caption after its begun
+router.put('/', (req, res) => {
+    const { id, colName, updatedValue } = req.body;
+    if (req.isAuthenticated() && (colName === 'Intro' || colName === 'Caption' || colName === 'Title')) {
+        const queryText = `UPDATE story 
+            SET ${colName.toLowerCase()} = $1 
+            WHERE id = $2;`;
+        const value = [updatedValue, id];
+        pool.query(queryText, value)
+            .then(response => {
+                res.sendStatus(201);
+            }).catch(e => {
+                console.log(`error in /story put`, e);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+//when story finalized, sets completed to true
+router.put('/complete/:storyId', rejectUnauthenticated, (req, res) => {
+    const queryText = `UPDATE story 
+        SET completed = true WHERE author = $1 AND id = $2;`;
+    const queryValues = [req.user.id, req.params.storyId];
+    pool.query(queryText, queryValues)
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(e => {
+            console.log('error in /story/complete put route', e);
+            res.sendStatus(500);
+        })
+});
+
+>>>>>>> 116dd6a5df8db21bb81a8caacb4dd043812c71af
 //STRETCH admin can remove of a story
 router.delete('/', (req, res) => {
 
 });
 
+router.get('/contributors/:id', (req, res) => {
+    const storyId = req.params.id;
+    const queryText = `SELECT story_id, count(concat(person.first_name, ' ', person.last_name)) AS contributors
+                       FROM contributor
+                       JOIN person
+                       ON contributor.person_id = person.id
+                       JOIN story
+                       ON story_id = story.id
+                       WHERE story_id = $1
+                       GROUP BY story.id, contributor.story_id`;
+    pool.query(queryText, [storyId])
+    .then( (sqlResult) => {
+        res.send(sqlResult.rows);
+    }).catch( (e) => {
+        console.log(`Error in contributors router: ${e}`);
+    });
+});
 
 module.exports = router;

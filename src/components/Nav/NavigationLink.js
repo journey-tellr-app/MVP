@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { Typography, Icon } from 'antd';
+import { Typography, Icon, Badge } from 'antd';
 
 const { Text } = Typography;
 
@@ -19,11 +19,20 @@ class NavigationLink extends Component {
         return (
             <NavLink exact to={route} onClick={onClickFxn} activeClassName='nav-link-active' className='nav-link-default'>
                 <div className='nav-link-div'>
-                    <Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text>
+                    {name === 'Notifications' ?
+                        (<Badge count={this.props.notificationCount}><Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text></Badge>)
+                        : (<Text style={textStyle}><Icon type={iconType} style={textStyle} /> &nbsp; {name}</Text>)}
                 </div>
             </NavLink>
         )
     }
 }
 
-export default connect()(NavigationLink);
+// {this.props.story ?
+//     (<ContributedStoryList history={this.props.history} />) : (<p>loading...</p>)}
+
+const mapStateToProps = reduxStore => ({
+    invite: reduxStore.notification.invite,
+});
+
+export default connect(mapStateToProps)(NavigationLink);

@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// ant design import
+import { message } from 'antd';
+
 function* getMyContributions(action) {
     try {
         const serverResponse = yield axios.get('story/story-contributions');
@@ -9,9 +12,9 @@ function* getMyContributions(action) {
 
     } catch (error) {
         console.log(`Error in getMyContributions: ${error}`);
+        message.error('There was a problem when setting story contributions');
     }
 }
-
 
 function* getTopStories(action) {
     try {
@@ -22,34 +25,18 @@ function* getTopStories(action) {
 
     } catch (error) {
         console.log(`Error in getStories: ${error}`);
+        message.error('There was a problem getting your top stories');
     }
 }
 
-function* storyTemplate(action) {
-    try {
-        yield console.log('in storyTemplate saga:')
-    } catch (error) {
-        console.log('Error with storyTemplate:', error);
-    }
-}
-
-// get the story and chapter details from a template then set the reducers
-function* storyTemplateDetails(action) {
-    try {
-        // get template story details 
-        const response = yield axios.get(`/template/story/${action.payload}`);
-        // set the template story
-        const nextAction = { type: 'SET_NEW_STORY', payload: response.data };
-        yield put(nextAction);
-        // get chapter details for a story
-        const chapterResponse = yield axios.get(`/template/chapter/${action.payload}`);
-        // set the chapter details
-        const chapterAction = { type: 'SET_TEMPLATE_NEW_STORY_CHAPTER', payload: chapterResponse.data };
-        yield put(chapterAction);
-    } catch (error) {
-        console.log('Error with storyTemplateDetails:', error);
-    }
-}
+// function* storyTemplate(action) {
+//     try {
+//         yield console.log('in storyTemplate saga:')
+//     } catch (error) {
+//         console.log('Error with storyTemplate:', error);
+//         message.error('There was a problem with the template');
+//     }
+// }
 
 // send a new story to the server
 function* addAStory(action) {
@@ -72,15 +59,17 @@ function* addAStory(action) {
         } // end if
         
         // clear the new story reducers
+        message.success('You successfully created a story!');
         const nextAction = { type: 'CLEAR_NEW_STORY' };
         yield put(nextAction);
     } catch (error) {
-        // error message when trying to add a story
+        // error message and alert when trying to add a story fails
         console.log(`Add story failed: ${error}`);
+        message.error('There was a problem when creating your story');
     }
 }
 
-// reset story, chapter and contributor to initial values
+// reset story, image, chapter and contributor to initial values
 function* clearNewStory() {
     try {
         const storyAction = { type: 'RESET_NEW_STORY' };
@@ -94,6 +83,19 @@ function* clearNewStory() {
     } catch (error) {
         // error message when clearing new story inputs
         console.log(`Error in clearNewStory saga: ${error}`);
+        message.error('Error with clearing stories');
+    }
+}
+
+function* getContributors(action) {
+    try {
+        // console.log(action.payload);
+        const serverResponse = yield axios.get(`story/contributors/${action.payload}`);
+        yield put({type: 'SET_CONTRIBUTORS', payload: serverResponse.data});
+
+    } catch(e) {
+        console.log(`Error in getContributors saga: ${e}`);
+        message.error('Error getting contributors');
     }
 }
 
@@ -101,10 +103,10 @@ function* clearNewStory() {
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
     yield takeLatest('GET_TOP_STORIES', getTopStories);
-    yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
-    yield takeLatest('GET_TEMPLATE_DETAILS', storyTemplateDetails);
-    yield takeLatest('ADD_NEW_STORY', addAStory);
+    // yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
+    yield takeLatest('POST_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
+    yield takeLatest('GET_CONTRIBUTORS', getContributors);
 }
 
 export default storySaga;

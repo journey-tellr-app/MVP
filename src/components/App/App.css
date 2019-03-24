@@ -2,8 +2,57 @@ body {
     font-family: Montserrat, Lato, sans-serif;
     margin: 0px;
     font-size: 12px;
-    /* background-color: linear-gradient(to left bottom, #d98a4f, #d29767, #caa380, #c2ae9b, #b9b8b7); */
+    /* background-color: rgba(220, 220, 220, 0.671); */
 }
+
+h1 {
+    color: rgb(217, 139, 79);
+}
+
+.nav {
+    overflow: hidden;
+    /* background-color: white; */
+    background-color: rgba(220, 220, 220, 0.671);
+    min-height: 85px;
+    padding: 10px 0px;
+}
+
+.ant-list-item-meta-description {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+.ant-card-body {
+    padding: 5px;
+    zoom: 1;
+    margin: 5px;
+}
+
+.ant-card-meta-avatar {
+    padding: 2px;
+    margin-left: 20px;
+    
+  }
+
+.ant-card-meta-title {
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: -3.5em;  
+    margin-top: .7em;
+    text-overflow: ellipsis;
+}
+
+.ant-card-meta {
+    margin: -4px 0;
+    zoom: 1;
+  }
+
+
+
+
 
 #user-name {
     font-family: Montserrat, sans-serif;
@@ -17,21 +66,40 @@ body {
     background-color: #ff4545;
     margin: 50px;
 }
-
-.login-form {
-    background-color: #dbd5d5;
-    width: 30%;
-    height: 250px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
+.ant-carousel .slick-dots li button {
+  display: block;
+  width: 16px;
+  height: 3px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  background:black;
+  border: 0;
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.3;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
-
 input {
     margin: 5px;
     margin-bottom: 10px;
 }
+.ant-list-pagination {
+  margin-top: 24px;
+  text-align: center;
+}
+.caption, .title-text {
+    margin-right: 40px;
+    margin-left: 40px;  
+    text-align: center;
+}
 
+.search-story {
+    margin-right: 10px;
+    margin-left: 10px;  
+}
 .log-in, .log-out, .register {
   background-color: #00acb0;
   border-radius: 4px;
@@ -45,7 +113,10 @@ input {
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #008183;
 }
+.center-button {
+    text-align: center;
 
+}
 /* This line makes the "Register" and "Login" buttons look like links */
 .link-button {
     background:none;
@@ -56,4 +127,12 @@ input {
     outline:0;
     border-bottom:1px solid #444; 
     cursor: pointer;
+}
+
+.edit-button {
+    display: block;
+    margin: auto; 
+    background-color: rgb(217, 139, 79); 
+    font-weight: bold; 
+    color: black; 
 }

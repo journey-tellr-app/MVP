@@ -17,12 +17,18 @@ const registrationState = {
   email: '',
   password: '',
   confirm_email: '',
-  confirm_password: ''
+  confirm_password: '',
+  profile_pic: './images/headshot-placeholder.jpg', 
 }
 const registration = (state = registrationState, action) => {
   switch (action.type) {
     case 'UPDATE_REGISTRATION':
       return { ...state, ...action.payload };
+    case 'ADD_IMAGE_REGISTER':
+      const photoObj = { profile_pic: action.payload.data.Location}
+      return {...state, ...photoObj}
+    case 'CLEAR_REGISTRATION':
+      return registrationState;
     default:
       return state;
   }

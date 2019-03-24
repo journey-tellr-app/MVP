@@ -14,7 +14,10 @@ class ContributedList extends Component {
     static propTypes = {
         contributedStories: propTypes.array.isRequired,
     };
-
+    handleStartStory = () => {
+        // console.log('in hSS');
+        this.props.history.push(`/choose-template`)
+    }
 
     render() {
         return (
@@ -30,6 +33,7 @@ class ContributedList extends Component {
                         <Carousel swipeToSlide>
                             {this.props.contributedStories.map((story, i) => {
                                 return <ContributedListItem
+                                    story={story}
                                     user_id={this.props.userInfo.id}
                                     history={this.props.history}
                                     story_id={story.story_id}
@@ -45,9 +49,9 @@ class ContributedList extends Component {
                                 />
                             })}
                         </Carousel>
-                    </div>) : (<div>
+                    </div>) : (<div className='center-button'>
                         {/* render this button if the user has no contributed stories */}
-                        <Button align='center' onClick={this.handleStartStory}>Start Your First Story!</Button>
+                        <Button align='center' type='primary' onClick={this.handleStartStory}>Start Your First Story!</Button>
                     </div>)}
             </div>
 
@@ -56,6 +60,7 @@ class ContributedList extends Component {
 };
 
 const mapStateToProps = (state) => ({
+    story: state.story,
     userInfo: state.user.userInfo,
     contributedStories: state.story.contributedStoryReducer
 });
