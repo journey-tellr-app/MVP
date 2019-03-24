@@ -5,11 +5,11 @@ import { Divider, notification } from 'antd';
 
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
+import SubHeader from '../Common/SubHeader';
 
 import './CardDesigns.css';
 
 class HomePage extends Component {
-
     componentDidMount() {
         if (this.props.invite.length > 0) {
             notification.open({
@@ -24,12 +24,10 @@ class HomePage extends Component {
         }
     };
 
-
     render() {
         return (
             <div align="center">
-                <br />
-                <h1>Home</h1>
+            <SubHeader headerText='Home'/>
                 <Divider>My Stories and Contributions</Divider>
                 <ContributedList
                     history={this.props.history}
