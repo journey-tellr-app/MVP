@@ -80,7 +80,7 @@ class CreateStoryDetail extends Component {
                     <CreateStorySteps current={1} />
                     <Form.Item
                         label="Story title"
-                        extra={template.title !== '' ? template.title : null}
+                        // extra={template.title !== '' ? template.title : null}
                     >
                         {getFieldDecorator('title', {
                             rules: [{ required: true, message: 'Please enter a story title!' }],
@@ -126,7 +126,7 @@ class CreateStoryDetail extends Component {
 
                     <Form.Item
                         label="Photo caption"
-                        extra={template.caption !== '' ? template.caption : null}
+                        // extra={template.caption !== '' ? template.caption : null}
                     >
                         {getFieldDecorator('caption', {
                             rules: [{ required: true, message: 'Please enter a caption!' }],

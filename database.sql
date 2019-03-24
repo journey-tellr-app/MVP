@@ -185,7 +185,8 @@ INSERT INTO person ("id", "email", "password", "first_name", "last_name", "profi
 INSERT INTO template_story ("id", "creator", "name", "title", "caption", "placeholder_image", "intro")
 	VALUES (100, 999999, 'Your First Day', 'Your Name First Day', 'A sentence about you and a blurb', '/images/placeholder.png', 'Write about one thing you are looking forward to with this role and one challenge'),
 	(200, 999999, 'Holiday/Social Event', 'Event Name', 'A sentence about the reason for the event', '/images/placeholder.png', 'Who, what, where, when, and why'),
-	(300, 999999, 'Team Meeting', 'Your Team/Dept Name and Project', 'Biggest accomplishment', '/images/placeholder.png', 'Write about your main purpose and memorable moment');
+	(300, 999999, 'Team Meeting', 'Your Team/Dept Name and Project', 'Biggest accomplishment', '/images/placeholder.png', 'Write about your main purpose and memorable moment'),
+	(400, 999999, 'Solo Project', 'Solo Project', 'Solo Project Home Page', '/images/placeholder.png', 'Write about your apps main purpose and the problem it solves');
 
 INSERT INTO template_chapter ("template_id", "title", "text", "order")
     VALUES (100, 'Title related to your personal history', 'Share about your strengths, interests, and passions to help others get to know you.', 1),
