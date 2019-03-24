@@ -124,7 +124,7 @@ class CreateStoryChapter extends Component {
                               message: "Please enter a chapter title or delete.",
                            }],
                 })(
-                    <Input style={{ width: '60%', marginRight: 8 }} />
+                    <Input style={{ width: '60%', marginRight: 8 }}/>
                 )}
                 <Icon
                     className="dynamic-delete-button"
@@ -146,14 +146,15 @@ class CreateStoryChapter extends Component {
                     </Button>
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
+                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
+                        Previous
+                    </Button>
                     <Button type="primary"
                             htmlType="submit"
                     >
                         Next
                     </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                        Previous
-                    </Button>
+
                 </Form.Item>
             </Form>
         )
