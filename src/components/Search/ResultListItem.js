@@ -44,9 +44,9 @@ class ResultListItem extends Component {
             extra={
               this.state.photoFlipped ?
                 <div
-                  style={{ width: 272, height: 204 }}
+                  style={{ width: 272, height: 204, borderStyle: 'solid'  }}
                   onClick={this.flipPhoto}>
-                  <Typography style={{ textAlign: 'center', padding: '90px 0px', borderStyle: 'solid' }}>
+                  <Typography style={{ textAlign: 'center', paddingTop: 20}}>
                     {caption}
                   </Typography>
                 </div>
