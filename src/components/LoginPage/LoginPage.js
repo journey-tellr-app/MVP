@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SubHeader from '../Common/SubHeader';
-import ErrorNotification from '../Common/ErrorNotification';
 
 import { Input, Icon, Row, Col, Button, notification } from 'antd';
 import './LoginPage.css';

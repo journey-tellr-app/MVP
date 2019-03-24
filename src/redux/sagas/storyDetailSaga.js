@@ -6,7 +6,7 @@ import { message } from 'antd';
 
 function* getIndividualStory(action) {
     try {
-        console.log('in getIndividualStory saga, action.payload: ', action.payload);
+        // console.log('in getIndividualStory saga, action.payload: ', action.payload);
         const serverResponse = yield axios.get(`story/detail/summary/${action.payload}`);
         yield put({ type: 'SET_STORY_DETAIL', payload: serverResponse.data });
     } catch (error) {
@@ -62,7 +62,7 @@ function* getStoryContributors(action) {
 //likes for individual stories
 function* getStoryLikes(action) {
     try {
-        console.log('getStoryLikes action: ', action);
+        // console.log('getStoryLikes action: ', action);
         const serverResponse = yield axios.get(`/story/detail/likes/${action.payload}`, action.payload);
 
         yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });

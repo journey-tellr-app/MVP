@@ -4,15 +4,15 @@ import axios from 'axios';
 // ant design import
 import { message } from 'antd';
 
-function* getStats(action) {
-    try {
-        //gets story and contribution stats by counting tables
-        yield console.log('in getStats with action:', action)
-    } catch (error) {
-        console.log('Error with getStats:', error);
-        message.error('Problem counting stats');
-    }
-}
+// function* getStats(action) {
+//     try {
+//         //gets story and contribution stats by counting tables
+//         yield console.log('in getStats with action:', action)
+//     } catch (error) {
+//         console.log('Error with getStats:', error);
+//         message.error('Problem counting stats');
+//     }
+// }
 
 function* editProfile(action) {
     try {
@@ -25,7 +25,7 @@ function* editProfile(action) {
 }
 
 function* profileSaga() {
-    yield takeLatest('GET_TEMPLATE_STORY', getStats);
+    // yield takeLatest('GET_TEMPLATE_STORY', getStats);
     yield takeLatest('EDIT_PROFILE', editProfile);
 }
 

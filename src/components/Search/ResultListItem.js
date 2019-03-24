@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
 
-import { List, Icon, Avatar, Card, Row, Col, Typography, Divider } from 'antd';
+import { List, Avatar, Row, Col, Typography, Divider } from 'antd';
 
 import './SearchBar.css';
 
 class ResultListItem extends Component {
+  state = {
+    photoFlipped: false,
+  }
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -24,9 +27,12 @@ class ResultListItem extends Component {
     }
   }
 
+  flipPhoto = () => {
+    this.setState({ photoFlipped: !this.state.photoFlipped })
+  }
+
   render() {
     const { title, header_photo, intro, caption, full_name, profile_pic, story_id } = this.props.item;
-    const { Meta } = Card;
 
     // console.log(item.intro.substring(0, 40));
     return (
@@ -34,7 +40,22 @@ class ResultListItem extends Component {
         <Col span={18}>
           <List.Item
             key={title}
-            extra={<img width={272} alt="logo" src={header_photo} style={{ objectFit: 'contain' }} />}
+            // card photo can be flipped to show caption or photo
+            extra={
+              this.state.photoFlipped ?
+                <div
+                  style={{ width: 272, height: 204 }}
+                  onClick={this.flipPhoto}>
+                  <Typography style={{ textAlign: 'center', padding: '90px 0px', borderStyle: 'solid' }}>
+                    {caption}
+                  </Typography>
+                </div>
+                :
+                <img
+                  alt="logo"
+                  src={header_photo}
+                  onClick={this.flipPhoto}
+                  style={{ objectFit: 'contain', width: 272 }} />}
           >
             {/* these are the contents of the list item */}
             <Row type='flex' align='middle' justify='center'>

@@ -29,14 +29,14 @@ function* getTopStories(action) {
     }
 }
 
-function* storyTemplate(action) {
-    try {
-        yield console.log('in storyTemplate saga:')
-    } catch (error) {
-        console.log('Error with storyTemplate:', error);
-        message.error('There was a problem with the template');
-    }
-}
+// function* storyTemplate(action) {
+//     try {
+//         yield console.log('in storyTemplate saga:')
+//     } catch (error) {
+//         console.log('Error with storyTemplate:', error);
+//         message.error('There was a problem with the template');
+//     }
+// }
 
 // send a new story to the server
 function* addAStory(action) {
@@ -103,7 +103,7 @@ function* getContributors(action) {
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
     yield takeLatest('GET_TOP_STORIES', getTopStories);
-    yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
+    // yield takeLatest('GET_TEMPLATE_STORY', storyTemplate);
     yield takeLatest('POST_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
     yield takeLatest('GET_CONTRIBUTORS', getContributors);

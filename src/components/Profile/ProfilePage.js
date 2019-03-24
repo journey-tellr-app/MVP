@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Avatar, Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd';
+import { Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd';
 
 import './ProfilePage.css';
 import 'antd/dist/antd.css';

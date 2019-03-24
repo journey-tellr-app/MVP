@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //Ant design
-import { Divider, Button, notification } from 'antd';
+import { Divider, notification } from 'antd';
 
 import ContributedList from './ContributedList';
 import TopStoryList from './TopStoryList';
