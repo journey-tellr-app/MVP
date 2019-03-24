@@ -15,30 +15,30 @@ function* getEmployees(action) {
     }
 }
 
-function* getContributor(action) {
-    try {
-        //gets contributors for a given story
-        yield console.log('in getContributor saga with:', action)
-    } catch (error) {
-        console.log('Error with storyTemplateDetails:', error);
-        message.error('Error getting story contributors');
-    }
-}
+// function* getContributor(action) {
+//     try {
+//         //gets contributors for a given story
+//         yield console.log('in getContributor saga with:', action)
+//     } catch (error) {
+//         console.log('Error with storyTemplateDetails:', error);
+//         message.error('Error getting story contributors');
+//     }
+// }
 
-function* deleteContributor(action) {
-    try {
-        //delete contributor from story
-        yield console.log('in deleteContributor saga with:', action)
-    } catch (error) {
-        console.log('Error with storyTemplateDetails:', error);
-        message.error('Error removing the contributor');
-    }
-}
+// function* deleteContributor(action) {
+//     try {
+//         //delete contributor from story
+//         yield console.log('in deleteContributor saga with:', action)
+//     } catch (error) {
+//         console.log('Error with storyTemplateDetails:', error);
+//         message.error('Error removing the contributor');
+//     }
+// }
 
 function* addContributor(action) {
     try {
         //add contributor to story
-        yield console.log('in addContributor saga with:', action)
+        // yield console.log('in addContributor saga with:', action)
         yield axios.post(`/invite/contributor/${action.payload.story_id}`, action.payload.pendingContributor )
     } catch (error) {
         console.log('Error with storyTemplateDetails:', error);
@@ -50,8 +50,8 @@ function* addContributor(action) {
 
 function* contributorSaga() {
     yield takeLatest('GET_EMPLOYEES', getEmployees);
-    yield takeLatest('GET_CONTRIBUTOR', getContributor);
-    yield takeLatest('DELETE_CONTRIBUTOR', deleteContributor);
+    // yield takeLatest('GET_CONTRIBUTOR', getContributor);
+    // yield takeLatest('DELETE_CONTRIBUTOR', deleteContributor);
     yield takeLatest('ADD_CONTRIBUTOR', addContributor);
 }
 
