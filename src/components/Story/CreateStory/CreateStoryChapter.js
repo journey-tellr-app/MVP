@@ -128,7 +128,13 @@ class CreateStoryChapter extends Component {
                               message: "Please enter a chapter title or delete.",
                            }],
                 })(
-                    <Input style={{ width: '60%', marginRight: 8 }}/>
+                    <Input style={{ width: '60%', marginRight: 8 }} 
+                        addonAfter={<Icon
+                        className="dynamic-delete-button"
+                        type="minus-circle-o"
+                        disabled={keys.length === 1}
+                        onClick={() => this.removeChapter(k)}
+                        />}/>
                 )}
                 <Icon
                     className="dynamic-delete-button"

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'antd';
 
-import { Button, Alert } from 'antd';
+import { Icon, Button, Alert, Input } from 'antd';
 
 const Option = AutoComplete.Option;
 
@@ -68,12 +68,14 @@ class ContributorForm extends Component {
           onChange={this.onChange}
           defaultValue=''
           placeholder="begin typing name"
-          allowClear={true} >
-          {this.props.employeeResults &&
+          allowClear={true} 
+          dataSource={this.props.employeeResults &&
             searchResults
           }
+        >
+        <Input addonAfter={(
+        <Icon type="user-add" onClick={this.handleClick} />)} />
         </AutoComplete>
-        <Button icon="user-add" onClick={this.handleClick} />
       </div>
 
     );
