@@ -24,30 +24,26 @@ h1 {
   }
 
 .ant-card-body {
-    padding: 5px;
     zoom: 1;
-    margin: 5px;
+    padding: 10px;
 }
 
 .ant-card-meta-avatar {
     padding: 2px;
     margin-left: 10px;
-    
-    
   }
 
 .ant-card-meta-title {
     overflow: hidden;
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 500;
-    font-size: 14px;
-    margin-left: -2em;  
-    margin-top: .7em;
+    color:#3fa8ff;
+    font-weight: 400;
+    font-size: 20px;
     text-overflow: ellipsis;
 }
 
 .ant-card-meta {
-    margin: -4px 0;
+    margin: 5px;
+    padding: 5px;
     zoom: 1;
   }
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './CardDesigns.css';
 
 //Ant design imports
-import { Card, Button, Icon } from 'antd';
+import { Card, Button, Icon, Row, Col } from 'antd';
 const { Meta } = Card;
 
 class TopStoryItem extends Component {
@@ -45,14 +45,24 @@ class TopStoryItem extends Component {
                     actions={[<Button onClick={this.handleLike} ><Icon type='like' />
                     </Button>, <Button onClick={this.handleReadStory}>Read</Button>]}
                 >
-                    <Meta
-                        align='center'
-                        avatar={<img className="author-avatar" alt="author avatar" src={this.props.profile_pic} />}
-                        title={this.props.title}
-                    />
-                    <br />
-                    <h5>by {this.props.author}</h5>
-                    <p>{this.props.likes} Likes!</p>
+                    <Row>
+                        <Col span={24}>
+                            <h1 id="story-title">{this.props.title}</h1>
+                        </Col>
+                    </Row>
+                    <Row gutter={8}>
+                        <Col span={6}>
+                        </Col>
+                        <Col span={6}>
+                            <img id="author-avatar" alt="author avatar" src={this.props.profile_pic} />
+                        </Col>
+
+                        <Col span={6}>
+                            <h5 id="story-author" align="left">By {this.props.author}</h5>
+                        </Col>
+                        <Col span={6}>
+                        </Col>
+                    </Row>
                 </Card>
                 <br />
                 <br />
