@@ -78,8 +78,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 }); // end POST route
 
-<<<<<<< HEAD
-=======
+
 //edits made a story title, photo, caption after its begun
 router.put('/', (req, res) => {
     const { id, colName, updatedValue } = req.body;
@@ -114,7 +113,6 @@ router.put('/complete/:storyId', rejectUnauthenticated, (req, res) => {
         })
 });
 
->>>>>>> 116dd6a5df8db21bb81a8caacb4dd043812c71af
 //STRETCH admin can remove of a story
 router.delete('/', (req, res) => {
 
