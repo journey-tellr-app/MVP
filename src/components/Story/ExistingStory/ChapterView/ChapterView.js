@@ -8,9 +8,7 @@ import EditButton from '../EditButton';
 import FinalizeStoryButton from '../FinalizeStoryButton';
 import SubHeader from '../../../Common/SubHeader';
 
-import { PageHeader, Pagination, Card, Row, Col, Typography, Button } from 'antd';
-
-const { Title, Paragraph } = Typography;
+import { PageHeader, Pagination, Card, Row, Col, Button } from 'antd';
 
 class ChapterView extends Component {
     static propTypes = {

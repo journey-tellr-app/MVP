@@ -29,7 +29,7 @@ class SummaryChapterList extends Component {
         return (
             <div >
                 {/* this will only show chapters if user is editor so they can see add chapter button */}
-                {editMode || chapter.length > 0 &&
+                {(editMode || chapter.length > 0) &&
                     <div>
                         <Divider style={{ marginTop: 30, marginBottom: 0 }}>
                             <Title level={4} style={{ textAlign: 'center' }}>Chapters</Title>

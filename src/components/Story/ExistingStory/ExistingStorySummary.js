@@ -8,7 +8,7 @@ import SubHeader from '../../Common/SubHeader';
 import EditButton from './EditButton';
 import FinalizeStoryButton from './FinalizeStoryButton';
 
-import { Row, Col, Card, Typography, Divider, PageHeader, Button } from 'antd';
+import { Row, Col, Card, Typography, Divider, PageHeader } from 'antd';
 
 const { Meta } = Card;
 const { Title, Paragraph } = Typography;
@@ -23,7 +23,7 @@ class ExistingStorySummary extends Component {
     }
 
     render() {
-        const { summary, chapter, contributor, editMode, user } = this.props;
+        const { summary, chapter, contributor, editMode } = this.props;
         const { title, author_name, id, header_photo, caption, intro } = summary[0];
         const contributorSum = contributor.length;
         let contributorDescription;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CardDesigns.css';
 import { connect } from 'react-redux';
 
-import { Card, Avatar, Button, Icon } from 'antd';
+import { Card, Button, Icon } from 'antd';
 
 const { Meta } = Card;
 
