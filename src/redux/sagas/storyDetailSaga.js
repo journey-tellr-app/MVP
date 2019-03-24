@@ -62,6 +62,7 @@ function* getStoryContributors(action) {
 //likes for individual stories
 function* getStoryLikes(action) {
     try {
+
         const serverResponse = yield axios.get(`/story/detail/likes/${action.payload}`, action.payload);
         yield put({ type: 'SET_STORY_DETAIL_LIKES', payload: serverResponse.data });
         
