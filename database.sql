@@ -185,10 +185,17 @@ INSERT INTO person ("id", "email", "password", "first_name", "last_name", "profi
 INSERT INTO template_story ("id", "creator", "name", "title", "caption", "placeholder_image", "intro")
 	VALUES (100, 999999, 'Your First Day', 'Your Name First Day', 'A sentence about you and a blurb', '/images/placeholder.png', 'Write about one thing you are looking forward to with this role and one challenge'),
 	(200, 999999, 'Holiday/Social Event', 'Event Name', 'A sentence about the reason for the event', '/images/placeholder.png', 'Who, what, where, when, and why'),
-	(300, 999999, 'Team Meeting', 'Your Team/Dept Name and Project', 'Biggest accomplishment', '/images/placeholder.png', 'Write about your main purpose and memorable moment');
+	(300, 999999, 'Team Meeting', 'Your Team/Dept Name and Project', 'Biggest accomplishment', '/images/placeholder.png', 'Write about your main purpose and memorable moment'),
+	(400, 999999, 'Solo Project', 'Solo Project', 'Solo Project Home Page', '/images/placeholder.png', 'Write about your apps main purpose and the problem it solves');
 
 INSERT INTO template_chapter ("template_id", "title", "text", "order")
     VALUES (100, 'Title related to your personal history', 'Share about your strengths, interests, and passions to help others get to know you.', 1),
     (100, 'Add Your Team Name Introductions', 'Take a picture with the team or a member and share about a conversation you had with them', 2),
     (100, 'Your First Accomplishment', 'Share about how you overcame a challenge using resources, skills, and/or a coworker.', 3),
     (100, 'Reflection and Onward', 'Share about something that would have helped you to learn sooner and something you are looking forward to.', 4);
+
+INSERT INTO story (header_photo, author, title, caption, intro) 
+VALUES ('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553449838530-lg.jpg', 1, 'Exchanging Ideas at the Grain Exchange', 'Mike and Shamarke peer programming', 'Four times in the last thiry years has the moon been fully exlipsed. In the last decade, tens of thousands of college students have graduated in the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553449895291-lg.jpg', 1, 'Coding at the Water Cooler', 'Nick and Max peer programming', 'Four times in the last thiry years has the moon been fully eclipsed. In the last decade, tens of thousands of college students have graduated in the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553450041909-lg.jpg', 1, 'Anthony Gets a Lesson', 'Anthony and Britt', 'In the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.'),
+('https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553450364129-lg.jpg', 1, 'Collaboration with UX', 'UX and Zaurak', 'A great man once said :In the Uniteds States. In the last hundred years, only 25 major sports competitions have drawn crowds of twenty-five thousand or more. How are these facts connected? I''ll never tell.')

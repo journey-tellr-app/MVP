@@ -80,7 +80,7 @@ class CreateStoryDetail extends Component {
                     <CreateStorySteps current={1} />
                     <Form.Item
                         label="Story title"
-                        extra={template.title !== '' ? template.title : null}
+                        // extra={template.title !== '' ? template.title : null}
                     >
                         {getFieldDecorator('title', {
                             initialValue: story.title,
@@ -128,7 +128,7 @@ class CreateStoryDetail extends Component {
 
                     <Form.Item
                         label="Photo caption"
-                        extra={template.caption !== '' ? template.caption : null}
+                        // extra={template.caption !== '' ? template.caption : null}
                     >
                         {getFieldDecorator('caption', {
                             initialValue: story.caption,
@@ -140,16 +140,17 @@ class CreateStoryDetail extends Component {
                         />
                         )}
                     </Form.Item>
-                    <Form.Item {...tailFormItemLayout}>
+                    <Form.Item {...tailFormItemLayout}>                        
+                        <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
+                            Previous
+                        </Button>
                         <Button type="primary"
                                 htmlType="submit"
                                 disabled={this.hasErrors(getFieldsError())}
                         >
                             Next
                         </Button>
-                        <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                            Previous
-                        </Button>
+
                     </Form.Item>
                 </Form>
             </div>
