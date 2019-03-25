@@ -38,7 +38,7 @@ class UserInfo extends Component {
                                                                   confirm_email: 'mattkleven@gmail.com',
                                                                   password: 'a',
                                                                   confirm_password: 'a',
-                                                                  profile_pic: '/images/placeholder.png', }}
+                                                                  profile_pic: 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553549316156-lg.jpg', }}
     this.props.dispatch(dummyProfile);
   }
 
