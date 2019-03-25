@@ -4,7 +4,6 @@ import './CardDesigns.css';
 
 //Ant design imports
 import { Card, Button, Icon, Row, Col } from 'antd';
-const { Meta } = Card;
 
 class TopStoryItem extends Component {
 

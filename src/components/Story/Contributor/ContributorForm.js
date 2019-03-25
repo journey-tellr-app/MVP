@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'antd';
 
-import { Button, Alert, Input, Icon } from 'antd';
+import { Alert, Input, Icon } from 'antd';
 
 const Option = AutoComplete.Option;
 

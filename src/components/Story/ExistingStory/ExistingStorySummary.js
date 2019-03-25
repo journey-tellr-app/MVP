@@ -35,7 +35,7 @@ class ExistingStorySummary extends Component {
             contributorDescription = ` and ${contributorSum} contributors`;
         }
 
-        console.log('in existingstory: ', this.props);
+        // console.log('in existingstory: ', this.props);
 
         return (
             <div>

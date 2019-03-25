@@ -50,9 +50,6 @@ class SummaryChapterList extends Component {
                                 itemLayout="vertical"
                                 size="large"
                                 pagination={{
-                                    onChange: (page) => {
-                                        console.log(page);
-                                    },
                                     pageSize: 3,
                                 }}
                                 dataSource={this.props.chapter}
