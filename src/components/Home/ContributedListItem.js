@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 import { Card, Button, Icon, Row, Col, Badge } from 'antd';
 
-const { Meta } = Card;
-
 class ContributedListItem extends Component {
 
     handleReadStory = (event) => {
