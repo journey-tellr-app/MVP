@@ -62,7 +62,7 @@ class ExistingStorySummary extends Component {
                                         id={id} />
                                 </Col>
                             }
-                            {contributor.length > 0 &&
+                            {editMode &&
                                 <Col span={12} style={{ marginBottom: 20 }}>
                                     <ContributorPopup editMode={editMode} story_id={id} />
                                 </Col>

@@ -74,9 +74,9 @@ class CreateStoryDetail extends Component {
                                 <Col span={24}>
                                     <Form.Item
                                         label="Story title"
-                                        extra={template.title !== '' ? template.title : null}>
+                                    >
                                         {getFieldDecorator('title', {
-                                            initialValue: story.title,
+                                            initialValue: story.title !== '' ? story.title : template.title,
                                             rules: [{ required: true, message: 'Please enter a story title!' }],
                                         })(<Input 
                                                 allowClear 
@@ -87,10 +87,9 @@ class CreateStoryDetail extends Component {
                                 <Col span={24}>
                                     <Form.Item
                                         label="Story intro"
-                                        extra={template.intro !== '' ? template.intro : null}
                                     >
                                         {getFieldDecorator('intro', {
-                                            initialValue: story.intro,
+                                            initialValue: story.intro !== '' ? story.intro : template.intro,
                                             rules: [{ required: true, message: 'Please enter an intro!' }],
                                         },
                                         )(
@@ -104,14 +103,14 @@ class CreateStoryDetail extends Component {
                                     <Form.Item
                                         label="Upload Story Photo">
                                         {getFieldDecorator('header_photo', {
-                                            initialValue: image.storyImage,
+                                            initialValue: template.placeholder_image !== '' ? template.placeholder_image : image.storyImage,
                                         },
                                         )(
                                             <div>
                                                 <Avatar shape="square"
                                                     size={150}
                                                     icon='picture'
-                                                    src={image.storyImage}
+                                                    src={template.placeholder_image !== '' ? template.placeholder_image : image.storyImage}
                                                     style={{ display: 'block', margin: 'auto', marginBottom: 10 }}
                                                 />
                                                 <ImageUpload photoDetails={{ typeOfPhoto: 'STORY', title: "Adding Photo for New Story", buttonName: 'Add Story Photo' }} />
@@ -122,10 +121,9 @@ class CreateStoryDetail extends Component {
                                 <Col span={24}>
                                     <Form.Item
                                         label="Photo caption"
-                                        extra={template.caption !== '' ? template.caption : null}
                                     >
                                         {getFieldDecorator('caption', {
-                                            initialValue: story.caption,
+                                            initialValue: story.caption !== '' ? story.caption : template.caption,
                                         },
                                         )(
                                             <Input allowClear
