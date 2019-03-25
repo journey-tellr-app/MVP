@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
 import { Button, Icon, Row, Col, Input } from 'antd';
@@ -16,6 +16,11 @@ class ProfileInfo extends Component {
   advanceRegistration = (e) => {
     e.preventDefault();
     this.props.handleRegisterNavButton('user');
+  }
+
+  dummy = () => {
+    let dummyProfile = { type: 'UPDATE_REGISTRATION', payload: {  first_name: 'Matt', last_name: 'Kleven',}}
+    this.props.dispatch(dummyProfile);
   }
 
   render() {
@@ -58,7 +63,13 @@ class ProfileInfo extends Component {
 
 
           <Col span={12}>
-
+          <Button
+              className='registration-button'
+              onClick={this.dummy}
+              style={{opacity: 0,}}>
+              Dummy
+              <Icon type="right" />
+            </Button>
           </Col>
           <Col span={12}>
             <Button
@@ -77,4 +88,4 @@ class ProfileInfo extends Component {
   }
 }
 
-export default ProfileInfo;
+export default connect()(ProfileInfo);
