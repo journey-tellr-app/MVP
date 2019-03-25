@@ -63,7 +63,7 @@ const imageReducer = (state = initialImage, action) => {
 }
 
 const contributors = (state = [], action) => {
-    console.log(action);
+    // console.log(action);
     if (action.type === 'SET_CONTRIBUTORS') {
         return action.payload;
     }
