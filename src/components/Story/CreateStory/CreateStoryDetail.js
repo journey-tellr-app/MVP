@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import ImageUpload from './../../ImageUpload/ImageUpload.js';
-import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
+import CreateStorySteps from './../CreateStory/CreateStorySteps.js';
+import SubHeader from '../../Common/SubHeader';
+
+import { Form, Input, Button, Avatar, Row, Col, Icon } from 'antd';
 import './CreateStory.css';
 
-// ant design import
-import { Form, Input, Button, Avatar } from 'antd';
-
 class CreateStoryDetail extends Component {
-
-    // go bact to the previous page
     previousButton = () => {
         this.props.history.push('/choose-template/');
     }
@@ -28,20 +27,22 @@ class CreateStoryDetail extends Component {
                 let storyData = '';
 
                 // will create different data to send if the story statred as a template
-                if(this.props.template.title !== 'initial') {
-                    storyData = { title: values.title,
-                                        header_photo: this.props.image.storyImage,
-                                        caption: values.caption,
-                                        intro: values.intro,
-                                        is_template: true,
-                                      };
+                if (this.props.template.title !== 'initial') {
+                    storyData = {
+                        title: values.title,
+                        header_photo: this.props.image.storyImage,
+                        caption: values.caption,
+                        intro: values.intro,
+                        is_template: true,
+                    };
                 } else {
-                    storyData = { title: values.title,
-                                        header_photo: this.props.image.storyImage,
-                                        caption: values.caption,
-                                        intro: values.intro,
-                                        is_template: false,
-                                      };
+                    storyData = {
+                        title: values.title,
+                        header_photo: this.props.image.storyImage,
+                        caption: values.caption,
+                        intro: values.intro,
+                        is_template: false,
+                    };
                 }
 
                 // send data to the saga
@@ -50,113 +51,112 @@ class CreateStoryDetail extends Component {
 
                 // clear the fields
                 this.props.form.resetFields();
-
             }
         });
     } // end createStory
 
     render() {
-
         const { story, image, template } = this.props;
         const { getFieldDecorator, getFieldsError } = this.props.form;
 
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
-
         return (
-            <div className="new-story-form">
-                <Form layout="vertical" onSubmit={this.createStory}>
-                    <h1>Fill in the story details</h1>
-                    <CreateStorySteps current={1} />
-                    <Form.Item
-                        label="Story title"
-                        // extra={template.title !== '' ? template.title : null}
-                    >
-                        {getFieldDecorator('title', {
-                            initialValue: story.title,
-                            rules: [{ required: true, message: 'Please enter a story title!' }],
-                            },
-                        )(
-                            <Input allowClear
-                                placeholder="Story title"
-                                style={{ width: 340 }} 
-                            />
-                        )}
-                    </Form.Item>
-                    <Form.Item
-                        label="Story intro"
-                        extra={template.intro !== '' ? template.intro : null}
-                    >
-                        {getFieldDecorator('intro', {
-                            initialValue: story.intro,
-                            rules: [{ required: true, message: 'Please enter an intro!' }],
-                            }, 
-                        )(
-                        <Input allowClear
-                            placeholder="Enter an introduction"
-                            style={{ width: 340 }}
-                        />
-                        )}
-                    </Form.Item>
-                    <Form.Item
-                        label="Select image"
-                    >
-                        {getFieldDecorator('header_photo', {
-                            initialValue: image.storyImage,
-                            }, 
-                        )(
-                        <div className="image-upload">
-                            {image.storyImage !== "/images/placeholder.png" ?
-                            <Avatar shape="square"
-                                    size={150}
-                                    src={image.storyImage}
-                            /> : ''}
-                            <ImageUpload photoDetails={{typeOfPhoto:'STORY', title: "Adding Photo for New Story", buttonName: 'Add Story Photo'}}/>
-                        </div>
-                        )}
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Photo caption"
-                        // extra={template.caption !== '' ? template.caption : null}
-                    >
-                        {getFieldDecorator('caption', {
-                            initialValue: story.caption,
-                            },
-                        )(
-                    <Input allowClear
-                            placeholder="Add a caption for your picture"
-                            style={{ width: 340 }} 
-                        />
-                        )}
-                    </Form.Item>
-                    <Form.Item {...tailFormItemLayout}>                        
-                        <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                            Previous
-                        </Button>
-                        <Button type="primary"
-                                htmlType="submit"
-                                disabled={this.hasErrors(getFieldsError())}
-                        >
-                            Next
-                        </Button>
-
-                    </Form.Item>
-                </Form>
+            <div >
+                <Row type='flex' align='middle' justify='center'>
+                    <Col span={24}>
+                        <SubHeader headerText='Fill Out Story Details' />
+                    </Col>
+                    <Col span={18}>
+                        <CreateStorySteps current={1} />
+                    </Col>
+                    <Col span={18}>
+                        <Form layout="vertical" onSubmit={this.createStory}>
+                            <Row type="flex" justify="space-between" style={{ marginBottom: 20 }}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        label="Story title"
+                                        extra={template.title !== '' ? template.title : null}>
+                                        {getFieldDecorator('title', {
+                                            initialValue: story.title,
+                                            rules: [{ required: true, message: 'Please enter a story title!' }],
+                                        })(<Input 
+                                                allowClear 
+                                                placeholder="Story title" />)
+                                        }
+                                    </Form.Item>
+                                </Col>
+                                <Col span={24}>
+                                    <Form.Item
+                                        label="Story intro"
+                                        extra={template.intro !== '' ? template.intro : null}
+                                    >
+                                        {getFieldDecorator('intro', {
+                                            initialValue: story.intro,
+                                            rules: [{ required: true, message: 'Please enter an intro!' }],
+                                        },
+                                        )(
+                                            <Input allowClear
+                                                placeholder="Enter an introduction"
+                                            />
+                                        )}
+                                    </Form.Item>
+                                </Col>
+                                <Col span={24}>
+                                    <Form.Item
+                                        label="Upload Story Photo">
+                                        {getFieldDecorator('header_photo', {
+                                            initialValue: image.storyImage,
+                                        },
+                                        )(
+                                            <div>
+                                                <Avatar shape="square"
+                                                    size={150}
+                                                    icon='picture'
+                                                    src={image.storyImage}
+                                                    style={{ display: 'block', margin: 'auto', marginBottom: 10 }}
+                                                />
+                                                <ImageUpload photoDetails={{ typeOfPhoto: 'STORY', title: "Adding Photo for New Story", buttonName: 'Add Story Photo' }} />
+                                            </div>
+                                        )}
+                                    </Form.Item>
+                                </Col>
+                                <Col span={24}>
+                                    <Form.Item
+                                        label="Photo caption"
+                                        extra={template.caption !== '' ? template.caption : null}
+                                    >
+                                        {getFieldDecorator('caption', {
+                                            initialValue: story.caption,
+                                        },
+                                        )(
+                                            <Input allowClear
+                                                placeholder="Add a caption for your picture"
+                                            />
+                                        )}
+                                    </Form.Item>
+                                </Col>
+                                <Col span={9}>
+                                    <Button onClick={this.previousButton}
+                                        className='create-story-nav-btn'>
+                                        <Icon type="left" />
+                                        Previous
+                                    </Button>
+                                </Col>
+                                <Col span={9}>
+                                    <Button type="primary"
+                                        htmlType="submit"
+                                        className='create-story-nav-btn'
+                                        disabled={this.hasErrors(getFieldsError())}>
+                                        Next
+                                    <Icon type="right" />
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                </Row>
             </div>
         )
     }
-
 }
 
 const WrappedCreateStoryDetail = Form.create()(CreateStoryDetail);

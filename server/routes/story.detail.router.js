@@ -31,7 +31,7 @@ router.get('/summary/:id', (req, res) => {
 
 router.get('/likes/:id', (req, res) => {
 
-    // console.log(' in /likes, req.params.id: ', req.params.id);
+    console.log(' in /likes, req.params.id: ', req.params.id);
 
     if (req.isAuthenticated()) {
 
