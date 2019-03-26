@@ -7,6 +7,7 @@ import SummaryChapterList from './SummaryChapterList';
 import SubHeader from '../../Common/SubHeader';
 import EditButton from './EditButton';
 import FinalizeStoryButton from './FinalizeStoryButton';
+import ImageUpload from './../../ImageUpload/ImageUpload.js';
 
 import { Row, Col, Card, Typography, Divider, PageHeader } from 'antd';
 
@@ -80,16 +81,23 @@ class ExistingStorySummary extends Component {
                         </Card>
 
                         {editMode &&
-                            <Row type='flex' justify='center'>
-                                <Col>
+                            <Row type='flex' justify='space-around' align="middle">
+                                <Col span={6}>
                                     <EditButton
                                         valueToEdit={caption}
                                         type='Story'
                                         name='Caption'
                                         id={id} />
                                 </Col>
-                                <Col>
-
+                                <Col span={10}>
+                                    <ImageUpload
+                                        photoDetails={{
+                                            typeOfPhoto: 'EDIT_STORY_IMAGE',
+                                            title: `Changing Story Photo`,
+                                            storyId: id,
+                                            buttonName: "Change Photo"
+                                        }}
+                                        editMode={editMode} />
                                 </Col>
                             </Row>
                         }

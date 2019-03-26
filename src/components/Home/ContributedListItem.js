@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CardDesigns.css';
 import { connect } from 'react-redux';
 
-import { Card, Button, Icon, Row, Col, Badge } from 'antd';
+import { Card, Button, Row, Col, Badge } from 'antd';
 
 class ContributedListItem extends Component {
 

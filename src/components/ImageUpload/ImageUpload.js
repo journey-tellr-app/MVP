@@ -57,6 +57,7 @@ class ImageUpload extends Component {
             payload: formData,
             id: this.props.user.userInfo.id,
             chapterId: this.props.photoDetails.chapterId,
+            storyId: this.props.photoDetails.storyId,
         }
         this.props.dispatch(action);
         // console.log(this.props.photoDetails.typeOfPhoto);

@@ -83,6 +83,21 @@ function* completeStory(action) {
     }
 }
 
+// change the story image in edit mode
+function* changeStoryImage(action) {
+    try {
+        // package the image data
+        let dataToSend = { image: action.payload.data.Location };
+        // replace the old picture with the new picture
+        yield axios.put(`/story/image/${action.storyId}`, dataToSend);
+        // refresh the story with the added photo
+        yield put({type: 'GET_INDIVIDUAL_STORY', payload: action.storyId});
+    } catch(error) {
+        // error message when editing the story image
+        console.log(`Error in changeStoryImage: ${error}`);
+        message.error('Error when updating story image');
+    }
+}
 
 function* storyDetailSaga() {
     yield takeLatest('GET_INDIVIDUAL_STORY', getIndividualStory);
@@ -92,6 +107,7 @@ function* storyDetailSaga() {
     yield takeLatest('EDIT_STORY', editStory);
     yield takeLatest('GET_STORY_LIKES', getStoryLikes);
     yield takeLatest('COMPLETE_STORY', completeStory);
+    yield takeLatest('ADD_IMAGE_EDIT_STORY_IMAGE', changeStoryImage);
 }
 
 export default storyDetailSaga;

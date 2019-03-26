@@ -113,6 +113,22 @@ router.put('/complete/:storyId', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// change the story image
+router.put('/image/:storyId', rejectUnauthenticated, (req, res) => {
+    // sql statement for inserting new photo
+    let queryText = `UPDATE "story"
+                     SET "header_photo" = $1
+                     WHERE "id" = $2;`;
+    pool.query(queryText,[req.body.image, Number(req.params.storyId)]).then((result) => {
+        // send back a confirmation code
+        res.sendStatus(201);
+    }).catch((error) => {
+        // console log and error message
+        console.log(`Error with changing the story image: ${error}`);
+        res.sendStatus(500);
+    });
+});
+
 //STRETCH admin can remove of a story
 router.delete('/', (req, res) => {
 
