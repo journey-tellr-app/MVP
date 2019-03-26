@@ -26,25 +26,31 @@ npm run client
 ## Features
 
 ### Home Page
+
 ![](home.gif)
 
 ### Create A Story
+
 ![](createstory.gif)
 
 ### Upload Images
+
 ![](holidayparty.gif)
 
 ### Search Stories
+
 ![](searchstory.gif)
 
 ### Notifications
+
 ![](notifications.gif)
 
 ### View/Edit Profile
+
 ![](editprofile.gif)
 
 ## Contributors
-https://avatars.githubusercontent.com/<jamesctucker>
+https://avatars.githubusercontent.com/jamesctucker
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
