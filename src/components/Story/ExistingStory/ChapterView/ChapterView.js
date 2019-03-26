@@ -35,7 +35,7 @@ class ChapterView extends Component {
 
         // console.log('editMode:', this.state.editMode);
         const contributorSum = contributor.length;
-        let contributorDescription;
+        let contributorDescription = '';
         if (contributorSum === 0) {
             contributorDescription = '';
         } else if (contributorSum === 1) {
