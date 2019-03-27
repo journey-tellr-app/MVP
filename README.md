@@ -66,9 +66,19 @@ npm run client
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
+Additional features to be implemented in the future:
 
-- [ ] Feature c
+- [ ] Share a story
+- [ ] Create a template functionality
+- [ ] Allow users to click on other users profiles
+- [ ] Create a team functionality
+- [ ] Incorporate teams throughout the app
+- [ ] Allow users to click on other users profiles
+- [ ] Add the like button to chapters
+- [ ] Create multiple images/captions for chapters
+- [ ] Allow the users to upload video
+- [ ] Password reset feature
+- [ ] Let the user request to be a contributor
 
 ## Deployment
 
