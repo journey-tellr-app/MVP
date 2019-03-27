@@ -27,7 +27,7 @@ Before you get started, make sure you have the following software installed on y
 
 ### Installing
 
-Steps to get the development environment running.
+Steps to get the development environment running:
 
 1. Fork and clone this repository.
 
