@@ -4,14 +4,14 @@ Turn authentic user experiences into seamless content that allows users to conne
 
 ## Built With
 
-Ant Design
-Express
-Node.js
-Passport
-PostgreSQL
-React
-Redux
-(a full list of dependencies can be found in `package.json`)
+* Ant Design
+* Express
+* Node.js
+* Passport
+* PostgreSQL
+* React
+* Redux
+* (a full list of dependencies can be found in `package.json`)
 
 ## Getting Started
 
