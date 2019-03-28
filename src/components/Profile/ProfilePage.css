@@ -9,10 +9,39 @@
     font-size: 7px;
 }
 
-#avatar {
+#like-btn {
+    max-width: 65px;
+    max-height: 2.5em;
+    font-size: 11px;
+    padding: 5px;
+}
+
+/* .likes-count {
     border-radius: 50%;
+    border: 1px
+} */
+
+
+
+.contain {
+    /* border-radius: 50%; */
     border: 1.5px solid;
+    border-radius: 50%;
     border-color: #D98A4F;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.story-photo {
+    height: 150px;
+    width: auto;
+    object-fit: cover;
+
+}
+
+.story-title {
+    font-size: 15px;
 }
 
 .profile-header {
@@ -50,4 +79,13 @@
 .stats-div {
     margin-left: 3em;
     margin-right: auto;
+}
+
+.profile-pic {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+p {
+    font-size: 12px;
 }

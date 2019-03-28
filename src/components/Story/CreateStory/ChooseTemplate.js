@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ant design import
-import { Select } from 'antd';
-import { Divider } from 'antd';
+import { Select, Form } from 'antd';
 
 class ChooseTemplate extends Component {
 
@@ -14,21 +13,26 @@ class ChooseTemplate extends Component {
 
     // gets template details from the database and sets the reducer
     handleChange = (value) => {
-        if(value === 'initial'){
-            this.props.dispatch({type: 'SET_TEMPLATE_NEW_CREATE'})
+        if (value === 'initial') {
+            this.props.dispatch({ type: 'SET_TEMPLATE_NEW_CREATE' })
         } else {
-            this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value});
+            this.props.dispatch({ type: 'GET_TEMPLATE_DETAILS', payload: value });
         }
     }
 
     render() {
         return (
-            <div>
-                <Select defaultValue="Please select" style={{ width: 340 }} onChange={this.handleChange}>
+            <Form.Item
+                label="Create a story or choose a template">
+                <Select
+                    defaultValue="Please select"
+                    style={{ width: '100%' }}
+                    id='storyType'
+                    onChange={this.handleChange}>
                     <Select.Option value="initial">Create a new Story</Select.Option>
-                    {this.props.template.map((item, i) => ( <Select.Option key={i} value={item.id}>{item.name}</Select.Option> ))}
+                    {this.props.template.map((item, i) => (<Select.Option key={i} value={item.id}>{item.name}</Select.Option>))}
                 </Select>
-            </div>
+            </Form.Item >
         )
     }
 };

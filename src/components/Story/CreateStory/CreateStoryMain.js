@@ -7,15 +7,9 @@ import './CreateStory.css'
 import SubHeader from '../../Common/SubHeader';
 
 // ant design import
-import { Form, Button } from 'antd';
-import { Divider } from 'antd';
+import { Form, Button, Icon, Row, Col } from 'antd';
 
 class CreateStoryMain extends Component {
-
-    componentDidMount() {
-        this.props.form.validateFields();
-    }
-
     // called when create story button is pressed
     // packages local state and redux reducer data and calls the saga to create database entries
     nextPage = (event) => {
@@ -24,63 +18,60 @@ class CreateStoryMain extends Component {
     } // end createStory
 
     render() {
-
         const { template } = this.props;
 
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
-
         return (
-            <div className="container">
-                <Form layout="vertical" onSubmit={this.nextPage}>
-                    <br />
-                    <SubHeader headerText='Create a Story' />
-                    {/* <h1 align='center'>Create a Story</h1> */}
-                    
-                    <CreateStorySteps
-                        current={0}
-                    />
+            <div>
+                <Row type='flex' align='middle' justify='center'>
+                    <Col span={24}>
+                        <SubHeader headerText='Create a Story' />
+                    </Col>
+                    <Col span={18}>
+                        <CreateStorySteps current={0} />
+                    </Col>
+                    <Col span={18}>
+                        <Form layout="vertical" onSubmit={this.nextPage}>
+                            <Row type="flex" justify="space-between">
+                                <Col span={24}>
+                                    <ChooseTemplate />
+                                </Col>
 
-                    <Divider>
-                        <br />
-                        <br />
-                        <Form.Item
-                            label="Create a story or choose a template"
-                        >
-                            <ChooseTemplate />
-                        </Form.Item>
-                    </Divider>
-                    <Form.Item {...tailFormItemLayout}>
-                        <Divider><Button
-                            id='next-btn'
-                            type="primary"
-                            htmlType="submit"
-                            disabled={template.name === ''}
-                        >
-                            Next
-                    </Button></Divider>
-                    </Form.Item>
-                </Form>
+                                <Col span={9}>
+                                    <Button
+                                        className='create-story-nav-btn'>
+                                        Cancel
+                                    </Button>
+                                </Col>
+
+                                <Col span={9}>
+                                    <Button
+                                        className='create-story-nav-btn'
+                                        type="primary"
+                                        htmlType="submit"
+                                        disabled={template.name === ''}>
+                                        Next
+                                        <Icon type="right" />
+                                    </Button>
+                                </Col>
+
+                            </Row>
+                        </Form>
+                    </Col>
+
+                </Row>
+
+
+
+
             </div>
+
         )
     }
 
 }
 
-const WrappedCreateStoryMain = Form.create()(CreateStoryMain);
-
 const mapStoreToProps = reduxStore => ({
     template: reduxStore.template.templateNewStoryReducer,
 });
 
-export default connect(mapStoreToProps)(WrappedCreateStoryMain);
+export default connect(mapStoreToProps)(CreateStoryMain);

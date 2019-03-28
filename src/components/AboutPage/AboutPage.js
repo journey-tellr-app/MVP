@@ -4,7 +4,6 @@ import { Row, Col } from 'antd';
 import { Card } from 'antd';
 import { Typography } from 'antd';
 import './AboutPage.css';
-import logo from './JourneyTellr-color.png';
 
 
 const { Paragraph } = Typography;
@@ -19,7 +18,7 @@ class AboutPage extends Component {
         <Row>
           <Col span={8}></Col>
           <Col span={8}>
-            <Avatar shape="square" size={128} src={logo} id="app-photo" />
+            <Avatar shape="square" size={128} src='/images/kevinslogos/JourneyTellr-color.png' id="app-photo" />
           </Col>
           <Col span={8}></Col>
         </Row>

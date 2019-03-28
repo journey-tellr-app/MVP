@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import ContributorForm from '../Contributor/ContributorForm.js';
 import ContributorList from '../Contributor/ContributorList.js';
-import CreateStorySteps from './../CreateStory/CreateStorySteps.js'
+import CreateStorySteps from './../CreateStory/CreateStorySteps.js';
+import SubHeader from '../../Common/SubHeader';
 
 // ant design import
-import { Form, Button } from 'antd';
+import { Form, Button, Row, Col, Typography, Icon } from 'antd';
 
 class CreateStoryContributor extends Component {
-
     // go back to the previous page
     previousButton = () => {
         this.props.history.push('/choose-template/chapter/');
@@ -30,7 +31,7 @@ class CreateStoryContributor extends Component {
                 let completeDataToSend = { story: storyDataToSend, chapter: chapterDataToSend, contributor: contributorDataToSend };
 
                 // send data to the saga
-                this.props.dispatch({ type: 'POST_NEW_STORY',  payload: completeDataToSend });
+                this.props.dispatch({ type: 'POST_NEW_STORY', payload: completeDataToSend });
                 // clear the fields
                 this.props.form.resetFields();
                 // go to home page
@@ -40,44 +41,54 @@ class CreateStoryContributor extends Component {
     } // end createStory
 
     render() {
-
         const { contributor } = this.props;
 
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
-
         return (
-            <Form layout="vertical" onSubmit={this.createStory}>
-                <h2>Add Contributors</h2>
-                <CreateStorySteps current="3" />
-                <Form.Item
-                    label="Add contributors"
-                >
-                    <ContributorForm />
-                </Form.Item>
-                {contributor.length !== 0 ? <ContributorList /> : ''}
-                <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary"
-                            htmlType="submit"
-                            disabled={this.props.story.title === ''}
-                    >
-                        Create Story
-                    </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.previousButton}>
-                        Previous
-                    </Button>
-                </Form.Item>
-            </Form>
+            <div>
+                <Row type='flex' align='middle' justify='center'>
+                    <Col span={24}>
+                        <SubHeader headerText='Add Contributors' />
+                    </Col>
+                    <Col span={18}>
+                        <CreateStorySteps current={3} />
+                    </Col>
+                    <Col span={18}>
+                        <Form layout="vertical" onSubmit={this.createStory}>
+                            <Row type="flex" justify="space-between" style={{ marginBottom: 20 }}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        label="Add contributors">
+                                        <ContributorForm />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={24} style={{marginBottom: 20}}>
+                                    {contributor.length !== 0 ?
+                                        <ContributorList editMode='true'/> 
+                                        :
+                                        <Typography align="center">
+                                            Contributors will show up here as you add them.
+                                        </Typography>
+                                    }
+                                </Col>
+                                <Col span={9}>
+                                    <Button onClick={this.previousButton}
+                                        className='create-story-nav-btn'>
+                                        <Icon type="left" />
+                                        Previous
+                                    </Button>
+                                </Col>
+                                <Col span={9}>
+                                    <Button type="primary"
+                                        htmlType="submit"
+                                        className='create-story-nav-btn'>
+                                        Create Story
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                </Row>
+            </div>
         )
     }
 

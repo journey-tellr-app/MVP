@@ -4,8 +4,6 @@ const router = express.Router();
 const storyDetailRouter = require('./story.detail.router');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.use('/detail', storyDetailRouter);
-
 //gets users contribution stories for home page feed
 router.get('/story-contributions', (req, res) => {
     if (req.isAuthenticated()) {
@@ -65,11 +63,6 @@ router.get('/recent', (req, res) => {
 
 });
 
-//retrieves template story from template table for autopopulating story
-router.get('/template', (req, res) => {
-
-});
-
 //creates new story with author, title, etc
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText = `INSERT INTO "story" ("title", "caption", "header_photo", "intro", "author", "is_template")
@@ -84,6 +77,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
     });
 }); // end POST route
+
 
 //edits made a story title, photo, caption after its begun
 router.put('/', (req, res) => {
@@ -119,6 +113,22 @@ router.put('/complete/:storyId', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// change the story image
+router.put('/image/:storyId', rejectUnauthenticated, (req, res) => {
+    // sql statement for inserting new photo
+    let queryText = `UPDATE "story"
+                     SET "header_photo" = $1
+                     WHERE "id" = $2;`;
+    pool.query(queryText,[req.body.image, Number(req.params.storyId)]).then((result) => {
+        // send back a confirmation code
+        res.sendStatus(201);
+    }).catch((error) => {
+        // console log and error message
+        console.log(`Error with changing the story image: ${error}`);
+        res.sendStatus(500);
+    });
+});
+
 //STRETCH admin can remove of a story
 router.delete('/', (req, res) => {
 
@@ -133,7 +143,7 @@ router.get('/contributors/:id', (req, res) => {
                        JOIN story
                        ON story_id = story.id
                        WHERE story_id = $1
-                       GROUP BY story.id, contributor.story_id`;
+                       GROUP BY story.id, contributor.story_id;`;
     pool.query(queryText, [storyId])
     .then( (sqlResult) => {
         res.send(sqlResult.rows);

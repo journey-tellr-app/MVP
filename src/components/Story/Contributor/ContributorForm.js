@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AutoComplete } from 'antd';
 
-import { Button, Alert } from 'antd';
+import { Alert, Input, Icon } from 'antd';
 
 const Option = AutoComplete.Option;
 
@@ -28,11 +28,12 @@ class ContributorForm extends Component {
   }
 
   handleClick = () => {
-    const repeat = this.props.pendingContributors.filter((c) => 
-    { return c.person_id === this.state.person.person_id });
-    if (repeat.length > 0) {
-      this.setState({alert: true,});
-      setTimeout( () => {this.setState({alert: false,}) }, 2000);
+    const repeat = this.props.pendingContributors.filter((c) => { return c.person_id === this.state.person.person_id });
+    if (this.state.person.first_name === undefined) {
+      return null;
+    } else if (repeat.length > 0) {
+      this.setState({ alert: true, });
+      setTimeout(() => { this.setState({ alert: false, }) }, 2000);
     } else {
       this.props.dispatch({
         type: 'ADD_PENDING_CONTRIBUTORS',
@@ -52,36 +53,36 @@ class ContributorForm extends Component {
       });
     return (
       <div>
-        {this.state.alert ? 
+        {this.state.alert ?
           <div>
             <Alert message={
-              `User is already a contributor`} 
+              `User is already a contributor`}
               type="warning"
               showIcon />
           </div>
-        :
-        null
+          :
+          null
         }
         <AutoComplete
-          style={{ width: 200 }}
+          style={{ width: "100%" }}
           onSearch={this.handleSearch}
           onChange={this.onChange}
           defaultValue=''
           placeholder="begin typing name"
-          allowClear={true} >
-          {this.props.employeeResults &&
-            searchResults
-          }
+          dataSource={searchResults}>
+          <Input
+            addonAfter={(
+              <Icon type="user-add" onClick={this.handleClick} />
+            )}
+          />
         </AutoComplete>
-        <Button icon="user-add" onClick={this.handleClick} />
       </div>
-
     );
   }
 }
 
 const mapRStoProps = (rs) => {
-  return { 
+  return {
     employeeResults: rs.contributor.employeeResults,
     pendingContributors: rs.contributor.pending
   }

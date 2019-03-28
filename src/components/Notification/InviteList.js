@@ -6,13 +6,6 @@ import { List, Avatar, Button } from 'antd';
 
 
 class InviteList extends Component {
-
-    handleReadStory = (id) => {
-        console.log('error', id)
-
-        this.props.history.push(`/existing-story/${id}`);
-    }
-
     buildListItems = (item) => {
         return <List.Item>
             <List.Item.Meta
@@ -23,13 +16,15 @@ class InviteList extends Component {
         </List.Item>
     }
 
-    handleInvite = (id, status, event) => {
+    handleInvite = (invite, status, event) => {
         console.log('error error')
         this.props.dispatch({
             type: `SEND_INVITE_RESPONSE`,
-            payload: { invite_id: id, status: status }
+            payload: { invite_id: invite.invite_id, status: status }
         })
-        this.handleReadStory(id);
+        if (status === 'accepted') {
+            this.props.history.push(`/existing-story/${invite.story_id}`);
+        }
     }
 
 
@@ -39,12 +34,13 @@ class InviteList extends Component {
         return (
 
             <List
+                className="notification-item"
                 itemLayout="horizontal"
                 dataSource={invite}
                 renderItem={invite => (
                     <List.Item actions={[
-                        <Button size="small" id="notification-btn" onClick={this.handleInvite.bind(this, invite.invite_id, 'accepted')}>Accept</Button>,
-                        <Button size="small" id="notification-btn" onClick={this.handleInvite.bind(this, invite.invite_id, 'rejected')}>Maybe Later</Button>,
+                        <Button size="small" id="notification-btn" onClick={this.handleInvite.bind(this, invite, 'accepted')}>Accept</Button>,
+                        <Button size="small" id="notification-btn" onClick={this.handleInvite.bind(this, invite, 'rejected')}>Maybe Later</Button>,
                     ]}>
                         <List.Item.Meta
                             avatar={<Avatar src={invite.profile_pic} />}
