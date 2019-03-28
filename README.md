@@ -42,9 +42,9 @@ npm run client
 3. Set up an AWS Bucket. Free, but will require a credit card.
 Helpful Guide: https://medium.com/@fabianopb/upload-files-with-node-and-react-to-aws-s3-in-3-steps-fdaa8581f2bd
 Create an .env file and paste this information from your AWS account:
-S3_BUCKET=
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
+S3_BUCKET=(INSERT AWS INFO HERE)
+AWS_ACCESS_KEY_ID=(INSERT AWS INFO HERE)
+AWS_SECRET_ACCESS_KEY=(INSERT AWS INFO HERE)
 
 ## Completed Features
 
