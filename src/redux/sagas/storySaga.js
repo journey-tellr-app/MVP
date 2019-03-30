@@ -7,7 +7,6 @@ import { message } from 'antd';
 function* getMyContributions(action) {
     try {
         const serverResponse = yield axios.get('story/story-contributions');
-
         yield put({ type: 'SET_STORY_CONTRIBUTIONS', payload: serverResponse.data });
 
     } catch (error) {

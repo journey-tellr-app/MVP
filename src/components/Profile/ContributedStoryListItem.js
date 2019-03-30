@@ -47,7 +47,7 @@ class ContributedStoryListItem extends Component {
 
         return (
             <div className="card-div">
-                {this.props.storyDetail.likes.length !== 0 ?
+                {/* {this.props.storyDetail.likes.length !== 0 ? */}
                     <Card
                         className="profile-story-cards"
                         style={{ width: 325 }}
@@ -60,7 +60,8 @@ class ContributedStoryListItem extends Component {
                         <h3 className="story-title" onClick={this.handleReadStory} level={4} >{this.props.title}</h3>
                         <p>{this.props.likes} Likes</p>
 
-                    </Card> : (<Spin indicator={antIcon} />)}
+                    </Card> 
+                    {/* // : (<Spin indicator={antIcon} />)} */}
             </div>
         )
     }
