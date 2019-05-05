@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 
 //app routes
-import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
@@ -46,11 +45,8 @@ class App extends Component {
           {/* do NOT refactor out: this is the header, it is sourced in this file due to issues arising with navgationlink conditional rendering causing header to rerender */}
           <Row type="flex" justify="center" align='middle' className='nav'>
             <Col span={3}>
-              {this.props.user.id !== undefined ?
+              {this.props.user.id !== undefined &&
                 <NavButton />
-                :
-                <div>
-                </div>
               }
             </Col>
             <Col span={18}>

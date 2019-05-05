@@ -14,14 +14,8 @@ class Nav extends React.Component {
         return (
             <Row type="flex" justify="center" align='middle' className='nav'>
                 <Col span={3}>
-                    {this.props.user.id !== undefined ?
+                    {this.props.user.id !== undefined &&
                         <SideDrawer />
-                        :
-                        <div className='header-button-div'>
-                            <Link to="/about" >
-                                <Icon type='info-circle' theme='twoTone' twoToneColor='#D98A4F' style={{ fontSize: '24px' }} />
-                            </Link>
-                        </div>
                     }
                 </Col>
                 <Col span={18}>
