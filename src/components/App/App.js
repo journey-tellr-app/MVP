@@ -49,10 +49,7 @@ class App extends Component {
               {this.props.user.id !== undefined ?
                 <NavButton />
                 :
-                <div className='header-button-div'>
-                  <Link to="/about" >
-                    <Icon type='info-circle' theme='twoTone' twoToneColor='#D98A4F' style={{ fontSize: '24px' }} />
-                  </Link>
+                <div>
                 </div>
               }
             </Col>
@@ -69,13 +66,6 @@ class App extends Component {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
-            {/* Visiting localhost:3000/about will show the about page.
-            This is a route anyone can see, no login necessary */}
-            <Route
-              exact
-              path="/about"
-              component={AboutPage}
-            />
             <ProtectedRoute
               exact path='/notification'
               component={Notification}
