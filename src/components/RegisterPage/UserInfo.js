@@ -33,15 +33,6 @@ class UserInfo extends Component {
     }
   } // end registerUser
 
-  dummy = () => {
-    let dummyProfile = { type: 'UPDATE_REGISTRATION', payload: {  email: 'mattkleven@gmail.com',
-                                                                  confirm_email: 'mattkleven@gmail.com',
-                                                                  password: 'a',
-                                                                  confirm_password: 'a',
-                                                                  profile_pic: 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553549316156-lg.jpg', }}
-    this.props.dispatch(dummyProfile);
-  }
-
   render() {
     const { registration,
       handleInputChangeFor,
@@ -112,13 +103,7 @@ class UserInfo extends Component {
               Back
             </Button>
           </Col>
-          <Col span={2}>
-          <Button
-              onClick={this.dummy}
-              style={{opacity: 0,}}>
-              Dummy
-            </Button>
-          </Col>
+
           <Col span={8}>
             <Button onClick={this.registerUser}
               type="primary"
