@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 
 //app routes
-import AboutPage from '../AboutPage/AboutPage';
 import HomePage from '../Home/HomePage';
 import Notification from '../Notification/Notification';
 import ProfilePage from '../Profile/ProfilePage';
@@ -46,14 +45,8 @@ class App extends Component {
           {/* do NOT refactor out: this is the header, it is sourced in this file due to issues arising with navgationlink conditional rendering causing header to rerender */}
           <Row type="flex" justify="center" align='middle' className='nav'>
             <Col span={3}>
-              {this.props.user.id !== undefined ?
+              {this.props.user.id !== undefined &&
                 <NavButton />
-                :
-                <div className='header-button-div'>
-                  <Link to="/about" >
-                    <Icon type='info-circle' theme='twoTone' twoToneColor='#D98A4F' style={{ fontSize: '24px' }} />
-                  </Link>
-                </div>
               }
             </Col>
             <Col span={18}>
@@ -69,13 +62,6 @@ class App extends Component {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
-            {/* Visiting localhost:3000/about will show the about page.
-            This is a route anyone can see, no login necessary */}
-            <Route
-              exact
-              path="/about"
-              component={AboutPage}
-            />
             <ProtectedRoute
               exact path='/notification'
               component={Notification}
