@@ -17,13 +17,13 @@ class UserInfo extends Component {
     const { first_name, last_name, email, password,
       profile_pic, confirm_email, confirm_password } = this.props.registration;
 
-    if (first_name && last_name && (email === confirm_email) && (password === confirm_password)) {
+    if (first_name && last_name && (email.toUpperCase() === confirm_email.toUpperCase()) && (password === confirm_password)) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
           first_name: first_name,
           last_name: last_name,
-          email: email,
+          email: email.toUpperCase(),
           password: password,
           profile_pic: profile_pic
         },

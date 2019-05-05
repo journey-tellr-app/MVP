@@ -18,11 +18,6 @@ class ProfileInfo extends Component {
     this.props.handleRegisterNavButton('user');
   }
 
-  dummy = () => {
-    let dummyProfile = { type: 'UPDATE_REGISTRATION', payload: {  first_name: 'Matt', last_name: 'Kleven',}}
-    this.props.dispatch(dummyProfile);
-  }
-
   render() {
     const { registration, handleInputChangeFor } = this.props;
 
@@ -61,16 +56,6 @@ class ProfileInfo extends Component {
             <ImageUpload photoDetails={{ typeOfPhoto: 'REGISTER', title: 'Choosing New Profile Photo', buttonName: 'Add Profile Photo' }} />
           </Col>
 
-
-          <Col span={12}>
-          <Button
-              className='registration-button'
-              onClick={this.dummy}
-              style={{opacity: 0,}}>
-              Dummy
-              <Icon type="right" />
-            </Button>
-          </Col>
           <Col span={12}>
             <Button
               type='primary'
