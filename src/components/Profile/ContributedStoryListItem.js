@@ -53,7 +53,7 @@ class ContributedStoryListItem extends Component {
                         style={{ width: 325 }}
                         cover={<img className="story-photo" src={this.props.header_photo} alt="story" />}
                         actions={[<Button id="like-btn" onClick={this.handleLike}><Icon type='like' />Like</Button>,
-                        <Button id="like-btn" onClick={this.handleReadStory}>Read</Button>
+                        <Button id="like-btn" onClick={this.handleReadStory}>Review</Button>
                         ]}
                     >
 
