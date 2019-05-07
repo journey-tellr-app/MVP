@@ -22,18 +22,24 @@ class ChooseTemplate extends Component {
 
     render() {
         return (
-            <Form.Item
-                label="Create a story or choose a template">
-                <Select
-                    defaultValue="Please select"
-                    style={{ width: '100%' }}
-                    id='storyType'
-                    onChange={this.handleChange}>
-                    <Select.Option value="initial">Create a new Story</Select.Option>
-                    {this.props.template.map((item, i) => (<Select.Option key={i} value={item.id}>{item.name}</Select.Option>))}
-                </Select>
-            </Form.Item >
-        )
+          <Form.Item label="Create a story or choose a template">
+            <Select
+              defaultValue="Please select"
+              style={{ width: "100%" }}
+              id="storyType"
+              onChange={this.handleChange}
+            >
+              <Select.Option value="initial">
+                Build Your Own Story
+              </Select.Option>
+              {this.props.template.map((item, i) => (
+                <Select.Option key={i} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        );
     }
 };
 
