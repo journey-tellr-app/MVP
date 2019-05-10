@@ -92,7 +92,8 @@ class ProfilePage extends Component {
 
 
     render() {
-
+        console.log(this.props.story);
+        
         return (
 
             <div className="container" >
@@ -111,17 +112,20 @@ class ProfilePage extends Component {
                     <div className="stats-div">
                         <Row gutter={16}>
                             <Col xs={24}>
-                                <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} /><Text className="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
+                                <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} />
+                                <Text className="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
                             </Col>
                         </Row>
                         <Row gutter={16}>
                             <Col xs={24}>
-                                <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} /><Text className="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                                <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} />
+                                <Text className="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
                             </Col>
                         </Row>
                         <Row gutter={16}>
                             <Col xs={24}>
-                                <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} /><Text className="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                                <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} />
+                                <Text className="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
                             </Col>
                         </Row>
                     </div>
