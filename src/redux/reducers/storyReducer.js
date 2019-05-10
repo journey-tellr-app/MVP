@@ -34,6 +34,7 @@ const searchStoryReducer = (state = [], action) => {
 }
 
 const userStoryReducer = (state = [], action) => {
+    // SET_USER_STORY is not found elsewhere in app
     if(action.type === 'SET_USER_STORY') {
         return action.payload;
     }

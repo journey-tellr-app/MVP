@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
+//this reducer is duplicated in storyReducer - research to see where it is being used to
+// remove duplicate
 const contributedStoryReducer = (state = [], action) => {
     if (action.type === 'SET_STORY_CONTRIBUTIONS') {
         return action.payload;
