@@ -51,7 +51,7 @@ class ContributedList extends Component {
                         </Carousel>
                     </div>) : (<div className='center-button'>
                         {/* render this button if the user has no contributed stories */}
-                        <Button align='center' type='primary' onClick={this.handleStartStory}>Start Your First Story!</Button>
+                        <Button align='center' type='primary' onClick={this.handleStartStory}>Start A New Story!</Button>
                     </div>)}
             </div>
 
