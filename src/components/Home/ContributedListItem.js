@@ -9,17 +9,25 @@ class ContributedListItem extends Component {
     handleReadStory = (event) => {
         this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
-
+    
     handleLike = (event) => {
-
-        this.props.dispatch({
-            type: 'LIKE_CONTRIBUTED_STORY',
-            payload: {
-                user_id: this.props.user_id,
-                story_id: this.props.story_id
-            }
-        });
-
+        //This will compare the user_id of the person logged in
+        //to the id of the story creator and reject a like
+        //if they are the same, else the likes will increment
+        if (
+          this.props.user_id ==
+          this.props.story.contributedStoryReducer[0].author
+        ) {
+            return
+        } else {
+            this.props.dispatch({
+                type: "LIKE_CONTRIBUTED_STORY",
+                payload: {
+                    user_id: this.props.user_id,
+                    story_id: this.props.story_id
+                }
+            });
+        }
     }
 
     componentDidMount = (event) => {
