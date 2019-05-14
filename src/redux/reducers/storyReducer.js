@@ -3,8 +3,9 @@ import { combineReducers } from 'redux';
 //this reducer will return all the 
 //stories a user is/has contributed to.
 //To be used on the home page
+//this reducer currently gets authored stories, not contributed 
 const contributedStoryReducer = (state = [], action) => {
-    if(action.type === 'SET_STORY_CONTRIBUTIONS_COUNT') {
+    if(action.type === 'SET_STORY_CONTRIBUTIONS') {
         return action.payload;
     }
     return state;
@@ -33,9 +34,8 @@ const searchStoryReducer = (state = [], action) => {
     return state;
 }
 
-const userStoryReducer = (state = [], action) => {
-    // SET_USER_STORY is not found elsewhere in app
-    if(action.type === 'SET_USER_STORY') {
+const userStoryCountReducer = (state = [], action) => {
+    if(action.type === 'SET_USER_STORY_COUNT') {
         return action.payload;
     }
     return state;
