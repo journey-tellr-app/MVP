@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 //this reducer will return all the 
 //stories a user is/has contributed to.
 //To be used on the home page
+//this reducer currently gets authored stories, not contributed 
 const contributedStoryReducer = (state = [], action) => {
     if(action.type === 'SET_STORY_CONTRIBUTIONS') {
         return action.payload;
@@ -33,8 +34,15 @@ const searchStoryReducer = (state = [], action) => {
     return state;
 }
 
-const userStoryReducer = (state = [], action) => {
-    if(action.type === 'SET_USER_STORY') {
+const userStoryCountReducer = (state = [], action) => {
+    if(action.type === 'SET_USER_STORY_COUNT') {
+        return action.payload;
+    }
+    return state;
+}
+
+const userContributionCountReducer = (state = [], action) => {
+    if (action.type === 'SET_USER_CONTRIBUTION_COUNT') {
         return action.payload;
     }
     return state;
@@ -75,7 +83,8 @@ export default combineReducers({
     topStoriesReducer, //used the home page
     completeStoryReducer, // used for the main story view page
     searchStoryReducer, // for use with the search page
-    userStoryReducer, // for an user profile story page
+    userStoryCountReducer, // for user profile page
+    userContributionCountReducer, // for user profile page
     newStoryReducer, // called when creating a new story
     imageReducer, //holds AWS image location
     contributors //this returns the names of all contributors to a story (for home page)

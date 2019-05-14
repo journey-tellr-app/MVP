@@ -5,7 +5,7 @@ import { Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd'
 
 import './ProfilePage.css';
 import 'antd/dist/antd.css';
-import moment from 'moment'
+import moment from 'moment';
 
 import ContributedStoryList from './ContributedStoryList';
 
@@ -25,6 +25,13 @@ class ProfilePage extends Component {
             visible: false,
             file: null
         };
+
+    componentDidMount = () => {
+        //the first dispatch gets the stories user is contributing to and renders them on
+        //the profile page
+        this.props.dispatch({ type: 'GET_CONTRIBUTION_COUNT' });
+        this.props.dispatch({ type: 'GET_STORY_COUNT' });
+    }
     // functions for image upload   
     showModal = () => {
         this.setState({
@@ -92,7 +99,8 @@ class ProfilePage extends Component {
 
 
     render() {
-
+        console.log(this.props.story);
+        
         return (
 
             <div className="container" >
@@ -111,17 +119,20 @@ class ProfilePage extends Component {
                     <div className="stats-div">
                         <Row gutter={16}>
                             <Col xs={24}>
-                                <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} /><Text className="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
+                                <Icon className="profile-element" type="calendar" style={{ fontSize: "14px" }} />
+                                <Text className="stats-text">Member since&nbsp;{moment(this.props.user.userInfo.date_created).format("MMM Do, YYYY")}</Text>
                             </Col>
                         </Row>
                         <Row gutter={16}>
                             <Col xs={24}>
-                                <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} /><Text className="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                                <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} />
+                                <Text className="stats-text">{this.props.story.userStoryCountReducer}&nbsp;Stories</Text>
                             </Col>
                         </Row>
                         <Row gutter={16}>
                             <Col xs={24}>
-                                <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} /><Text className="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                                <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} />
+                                <Text className="stats-text">{this.props.story.userContributionCountReducer}&nbsp;Contributions</Text>
                             </Col>
                         </Row>
                     </div>

@@ -14,7 +14,7 @@ CREATE TABLE person (
 
 CREATE UNIQUE INDEX person_pk ON person(id int4_ops);
 CREATE UNIQUE INDEX person_email_key ON person(email text_ops);
-
+-- ERROR:  relation "person_email_key" already exists
 
 
 
@@ -43,7 +43,7 @@ CREATE TABLE "chapter" (
 	"text" TEXT,
 	"date_created" timestamp,
 	"order" integer NOT NULL,
-	"chapter_photo" text DEFAULT 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553023535303-lg.jpg',  asef
+	"chapter_photo" text DEFAULT 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553023535303-lg.jpg', 
 	CONSTRAINT chapter_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
