@@ -34,6 +34,23 @@ router.get('/story-contributions', (req, res) => {
 
 });
 
+router.get('/count', (req, res) => {
+    if (req.isAuthenticated()) {
+        const userId = req.user.id;
+        const queryText = `SELECT COUNT(author) FROM "story" WHERE "author" = $1`
+        pool.query(queryText, [userId])
+            .then((sqlResult) => {
+                console.log(sqlResult.rows);
+                
+                res.send(sqlResult.rows);
+            }).catch((error) => {
+                console.log(`Error in /recent route: ${error}`);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
+
 //retrieves 10 recent stories for home page feed
 router.get('/recent', (req, res) => {
 
@@ -119,7 +136,7 @@ router.put('/image/:storyId', rejectUnauthenticated, (req, res) => {
     let queryText = `UPDATE "story"
                      SET "header_photo" = $1
                      WHERE "id" = $2;`;
-    pool.query(queryText,[req.body.image, Number(req.params.storyId)]).then((result) => {
+    pool.query(queryText, [req.body.image, Number(req.params.storyId)]).then((result) => {
         // send back a confirmation code
         res.sendStatus(201);
     }).catch((error) => {
@@ -145,11 +162,11 @@ router.get('/contributors/:id', (req, res) => {
                        WHERE story_id = $1
                        GROUP BY story.id, contributor.story_id;`;
     pool.query(queryText, [storyId])
-    .then( (sqlResult) => {
-        res.send(sqlResult.rows);
-    }).catch( (e) => {
-        console.log(`Error in contributors router: ${e}`);
-    });
+        .then((sqlResult) => {
+            res.send(sqlResult.rows);
+        }).catch((e) => {
+            console.log(`Error in contributors router: ${e}`);
+        });
 });
 
 module.exports = router;
