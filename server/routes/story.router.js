@@ -81,7 +81,6 @@ router.get('/recent', (req, res) => {
                            ON story_likes.story_id = story.id
                            GROUP BY person.id, story.id, person.first_name, person.last_name, 
                            person.profile_pic, story.header_photo, story.title, story.completed
-                           order by likes desc, date_started desc
                            limit 10;`;
         pool.query(queryText)
             .then((sqlResult) => {

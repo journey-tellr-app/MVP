@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './CardDesigns.css';
 
 //Ant design imports
-import { Card, Button, Icon, Row, Col } from 'antd';
+import { Card, Button, Icon, Row, Col, Badge } from 'antd';
 
 class TopStoryItem extends Component {
 
@@ -13,17 +13,25 @@ class TopStoryItem extends Component {
         this.props.history.push(`/existing-story/${this.props.story_id}`);
     }
 
-    handleLike = (event) => {
-        console.log(this.props);
-
-        this.props.dispatch({
-            type: 'LIKE_TOP_STORY',
-            payload: {
-                user_id: this.props.user_id,
-                story_id: this.props.story_id
-            }
-        });
+  handleLike = (event) => {
+    //This will compare the user_id of the person logged in
+    //to the id of the story creator and reject a like
+    //if they are the same, else the likes will increment
+    if (
+      this.props.user_id ===
+      this.props.story.contributedStoryReducer[0].author
+    ) {
+      return
+    } else {
+      this.props.dispatch({
+        type: 'LIKE_TOP_STORY',
+        payload: {
+          user_id: this.props.user_id,
+          story_id: this.props.story_id
+        }
+      });
     }
+  }
 
     componentDidMount = (event) => {
         this.props.dispatch({
@@ -35,38 +43,59 @@ class TopStoryItem extends Component {
     render() {
 
         return (
-            <div align='center'>
-                <Card
-                    id='card'
-                    bordered={true}
-                    style={{ width: 325 }}
-                    cover={<img className="story-photo" alt="headshot of author" src={this.props.header_photo} />}
-                    actions={[<Button onClick={this.handleLike} ><Icon type='like' />
-                    </Button>, <Button onClick={this.handleReadStory}>Read</Button>]}
-                >
-                    <Row>
-                        <Col span={24}>
-                            <h1 id="story-title">{this.props.title}</h1>
-                        </Col>
-                    </Row>
-                    <Row gutter={8}>
-                        <Col span={6}>
-                        </Col>
-                        <Col span={6}>
-                            <img id="author-avatar" alt="author avatar" src={this.props.profile_pic} />
-                        </Col>
+          <div align="center">
+            <Card
+              id="card"
+              bordered={true}
+              style={{ width: 325 }}
+              cover={
+                <img
+                  className="story-photo"
+                  alt="headshot of author"
+                  src={this.props.header_photo}
+                />
+              }
+              actions={[
+                <Button icon="like" onClick={this.handleLike}>
+                  <Badge
+                    count={this.props.likes}
+                    style={{
+                      backgroundColor: "#fff",
+                      color: "#999",
+                      boxShadow: "0 0 0 1px #d9d9d9 inset"
+                    }}
+                  />
+                </Button>,
+                <Button onClick={this.handleReadStory}>Read</Button>
+              ]}
+            >
+              <Row>
+                <Col span={24}>
+                  <h1 id="story-title">{this.props.title}</h1>
+                </Col>
+              </Row>
+              <Row gutter={8}>
+                <Col span={6} />
+                <Col span={6}>
+                  <img
+                    id="author-avatar"
+                    alt="author avatar"
+                    src={this.props.profile_pic}
+                  />
+                </Col>
 
-                        <Col span={6}>
-                            <h5 id="story-author" align="left">By {this.props.author}</h5>
-                        </Col>
-                        <Col span={6}>
-                        </Col>
-                    </Row>
-                </Card>
-                <br />
-                <br />
-            </div>
-        )
+                <Col span={6}>
+                  <h5 id="story-author" align="left">
+                    By {this.props.author}
+                  </h5>
+                </Col>
+                <Col span={6} />
+              </Row>
+            </Card>
+            <br />
+            <br />
+          </div>
+        );
     }
 };
 

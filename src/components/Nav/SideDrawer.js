@@ -21,7 +21,6 @@ class SideDrawer extends Component {
             { route: '/notification', name: 'Notifications', iconType: 'bell' },
             { route: '/choose-template', name: 'Begin Story', iconType: 'plus-square' },
             { route: '/search', name: 'Browse Stories', iconType: 'search' },
-            { route: '/about', name: 'About', iconType: 'info-circle' },
             { route: '/', name: 'Log Out', iconType: 'logout' }];
         return routes.map((routeObj, i) => {
             return <NavigationLink routeObj={routeObj} notificationCount={this.props.invite.length} handleSideBar={this.props.handleSideBar} key={i} />

@@ -17,13 +17,13 @@ class UserInfo extends Component {
     const { first_name, last_name, email, password,
       profile_pic, confirm_email, confirm_password } = this.props.registration;
 
-    if (first_name && last_name && (email === confirm_email) && (password === confirm_password)) {
+    if (first_name && last_name && (email.toUpperCase() === confirm_email.toUpperCase()) && (password === confirm_password)) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
           first_name: first_name,
           last_name: last_name,
-          email: email,
+          email: email.toUpperCase(),
           password: password,
           profile_pic: profile_pic
         },
@@ -32,15 +32,6 @@ class UserInfo extends Component {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
   } // end registerUser
-
-  dummy = () => {
-    let dummyProfile = { type: 'UPDATE_REGISTRATION', payload: {  email: 'mattkleven@gmail.com',
-                                                                  confirm_email: 'mattkleven@gmail.com',
-                                                                  password: 'a',
-                                                                  confirm_password: 'a',
-                                                                  profile_pic: 'https://journey-tellr-images.s3.amazonaws.com/bucketFolder/1553549316156-lg.jpg', }}
-    this.props.dispatch(dummyProfile);
-  }
 
   render() {
     const { registration,
@@ -112,13 +103,7 @@ class UserInfo extends Component {
               Back
             </Button>
           </Col>
-          <Col span={2}>
-          <Button
-              onClick={this.dummy}
-              style={{opacity: 0,}}>
-              Dummy
-            </Button>
-          </Col>
+
           <Col span={8}>
             <Button onClick={this.registerUser}
               type="primary"
