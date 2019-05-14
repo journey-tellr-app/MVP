@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 //stories a user is/has contributed to.
 //To be used on the home page
 const contributedStoryReducer = (state = [], action) => {
-    if(action.type === 'SET_STORY_CONTRIBUTIONS') {
+    if(action.type === 'SET_STORY_CONTRIBUTIONS_COUNT') {
         return action.payload;
     }
     return state;
