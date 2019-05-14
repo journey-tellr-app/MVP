@@ -23,6 +23,7 @@ router.get('/story-contributions', (req, res) => {
                                intro, date_started, completed, last_edit, is_template, story.id, person.id;`;
         pool.query(queryText, [userId])
             .then((sqlResult) => {
+                console.log(sqlResult.rows);
                 res.send(sqlResult.rows);
             }).catch((error) => {
                 console.log(`error in /story-contributions router: ${error}`);
@@ -34,13 +35,30 @@ router.get('/story-contributions', (req, res) => {
 
 });
 
+
+//returns count of stories where user is author
 router.get('/count', (req, res) => {
     if (req.isAuthenticated()) {
         const userId = req.user.id;
         const queryText = `SELECT COUNT(author) FROM "story" WHERE "author" = $1`
         pool.query(queryText, [userId])
             .then((sqlResult) => {
-                console.log(sqlResult.rows);
+                res.send(sqlResult.rows[0]);
+            }).catch((error) => {
+                console.log(`Error in /recent route: ${error}`);
+            })
+    } else {
+        res.sendStatus(403);
+    }
+})
+
+//returns count of stories where user is author
+router.get('/count-contributions', (req, res) => {
+    if (req.isAuthenticated()) {
+        const userId = req.user.id;
+        const queryText = `SELECT COUNT(author) FROM "story" WHERE "author" = $1`
+        pool.query(queryText, [userId])
+            .then((sqlResult) => {
                 res.send(sqlResult.rows[0]);
             }).catch((error) => {
                 console.log(`Error in /recent route: ${error}`);
@@ -52,7 +70,6 @@ router.get('/count', (req, res) => {
 
 //retrieves 10 recent stories for home page feed
 router.get('/recent', (req, res) => {
-
     if (req.isAuthenticated()) {
         // console.log('in /story/search router');
         const queryText = `SELECT (person.id) as person_id, (story.id) as story_id, first_name, last_name,
