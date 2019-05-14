@@ -41,8 +41,7 @@ router.get('/count', (req, res) => {
         pool.query(queryText, [userId])
             .then((sqlResult) => {
                 console.log(sqlResult.rows);
-                
-                res.send(sqlResult.rows);
+                res.send(sqlResult.rows[0]);
             }).catch((error) => {
                 console.log(`Error in /recent route: ${error}`);
             })

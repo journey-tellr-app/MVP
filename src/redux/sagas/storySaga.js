@@ -101,7 +101,7 @@ function* getContributors(action) {
 function* getStoryCount(action) {
     try {
         const storyCount = yield axios.get(`story/count/`);
-        yield put({type: 'SET_USER_STORY', payload: storyCount})
+        yield put({type: 'SET_USER_STORY', payload: storyCount.data.count})
     } catch (e) {
         console.log(`Error in getStoryCount saga: ${e}`);
         message.error('Error getting story count');

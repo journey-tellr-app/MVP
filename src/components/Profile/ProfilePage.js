@@ -119,7 +119,7 @@ class ProfilePage extends Component {
                         <Row gutter={16}>
                             <Col xs={24}>
                                 <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} />
-                                <Text className="stats-text">{this.props.story.userStoryReducer.length}&nbsp;Stories</Text>
+                                <Text className="stats-text">{this.props.story.userStoryReducer}&nbsp;Stories</Text>
                             </Col>
                         </Row>
                         <Row gutter={16}>
