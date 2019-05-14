@@ -40,7 +40,7 @@ router.get('/story-contributions', (req, res) => {
 router.get('/count', (req, res) => {
     if (req.isAuthenticated()) {
         const userId = req.user.id;
-        const queryText = `SELECT COUNT(author) FROM "story" WHERE "author" = $1`
+        const queryText = `SELECT COUNT(author) FROM "story" WHERE "author" = $1;`;
         pool.query(queryText, [userId])
             .then((sqlResult) => {
                 res.send(sqlResult.rows[0]);
@@ -56,7 +56,10 @@ router.get('/count', (req, res) => {
 router.get('/count-contributions', (req, res) => {
     if (req.isAuthenticated()) {
         const userId = req.user.id;
-        const queryText = `SELECT COUNT(author) FROM "story" WHERE "author" = $1`
+        const queryText = `SELECT COUNT(contributor.person_id) 
+                           FROM "story" 
+                           JOIN "contributor" ON "story"."id" = "contributor"."story_id" 
+                           WHERE "contributor"."person_id" = $1;`;
         pool.query(queryText, [userId])
             .then((sqlResult) => {
                 res.send(sqlResult.rows[0]);
