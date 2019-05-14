@@ -5,7 +5,7 @@ import { Row, Col, Icon, Typography, Divider, Button, Input, Modal } from 'antd'
 
 import './ProfilePage.css';
 import 'antd/dist/antd.css';
-import moment from 'moment'
+import moment from 'moment';
 
 import ContributedStoryList from './ContributedStoryList';
 

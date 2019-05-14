@@ -98,6 +98,16 @@ function* getContributors(action) {
     }
 }
 
+function* getStoryCount(action) {
+    try {
+        const storyCount = yield axios.get(`story/count/`);
+        yield put({type: 'SET_USER_STORY', payload: storyCount})
+    } catch (e) {
+        console.log(`Error in getStoryCount saga: ${e}`);
+        message.error('Error getting story count');
+    }
+}
+
 
 function* storySaga() {
     yield takeLatest('GET_MY_CONTRIBUTIONS', getMyContributions);
@@ -106,6 +116,7 @@ function* storySaga() {
     yield takeLatest('POST_NEW_STORY', addAStory);
     yield takeLatest('CLEAR_NEW_STORY', clearNewStory);
     yield takeLatest('GET_CONTRIBUTORS', getContributors);
+    yield takeLatest('GET_STORY_COUNT', getStoryCount)
 }
 
 export default storySaga;
