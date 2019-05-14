@@ -98,7 +98,7 @@ function* getContributors(action) {
     }
 }
 
-function* getStoryCount(action) {
+function* getStoryCount() {
     try {
         const storyCount = yield axios.get(`story/count/`);
         yield put({type: 'SET_USER_STORY_COUNT', payload: storyCount.data.count})
@@ -108,9 +108,9 @@ function* getStoryCount(action) {
     }
 }
 
-function* getContributionCount(action) {
+function* getContributionCount() {
     try {
-        const contCount = yield axios.get(`story/count/`);
+        const contCount = yield axios.get(`story/count-contributions/`);
         yield put({ type: 'SET_USER_CONTRIBUTION_COUNT', payload: contCount.data.count })
     } catch (e) {
         console.log(`Error in getStoryCount saga: ${e}`);

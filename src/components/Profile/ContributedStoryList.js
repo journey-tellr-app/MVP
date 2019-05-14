@@ -12,7 +12,6 @@ class ContributedStoryList extends Component {
         //the first dispatch gets the stories user is contributing to and renders them on
         //the profile page
         this.props.dispatch({ type: 'GET_MY_CONTRIBUTIONS' });
-        this.props.dispatch({ type: 'GET_STORY_COUNT' });
     }
 
     render() {

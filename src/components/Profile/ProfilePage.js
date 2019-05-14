@@ -25,6 +25,13 @@ class ProfilePage extends Component {
             visible: false,
             file: null
         };
+
+    componentDidMount = () => {
+        //the first dispatch gets the stories user is contributing to and renders them on
+        //the profile page
+        this.props.dispatch({ type: 'GET_CONTRIBUTION_COUNT' });
+        this.props.dispatch({ type: 'GET_STORY_COUNT' });
+    }
     // functions for image upload   
     showModal = () => {
         this.setState({
@@ -119,13 +126,13 @@ class ProfilePage extends Component {
                         <Row gutter={16}>
                             <Col xs={24}>
                                 <Icon className="profile-element" type="book" style={{ fontSize: "14px" }} />
-                                <Text className="stats-text">{this.props.story.userStoryReducer}&nbsp;Stories</Text>
+                                <Text className="stats-text">{this.props.story.userStoryCountReducer}&nbsp;Stories</Text>
                             </Col>
                         </Row>
                         <Row gutter={16}>
                             <Col xs={24}>
                                 <Icon className="profile-element" type="profile" style={{ fontSize: "14px" }} />
-                                <Text className="stats-text">{this.props.story.contributedStoryReducer.length}&nbsp;Contributions</Text>
+                                <Text className="stats-text">{this.props.story.userContributionCountReducer}&nbsp;Contributions</Text>
                             </Col>
                         </Row>
                     </div>

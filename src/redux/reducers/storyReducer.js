@@ -41,6 +41,13 @@ const userStoryCountReducer = (state = [], action) => {
     return state;
 }
 
+const userContributionCountReducer = (state = [], action) => {
+    if (action.type === 'SET_USER_CONTRIBUTION_COUNT') {
+        return action.payload;
+    }
+    return state;
+}
+
 // initial value for newStoryReducer used to clear the reducer
 const initialNewStory = {name: '', title: '', caption: '', placeholder_image: '', intro: ''};
 const newStoryReducer = (state = initialNewStory, action) => {
@@ -76,7 +83,8 @@ export default combineReducers({
     topStoriesReducer, //used the home page
     completeStoryReducer, // used for the main story view page
     searchStoryReducer, // for use with the search page
-    userStoryReducer, // for an user profile story page
+    userStoryCountReducer, // for user profile page
+    userContributionCountReducer, // for user profile page
     newStoryReducer, // called when creating a new story
     imageReducer, //holds AWS image location
     contributors //this returns the names of all contributors to a story (for home page)
