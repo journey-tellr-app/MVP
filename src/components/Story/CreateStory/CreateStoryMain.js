@@ -7,7 +7,7 @@ import './CreateStory.css'
 import SubHeader from '../../Common/SubHeader';
 
 // ant design import
-import { Form, Button, Icon, Row, Col } from 'antd';
+import { Form, Button, Icon, Row, Col, Popconfirm, message } from 'antd';
 
 class CreateStoryMain extends Component {
     // called when create story button is pressed
@@ -16,6 +16,10 @@ class CreateStoryMain extends Component {
         event.preventDefault();
         this.props.history.push('/choose-template/detail/');
     } // end createStory
+
+    cancelStory = () => {
+        this.props.history.push('/home');
+    }
 
     render() {
         const { template } = this.props;
@@ -38,7 +42,8 @@ class CreateStoryMain extends Component {
 
                                 <Col span={9}>
                                     <Button
-                                        className='create-story-nav-btn'>
+                                        className='create-story-nav-btn'
+                                        onClick={this.cancelStory}>
                                         Cancel
                                     </Button>
                                 </Col>
