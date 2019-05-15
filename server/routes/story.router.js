@@ -23,7 +23,6 @@ router.get('/story-contributions', (req, res) => {
                                intro, date_started, completed, last_edit, is_template, story.id, person.id;`;
         pool.query(queryText, [userId])
             .then((sqlResult) => {
-                console.log(sqlResult.rows);
                 res.send(sqlResult.rows);
             }).catch((error) => {
                 console.log(`error in /story-contributions router: ${error}`);
