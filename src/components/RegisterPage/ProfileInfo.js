@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ImageUpload from '../ImageUpload/ImageUpload';
+import RegisterImageUpload from '../ImageUpload/RegisterImageUpload';
 
 import { Button, Icon, Row, Col, Input } from 'antd';
 import './RegisterPage.css';
@@ -53,7 +53,7 @@ class ProfileInfo extends Component {
           </Col>
 
           <Col span={18} style={{ marginBottom: '10px' }} >
-            <ImageUpload photoDetails={{ typeOfPhoto: 'REGISTER', title: 'Choosing New Profile Photo', buttonName: 'Add Profile Photo' }} />
+            <RegisterImageUpload photoDetails={{ typeOfPhoto: 'REGISTER', title: 'Choosing New Profile Photo', buttonName: 'Add Profile Photo' }} />
           </Col>
 
           <Col span={12}>
