@@ -32,6 +32,9 @@ class RegisterImageUpload extends Component {
         this.submitFile();
         this.setState({
             confirmLoading: true,
+            button: "primary",
+            buttonName: "Profile Picture Added"
+            
         });
         setTimeout(() => {
             this.setState({
@@ -68,8 +71,6 @@ class RegisterImageUpload extends Component {
     handleFileUpload = (event) => {
         this.setState({
             file: event.target.files[0],
-            button: "primary",
-            buttonName: "Profile Picture Added"
         })
     }
 
