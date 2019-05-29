@@ -12,7 +12,7 @@ Turn authentic user experiences into seamless content that allows users to conne
 * React
 * Redux
 * (a full list of dependencies can be found in `package.json`)
-* Amazon Web Services
+* AWS (S3 Buckets)
 
 ## Getting Started
 
