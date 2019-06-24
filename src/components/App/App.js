@@ -21,6 +21,7 @@ import CreateStoryChapter from './../Story/CreateStory/CreateStoryChapter.js';
 import CreateStoryContributor from './../Story/CreateStory/CreateStoryContributor.js';
 import NavButton from '../Nav/NavButton';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import EmailRecovery from '../LoginPage/EmailRecovery';
 
 //for dev convenience
 import FakeData from '../Faker/FakeData';
@@ -125,6 +126,10 @@ class App extends Component {
             <ProtectedRoute
               exact path='/choose-template/contributor/'
               component={CreateStoryContributor}
+            />
+            <Route 
+              exact path='/email-recovery'
+              component={EmailRecovery}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}

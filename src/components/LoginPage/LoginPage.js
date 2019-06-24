@@ -5,6 +5,7 @@ import SubHeader from '../Common/SubHeader';
 
 import { Input, Icon, Row, Col, Button, notification } from 'antd';
 import './LoginPage.css';
+import { Link} from 'react-router-dom';
 
 class LoginPage extends Component {
   state = {
@@ -47,6 +48,10 @@ class LoginPage extends Component {
     });
     this.props.dispatch({ type: 'CLEAR_LOGIN_ERROR' });
   };
+
+  recoverEmail = () => {
+    this.props.history.push(`/email-recovery`);
+  }
 
   render() {
     const { email, password } = this.state;
@@ -109,6 +114,14 @@ class LoginPage extends Component {
             <Button
               onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
               Register</Button>
+          </Col>
+
+        </Row>
+        <Row type='flex' align='middle' justify='center'>
+          <Col span={18} style={{ marginBottom: '10px'}}>
+
+              <h4 onClick={this.recoverEmail}>Forgot Password?</h4>
+            
           </Col>
         </Row>
       </div>
