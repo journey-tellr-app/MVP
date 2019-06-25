@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     Form,
     Input,
@@ -13,28 +14,36 @@ import {
     AutoComplete,
 } from 'antd';
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
-
 
 class RecoveryForm extends React.Component {
+    constructor(){
+        super();
+        this.state={
+            email: ''
+        }
+    }
+    handleChange = (event) => {
+        this.setState({
+            email: event.target.value,
+        });
+        console.log(this.state);
+        
+    }
+    submitEmail = () =>{
+        this.props.dispatch({ type: 'RECOVER_PASSWORD', payload:this.state.email });
+    }
     render(){
         return(
-
-
             <Row>
-                <Col style={{
-                    margin: '20px',
-                    float: 'center',
-                }}>
+                <Col style={{margin: '20px',float: 'center'}}>
                     <Form.Item>
                         <Input
                             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Email"
+                            placeholder="Email" onChange={this.handleChange}
                         />
                     </Form.Item>
                     <Button
-                        onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
+                        onClick={this.submitEmail}>
                         Recover Password</Button>
                 </Col>
 
@@ -42,4 +51,8 @@ class RecoveryForm extends React.Component {
         )
     }
 }
-export default RecoveryForm
+const mapStateToProps = state => ({
+    errors: state.errors,
+});
+
+export default connect(mapStateToProps)(RecoveryForm);
