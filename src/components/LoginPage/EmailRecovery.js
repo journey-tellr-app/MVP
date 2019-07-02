@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import RecoveryForm from './RecoveryForm';
 
-import { Input, Icon, Row, Col, Button, notification } from 'antd';
+// import { Input, Icon, Row, Col, Button, notification } from 'antd';
 // import { Form, Icon, Input, Button } from 'antd';
 class EmailRecovery extends Component {
     constructor (){
@@ -13,7 +13,7 @@ class EmailRecovery extends Component {
     } //end constructor
 
     render (){
-        const { email } = this.state;
+        // const { email } = this.state;
         return(
             <div>
                 <h1>Hi</h1>

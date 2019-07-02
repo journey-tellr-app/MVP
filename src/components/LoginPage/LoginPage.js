@@ -5,7 +5,6 @@ import SubHeader from '../Common/SubHeader';
 
 import { Input, Icon, Row, Col, Button, notification } from 'antd';
 import './LoginPage.css';
-import { Link} from 'react-router-dom';
 
 class LoginPage extends Component {
   state = {

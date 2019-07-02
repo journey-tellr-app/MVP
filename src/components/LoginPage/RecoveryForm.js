@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 import {
     Form,
     Input,
-    Tooltip,
     Icon,
-    Cascader,
-    Select,
     Row,
     Col,
-    Checkbox,
     Button,
-    AutoComplete,
 } from 'antd';
 
 
-class RecoveryForm extends React.Component {
+class RecoveryForm extends Component {
     constructor(){
         super();
         this.state={
